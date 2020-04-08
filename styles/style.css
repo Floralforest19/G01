@@ -67,7 +67,6 @@ a {
   -ms-grid-column: 3;
       grid-column-start: 3;
   grid-column-end: 6;
-  width: 100%;
   max-width: 100vw;
   background-color: #9efbdc;
   margin: 3vh 0 3vh 0;

@@ -1,5 +1,5 @@
 <?php
-require_once './recources/db.php';
+require_once './db.php';
 
 //Signin if http header basic auth exists
 if ($_SERVER['HTTP_AUTHORIZATION']) {

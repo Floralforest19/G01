@@ -42,6 +42,7 @@ function parseUrl($url, $path)
     return true;
 };
 
+/*
 function renderpage($pagepath, $protected = false)
 {
     //If user is not signed in. Redirect to signin
@@ -51,26 +52,22 @@ function renderpage($pagepath, $protected = false)
 
     $page = $pagepath;
     require_once("./web/templates/layout.php");
-};
-
-/*---------------------------------------------------------------------*/
-/* Routing */
-
-
-switch ($request) {
-    case '/':
-        renderpage('./web/pages/test.php');
-        break;
-    case parseUrl($request, '/api/test'):
-        require_once './api/test.php';
-        break;
-    case parseUrl($request, '/api/test/:id'):
-        require_once './api/test.php';
-        break;
-    case '/signout':
+        case '/signout':
         //logout by killing session
         session_destroy();
         header("Refresh:0; url=/");
+        break;
+};
+*/
+/*---------------------------------------------------------------------*/
+/* Routing */
+
+switch ($request) {
+    case parseUrl($request, '/api/test'):
+        require_once './routes/test.php';
+        break;
+    case parseUrl($request, '/api/test/:id'):
+        require_once './routes/test.php';
         break;
     default:
         http_response_code(404);

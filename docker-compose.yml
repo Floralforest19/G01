@@ -18,7 +18,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     working_dir: /var/www
     volumes:
-      - ./app/:/var/www
+      - ./:/var/www
       - ./osconfigs/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - cms-network
@@ -29,14 +29,14 @@ services:
   webserver:
     depends_on:
       - app
-    image: nginx:alpine
+    image: httpd
     container_name: webserver
     restart: unless-stopped
     tty: true
     ports:
       - "${SERVER_PORT}:80"
     volumes:
-      - ./app/:/var/www
+      - ./:/var/www
       - ./osconfigs/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - cms-network

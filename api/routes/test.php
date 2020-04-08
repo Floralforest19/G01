@@ -1,6 +1,6 @@
 <?php
 //Inkluderar filen i filen
-require_once 'api/api.php';
+require_once '../recources/api.php';
 
 $GLOBALS['primary_table'] = "Post";
 

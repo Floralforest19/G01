@@ -1,0 +1,74 @@
+version: "3"
+services:
+  #PHP Service
+  app:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mickan/php-fpm7.2
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_SERVER: ${MYSQL_SERVER}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    working_dir: /var/www
+    volumes:
+      - ./app/:/var/www
+      - ./osconfigs/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - cms-network
+    links:
+      - db
+
+  #Nginx Service
+  webserver:
+    depends_on:
+      - app
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${SERVER_PORT}:80"
+    volumes:
+      - ./app/:/var/www
+      - ./osconfigs/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - cms-network
+    links:
+      - app
+
+  #MySQL Service
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: unless-stopped
+    command: "--default-authentication-plugin=mysql_native_password"
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - cms-network
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./osconfigs/mysql/prep:/docker-entrypoint-initdb.d
+  #     - ./osconfigs/mysql/my.cnf:/etc/mysql/my.cnf
+
+#Docker Networks
+networks:
+  cms-network:
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local

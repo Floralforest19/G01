@@ -1,3 +1,35 @@
+// kapslar in alla produkter+meny
+.products__display {
+  justify-content: center;
+}
+
+// alla produkters container
 .products__container {
-  border: 1px solid $color-main;
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+// en produkt
+.products__item {
+  width: 30vw;
+  margin: 1rem;
+  box-shadow: 3px 4px 5px rgba(211, 211, 211, 0.5);
+  background: lightgrey; // byta ut
+}
+.products__item--img {
+  border-bottom-left-radius: 2rem;
+}
+.products__item--text {
+  padding: 1rem;
+  background: $color-white;
+  border-top-right-radius: 1.5rem;
+}
+
+// köp knapp
+.products__btn{
+  background: $color-main;
+  margin: 1rem;
+  padding: 1rem;
 }

@@ -15,7 +15,7 @@
       <a href="index.php?id=hygien">Hygien</a>
       <a href="index.php?id=blommor">Blommor</a>
     </nav>
-  <?php require_once 'read.php' ?>
+  <?php require_once 'read.php'; ?>
   <p>Kopplas ihop med rätt databas, se db.php, read.php</p>
 </body>
 </html>

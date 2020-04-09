@@ -138,4 +138,8 @@ a {
 .header-nav a.header-nav-active {
   color: #a78f8f;
 }
+
+.products__container {
+  border: 1px solid #68ffcd;
+}
 /*# sourceMappingURL=style.css.map */

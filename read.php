@@ -1,11 +1,3 @@
-<div class="products__display">
-  <nav class="">
-      <a href="index.php?id=alla">Alla produkter</a>
-      <a href="index.php?id=mat">Mat</a>
-      <a href="index.php?id=hygien">Hygien</a>
-      <a href="index.php?id=blommor">Blommor</a>
-    </nav>
-
 <?php
 /**************************************** *
  * read info from db & display posts
@@ -15,10 +7,20 @@
 
   // koppla till databas
   require_once 'db.php';
+?>
 
+<div class='products__display'>
+  <nav class='products__menu'>
+    <a href='index.php?id=all'>Alla produkter</a>
+    <a href='index.php?id=food'>Mat</a>
+    <a href='index.php?id=hygien'>Hygien</a>
+    <a href='index.php?id=roses'>Rosor</a>
+   </nav>
+
+<?php
   if(isset($_GET['id'])){
     $id = htmlentities($_GET['id']);
-    if($id == 'mat'){
+    if($id == 'food'){
       $sql = "SELECT * FROM product 
               WHERE category_id = '2'
               ORDER BY name";
@@ -26,10 +28,10 @@
       $sql = "SELECT * FROM product 
               WHERE category_id = '1'
               ORDER BY name";
-    } elseif($id == 'alla'){
+    } elseif($id == 'all'){
       $sql = "SELECT * FROM product 
               ORDER BY name";
-    } elseif($id == 'blommor'){
+    } elseif($id == 'roses'){
       $sql = "SELECT * FROM product 
               WHERE category_id = '3'
               ORDER BY name";

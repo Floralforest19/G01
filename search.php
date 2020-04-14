@@ -5,25 +5,15 @@
 **************************************** */
  require_once 'db.php';
 ?>
-
 <h1>Sök</h1>
 
-<form name="searchForm" action="#" onsubmit="return validateForm()" method="post">
-  <input type="text" name="input">
-  <input type="submit" value="Sök">
+<form name="searchForm" action="#" onsubmit="return validateForm()" method="post" class="search__form">
+  <input type="text" name="input" placeholder="Sök..." class="search__input">
+  <input type="submit" value="Sök" class="search__submit">
 </form>
 
-<p id="feedback"></p>
-
-<table id="products">
-  <thead>
-    <td>Bild</td>
-    <td>Produkt</td>
-    <td>Pris</td>
-  </thead>
+<p id="feedback" class="search__feedback"></p>
 
 <?php require_once 'searchfilter.php'; ?>
-
-</table>
 
 <script type="application/javascript" src="searchvalidate.js"></script>

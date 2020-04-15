@@ -13,6 +13,7 @@
 </head>
 <body>
 
+<<<<<<< HEAD
  <!-- Bortkommenterat eftersom sidan inte fungerar om jag inte har kontakt med databas
    
  <h1>Hello, World!</h1>
@@ -114,8 +115,21 @@
           </article>
 
       </section>
+=======
+<ul>
+  <li><a href="index.php">Hem</a></li>
+  <li><a href="singleproduct.html">En produkt</a></li>
+  <li><a href="search.php">Sök</a></li>
+</ul>
+    <main>
+    <?php require_once 'read.php'; ?>
+>>>>>>> 70cb1734371b002bb9c01c93afe8e60769f0499a
     </main>
   <!-- Slut på CSS-test -->
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 70cb1734371b002bb9c01c93afe8e60769f0499a

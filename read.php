@@ -10,12 +10,12 @@
 ?>
 
 <div class='products__display'>
-  <nav class='products__menu'>
+  <nav class='products__menu'>
     <a href='index.php?id=all'>Alla produkter</a>
     <a href='index.php?id=food'>Mat</a>
     <a href='index.php?id=hygien'>Hygien</a>
     <a href='index.php?id=roses'>Rosor</a>
-   </nav>
+   </nav>
 
 <?php
   if(isset($_GET['id'])){
@@ -50,8 +50,8 @@
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // spara data från db i varsin variabel
       $id = htmlspecialchars($row['product_id']); // $row = array
-      $name = htmlspecialchars($row['name']);
-      $description = htmlspecialchars($row['description']);
+      $heading = htmlspecialchars($row['name']);
+      // $description = htmlspecialchars($row['description']);
       $category = strtoupper(htmlspecialchars($row['category_id']));
       $quantity = htmlspecialchars($row['quantity']);
       $price = htmlspecialchars($row['price']);
@@ -68,14 +68,10 @@
             <br>
             </div>
             <div class='products__item--text'>
-              <h2>$name</h2>
-              <p>$price kr</p>
-              <p>$description</p>
-              <a href='#?id=$id'>Läs mer</a><br><br>";
-              // läs mer bör gå till produktsidan
-              // lägga till när vi introducerar varukorg
-              //<a href='#' class='product__btn'>Köp</a>
-              echo "<p class=''>$quantityText</p>
+              <h2>$heading</h2>
+              <p>$price</p>
+              <a href='#' class='product__btn'>Köp</a>
+              <p class=''>$quantityText</p>
             </div>
           </div>
         <br>
@@ -86,4 +82,3 @@
   echo "</div>";
 ?>
 </div>
-

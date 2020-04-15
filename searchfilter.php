@@ -3,7 +3,8 @@
  * returns products from db who meets criteria
 **************************************** */
 
-if(isset($_POST['input']) || isset($POST['search'])){
+if(isset($_POST['input']) ){
+  // filter from user input
   $filter = htmlspecialchars($_POST['input']);
 
   echo "<h3>Visar resultat för: $filter</h3>
@@ -15,12 +16,14 @@ if(isset($_POST['input']) || isset($POST['search'])){
       <th class='table__th'></th>
     </thead>";
   
+  // prepare and execute sql request
   $sql = "SELECT * FROM product 
   WHERE description LIKE '%$filter%' OR name LIKE '%$filter%'
   ORDER BY name";
   $stmt = $db->prepare($sql);
   $stmt->execute();
 
+  // print all relevant rows
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
   $name = htmlspecialchars($row['name']);
   $price = htmlspecialchars($row['price']);

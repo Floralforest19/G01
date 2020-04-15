@@ -13,7 +13,7 @@
 
 
     <section class="contact-form">
-        <h1 class="contact-form-heading">Kontakta oss</h1>
+        <h2 class="contact-form-heading">Kontakta oss</h2>
         <form>
             <div class="contact-form-container">
                 <div>
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="contact-form-submit">
-                <button class="button" type="submit">Skicka nu</button>
+                <button class="contact-form-button" type="submit">Skicka nu</button>
             </div>
         </form>
     </section>

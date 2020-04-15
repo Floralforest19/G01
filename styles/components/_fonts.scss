@@ -1,0 +1,26 @@
+p {
+  color: $basic-text-color;
+  line-height: 26px;
+  letter-spacing: 0, 66px;
+}
+
+h2 {
+  font-weight: 500;
+  color: $main-head-color;
+  letter-spacing: 1, 20px;
+  font-size: $main-font-size;
+  text-align: center;
+  padding-top: 5%;
+}
+h3 {
+  font-family: $main-font;
+  font-size: $second-font-size;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: 0.89px;
+  color: $second-head-color;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}

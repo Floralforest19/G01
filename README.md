@@ -1,2 +1,0 @@
-# G01
-Frontendprojekt

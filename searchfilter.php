@@ -3,20 +3,17 @@
  * returns products from db who meets criteria
 **************************************** */
 
-if(isset($_POST['input'])){
-
-  echo "<table id='products' class='table__box'>
-  <thead class='table__head'>
-    <th class='table__th'>Bild</th>
-    <th class='table__th'>Produkt</th>
-    <th class='table__th'>Pris</th>
-  </thead>";
-
-  // använder $filter som filter värde för att hämta från db
+if(isset($_POST['input']) || isset($POST['search'])){
   $filter = htmlspecialchars($_POST['input']);
 
-  echo "<h3>Visar resultat för: $filter</h3>";
-
+  echo "<h3>Visar resultat för: $filter</h3>
+  <table id='products' class='table__box'>
+    <thead class='table__head'>
+      <th class='table__th'>Bild</th>
+      <th class='table__th'>Produkt</th>
+      <th class='table__th'>Pris</th>
+    </thead>";
+  
   $sql = "SELECT * FROM product 
   WHERE description LIKE '%$filter%' OR name LIKE '%$filter%'
   ORDER BY name";
@@ -24,13 +21,13 @@ if(isset($_POST['input'])){
   $stmt->execute();
 
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
-    $name = htmlspecialchars($row['name']);
-    $price = htmlspecialchars($row['price']);
-    echo "<tr class='table__row'>
-            <td class='table__img'>BILD</td>
-            <td class='table__data'>$name</td>
-            <td class='table__data'>$price kr</td>
-          </tr>"; 
+  $name = htmlspecialchars($row['name']);
+  $price = htmlspecialchars($row['price']);
+  echo "<tr class='table__row'>
+          <td class='table__img'>BILD</td>
+          <td class='table__data'>$name</td>
+          <td class='table__data'>$price kr</td>
+        </tr>"; 
   endwhile;
 
   echo "</table>";
@@ -38,5 +35,3 @@ if(isset($_POST['input'])){
 else {
   echo "<h3>Ange en sökterm</h3>";
 }
-
-?>

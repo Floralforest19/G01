@@ -16,7 +16,8 @@
  <!-- Bortkommenterat eftersom sidan inte fungerar om jag inte har kontakt med databas
    
  <h1>Hello, World!</h1>
-  <//?php require_once 'read.php'; ?>
+
+  <//?php require_once 'read.php'; ?>
   <p>Kopplas ihop med rätt databas, se db.php, read.php</p> -->
 
 

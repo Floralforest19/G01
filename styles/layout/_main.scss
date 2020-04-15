@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: $main-font;
+  background-color: $bakground-color;
+}
+
+.background {
+  flex-direction: column;
+  align-content: center;
+}

@@ -10,12 +10,14 @@
 ?>
 
 <div class='products__display'>
-  <nav class='products__menu'>
+
+  <nav class='products__menu'>
     <a href='index.php?id=all'>Alla produkter</a>
     <a href='index.php?id=food'>Mat</a>
     <a href='index.php?id=hygien'>Hygien</a>
     <a href='index.php?id=roses'>Rosor</a>
-   </nav>
+
+   </nav>
 
 <?php
   if(isset($_GET['id'])){
@@ -81,4 +83,6 @@
 // stäng post div
   echo "</div>";
 ?>
+
 </div>
+

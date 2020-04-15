@@ -16,11 +16,11 @@ function scrollFunction() {
         // setTimeout(() => { headNav.appendChild(headSearch); }, 300);
         headLogo.style.maxHeight = headerTop.style.maxHeight;
     } else {
-        headerTop.style.maxHeight = "unset";
+        headerTop.style.maxHeight = "12.5vh";
 
         // headerTop.prepend(headSearch);
         // headerTop.prepend(headLogo);
-        headLogo.style.maxHeight = "12.5vh";
+        headLogo.style.maxHeight = "11vh";
     }
 }
 

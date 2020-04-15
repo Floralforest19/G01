@@ -10,11 +10,13 @@
 ?>
 
 <div class='products__display'>
+
   <nav class='products__menu'>
     <a href='index.php?id=all'>Alla produkter</a>
     <a href='index.php?id=food'>Mat</a>
     <a href='index.php?id=hygien'>Hygien</a>
     <a href='index.php?id=roses'>Rosor</a>
+
    </nav>
 
 <?php
@@ -81,5 +83,6 @@
 // stäng post div
   echo "</div>";
 ?>
+
 </div>
 

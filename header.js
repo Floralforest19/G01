@@ -2,6 +2,7 @@
 window.onscroll = function() {scrollFunction()};
 // window.onscroll = function() {setTimeout(() => { scrollFunction(); },300)};
 
+const body = document.querySelectorAll(".header-top, .header-search, .header-button-a");
 const header = document.getElementById("header");
 const headerTop = document.getElementById("header-top");
 const headLogo = document.getElementById("header-logo-main");
@@ -28,8 +29,8 @@ headNav.addEventListener("click", function () {
     headNav.classList.toggle("change");
 
     dropdownMenu.classList.toggle("show");
-    // if (dropdownMenu.style.display === "none") {
-    //     dropdownMenu.style.display = "unset";
-        
-    // }
+
+    for(let i = 0, all = body.length; i < all; i++){   
+        body[i].classList.toggle('menu-fader');
+    }
 });

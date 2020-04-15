@@ -9,7 +9,6 @@
 </head>
 <body>
 <header id="header" class="header">
-
     <div id="header-top" class="header-top">
         <img id="header-logo-main" class="header-logo-main" src="images/logga skis - test.png" alt="temp logo">
     </div>
@@ -27,12 +26,15 @@
             <a href="#">Mat</a>
             <a href="#">Blommor</a>
             <a href="#">Kontakt</a>
-          </div>
+        </div>
     </div>
 
+    <form class="header-search" name="searchBarForm" action="search.php" onsubmit="return validateBarForm()" method="post">
 
-
-    <input id="header-search" class="header-search" type="search" name="header-search" id="header-search" placeholder="Search...">
+        <input id="header-search" class="header-search-bar" type="search" name="input" placeholder="Sök...">
+    </form>
+    
+      <p id="feedbackBar" class="search__feedback"></p>
 
 
     <!-- <div class="header-button"> -->

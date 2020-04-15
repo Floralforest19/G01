@@ -20,7 +20,7 @@ function scrollFunction() {
 
         // headerTop.prepend(headSearch);
         // headerTop.prepend(headLogo);
-        headLogo.style.maxHeight = "100%";
+        headLogo.style.maxHeight = "12.5vh";
     }
 }
 

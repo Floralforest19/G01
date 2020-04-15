@@ -104,7 +104,7 @@ grid-auto-flow: column;
     grid-column: 3;
     grid-row: 2;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 11vh;
     min-width: 0;
     min-height: 0;
     display: grid;
@@ -135,14 +135,13 @@ grid-auto-flow: column;
 .header-search {    // Sökfältet som är i mitten
     color: rgb(230, 251, 237);
     font-size: 1rem;
-    justify-self: center;
     font-size: 1rem;
     grid-column: 2;
     grid-row: 2;
     max-width: 100%;
     background-color: $color-secondary;
     max-height: 80%;
-    // margin: 3px;
+    margin-top: 1vw;
 }
     
     

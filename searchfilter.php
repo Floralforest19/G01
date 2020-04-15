@@ -12,6 +12,7 @@ if(isset($_POST['input']) || isset($POST['search'])){
       <th class='table__th'>Bild</th>
       <th class='table__th'>Produkt</th>
       <th class='table__th'>Pris</th>
+      <th class='table__th'></th>
     </thead>";
   
   $sql = "SELECT * FROM product 
@@ -23,10 +24,12 @@ if(isset($_POST['input']) || isset($POST['search'])){
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
   $name = htmlspecialchars($row['name']);
   $price = htmlspecialchars($row['price']);
+  $id = htmlspecialchars($row['product_id']);
   echo "<tr class='table__row'>
           <td class='table__img'>BILD</td>
           <td class='table__data'>$name</td>
           <td class='table__data'>$price kr</td>
+          <td class='table__data'><a href='#?id=$id'>Besök</a></td>
         </tr>"; 
   endwhile;
 

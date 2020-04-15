@@ -8,12 +8,16 @@ display: grid;
 background-color: $color-main;
 grid-template-rows: 50% 50%;
 grid-template-columns: 20% 60% 20%;
-transition: all 1s linear;
+transition: all 0.1s linear;
 position: fixed;
-overflow: hidden;
 top: 0;             /* Håller sig på toppen */
 z-index: 99;
 grid-auto-flow: column;
+    margin-bottom: 5px;
+    padding: 5px;
+    * {
+        transition: all 0.1s linear;
+    }
 }
 
 // .header {               // Hela <header>-taggen
@@ -29,9 +33,7 @@ grid-auto-flow: column;
 //     top: 0;             /* Håller sig på toppen */
 //     z-index: 99;
 // }
-.header.collapsed {
-    grid-template-rows: 1fr;
-}
+
 
 .header-top {           // Innehåller allt ovanför menyraden
     visibility: visible;
@@ -41,7 +43,7 @@ grid-auto-flow: column;
     // grid-template-columns: '';
     width: 100vw;
     max-height: 12.5vh;
-    transition:max-height 0.3s ease-out;
+    // transition:max-height 0.15s linear;
 
     display: grid;
     // @media screen and (max-width: 600px){
@@ -73,6 +75,8 @@ grid-auto-flow: column;
     min-height: 0;
     padding: 5%;
     place-self: center;
+    // transition:max-height 0.15s linear;
+
 }
 
 
@@ -125,40 +129,20 @@ grid-auto-flow: column;
     place-self: center;
 }
 
-.bar1, .bar2, .bar3 {
-    width: 35px;
-    height: 5px;
-    background-color: #333;
-    margin: 6px 0;
-    transition: 0.4s;
-}
-/* Rotate first bar */
-.change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
-    transform: rotate(-45deg) translate(-9px, 6px) ;
-}
 
-/* Fade out the second bar */
-.change .bar2 {
-    opacity: 0;
-}
-
-/* Rotate last bar */
-.change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
-    transform: rotate(45deg) translate(-8px, -8px) ;
-}
 
 
 .header-search {    // Sökfältet som är i mitten
     color: rgb(230, 251, 237);
-    margin: 0;
     font-size: 1rem;
     justify-self: center;
+    font-size: 1rem;
     grid-column: 2;
     grid-row: 2;
     max-width: 100%;
     background-color: $color-secondary;
+    max-height: 80%;
+    // margin: 3px;
 }
     
     

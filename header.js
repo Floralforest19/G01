@@ -2,13 +2,14 @@
 window.onscroll = function() {scrollFunction()};
 // window.onscroll = function() {setTimeout(() => { scrollFunction(); },300)};
 
-const body = document.querySelectorAll(".header-top, .header-search, .header-button-a");
+const fadeHeader = document.querySelectorAll(".header-top, .header-search, .header-button-a");
 const header = document.getElementById("header");
 const headerTop = document.getElementById("header-top");
 const headLogo = document.getElementById("header-logo-main");
 const headSearch = document.getElementById("header-search");
 const headNav = document.getElementById("header-nav");
 const dropdownMenu = document.getElementById("dropdownMenu");
+const exitDropdownMenu = document.querySelectorAll("*:not(dropdownMenu)");
 
 function scrollFunction() {
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
@@ -30,7 +31,22 @@ headNav.addEventListener("click", function () {
 
     dropdownMenu.classList.toggle("show");
 
-    for(let i = 0, all = body.length; i < all; i++){   
-        body[i].classList.toggle('menu-fader');
+    for(let i = 0, all = fadeHeader.length; i < all; i++){   
+        fadeHeader[i].classList.toggle('menu-fader');
     }
 });
+
+// exitDropdownMenu.addEventListener("click", function () {
+//     dropdownMenu.classList.remove("show");
+// });
+
+window.addEventListener('click', function(e){
+    if (!document.getElementById('header-nav').contains(e.target) && dropdownMenu.classList.contains("show")){
+        dropdownMenu.classList.toggle("show");
+        headNav.classList.toggle("change");
+        
+        for(let i = 0, all = fadeHeader.length; i < all; i++){   
+            fadeHeader[i].classList.toggle('menu-fader');
+        }
+    }
+})

@@ -86,7 +86,16 @@ Visa som bildprodukter
     <input type="checkbox" name="formProductBox" value="No" />
 
     <input type="submit" name="formSubmit" value="Submit" />
+
 </form>
+
+<label for="categori">Välj kategori</label>
+
+<select id="categori">
+  <option value="hygien">Hygien</option>
+  <option value="mat">Mat</option>
+  <option value="rosor">Rosor</option>
+</select>
 
 <?php
 

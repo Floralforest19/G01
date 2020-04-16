@@ -44,20 +44,6 @@
   $stmt = $db->prepare($sql);
   $stmt->execute();
 
-
-
-  // <div class="product__wrapper">
-  //   <article class="box">
-  //     <div class="box__pic">
-  //       <img src="./images/toalettpapper.jpg" alt="toalettpapper"/>
-  //     </div>
-  //     <div class="box__text">
-  //       <h3>Toalettpapper</h3>
-  //       <button>Lägg i varukorg</button>
-  //     </div>
-  //   </article>
-
-
   // starta div för inlägg
   echo "<section class='background'>
         <h2>Våra produkter</h2>

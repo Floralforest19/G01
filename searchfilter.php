@@ -6,15 +6,7 @@
 if(isset($_POST['input']) ){
   // filter from user input
   $filter = htmlspecialchars($_POST['input']);
-
-  echo "<h3>Visar resultat för: $filter</h3>
-  <table id='products' class='table__box'>
-    <thead class='table__head'>
-      <th class='table__th'>Bild</th>
-      <th class='table__th'>Produkt</th>
-      <th class='table__th'>Pris</th>
-      <th class='table__th'></th>
-    </thead>";
+  echo "<h3>Visar resultat för: $filter</h3>";
   
   // prepare and execute sql request
   $sql = "SELECT * FROM product 
@@ -28,12 +20,22 @@ if(isset($_POST['input']) ){
   $name = htmlspecialchars($row['name']);
   $price = htmlspecialchars($row['price']);
   $id = htmlspecialchars($row['product_id']);
-  echo "<tr class='table__row'>
-          <td class='table__img'>BILD</td>
-          <td class='table__data'>$name</td>
-          <td class='table__data'>$price kr</td>
-          <td class='table__data'><a href='#?id=$id'>Besök</a></td>
-        </tr>"; 
+  echo "
+    <article class='box__search'>
+      <div class='box__pic'>
+        <img src='./images/toalettpapper.jpg' alt='toalettpapper'/>
+      </div>
+      <div class='box__text--'>
+        <h3>$name</h3>
+        <p>$price kr</p>
+        <a href='showproduct.php?id=$id'>Läs mer</a><br>";
+        // läs mer bör gå till produktsidan
+        // lägga till när vi introducerar varukorg
+        // <button>Lägg i varukorg</button>
+        //<a href='#' class='product__btn'>Köp</a>
+        echo "
+      </div>
+    </article>"; 
   endwhile;
 
   echo "</table>";

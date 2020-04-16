@@ -20,13 +20,18 @@
   }
 }
 
-.box {
+.box, .box__search {
   display: flex;
   flex-direction: column;
   background-color: $product-background-color;
   box-shadow: 0 2px 4px 0 $shadow;
   color: $basic-text-color;
   align-content: center;
+}
+
+.box__search {
+  flex-direction: row;
+  margin-top: 1rem;
 }
 
 .box__pic {

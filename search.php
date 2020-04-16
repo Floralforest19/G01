@@ -21,27 +21,25 @@
 <body>
 <ul>
   <li><a href="index.php">Hem</a></li>
-  <li><a href="singleproduct.html">En produkt</a></li>
   <li><a href="search.php">Sök</a></li>
+  <li><a href="contact.php">Kontakt</a></li>
 </ul>
+
 <main>
-  <h1>Sök</h1>
+  
+  <div class="box__search--form">
+    <h1>Sök</h1>
+    <form name="searchForm" action="search.php" onsubmit="return validateForm()" method="post" class="search__form">
+      <input type="text" name="input" placeholder="Sök..." class="search__input">
+      <input type="submit" value="Sök" class="search__submit">
+    </form>
+    <p id="feedback" class="search__feedback"></p>
+  </div>
 
-<form name="searchForm" action="search.php" onsubmit="return validateForm()" method="post" class="search__form">
-  <input type="text" name="input" placeholder="Sök..." class="search__input">
-  <input type="submit" value="Sök" class="search__submit">
-</form>
+<section class='background'>
+  <?php require_once 'searchfilter.php'; ?>
+</section>
 
-<p id="feedback" class="search__feedback"></p>
-
-  <div class='product__wrapper'>
-  <section class='background'>
-<?php 
-  // gets filtered product from db
-  require_once 'searchfilter.php'; 
- ?>
- </div>
- </section>
  </main>
 </body>
 </html>

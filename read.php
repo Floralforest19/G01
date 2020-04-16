@@ -10,12 +10,14 @@
 ?>
 
 <div class='products__display'>
+<div class='menu__categories'>
   <nav class='products__menu'>
-    <a href='index.php?id=all'>Alla produkter</a>
-    <a href='index.php?id=food'>Mat</a>
-    <a href='index.php?id=hygien'>Hygien</a>
-    <a href='index.php?id=roses'>Rosor</a>
+    <a href='index.php?id=all' class="link__categories">Alla produkter</a>
+    <a href='index.php?id=food' class="link__categories">Mat</a>
+    <a href='index.php?id=hygien' class="link__categories">Hygien</a>
+    <a href='index.php?id=roses' class="link__categories">Rosor</a>
    </nav>
+</div>
 
 <?php
   if(isset($_GET['id'])){
@@ -43,20 +45,6 @@
 
   $stmt = $db->prepare($sql);
   $stmt->execute();
-
-
-
-  // <div class="product__wrapper">
-  //   <article class="box">
-  //     <div class="box__pic">
-  //       <img src="./images/toalettpapper.jpg" alt="toalettpapper"/>
-  //     </div>
-  //     <div class="box__text">
-  //       <h3>Toalettpapper</h3>
-  //       <button>Lägg i varukorg</button>
-  //     </div>
-  //   </article>
-
 
   // starta div för inlägg
   echo "<section class='background'>

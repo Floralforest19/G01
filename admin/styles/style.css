@@ -1,0 +1,38 @@
+.products__display {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+p {
+  color: #323232;
+  line-height: 26px;
+  letter-spacing: 0, 66px;
+}
+
+h2 {
+  font-weight: 500;
+  color: black;
+  letter-spacing: 1, 20px;
+  font-size: 30px;
+  text-align: center;
+  padding-top: 5%;
+}
+
+h3 {
+  font-family: poppins;
+  font-size: 20px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: 0.89px;
+  color: #eb4b88;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+/*# sourceMappingURL=style.css.map */

@@ -6,10 +6,10 @@
   require_once '../db.php';
 ?>
 
-<div class='products__display'>
   <h2>Produkter</h2>
    <button> <a href='create-product.php'>Skapa ny produkt</a> </button> 
-<div> 
+
+<div class='products__display'>
 
 <?php 
 
@@ -26,35 +26,30 @@ $table .= '<tr>
 <th>Ta bort</th>
 </tr>';
 
-$productsBox = '<div class="products__container">';
+$productsBox = "<div class='product__wrapper'>";
 
 while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   // test
   // print_r($row);
-  $heading = htmlspecialchars($row['name']);
+  $name = htmlspecialchars($row['name']);
   $id = htmlspecialchars($row['product_id']); 
 
    
-  $productsBox .= "<br>
-  <div class='products__item'>
-    <div class='products__item--img'>
-    <br>
-    <p>Plats för bild8</p>
-    <br>
-    </div>
-    <div class='products__item--text'>
-      <h2>$heading</h2>
+  $productsBox .= "<article class='box'>
+  <div class='box__pic'>
+    <img src='../images/toalettpapper.jpg' alt='toalettpapper'/>
+  </div>
+  <div class='box__text'>
+    <h3>$name</h3>
       <a href='#' class='product__btn'>Redigera</a>
       <a href='#' class='product__btn'>Ta bort</a>
     </div>
-  </div>
-<br>
 "; 
 
 
   $table .= "<tr>
-              <td> Plats för bild3 </td>
-              <td> $heading </td>
+              <td>   <img src='../images/toalettpapper.jpg' alt='toalettpapper'/></td>
+              <td> $name </td>
               <td> <a href='update.php?id=$id' 
                   class='btn btn-outline-info'>
                   Redigera
@@ -89,25 +84,21 @@ Visa som bildprodukter
 
 </form>
 
-<label for="categori">Välj kategori</label>
-
-<select id="categori">
-  <option value="hygien">Hygien</option>
-  <option value="mat">Mat</option>
-  <option value="rosor">Rosor</option>
-</select>
 
 <?php
+
+
+
 
 if(isset($_POST['formProductList']) && 
    $_POST['formProductList'] == 'Yes') 
 {
     echo $table;
 }
-else if (isset($_POST['formProductBox']) && 
-$_POST['formProductBox'] == 'No') 
+else 
 {
     echo $productsBox;  
 }	 
 ?>
 
+</div>

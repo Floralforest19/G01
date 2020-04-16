@@ -145,10 +145,6 @@ a {
           justify-content: center;
 }
 
-.products__menu {
-  background: red;
-}
-
 .products__container {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -60,15 +60,12 @@
       } else {
         $quantityText = "Ej i lager";
       }
-      echo "<br>
-          <div class='products__item'>
-            <div class='products__item--img'>
-            <br>
-            <p>Plats för bild</p>
-            <br>
+      echo "<article class='box'>
+            <div class='box__pic'>
+              <img src='./images/toalettpapper.jpg' alt='toalettpapper'/>
             </div>
-            <div class='products__item--text'>
-              <h2>$heading</h2>
+            <div class='box__text'>
+              <h3>$name</h3>
               <p>$price</p>
               <a href='#' class='product__btn'>Köp</a>
               <p class=''>$quantityText</p>

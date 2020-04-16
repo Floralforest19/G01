@@ -251,7 +251,7 @@ body {
   }
 }
 
-.box {
+.box, .box__search {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -267,7 +267,31 @@ body {
       align-content: center;
 }
 
-.box__pic {
+.box__search {
+  margin: 2vw 5vw;
+}
+
+@media (min-width: 1000px) {
+  .box__search {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin: 3vw 10vw;
+  }
+}
+
+.box__search--form {
+  margin: 2vw 5vw;
+}
+
+@media (min-width: 1000px) {
+  .box__search--form {
+    margin: 3vw 10vw;
+  }
+}
+
+.box__pic, .box__pic--search {
   max-width: 158px;
   margin: 1em;
   -ms-flex-item-align: center;
@@ -275,15 +299,23 @@ body {
       align-self: center;
 }
 
-.box__pic img {
+.box__pic img, .box__pic--search img {
   -o-object-fit: contain;
      object-fit: contain;
   height: 100%;
   width: 100%;
 }
 
+.box__pic--search {
+  max-width: 200px;
+}
+
 .box__text {
   margin-bottom: 0em;
+}
+
+.box__text--search {
+  margin: auto;
 }
 
 .single__product__wrapper {
@@ -321,6 +353,21 @@ body {
 .single__product__text {
   place-self: center;
   margin: 2em;
+}
+
+.menu__categories {
+  place-self: center;
+  margin: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.link__categories + .link__categories {
+  margin-left: 1rem;
 }
 
 button {
@@ -535,5 +582,55 @@ h3 {
     max-width: 1800px;
     gap: 60px;
   }
+}
+
+.contact-form-thanks-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 100px 0 0 0;
+}
+
+.contact-form-thanks-button {
+  border-radius: 100%;
+  background-color: #ff9378;
+  font-size: 30px;
+  height: 50px;
+  width: 50px;
+  margin: 0 20px 0 0;
+}
+
+.contact-form-thanks-button:hover {
+  background-color: #fe7e5f;
+}
+
+.contact-bg-color {
+  background-color: white;
+}
+
+.contact-form-thanks-heading {
+  text-align: center;
+}
+
+.contact-form-thanks-container {
+  text-align: center;
+  background-color: #f1f1f1;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+}
+
+.contact-form-thanks-container > p {
+  margin-top: 50px;
 }
 /*# sourceMappingURL=style.css.map */

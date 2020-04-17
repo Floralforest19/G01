@@ -18,6 +18,8 @@ require_once '../db.php';
     $selectCat .= "<option value='$id'>$name</option>";
   endwhile;
   $selectCat.= "</select>";
+
+  echo $selectCat;
 ?>
 </div> 
 

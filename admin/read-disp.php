@@ -9,22 +9,6 @@
   <h2>Produkter</h2>
    <button> <a href='create-product.php'>Skapa ny produkt</a> </button> 
  
- <?php  $sql = "SELECT * FROM category 
-  ORDER BY name";
-  $stmt = $db->prepare($sql);
-  $stmt->execute();
- 
-  $selectCat = "<select name='test' id='category_id'>";
-  while($row2 = $stmt->fetch(PDO::FETCH_ASSOC)) :
-    $name = htmlspecialchars($row['name']);
-    $id = htmlspecialchars($row['category_id']);
-    $name = ucfirst($name);
-    $selectCat .= "<option value='$id'>$name</option>";
-  endwhile;
-  $selectCat.= "</select>";
-
-  echo $selectCat
-  ?>
 <div class='products__display'>
 
 <?php 

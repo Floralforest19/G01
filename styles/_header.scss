@@ -20,19 +20,7 @@ grid-auto-flow: column;
     }
 }
 
-// .header {               // Hela <header>-taggen
-//                         // min-height: 10vh;
-//     max-height: 100vh;
-//     height: fit-content;
-//     display: grid;
-//     background-color: $color-main;
-//     grid-template-rows: 80% 20%;
-//     transition: all 1s linear;
-//     position: fixed;
-//     overflow: hidden;
-//     top: 0;             /* Håller sig på toppen */
-//     z-index: 99;
-// }
+
 
 
 .header-top {           // Innehåller allt ovanför menyraden
@@ -40,26 +28,13 @@ grid-auto-flow: column;
     opacity: 1;
     grid-row: 1;
     grid-column: 1 span;
-    // grid-template-columns: '';
     width: 100vw;
     max-height: 12.5vh;
-    // transition:max-height 0.15s linear;
 
     display: grid;
-    // @media screen and (max-width: 600px){
-    //     display: grid;
-    //     grid-auto-flow: row;
-    //     grid-template-columns: repeat(7, 1fr);
-    //     grid-template-rows: 25% 50% 25%;
-    // }
 }
 
-// .header-bot {
-//     grid-auto-flow: column;
-//     grid-row: 2;
-//     grid-column-start: 1;
-//     grid-column-end: 4;
-// }
+
 
 
 
@@ -78,27 +53,6 @@ grid-auto-flow: column;
     // transition:max-height 0.15s linear;
 
 }
-
-
-// .header-button {    // Båda <a>-taggar som innehåller logga till kontakt och varukorg
-//     grid-column: 3;
-//     grid-row: 2;
-//     display: grid;
-//     grid-template-columns: 1fr 1fr;
-//     max-width: 100%;
-//     max-height: 100%;
-//     padding: 1.2vh;
-//     place-content: center;
-//     * {
-//     margin: 0;
-//     }
-//     p {
-//         display: none;
-//         padding-top: 0;
-//         text-align: center;
-//         font-size: 100%;                //**************
-//     }
-// }
     
 .header-button-a {  // <a>-taggarna som innehåller logga till kontakt och varukorg
     grid-column: 3;
@@ -114,7 +68,7 @@ grid-auto-flow: column;
         display: none;
         padding-top: 0;
         text-align: center;
-        font-size: 100%;                //**************
+        font-size: 100%;                //******Behöver bestämma storlek på font, responsive********
     }
 }
 
@@ -132,7 +86,7 @@ grid-auto-flow: column;
 
 
 
-.header-search {    // Sökfältet som är i mitten
+.header-search {    // Container för sökfältet som är i mitten
     color: rgb(230, 251, 237);
     font-size: 1rem;
     font-size: 1rem;
@@ -141,7 +95,7 @@ grid-auto-flow: column;
     margin-top: 1vw;
 }
 
-.header-search-bar {
+.header-search-bar {    // Sökfältet
     width: 89%;
     height: 80%;
     max-height: 70px;
@@ -155,83 +109,14 @@ grid-auto-flow: column;
     
     
 .header-logo-button { // Ikon till kontakt och kundvagn
-        grid-row-start: 1;
-        grid-row-end: 3;
-        max-width: 80%;
-        max-height: 66px;
-        min-width: 0;
-        object-fit: contain;
-        place-self: center;
-        &:hover {
-                transform: scale(1.1);;
-            }
-        }
-
-    
-    
-    
-    
-
-    
-    
-    
-    // .header-nav {
-        //     width: 100vw;
-        //     padding: 1vh;
-        //     place-items: center;
-        //     background-color: $color-menu;
-        //     text-align: center;
-        //     display: flex;
-        //     justify-content: space-around;
-        //     a {
-    //         text-decoration: none;
-    //         object-position: center;
-    //     }
-    //     a.header-nav-active {
-        //         color: rgb(167, 143, 143);
-        //       }
-        // }
-
-        
-        
-        
-        
-
-//  /* Create a sticky/fixed navbar */
-//  #navbar {
-//     overflow: hidden;
-//     padding: 90px 10px; /* Large padding which will shrink on scroll (using JS) */
-//     transition: 0.4s; /* Adds a transition effect when the padding is decreased */
-//     position: fixed; /* Sticky/fixed navbar */
-//     width: 100%;
-//     top: 0; /* At the top */
-//     z-index: 99;
-//   }
-  
-//   /* Style the logo */
-//   #navbar #logo {
-//     font-size: 35px;
-//     font-weight: bold;
-//     transition: 0.4s;
-//   }
-  
-  
-//   /* Display some links to the right */
-//   #navbar-right {
-//     float: right;
-//   }
-  
-//   /* Add responsiveness - on screens less than 580px wide, display the navbar vertically instead of horizontally */
-//   @media screen and (max-width: 580px) {
-//     #navbar {
-//       padding: 20px 10px !important; /* Use !important to make sure that JavaScript doesn't override the padding on small screens */
-//     }
-//     #navbar a {
-//       float: none;
-//       display: block;
-//       text-align: left;
-//     }
-//     #navbar-right {
-//       float: none;
-//     }
-//   } 
+    grid-row-start: 1;
+    grid-row-end: 3;
+    max-width: 80%;
+    max-height: 66px;
+    min-width: 0;
+    object-fit: contain;
+    place-self: center;
+    &:hover {
+        transform: scale(1.1);;
+    }
+}

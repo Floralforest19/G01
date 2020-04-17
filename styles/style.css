@@ -212,4 +212,19 @@ body * {
   -webkit-filter: blur(1px);
           filter: blur(1px);
 }
+
+.goTop {
+  display: none;
+  width: 0;
+  height: 0;
+  position: fixed;
+  left: 75vw;
+  bottom: 24vw;
+}
+
+.goTop-img {
+  max-height: 10vw;
+  max-width: 10vw;
+  rotate: 270deg;
+}
 /*# sourceMappingURL=style.css.map */

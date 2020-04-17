@@ -1,4 +1,4 @@
-
+<?php require_once 'header-admin.php'; ?>
 <h2>Skapa produkt</h2>
 
 <div>

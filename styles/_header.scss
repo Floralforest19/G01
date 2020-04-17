@@ -1,144 +1,122 @@
-.header {               // Hela <header>-taggen
-                        // min-height: 10vh;
-    max-height: 100vh;
-    height: fit-content;
-    display: grid;
-    background-color: $color-main;
-    grid-template-rows: 80% 20%;
 
-    transition: all 1s linear;
-    position: fixed;
-    overflow: hidden;
-    top: 0;             /* Håller sig på toppen */
-    z-index: 99;
+.header {               // Hela <header>-taggen
+    min-height: 10vh;
+max-height: 25vh;
+max-width: 100vw;
+height: fit-content;
+display: grid;
+background-color: $color-main;
+grid-template-rows: 50% 50%;
+grid-template-columns: 20% 60% 20%;
+transition: all 0.01s linear;
+position: fixed;
+top: 0;             /* Håller sig på toppen */
+z-index: 10;
+grid-auto-flow: column;
+    margin-bottom: 5px;
+    padding: 5px;
+    * {
+        transition: all 0.1s linear;
+    }
 }
-.header.collapsed {
-    grid-template-rows: 1fr;
-}
+
+
+
 
 .header-top {           // Innehåller allt ovanför menyraden
     visibility: visible;
     opacity: 1;
     grid-row: 1;
-    display: grid;
-    grid-auto-flow: row;
-    grid-template-columns: repeat(7, 1fr);
+    grid-column: 1 span;
     width: 100vw;
-    max-height: 1000px;
-    transition:max-height 0.3s ease-out;
+    max-height: 12.5vh;
 
+    display: grid;
 }
+
+
 
 
 
 .header-logo-main { //Loggan som är högst upp till vänster
     place-self: center;
-    grid-column: 1;
-    object-fit: fill;
-    transform: rotate(45deg);
-    &:hover {
-        transform: rotate(90deg);
-    }
-}
-
-.header-search {    // Sökfältet som är i mitten
-    grid-column-start: 3;
-    grid-column-end: 6;
-    width: 100%;
+    // grid-column-start: 1;
+    // grid-row: 1;
+    object-fit: contain;
+    width: 80%;
     max-width: 100vw;
-    background-color: $color-secondary;
-    margin: 3vh 0 3vh 0;
-}
+    max-height: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 5%;
+    place-self: center;
+    // transition:max-height 0.15s linear;
 
-.header-button {    // Innehåller <a>-taggarna som innehåller logga till kontakt och varukorg
-    grid-column-start: 7;
-    grid-column-end: 8;
+}
+    
+.header-button-a {  // <a>-taggarna som innehåller logga till kontakt och varukorg
+    grid-column: 3;
+    grid-row: 2;
+    max-width: 100%;
+    max-height: 11vh;
+    min-width: 0;
+    min-height: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    * {
-        padding: 1.2vh;
-        margin: 0;
-    }
+    padding: 2vw;
+    // grid-template-rows: repeat(3, 1fr);
     p {
+        display: none;
         padding-top: 0;
         text-align: center;
+        font-size: 100%;                //******Behöver bestämma storlek på font, responsive********
     }
 }
 
-.header-button-a {  // <a>-taggarna som innehåller logga till kontakt och varukorg
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
+.header-button-contact {
+    display: none;
+}
+.header-nav {
+    display: inline-block;
+    cursor: pointer;
+    grid-row: 2;
+    grid-column: 1;
+    place-self: center;
 }
 
+
+
+
+.header-search {    // Container för sökfältet som är i mitten
+    color: rgb(230, 251, 237);
+    font-size: 1rem;
+    font-size: 1rem;
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 1vw;
+}
+
+.header-search-bar {    // Sökfältet
+    width: 89%;
+    height: 80%;
+    max-height: 70px;
+    background-color: $color-secondary;
+    border: 2px solid #333;
+    border-radius: 22px;
+    padding-left: 5px;
+    padding-right: 15px;
+
+}
+    
+    
 .header-logo-button { // Ikon till kontakt och kundvagn
     grid-row-start: 1;
     grid-row-end: 3;
     max-width: 80%;
-    min-width: 7vw;
+    max-height: 66px;
+    min-width: 0;
     object-fit: contain;
     place-self: center;
     &:hover {
         transform: scale(1.1);;
     }
 }
-
-.header-nav {
-    width: 100vw;
-    padding: 1vh;
-    place-items: center;
-    background-color: $color-menu;
-    text-align: center;
-    display: flex;
-    justify-content: space-around;
-    a {
-        text-decoration: none;
-        object-position: center;
-    }
-    a.header-nav-active {
-        color: rgb(167, 143, 143);
-      }
-}
-
-
-
-
-
-
-//  /* Create a sticky/fixed navbar */
-//  #navbar {
-//     overflow: hidden;
-//     padding: 90px 10px; /* Large padding which will shrink on scroll (using JS) */
-//     transition: 0.4s; /* Adds a transition effect when the padding is decreased */
-//     position: fixed; /* Sticky/fixed navbar */
-//     width: 100%;
-//     top: 0; /* At the top */
-//     z-index: 99;
-//   }
-  
-//   /* Style the logo */
-//   #navbar #logo {
-//     font-size: 35px;
-//     font-weight: bold;
-//     transition: 0.4s;
-//   }
-  
-  
-//   /* Display some links to the right */
-//   #navbar-right {
-//     float: right;
-//   }
-  
-//   /* Add responsiveness - on screens less than 580px wide, display the navbar vertically instead of horizontally */
-//   @media screen and (max-width: 580px) {
-//     #navbar {
-//       padding: 20px 10px !important; /* Use !important to make sure that JavaScript doesn't override the padding on small screens */
-//     }
-//     #navbar a {
-//       float: none;
-//       display: block;
-//       text-align: left;
-//     }
-//     #navbar-right {
-//       float: none;
-//     }
-//   } 

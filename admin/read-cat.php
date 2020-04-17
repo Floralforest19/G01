@@ -1,3 +1,8 @@
+<?php /**************************************** *
+  * read info from db & show, add categories
+**************************************** */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,24 +28,21 @@
 
   <h2>Kategorier</h2>
 
-  <div class="box__cat--form">
+  <div class="box__cat--form box__cat--form--main">
     <form action="#" method="post" name="createCatForm"  onsubmit="return validateCatForm()">
-      <input name="catname" type="text" class="input__cat" required placeholder="Kategori...">
+      <input name="catname" type="text" class="input__cat" required placeholder="Lägg till kategori...">
       <input type="submit" value="Lägg till kategori" class="cat-form-btn">
     </form>
       <p id="feedbackCat" class="search__feedback"></p>
-
-
-
   </div>
 
-  <div class="box__cat--form">
-    <table class='table__cat'>
+  
+    
   <?php require_once '../db.php';
 
     // skapa kategori
     if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
-      $catname = htmlspecialchars($_POST['catname']);
+      $catname = htmlspecialchars(ucfirst($_POST['catname']));
       $sql = "INSERT INTO category (name) 
               VALUES ( :name)";
       $stmt = $db->prepare($sql);
@@ -54,7 +56,7 @@
     $stmt = $db->prepare($sql);
     $stmt->execute();
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
-      echo "<tr>";
+      echo "<div class='box__cat--form'><table class='table__cat'><tr>";
       $name = htmlspecialchars($row['name']);
       $id = htmlspecialchars($row['category_id']);
       echo "<h3>$name</h3>
@@ -66,15 +68,15 @@
       $productrow = $stmtCheckIfProdsExist->fetch(PDO::FETCH_ASSOC);  
       // ifall raden är 0 så är kategorin tom på kategorier
       if( $productrow == 0 ){
-        echo "<p><a href='delete-cat.php?id=$id' onclick=\"return confirm('Är du säker att du vill radera kategorin?')\"><button  class='btn__delete'>Radera</button></a><p>"; 
+        echo "<a href='delete-cat.php?id=$id' onclick=\"return confirm('Är du säker att du vill radera kategorin?')\"><button  class='btn__delete'>Radera</button></a>"; 
       } else {
-        echo "<p>Går ej att radera</p>";
+        echo "<p>Går ej att radera, innehåller produkter</p>";
       }
-      echo "</div></tr>";
+      echo "</div></tr></table></div>";
     endwhile;
   ?>
-    </table>
-  </div>
+    
+  
 </section>
 </body>
 </html>

@@ -1,5 +1,5 @@
 
-<h2>Kategorier</h2>
+<h2>Skapa produkt</h2>
 
 <div>
 <form action="#" method="post" name="createProdForm">
@@ -7,22 +7,19 @@
     <div> <?php
 // visa kategorierna
 require_once '../db.php';
-
   $sql = "SELECT * FROM category 
   ORDER BY name";
   $stmt = $db->prepare($sql);
   $stmt->execute();
- 
   $selectCat = "<select name='test' id='category_id'>";
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
-    $name = htmlspecialchars($row['name']);
+    $name = ucfirst(htmlspecialchars($row['name']));
     $id = htmlspecialchars($row['category_id']);
-    $name = ucfirst($name);
     $selectCat .= "<option value='$id'>$name</option>";
   endwhile;
   $selectCat.= "</select>";
 
-  echo $selectCat
+  echo $selectCat;
 ?>
 </div> 
 
@@ -49,7 +46,7 @@ require_once '../db.php';
       $category_id  = htmlspecialchars($_POST['test']);
 
       $sql = "INSERT INTO product (name, description, quantity, price,image_file_name, category_id) 
-              VALUES ( :name, :description, :quantity,:image_file_name, :price, :category_id)";
+              VALUES ( :name, :description, :quantity,:price,:image_file_name,  :category_id)";
       $stmt = $db->prepare($sql);
 
       $stmt->bindParam(':name' , $name);

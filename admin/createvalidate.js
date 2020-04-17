@@ -4,7 +4,7 @@ function validateCatForm() {
     if (input.length > 30 ){
       document.querySelector('#feedbackCat').innerHTML = 'Kategorin måste vara kortare än 30 tecken'
     } else {
-      document.querySelector('#feedbackCat').innerHTML = 'Skriv in minst två tecken för att skapa en ny kategori'
+      document.querySelector('#feedbackCat').innerHTML = 'Skriv in minst två tecken'
     }
     return false
   } 

@@ -4,6 +4,7 @@
 **************************************** */
   // koppla till databas
   require_once '../db.php';
+  require_once 'header-admin.php';
 ?>
 
   <h2>Produkter</h2>

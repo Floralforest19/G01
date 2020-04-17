@@ -1,7 +1,7 @@
 <footer id="footer" class="footer">
     <div id="footer-information" class="footer-information">
         <div class=footer-first>
-            <img class="footer-img" src="/images/Logo .png" />
+            <img class="footer-img" src="images/Logo .png" />
         </div>
         <div class="footer-middle-left">
             <p class="p-footer"> Om Kris & Ros </p>
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="footer-bottom">
-    <img class="footer-img-bottom" src="/images/icon-5.png"> © by Kris & Ros   
+    <img class="footer-img-bottom" src="images/icon-5.png"> © by Kris & Ros   
 </div>
 <a href="#top">Back to top</a>
 </footer>

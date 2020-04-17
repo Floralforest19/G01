@@ -64,9 +64,7 @@
       } else {
         $quantityText = "Ej i lager";
       }
-
-      echo "
-          <article class='box'>
+      echo "<article class='box'>
             <div class='box__pic'>
               <img src='./images/toalettpapper.jpg' alt='toalettpapper'/>
             </div>

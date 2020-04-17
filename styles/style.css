@@ -251,7 +251,7 @@ body {
   }
 }
 
-.box, .box__search {
+.box, .box__search, .box__cat {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -281,14 +281,25 @@ body {
   }
 }
 
-.box__search--form {
+.box__cat {
+  padding: 2vw;
+  margin: 1vw 4vw;
+}
+
+.box__search--form, .box__cat--form {
   margin: 2vw 5vw;
 }
 
 @media (min-width: 1000px) {
-  .box__search--form {
+  .box__search--form, .box__cat--form {
     margin: 3vw 10vw;
   }
+}
+
+.box__cat--form {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 1rem;
 }
 
 .box__pic, .box__pic--search {
@@ -316,6 +327,12 @@ body {
 
 .box__text--search {
   margin: auto;
+}
+
+.box__text--cat {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-columns: 1fr 1fr 1fr;
 }
 
 .single__product__wrapper {
@@ -370,7 +387,19 @@ body {
   margin-left: 1rem;
 }
 
-button {
+.table__cat {
+  width: 100%;
+}
+
+.input__cat {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(110, 110, 110, 0.5);
+}
+
+button, .cat-form-btn {
   margin-top: 1em;
   margin-bottom: 1em;
   width: 128px;
@@ -389,12 +418,33 @@ button {
   transition: all 500ms ease;
 }
 
-button:hover {
+button:hover, .cat-form-btn:hover {
   background-color: rgba(119, 238, 95, 0.349);
+  cursor: pointer;
 }
 
 .numberInput {
   width: 50px;
+}
+
+.btn__delete, .btn__edit {
+  background-color: #eb4b88;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+
+.btn__edit {
+  background: #ff9378;
+}
+
+.cat-form-btn {
+  background: #ff9378;
+  font-family: poppins;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  width: auto;
 }
 
 p {

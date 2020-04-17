@@ -302,6 +302,10 @@ body {
   border-radius: 1rem;
 }
 
+.box__cat--form--main {
+  border: 2px solid rgba(110, 110, 110, 0.5);
+}
+
 .box__pic, .box__pic--search {
   max-width: 158px;
   margin: 1em;

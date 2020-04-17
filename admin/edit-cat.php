@@ -41,11 +41,11 @@
 
   <section class='background'>
 
-    <h2>Uppdatera kategori</h2>
+    <h2>Redigera kategori</h2>
     <div class="box__cat--form">
       <form action="#" method="post" name="createCatForm"  onsubmit="return validateCatForm()">
         <input name="catname" type="text" class="input__cat" required placeholder="<?php echo $name ?>">
-        <input type="submit" value="Uppdatera kategori" class="cat-form-btn">
+        <input type="submit" value="Lägg till nytt namn" class="cat-form-btn">
       </form>
         <p id="feedbackCat" class="search__feedback"></p>
     </div>

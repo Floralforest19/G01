@@ -1,3 +1,8 @@
+<?php /**************************************** *
+  * read info from db & show, add categories
+**************************************** */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,13 +30,10 @@
 
   <div class="box__cat--form">
     <form action="#" method="post" name="createCatForm"  onsubmit="return validateCatForm()">
-      <input name="catname" type="text" class="input__cat" required placeholder="Kategori...">
+      <input name="catname" type="text" class="input__cat" required placeholder="Lägg till kategori...">
       <input type="submit" value="Lägg till kategori" class="cat-form-btn">
     </form>
       <p id="feedbackCat" class="search__feedback"></p>
-
-
-
   </div>
 
   <div class="box__cat--form">
@@ -40,7 +42,7 @@
 
     // skapa kategori
     if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
-      $catname = htmlspecialchars($_POST['catname']);
+      $catname = htmlspecialchars(ucfirst($_POST['catname']));
       $sql = "INSERT INTO category (name) 
               VALUES ( :name)";
       $stmt = $db->prepare($sql);

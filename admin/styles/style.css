@@ -38,6 +38,10 @@
           align-items: center;
 }
 
+.hide {
+  display: none;
+}
+
 p {
   color: #323232;
   line-height: 26px;

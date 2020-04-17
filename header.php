@@ -3,45 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/style.scss">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles\style.css">
     <title>Header v0.01</title>
 </head>
 <body>
 <header id="header" class="header">
     <div id="header-top" class="header-top">
-        
-        <img class="header-logo-main" src="images\Skärmklipp.PNG" alt="temp logo">
-
-        <input class="header-search" type="search" name="header-search" id="header-search" placeholder="Search...">
-
-        <div class="header-button">
-            <a class="header-button-a" href="">
-                <img class="header-logo-button" src="./images/phone.png" alt="Phone">
-                <p>Contact</p>
-            </a>
-            <a class="header-button-a" href="">
-                <img class="header-logo-button" src="./images/shoppingcart.png" alt="Shopping cart">
-                <p>Cart</p>
-            </a>
-        </div>
-
+        <img id="header-logo-main" class="header-logo-main" src="images/logga skis - test.png" alt="temp logo">
     </div>
 
-    <nav class="header-nav">
-        <a class="header-nav-active" href="">Home</a>
-        <a href="">About</a>
-        <a href="contact.php">Contact</a>
-        <a href="">Basket</a>
-    </nav>
+    
+
+    <div id="header-nav" class="header-nav">
+        <div id="header-nav-1" class="bar1"></div>
+        <div id="header-nav-2" class="bar2"></div>
+        <div id="header-nav-3" class="bar3"></div>
+
+        <div id="dropdownMenu" class="dropdown-content">
+            <a href="#">Hygien</a>
+            <a href="#">Mat</a>
+            <a href="#">Blommor</a>
+            <a href="#">Kontakt</a>
+        </div>
+    </div>
+
+    <form class="header-search" name="searchBarForm" action="search.php" onsubmit="return validateBarForm()" method="post">
+
+        <input id="header-search" class="header-search-bar" type="search" name="input" placeholder="Sök...">
+    </form>
+    
+      <p id="feedbackBar" class="search__feedback margin-no"></p>
+
+
+        <a class="header-button-a header-button-contact" href="">
+            <img class="header-logo-button" src="./images/phone.png" alt="Phone">
+            <p>Contact</p>
+        </a>
+        <a class="header-button-a header-button-cart" href="">
+            <img class="header-logo-button" src="./images/shoppingcart.png" alt="Shopping cart">
+            <p>Cart</p>
+        </a>
+
+
+
+
+    <a id="goTop" class="goTop" href="#"><img class="goTop-img" src="./images/goTop.svg" alt="Go top arrow"></a>
 </header>
 <script src="header.js"></script>
-
-
-
-
-
-
-
-
-
-<div style="background: linear-gradient(#e66465, #9198e5);height: 2345px; max-width: 100%;"></div>

@@ -28,3 +28,6 @@
     <img class="footer-img-bottom" src="/images/icon-5.png"> © by Kris & Ros   
 </div>
 </footer>
+<a href="#top">Back to top</a>
+<script src="footer.js"></script>
+

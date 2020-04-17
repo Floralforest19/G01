@@ -67,7 +67,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                   Redigera
                 </a></td>
               <td>
-                <a href='delete.php?id=$id' 
+                <a onclick=\"return confirm('Är du säker att du vill radera $name?')\" href='delete.php?id=$id'  
                   class='btn btn-outline-danger'>
                   Ta bort
                 </a>

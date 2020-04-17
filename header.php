@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles\style.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.scss">
     <title>Header v0.01</title>
 </head>
 <body>
@@ -30,7 +30,7 @@
     <nav class="header-nav">
         <a class="header-nav-active" href="">Home</a>
         <a href="">About</a>
-        <a href="">Contact</a>
+        <a href="contact.php">Contact</a>
         <a href="">Basket</a>
     </nav>
 </header>
@@ -45,4 +45,3 @@
 
 
 <div style="background: linear-gradient(#e66465, #9198e5);height: 2345px; max-width: 100%;"></div>
-<script src="footer.php"></script>

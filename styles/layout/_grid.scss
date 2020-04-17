@@ -138,4 +138,29 @@
   font-size: 14px;
   border-radius: 10px;
   border: 1px solid $shadow;
+  box-sizing: border-box;
+}
+
+.nav__admin {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1rem;
+  text-align: center;
+  ul {
+    list-style: none;
+    li {
+      a {
+        color: $second-head-color;
+        &:hover {
+          color: black;
+        }
+      }
+    }
+    @media (min-width: $desktop-size) {
+      li {
+        display: inline;
+      }
+    }
+  }
 }

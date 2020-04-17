@@ -44,6 +44,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
       <a href='#' class='product__btn'>Redigera</a>
       <a href='#' class='product__btn'>Ta bort</a>
     </div>
+    </article>
 "; 
 
 

@@ -1,5 +1,18 @@
 .products__display {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+}
 
+.product__wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 }

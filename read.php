@@ -23,23 +23,23 @@
   if(isset($_GET['id'])){
     $id = htmlentities($_GET['id']);
     if($id == 'food'){
-      $sql = "SELECT * FROM product 
+      $sql = "SELECT * FROM product
               WHERE category_id = '2'
               ORDER BY name";
     } elseif($id == 'hygien'){
-      $sql = "SELECT * FROM product 
+      $sql = "SELECT * FROM product
               WHERE category_id = '1'
               ORDER BY name";
     } elseif($id == 'all'){
-      $sql = "SELECT * FROM product 
+      $sql = "SELECT * FROM product
               ORDER BY name";
     } elseif($id == 'roses'){
-      $sql = "SELECT * FROM product 
+      $sql = "SELECT * FROM product
               WHERE category_id = '3'
               ORDER BY name";
     }
   } else {
-    $sql = "SELECT * FROM product 
+    $sql = "SELECT * FROM product
             ORDER BY name";
   }
 
@@ -64,7 +64,9 @@
       } else {
         $quantityText = "Ej i lager";
       }
-      echo "<article class='box'>
+
+      echo "
+          <article class='box'>
             <div class='box__pic'>
               <img src='./images/toalettpapper.jpg' alt='toalettpapper'/>
             </div>
@@ -79,7 +81,7 @@
               //<a href='#' class='product__btn'>Köp</a>
               echo "<p class=''>$quantityText</p>
             </div>
-          </article>"; 
+          </article>";
 
   // avsluta while loop
   endwhile;

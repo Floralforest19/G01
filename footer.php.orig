@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <footer id="footer" class="footer">
     <div id="footer-information" class="footer-information">
         <div class=footer-first>
@@ -27,5 +28,13 @@
     <div class="footer-bottom">
     <img class="footer-img-bottom" src="/images/icon-5.png"> © by Kris & Ros   
 </div>
-<a href="#top">Back to top</a>
 </footer>
+<a href="#top">Back to top</a>
+<script src="footer.js"></script>
+
+=======
+<script src="footer.js"></script>
+<a href="#top">Back to top</a>
+</body>
+</html>
+>>>>>>> c9a36168ca56ed62b3f724c09752cd0e54447a42

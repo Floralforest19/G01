@@ -1,0 +1,24 @@
+$color-main: 	#1D99BA;
+$color-secondary: 	#18b2e0;
+$color-menu: 	#26add6;
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+
+    * {
+        font-family: 'Poppins', sans-serif;
+        text-decoration: none;
+        box-sizing: content-box;
+    }
+}
+
+:root {
+    text-decoration: none;
+    box-sizing: content-box;
+}
+
+.margin-no {
+    margin: 0;
+}

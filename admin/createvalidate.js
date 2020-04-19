@@ -11,7 +11,7 @@ function validateCatForm() {
     return false
   } 
   // regular expression to check for latin letters
-  let onlyLetters = /^[a-zA-Z\- ÅåÄäÖöØøÆæÉéÈèÜüÊêÛûÎî]*$/.test(input)
+  let onlyLetters = /^[a-zA-Z\- ÅåÄäÖöØøÆæÉéÈèÜüÊêÛûÎî0123456789]*$/.test(input)
   if(onlyLetters == false){
     document.querySelector('#feedbackCat').innerHTML = 'Namnet måste bestå av tecken från latinska alfabeten'
     return false

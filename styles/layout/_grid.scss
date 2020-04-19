@@ -150,6 +150,10 @@
   ul {
     list-style: none;
     li {
+      & + li {
+        margin-left: 1rem;
+      }
+        display: inline;
       a {
         color: $second-head-color;
         &:hover {
@@ -157,10 +161,9 @@
         }
       }
     }
-    @media (min-width: $desktop-size) {
-      li {
-        display: inline;
-      }
-    }
   }
+}
+
+.search__feedback {
+  color: $second-head-color;
 }

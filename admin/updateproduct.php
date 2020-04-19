@@ -1,15 +1,14 @@
 <?php 
 
 /**************************************** *
- 1. Get a product
- 2. Update a product
+ 1. Get product data.
+ 2. Update product data.
 **************************************** */
 
-header("Content-Type: application/json; charset=UTF-8");
+require_once 'header-admin.php';
+require_once '../db.php';
 
-require_once 'db.php';
-
-//Get product info
+//1. Get product data.
 if(isset($_GET['product_id'])){
     $product_id = htmlspecialchars($_GET['product_id']);
     $sql = "SELECT * FROM product WHERE product_id = :product_id";
@@ -26,55 +25,26 @@ if(isset($_GET['product_id'])){
       $price  = $row['price'];
       $category_id  = $row['category_id'];
 
-      //https://www.w3schools.com/js/js_json_php.asp
-      $productResponse = new \stdClass(); //https://stackoverflow.com/questions/8900701/creating-default-object-from-empty-value-in-php
-      $productResponse->product_id=$product_id;
-      $productResponse->name=$name;
-      $productResponse->description=$description;
-      $productResponse->quantity=$quantity;
-      $productResponse->image_file_name=$image_file_name;
-      $productResponse->price=$price;
-      $productResponse->category_id=$category_id;
-
-      $json = json_encode($productResponse,
-      JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
-
-      http_response_code(200);
-      
-      echo $json;
-      
     }else{
-        http_response_code(404);
+      echo 'Produkten finns inte';
       exit;
     }
   
   }
 
 
-
-//Update product 
+//2. Update product 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-  //if we want to post as json
-    $data = json_decode(file_get_contents('php://input'), true);
-    $product_id = htmlentities($data['product_id']);
-    $name = htmlentities($data['name']);
-    $description  = htmlentities($data['description']);
-    $quantity   = htmlentities($data['quantity']);
-    $image_file_name = htmlentities($data['image_file_name']);
-    $price = htmlentities($data['price']);
-    $category_id = htmlentities($data['category_id']);
-  
-    //if we want to post as form data
-    /* $product_id = htmlentities($_POST['product_id']);
+ $product_id = htmlentities($_POST['product_id']);
     $name = htmlentities($_POST['name']);
     $description  = htmlentities($_POST['description']);
     $quantity   = htmlentities($_POST['quantity']);
     $image_file_name = htmlentities($_POST['image_file_name']);
     $price = htmlentities($_POST['price']);
     $category_id = htmlentities($_POST['category_id']);
-*/
 
+echo $product_id;
     $update = "UPDATE product
             SET 
             name = :name, 
@@ -96,8 +66,44 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $stmt->bindParam(':product_id'  , $product_id);
   
     $stmt->execute();
+    header('Location:index.php');
+    exit;
+  }else if (isset($_GET['product_id']) == false) {
+    echo 'Produkten finns inte';
     exit;
   }
 
 
 ?>
+
+<h2>Updatera produkt</h2>
+
+<div class="update-product-form">
+    <form method="POST">
+        Bild: <input name="image_file_name" type="text" required value="<?php echo $image_file_name; ?>">
+        <?php
+// visa kategorierna
+require_once '../db.php';
+  $sql = "SELECT * FROM category 
+  ORDER BY name";
+  $stmt = $db->prepare($sql);
+  $stmt->execute();
+  $selectCat = "<select name='category_id' id='category_id'>";
+  while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
+    $name = ucfirst(htmlspecialchars($row['name']));
+    $id = htmlspecialchars($row['category_id']);
+    $selectCat .= "<option value='$id'>$name</option>";
+  endwhile;
+  $selectCat.= "</select>";
+
+  echo 'Kategori: ' . $selectCat;
+?>
+        Name: <input name="name" type="text" required value="<?php echo $name; ?>">
+        Beskrivning: <textarea name="description" type="text" cols="30" rows="5"
+            required><?php echo $description; ?></textarea>
+        Antal: <input name="quantity" type="number" required value="<?php echo $quantity; ?>">
+        Pris: <input name="price" type="number" required value="<?php echo $price; ?>">
+        <input type="submit" value="Updatera produkt">
+        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+    </form>
+</div>

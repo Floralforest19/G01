@@ -1,3 +1,4 @@
+// checks number of characters entered
 function validateCatForm() {
   let input = document.forms["createCatForm"]["catname"].value;
   if (input.length < 2 || input.length > 30) {
@@ -9,3 +10,5 @@ function validateCatForm() {
     return false
   } 
 }
+
+/// develop to check for unwanted foreign characters

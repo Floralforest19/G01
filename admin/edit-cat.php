@@ -28,7 +28,7 @@
   <?php 
     require_once '../db.php'; 
 
-    // hget current name and set as placeholder in form
+    // get current name and set as placeholder in form
     if(isset($_GET['id'])){
       $id = htmlspecialchars($_GET['id']); 
       $sql = "SELECT name FROM category WHERE category_id = $id";
@@ -40,27 +40,38 @@
   ?>
 
   <section class='background'>
-
     <h2>Redigera kategori</h2>
     <div class="box__cat--form">
-      <form action="#" method="post" name="createCatForm"  onsubmit="return validateCatForm()">
+      <form action="#" method="post" name="createCatForm" accept-charset="UTF-8" onsubmit="return validateCatForm()">
         <input name="catname" type="text" class="input__cat" required placeholder="<?php echo $name ?>">
-        <input type="submit" value="Lägg till nytt namn" class="cat-form-btn">
+      <?php 
+        if(isset($_POST['catname'])){
+          $id = htmlspecialchars($_GET['id']); 
+          $catname = ucfirst(htmlspecialchars($_POST['catname'])); 
+          // kolla om kategorin finns i databasen
+          $sql = "SELECT `name` FROM `category` WHERE `name` LIKE '$catname'";
+          $stmt = $db->prepare($sql);
+          $stmt->execute();
+          // $result sätts till true ifall kategorin existerar
+          $result = false; 
+          while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $result = true; 
+            echo "<p class='search__feedback'>$catname är redan en kategori. Ange annat värde för att spara.</p>";
+          } // skapa ny kategori ifall nytt värde
+          if(!$result){
+            $sql = "UPDATE category SET name = '$catname' WHERE category_id = '$id' ";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            header('Location:read-cat.php');
+          }
+        }
+      ?>
+        <input type="submit" value="Byt kategorinamn" class="cat-form-btn"> 
       </form>
-        <p id="feedbackCat" class="search__feedback"></p>
+      <p id="feedbackCat" class="search__feedback"></p>
+      <a href="read-cat.php"><button class="btn__delete">Avbryt</button></a>
+        
     </div>
-
-  <?php 
-    if(isset($_POST['catname'])){
-      $id = htmlspecialchars($_GET['id']); 
-      $catname = ucfirst(htmlspecialchars($_POST['catname'])); 
-      $sql = "UPDATE category SET name = '$catname' WHERE category_id = '$id' ";
-      $stmt = $db->prepare($sql);
-      $stmt->execute();
-      header('Location:read-cat.php');
-    }
-  ?>
-
   </section>
 </body>
 </html>

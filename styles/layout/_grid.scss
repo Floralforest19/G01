@@ -150,16 +150,15 @@
   ul {
     list-style: none;
     li {
+      & + li {
+        margin-left: 1rem;
+      }
+        display: inline;
       a {
         color: $second-head-color;
         &:hover {
           color: black;
         }
-      }
-    }
-    @media (min-width: $desktop-size) {
-      li {
-        display: inline;
       }
     }
   }

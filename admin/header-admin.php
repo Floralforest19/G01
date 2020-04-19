@@ -16,11 +16,11 @@
 <script src="createvalidate.js"></script>
 <nav class="nav__admin">
   <ul>
-    <li><a href="../index.php">Hem</a> - </li>
-    <li><a href="../search.php">Sök</a> - </li>
+    <li><a href="../index.php">Hem</a></li>
+    <li><a href="../search.php">Sök</a></li>
     <li><a href="../contact.php">Kontakt</a></li><br>
-    <li><a href="index.php">Produkter</a> - </li>
-    <li><a href="create-product.php">Skapa produkt</a> - </li>
+    <li><a href="index.php">Produkter</a></li>
+    <li><a href="create-product.php">Skapa produkt</a></li>
     <li><a href="read-cat.php">Kategorier</a></li>
   </ul>
 </nav>

@@ -651,18 +651,20 @@ body {
   list-style: none;
 }
 
+.nav__admin ul li {
+  display: inline;
+}
+
+.nav__admin ul li + li {
+  margin-left: 1rem;
+}
+
 .nav__admin ul li a {
   color: #eb4b88;
 }
 
 .nav__admin ul li a:hover {
   color: black;
-}
-
-@media (min-width: 1000px) {
-  .nav__admin ul li {
-    display: inline;
-  }
 }
 
 button, .cat-form-btn {

@@ -667,6 +667,10 @@ body {
   color: black;
 }
 
+.search__feedback {
+  color: #eb4b88;
+}
+
 button, .cat-form-btn {
   margin-top: 1em;
   margin-bottom: 1em;

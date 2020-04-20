@@ -13,7 +13,7 @@
         <img id="header-logo-main" class="header-logo-main" src="images/logga skis - test.png" alt="temp logo">
     </div>
 
-    
+
 
     <div id="header-nav" class="header-nav">
         <div id="header-nav-1" class="bar1"></div>
@@ -31,7 +31,7 @@
 
         <input id="header-search" class="header-search-bar" type="search" name="input" placeholder="Sök...">
     </form>
-    
+
       <p id="feedbackBar" class="search__feedback margin-no"></p>
 
 

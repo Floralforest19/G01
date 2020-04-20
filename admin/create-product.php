@@ -2,8 +2,9 @@
 <h2>Skapa produkt</h2>
 
 <div>
-<form action="#" method="post" name="createProdForm">
-    <div>  <input name="image_file_name" type="text" class="input__cat" required placeholder="Bild"></div> 
+<form action="upload-pro.php" method="post" enctype="multipart/form-data" name="createProdForm">
+    <div>  <input type="file" name="image_file_name" id="image_file_name" type="text" class="input__cat" required placeholder="Bild"></div> 
+   
     <div> <?php
 // visa kategorierna
 require_once '../db.php';
@@ -32,32 +33,3 @@ require_once '../db.php';
 </form>
 
 </div>
-
-
-  <?php require_once '../db.php';
-
-    // skapa produkt
-    if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
-      $name = htmlspecialchars($_POST['name']);
-      $description  = htmlspecialchars($_POST['description']);
-      $quantity  = ($_POST['quantity']);
-      $image_file_name  = htmlspecialchars($_POST['image_file_name']);
-      $price  = ($_POST['price']);
-      $category_id  = htmlspecialchars($_POST['test']);
-
-      $sql = "INSERT INTO product (name, description, quantity, price,image_file_name, category_id) 
-              VALUES ( :name, :description, :quantity,:price,:image_file_name,  :category_id)";
-      $stmt = $db->prepare($sql);
-
-      $stmt->bindParam(':name' , $name);
-      $stmt->bindParam(':description'  , $description);
-      $stmt->bindParam(':quantity' , $quantity );
-      $stmt->bindParam(':image_file_name' , $image_file_name );
-      $stmt->bindParam(':price' , $price );
-      $stmt->bindParam(':category_id' , $category_id );
-
-      $stmt->execute();
-    } 
-
-      echo "</div></tr>";
-  ?>

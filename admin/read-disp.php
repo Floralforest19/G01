@@ -7,12 +7,12 @@
   require_once 'header-admin.php';
 ?>
 
-  <h2>Produkter</h2>
-   <button> <a href='create-product.php'>Skapa ny produkt</a> </button> 
- 
+<h2>Produkter</h2>
+<button> <a href='create-product.php'>Skapa ny produkt</a> </button>
+
 <div class='products__display'>
 
-<?php 
+    <?php 
 
 
 $table = '<table class="table">';
@@ -52,8 +52,9 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   <div class='box__text'>
     <h3>$name</h3>
     <p>$nameCat</p>
-      <a href='#' class='product__btn'>Redigera</a>
-      <a href='#' class='product__btn'>Ta bort</a>
+      <a href='updateproduct.php?product_id=$id' class='product__btn'>Redigera</a>
+      <a onclick=\"return confirm('Är du säker att du vill radera $name?')\" href='#' class='product__btn'>Ta bort</a>
+
     </div>
     </article>
 "; 
@@ -86,19 +87,19 @@ $productsBox .= '</div>';
 
 ?>
 
-<form action="#" method="post">
-Visa som lista
-    <input type="checkbox" name="formProductList" value="Yes" />
-Visa som bildprodukter
+    <form action="#" method="post">
+        Visa som lista
+        <input type="checkbox" name="formProductList" value="Yes" />
+        Visa som bildprodukter
 
-    <input type="checkbox" name="formProductBox" value="No" />
+        <input type="checkbox" name="formProductBox" value="No" />
 
-    <input type="submit" name="formSubmit" value="Submit" />
+        <input type="submit" name="formSubmit" value="Submit" />
 
-</form>
+    </form>
 
 
-<?php
+    <?php
 
 
 

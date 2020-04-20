@@ -9,21 +9,21 @@
   require_once 'db.php';
 ?>
 
-<!-- <div class='products__display'></div> -->
+<div class='products__display'>
 
 <?php
   if(isset($_GET['id'])){
     $id = htmlentities($_GET['id']);
     if($id != 'all'){
-      $sql = "SELECT * FROM product 
+      $sql = "SELECT * FROM product
               WHERE category_id = '$id'
               ORDER BY name";
     } else {
-      $sql = "SELECT * FROM product 
+      $sql = "SELECT * FROM product
               ORDER BY name";
     }
   } else {
-    $sql = "SELECT * FROM product 
+    $sql = "SELECT * FROM product
             ORDER BY name";
   };
 
@@ -37,7 +37,7 @@
     <h2>Våra produkter</h2>
     <div class='menu__categories'>
       <?php
-        $sql2 = "SELECT * FROM category 
+        $sql2 = "SELECT * FROM category
         ORDER BY name";
         $stmt2 = $db->prepare($sql2);
         $stmt2->execute();
@@ -93,4 +93,3 @@
   echo "</div></section>";
 ?>
 </div>
-</main>

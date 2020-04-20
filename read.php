@@ -9,16 +9,16 @@
   require_once 'db.php';
 ?>
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <div class='products__display'>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-</div>
 
 <?php
   if(isset($_GET['id'])){
@@ -59,6 +59,7 @@
         }
         echo "</nav>";
       ?>
+    </div>
     <div class='product__wrapper'>
 
   <?php

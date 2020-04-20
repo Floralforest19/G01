@@ -8,7 +8,6 @@
         "_header-meny.scss",
         "_goTop.scss",
         "abstracts/_variables.scss",
-        "_header.scss",
         "_disp-prods.scss",
         "layout/_main.scss",
         "layout/_grid.scss",

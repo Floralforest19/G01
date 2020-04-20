@@ -52,3 +52,4 @@
 
 <main id="main">
 <script src="header.js"></script>
+<script src="validateinput.js"></script>

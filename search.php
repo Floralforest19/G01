@@ -8,7 +8,7 @@
 ?>
   <div class="box__search--form">
     <h1>Sök</h1>
-    <form name="searchForm" action="search.php" onsubmit="return validateForm()" method="post" class="search__form">
+    <form name="searchForm" action="search.php" onsubmit="return validateForm('searchForm','input','feedback')" method="post" class="search__form">
       <input type="text" name="input" placeholder="Sök..." class="search__input">
       <input type="submit" value="Sök" class="search__submit contact-form-button">
     </form>
@@ -23,4 +23,4 @@
  </main>
 </body>
 </html>
- <script src="searchvalidate.js"></script>
+ <script src="validateinput.js"></script>

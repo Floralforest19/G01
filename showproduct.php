@@ -1,20 +1,5 @@
-<!-- Använder en temporär header för att få in CSS på sidan -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
-  <link
-      href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
-      rel="stylesheet"
-  />
-  <title>Webbshop</title>
-
 <?php 
-
+    require_once 'header.php';
     require_once 'db.php';
 
     $id = htmlspecialchars($_GET['id']);
@@ -49,4 +34,5 @@
 
 echo $thisPost;
 
+require_once 'footer.php';
 ?>

@@ -10,13 +10,28 @@
 ?>
 
 <div class='products__display'>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class='menu__categories'>
-  <nav class='products__menu'>
-    <a href='index.php?id=all' class="link__categories">Alla produkter</a>
-    <a href='index.php?id=food' class="link__categories">Mat</a>
-    <a href='index.php?id=hygien' class="link__categories">Hygien</a>
-    <a href='index.php?id=roses' class="link__categories">Rosor</a>
-   </nav>
+<?php
+  $sql2 = "SELECT * FROM category 
+  ORDER BY name";
+  $stmt2 = $db->prepare($sql2);
+  $stmt2->execute();
+  echo "<nav class='products__menu'>
+  <a href='index.php?id=all' class='link__categories'>Alla produkter</a> ";
+  while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
+    $name2 = $row2['name'];
+    $id2 = $row2['category_id'];
+    echo "<a href='index.php?id=$id2' class='link__categories'>$name2 </a>";
+  }
+  echo "</nav>";
+?>
+
 </div>
 
 <?php

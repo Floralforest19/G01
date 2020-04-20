@@ -53,7 +53,8 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     <h3>$name</h3>
     <p>$nameCat</p>
       <a href='updateproduct.php?product_id=$id' class='product__btn'>Redigera</a>
-      <a href='#' class='product__btn'>Ta bort</a>
+      <a onclick=\"return confirm('Är du säker att du vill radera $name?')\" href='#' class='product__btn'>Ta bort</a>
+
     </div>
     </article>
 "; 

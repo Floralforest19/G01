@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<script src="createvalidate.js"></script>
+<script src="validateinput.js"></script>
 <nav class="nav__admin">
   <ul>
     <li><a href="../index.php">Hem</a></li>

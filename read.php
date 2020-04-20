@@ -16,21 +16,7 @@
 <br>
 <br>
 <br>
-<div class='menu__categories'>
-<?php
-  $sql2 = "SELECT * FROM category 
-  ORDER BY name";
-  $stmt2 = $db->prepare($sql2);
-  $stmt2->execute();
-  echo "<nav class='products__menu'>
-  <a href='index.php?id=all' class='link__categories'>Alla produkter</a> ";
-  while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
-    $name2 = $row2['name'];
-    $id2 = $row2['category_id'];
-    echo "<a href='index.php?id=$id2' class='link__categories'>$name2 </a>";
-  }
-  echo "</nav>";
-?>
+
 
 </div>
 
@@ -62,9 +48,28 @@
   $stmt->execute();
 
   // starta div för inlägg
-  echo "<section class='background'>
-        <h2>Våra produkter</h2>
-        <div class='product__wrapper'>";
+  ?>
+
+  <section class='background'>
+    <h2>Våra produkter</h2>
+    <div class='menu__categories'>
+      <?php
+        $sql2 = "SELECT * FROM category 
+        ORDER BY name";
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->execute();
+        echo "<nav class='products__menu'>
+        <a href='index.php?id=all' class='link__categories'>Alla produkter</a> ";
+        while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
+          $name2 = $row2['name'];
+          $id2 = $row2['category_id'];
+          echo "<a href='index.php?id=$id2' class='link__categories'>$name2 </a>";
+        }
+        echo "</nav>";
+      ?>
+    <div class='product__wrapper'>
+
+  <?php
   // loopar över arrayen som har resultatet från db
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // spara data från db i varsin variabel
@@ -104,3 +109,4 @@
   echo "</div></section>";
 ?>
 </div>
+</main>

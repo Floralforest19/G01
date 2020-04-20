@@ -37,7 +37,8 @@
   </div>
 
 <section class='background'>
-  <?php require_once 'searchfilter.php'; ?>
+  <?php require_once 'searchfilter.php';
+  require_once 'footer.php'; ?>
 </section>
 
  </main>

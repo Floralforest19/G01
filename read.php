@@ -9,16 +9,7 @@
   require_once 'db.php';
 ?>
 
-<div class='products__display'>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-</div>
+<!-- <div class='products__display'></div> -->
 
 <?php
   if(isset($_GET['id'])){

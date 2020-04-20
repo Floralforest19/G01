@@ -9,6 +9,7 @@ const goTop = document.getElementById("goTop");
 
 const exitDropdownMenu = document.querySelectorAll("*:not(dropdownMenu)");
 const fadeHeader = document.querySelectorAll(".header-top, .header-search, .header-button-a, .goTop");
+const main = document.getElementById("main");
 
 window.onscroll = function() {scrollFunctionHeader()};
 
@@ -33,8 +34,9 @@ function scrollFunctionHeader() {
 
 headNav.addEventListener("click", function () {
     headNav.classList.toggle("change");
-
     dropdownMenu.classList.toggle("show");
+    
+    main.classList.toggle("menu-fader");
 
     for(let i = 0, all = fadeHeader.length; i < all; i++){   
         fadeHeader[i].classList.toggle('menu-fader');
@@ -46,6 +48,9 @@ window.addEventListener('click', function(e){
     if (!document.getElementById('header-nav').contains(e.target) && dropdownMenu.classList.contains("show")){
         dropdownMenu.classList.toggle("show");
         headNav.classList.toggle("change");
+
+    main.classList.toggle("menu-fader");
+
         
         for(let i = 0, all = fadeHeader.length; i < all; i++){   
             fadeHeader[i].classList.toggle('menu-fader');

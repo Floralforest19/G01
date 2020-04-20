@@ -21,7 +21,7 @@
                 riskgrupper som inte kan göra de mest vardagliga sakerna som att handla mat eller hygienprodukter.
                 På Kris & Ros kan privatpersoner handla både till sig själva eller till en vän, släkting eller en
                 individ inom riskgrupp som är i behov av mat och hygien.
-                Vi bakom Kris & Ros heter Christoffer, Jing-Jing, Maria, Mikaela och Stina </p>
+                Vi bakom Kris & Ros heter Christopher, Jing-Jing, Maria, Mikaela, Stina och Rebecka </p>
         </div>
     </div>
     <div class="footer-bottom">

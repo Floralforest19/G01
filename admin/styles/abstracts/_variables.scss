@@ -11,6 +11,8 @@ $second-head-color: #eb4b88;
 
 //colors - buttons
 $orange-button: #F4D9B5;
+$blue-button:#89D2F8;
+$red-button:#FF3131;
 
 //screen sizes
 $desktop-size: 1000px;
@@ -24,4 +26,13 @@ $second-font-size: 20px;
 $text-font-size: 15px;
 
 $color-white: #fff;
+$bakground-color: #f1f1f1;
 
+
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    background: $bakground-color;
+}

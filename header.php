@@ -21,10 +21,9 @@
         <div id="header-nav-3" class="bar3"></div>
 
         <div id="dropdownMenu" class="dropdown-content">
-            <a href="#">Hygien</a>
-            <a href="#">Mat</a>
-            <a href="#">Blommor</a>
-            <a href="#">Kontakt</a>
+            <a href="index.php">Hem</a>
+            <a href="search.php">Sök</a>
+            <a href="contact.php">Kontakt</a>
         </div>
     </div>
 
@@ -50,8 +49,6 @@
 
     <a id="goTop" class="goTop" href="#"><img class="goTop-img" src="./images/goTop.svg" alt="Go top arrow"></a>
 </header>
-<<<<<<< HEAD
-<script src="header.js"></script><script src="header.js"></script>
-=======
+
+<main>
 <script src="header.js"></script>
->>>>>>> 3f61df5fe20727403058f44593791225e3798627

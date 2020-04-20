@@ -50,6 +50,6 @@
     <a id="goTop" class="goTop" href="#"><img class="goTop-img" src="./images/goTop.svg" alt="Go top arrow"></a>
 </header>
 
-<main>
+<main id="main">
 <script src="header.js"></script>
 <script src="validateinput.js"></script>

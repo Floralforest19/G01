@@ -3,11 +3,15 @@
 @import "./header-meny";
 @import "./goTop";
 @import "./abstracts/variables";
+@import "./header";
 @import "./disp-prods";
 @import "./layout/main";
 @import "./layout/grid";
 @import "./components/buttons";
 @import "./components/fonts";
 @import "./pages/contact";
-@import "./pages/contact-thanks";
+<<<<<<< HEAD
 @import "./footer";
+=======
+@import "./pages/contact-thanks";
+>>>>>>> c9a36168ca56ed62b3f724c09752cd0e54447a42

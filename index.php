@@ -8,7 +8,10 @@
   <li><a href="contact.php">Kontakt</a></li>
 </ul>
     <main>
-    <?php require_once 'read.php'; ?>
+    <?php 
+    require_once 'header.php';
+    require_once 'read.php';
+    require_once 'footer.php'; ?>
     </main>
   <!-- Slut på CSS-test -->
 

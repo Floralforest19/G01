@@ -10,18 +10,17 @@ if(isset($_POST['input']) ){
   $filter = htmlspecialchars($_POST['input']);
   echo "<div class='box__search--form'><h3>Visar resultat för: $filter</h3></div>";
   // prepare and execute sql request
-  $sql = "SELECT * FROM product 
-  WHERE description LIKE '%$filter%' OR name LIKE '%$filter%'
-  ORDER BY name";
+  $sql = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' OR `description` LIKE '%$filter%' ORDER BY `name` ASC";  
   $stmt = $db->prepare($sql);
   $stmt->execute();
-  $row = $stmt->fetch(PDO::FETCH_ASSOC);
-  // if any results, print to user
-  if($row > 0){
+  $result = false;  
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
+    // if any results, print to user
+    $result = true;
     $name = htmlspecialchars($row['name']);
     $price = htmlspecialchars($row['price']);
     $id = htmlspecialchars($row['product_id']);
+    $description = htmlspecialchars($row['description']);
     echo "<article class='box__search'>
             <div class='box__pic--search'>
               <img src='./images/toalettpapper.jpg' alt='toalettpapper'/>
@@ -29,8 +28,8 @@ if(isset($_POST['input']) ){
             <div class='box__text--search'>
               <h3>$name</h3>
               <p>$price kr</p>
+              <p>$description</p>
               <a href='showproduct.php?id=$id'>Läs mer</a><br>";
-              // läs mer bör gå till produktsidan
               // lägga till när vi introducerar varukorg
               // <button>Lägg i varukorg</button>
               //<a href='#' class='product__btn'>Köp</a>
@@ -38,9 +37,11 @@ if(isset($_POST['input']) ){
             </div>
           </article>"; 
     endwhile;
-  } else { 
+    // if no results where found, feedback to user
+    if( $result == false ){
       echo '<div class="box__search--form"><p>Tyvärr, inga resultat hittades!</p></div>';
-  }
+    }
+
 } else {
   echo '<div class="box__search--form"><h3>Ange en sökterm</h3></div>';
 }

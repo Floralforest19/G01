@@ -1,7 +1,8 @@
+<<<<<<< HEAD
 <footer id="footer" class="footer">
     <div id="footer-information" class="footer-information">
         <div class=footer-first>
-            <img class="footer-img" src="images/Logo .png" />
+            <img class="footer-img" src="/images/Logo .png" />
         </div>
         <div class="footer-middle-left">
             <p class="p-footer"> Om Kris & Ros </p>
@@ -21,11 +22,19 @@
                 riskgrupper som inte kan göra de mest vardagliga sakerna som att handla mat eller hygienprodukter.
                 På Kris & Ros kan privatpersoner handla både till sig själva eller till en vän, släkting eller en
                 individ inom riskgrupp som är i behov av mat och hygien.
-                Vi bakom Kris & Ros heter Christopher, Jing-Jing, Maria, Mikaela, Stina och Rebecka </p>
+                Vi bakom Kris & Ros heter Christoffer, Jing-Jing, Maria, Mikaela och Stina </p>
         </div>
     </div>
     <div class="footer-bottom">
-    <img class="footer-img-bottom" src="images/icon-5.png"> © by Kris & Ros   
+    <img class="footer-img-bottom" src="/images/icon-5.png"> © by Kris & Ros   
 </div>
-<a href="#top">Back to top</a>
 </footer>
+<a href="#top">Back to top</a>
+<script src="footer.js"></script>
+
+=======
+<script src="footer.js"></script>
+<a href="#top">Back to top</a>
+</body>
+</html>
+>>>>>>> c9a36168ca56ed62b3f724c09752cd0e54447a42

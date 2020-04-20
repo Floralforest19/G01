@@ -50,4 +50,8 @@
 
     <a id="goTop" class="goTop" href="#"><img class="goTop-img" src="./images/goTop.svg" alt="Go top arrow"></a>
 </header>
-<script src="header.js"></script><script src="header.js"></script>
+<<<<<<< HEAD
+<script src="header.js"></script>
+=======
+<script src="header.js"></script>
+>>>>>>> 3f61df5fe20727403058f44593791225e3798627

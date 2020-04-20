@@ -41,7 +41,7 @@
   } else {
     $sql = "SELECT * FROM product
             ORDER BY name";
-  }
+  };
 
   $stmt = $db->prepare($sql);
   $stmt->execute();

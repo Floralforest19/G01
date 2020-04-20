@@ -19,7 +19,7 @@
 <section class='background'>
   <h2>Redigera kategori</h2>
   <div class="box__cat--form box__cat--form--main">
-    <form action="#" method="post" name="createCatForm" accept-charset="UTF-8" onsubmit="return validateCatForm()">
+    <form action="#" method="post" name="createCatForm" accept-charset="UTF-8" onsubmit="return validateForm('createCatForm','catname','feedbackCat')">
       <input name="catname" type="text" class="input__cat" required placeholder="<?php echo $name ?>">
       <?php // kolla om kategori existerat --> ge feedback
         if(isset($_POST['catname'])){

@@ -9,20 +9,7 @@
   require_once 'db.php';
 ?>
 
-<<<<<<< HEAD
 <!-- <div class='products__display'></div> -->
-=======
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div class='products__display'>
->>>>>>> 28489e2b1b4195e82dd746bb2f7e5a43fc8eadaf
 
 <?php
   if(isset($_GET['id'])){

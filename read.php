@@ -63,6 +63,10 @@
       $category = strtoupper(htmlspecialchars($row['category_id']));
       $quantity = htmlspecialchars($row['quantity']);
       $price = htmlspecialchars($row['price']);
+      $image = htmlspecialchars($row['image_file_name']);
+      if(empty($image)){
+        $image = 'toalettpapper.jpg';
+      }
       if($quantity > 0){
         $quantityText = "Antal i lager - ".$quantity;
       } else {
@@ -72,7 +76,7 @@
       echo "
           <article class='box'>
             <div class='box__pic'>
-              <img src='./images/toalettpapper.jpg' alt='toalettpapper'/>
+              <img src='./images/$image' alt='$name'/>
             </div>
             <div class='box__text'>
               <h3>$name</h3>

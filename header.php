@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <form class="header-search" name="searchBarForm" action="search.php" onsubmit="return validateBarForm()" method="post">
+    <form class="header-search" name="searchBarForm" action="search.php" onsubmit="return validateForm('searchBarForm','input','feedbackBar')" method="post">
 
         <input id="header-search" class="header-search-bar" type="search" name="input" placeholder="Sök...">
     </form>

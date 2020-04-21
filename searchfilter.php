@@ -10,7 +10,7 @@ if(isset($_POST['input']) ){
   $filter = htmlspecialchars($_POST['input']);
   echo "<div class='box__search--form'><h3>Visar resultat för: $filter</h3></div>";
   // prepare and execute sql request
-  $sql = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' OR `description` LIKE '%$filter%' ORDER BY `name` ASC";  
+  $sql = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' OR `keywords` LIKE '%$filter%' ORDER BY `name` ASC";  
   $stmt = $db->prepare($sql);
   $stmt->execute();
   $result = false;  
@@ -21,9 +21,14 @@ if(isset($_POST['input']) ){
     $price = htmlspecialchars($row['price']);
     $id = htmlspecialchars($row['product_id']);
     $description = htmlspecialchars($row['description']);
+    $image = htmlspecialchars($row['image_file_name']);
+
+    if(empty($image)){
+      $image = 'toalettpapper.jpg';
+    }
     echo "<article class='box__search'>
             <div class='box__pic--search'>
-              <img src='./images/toalettpapper.jpg' alt='toalettpapper'/>
+              <img src='./images/$image' alt='$name'/>
             </div>
             <div class='box__text--search'>
               <h3>$name</h3>

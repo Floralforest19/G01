@@ -69,6 +69,18 @@ switch ($request) {
     case parseUrl($request, '/api/test/:id'):
         require_once './routes/test.php';
         break;
+    case parseUrl($request, '/api/category'):
+        require_once './routes/category.php';
+        break;
+    case parseUrl($request, '/api/category/:id'):
+        require_once './routes/category.php';
+        break;
+    case parseUrl($request, '/api/product'):
+        require_once './routes/product.php';
+        break;
+    case parseUrl($request, '/api/product/:id'):
+        require_once './routes/product.php';
+        break;
     default:
         http_response_code(404);
         echo '{"error": true, "message": "Resource does not exist"}';

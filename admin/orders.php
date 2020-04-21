@@ -33,7 +33,8 @@
   $tableOrders = "
   <table class='table'>
     <tr>
-      <th>Namn</th>
+      <th>Order-Id</th>
+      <th>Kund</th>
       <th>Beskrivning</th>
       <th>Status</th>
       <th></th>
@@ -43,6 +44,7 @@
       $id = htmlspecialchars($row['category_id']);
       $description = htmlspecialchars($row['description']);
       $tableOrders.= "<tr>
+        <td><h4>$id</h4></td>
         <td><a href='showorder.php?id=$id'><h3>$name</h3></a></td>
         <td><p>$description</p></td>
         <td><p>Status</p></td>

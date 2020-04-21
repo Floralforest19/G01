@@ -1,5 +1,5 @@
-
 <?php 
+  // skriva ut på samma sätt som orderbekrftelse? Lägga till status bara
     require_once 'header-admin.php';
     require_once '../db.php';
 

@@ -9,7 +9,7 @@ background-color: $color-main;
 grid-template-rows: 50% 50%;
 grid-template-columns: 20% 60% 20%;
 transition: all 0.01s linear;
-position: fixed;
+position: sticky;
 top: 0;             /* Håller sig på toppen */
 z-index: 10;
 grid-auto-flow: column;

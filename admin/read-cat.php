@@ -10,7 +10,7 @@ require_once '../db.php';
   <h2>Kategorier</h2>
 
   <div class="box__cat--form box__cat--form--main">
-    <form action="#" method="post" name="createCatForm" accept-charset="UTF-8" onsubmit="return validateCatForm()">
+    <form action="#" method="post" name="createCatForm" accept-charset="UTF-8" onsubmit="return validateForm('createCatForm','catname','feedbackCat')">
       <input name="catname" type="text" class="input__cat" required placeholder="Lägg till kategori...">
       <input type="submit" value="Lägg till kategori" class="cat-form-btn">
     </form>

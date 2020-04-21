@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles\style.css">
-
-    <title>Contact</title>
-</head>
-
-<body class="contact-bg-color">
-
+<?php
+require_once 'header.php';
+?>
 
     <section class="contact-form">
         <h2 class="contact-form-heading">Kontakta oss</h2>

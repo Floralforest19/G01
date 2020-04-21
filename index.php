@@ -5,7 +5,11 @@
 ?>
 
 
-  <!-- Slut på CSS-test -->
+<!-- Slut på CSS-test -->
 </main>
+
+<script type="text/javascript" src="js/cart-add-product.js"></script>
+
 </body>
+
 </html>

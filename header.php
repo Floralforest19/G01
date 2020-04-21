@@ -22,12 +22,24 @@
 
         <div id="dropdownMenu" class="dropdown-content">
             <a href="index.php">Hem</a>
-            <a href="search.php">Sök</a>
-            <a href="contact.php">Kontakt</a>
+            <?php 
+                    require_once 'db.php';
+                    $sql2 = "SELECT * FROM category
+                    ORDER BY name";
+                    $stmt2 = $db->prepare($sql2);
+                    $stmt2->execute();
+                    $navLinks = "<a href='index.php?id=all'>Alla produkter</a> ";
+                    while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
+                      $name2 = $row2['name'];
+                      $id2 = $row2['category_id'];
+                      $navLinks .= "<a href='index.php?id=$id2'>$name2 </a>";
+                    }
+                    echo $navLinks;
+            ?>
         </div>
     </div>
 
-    <form class="header-search" name="searchBarForm" action="search.php" onsubmit="return validateBarForm()" method="post">
+    <form class="header-search" name="searchBarForm" action="search.php" onsubmit="return validateForm('searchBarForm','input','feedbackBar')" method="post">
 
         <input id="header-search" class="header-search-bar" type="search" name="input" placeholder="Sök...">
     </form>

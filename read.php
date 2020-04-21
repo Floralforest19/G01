@@ -15,8 +15,16 @@
     <h2>Produkter</h2>
     <div class='menu__categories'>
       <?php
+        $catHeading = "<h3>Alla produkter</h3>";
         if(isset($_GET['id'])){
           $id = htmlentities($_GET['id']);
+          $sql2 = "SELECT * FROM category WHERE category_id = '$id'";
+          $stmt2 = $db->prepare($sql2);
+          $stmt2->execute();
+          while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
+            $name2 = $row2['name'];
+            $catHeading = "<h3>$name2</h3>";
+          }
           if($id != 'all'){
             $sql = "SELECT * FROM product
                     WHERE category_id = '$id'
@@ -32,14 +40,6 @@
         $stmt = $db->prepare($sql);
         $stmt->execute();
 
-        $sql2 = "SELECT * FROM category WHERE category_id = '$id'";
-        $stmt2 = $db->prepare($sql2);
-        $stmt2->execute();
-        $catHeading = "<h3>Alla produkter</h3>";
-        while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
-          $name2 = $row2['name'];
-          $catHeading = "<h3>$name2</h3>";
-        }
         echo $catHeading;
       ?>
     </div>

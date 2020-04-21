@@ -96,13 +96,13 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`product_id`, `name`, `description`, `quantity`, `image_file_name`, `price`, `category_id`, `keywords`) VALUES
 (1, 'Toapapper', 'Toalettpapper, vardagligt toapapper, är en typ av mjukpapper, som framför allt används till naturbehov men också för andra hygieniska ändamål.', 5, '', '5.00', 1, ''),
-(2, 'Daggros', 'Rosa glauca. Vacker ros med vildroskänsla. Får vackra rödbruna nypon på hösten. Mycket friskt och lättodlad ros. Vackert rödbruna nypon.', 15, '', '20.00', 3, ''),
+(2, 'Daggros', 'Rosa glauca. Vacker ros med vildroskänsla. Får vackra rödbruna nypon på hösten. Mycket friskt och lättodlad ros. Vackert rödbruna nypon.', 15, 'daggros.png', '20.00', 3, 'ros blomma nypon'),
 (3, 'Ris', 'Ris kan delas in i två huvudgrupper beroende på hur det odlas; bergsris och sumpris.', 12, '', '2.00', 2, ''),
-(4, 'Västkustros', 'Västkustros är en rosväxtart som beskrevs av Fries. Västkustros ingår i släktet rosor, och familjen rosväxter.', 25, '', '33.00', 3, ''),
-(5, 'Ingrid Bergman', 'Ingrid Bergman är en praktfull och odlingsvärd ros med stora, mörkröda blommor och spriralvända kronblad. Utnämd till årets ros år 2000 av världsförbundet.', 44, '', '12.00', 3, ''),
-(6, 'Desinfektionssprit', 'Desinfektionssprit, handsprit eller alkoholbaserat handdesinfektionsmedel, är en typ av desinfektionsmedel som främst används inom vård och omsorg.', 600, '', '23.00', 1, ''),
+(4, 'Västkustros', 'Västkustros är en rosväxtart som beskrevs av Fries. Västkustros ingår i släktet rosor, och familjen rosväxter.', 25, 'kaliforniaros.png', '33.00', 3, 'ros blomma rosväxt'),
+(5, 'Ingrid Bergman', 'Ingrid Bergman är en praktfull och odlingsvärd ros med stora, mörkröda blommor och spriralvända kronblad. Utnämd till årets ros år 2000 av världsförbundet.', 44, 'ingrid.png', '12.00', 3, 'ros växt planta'),
+(6, 'Desinfektionssprit', 'Desinfektionssprit, handsprit eller alkoholbaserat handdesinfektionsmedel, är en typ av desinfektionsmedel som främst används inom vård och omsorg.', 600, 'ris.png', '23.00', 1, 'mat ris råris'),
 (7, 'Råris', 'Råris är riskorn där bara yttersta delen av kornets skal är bortskalat, och där man låtit hinnan runt riset, som är svagt silverfärgad, sitta kvar.', 344, '', '11.00', 2, ''),
-(8, 'Plastros', 'Ros av plats.', 55, '', '1200.00', 3, ''),
+(8, 'Plastros', 'Ros av plats.', 55, 'plastros.png', '1200.00', 3, 'ros blomma konstgjord dekoration'),
 (9, 'testpapper', 'TEST TEST TEST TEST TEST TEST TEST TEST ', 5, '', '5.00', 1, 'TEST ');
 
 --

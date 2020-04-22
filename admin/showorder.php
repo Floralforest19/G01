@@ -30,7 +30,10 @@
     $address = $street."<br>".$zip." ".$city;
 
     $thisPost = "
-<section class='background'><div class='box__cat--form'>
+<section class='background'>
+<h2>Order: $order_id</h2>
+<div class='box__cat--form'>
+<div class='nav__admin'>
   <table class='table'>
     <thead>
       <th><a href='orders.php?id=order_id'>Order-id</a></th>
@@ -55,7 +58,7 @@
       <td><a href='showorder.php?id=$order_id'><button class='btn__edit'>Arkivera</button></a></td>
     </tr>
   </table>
-</div></section>";
+</div></div></section>";
 
     echo $thisPost;
 

@@ -5,16 +5,16 @@
 
 
 <section class='background'>
-
   <h2>Beställningar</h2>
-  <div class='box__cat--form'>
+  <div class="box__cat--form">
+  <div class='nav__admin'>
 
 <?php
 
   if( isset($_GET['id']) ){
     $id = htmlentities($_GET['id']);
     // hämta från beställningar istället
-    $sql = "SELECT * FROM orders ORDER BY $id";
+    $sql = "SELECT * FROM orders ORDER BY $id ASC";
   } else {
     $sql = "SELECT * FROM orders ORDER BY order_id";
   }
@@ -74,7 +74,7 @@
     $tableOrders .= "</table></div>";
     echo $tableOrders;
   ?>
-  </section>
+  </div></div></section>
   
 </section>
 </body>

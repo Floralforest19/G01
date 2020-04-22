@@ -24,5 +24,6 @@
     <li><a href="read-cat.php">Kategorier</a></li>
     <li><a href="orders.php">Aktiva beställningar</a></li>
     <li><a href="orders-done.php">Avslutade beställningar</a></li>
+    <li><a href="api-docs.php">API-Dokumentation</a></li>
   </ul>
 </nav>

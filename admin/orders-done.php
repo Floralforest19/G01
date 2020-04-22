@@ -1,6 +1,6 @@
 <?php 
 /**************************************** *
- * read info from db & display active/in progress orders
+ * read info from db & display completed orders
  * edit status with select
 **************************************** */
   require_once 'header-admin.php'; 
@@ -9,7 +9,7 @@
 
 
 <section class='background'>
-  <h2>Aktiva beställningar</h2>
+  <h2>Avslutade beställningar</h2>
   <div class="box__cat--form">
   <div class='nav__admin'>
 
@@ -19,15 +19,16 @@
     $id = htmlentities($_GET['id']);
     // hämta från beställningar istället
     $sql = "SELECT * FROM orders 
-            WHERE status = 'active' OR status = 'in progress'
+            WHERE status = 'done'
             ORDER BY $id ASC";
   } else {
     $sql = "SELECT * FROM orders 
-    WHERE status = 'active' OR status = 'in progress'
+    WHERE status = 'done'
     ORDER BY order_id";
   }
   $stmt = $db->prepare($sql);
   $stmt->execute();
+
 
   $tableOrders = "
   <table class='table'>
@@ -65,6 +66,7 @@
   
       $fname = htmlspecialchars($rowCustomer['firstname']);
       $sname = htmlspecialchars($rowCustomer['surname']);
+
       $email = htmlspecialchars($rowCustomer['email']);
       $phone = htmlspecialchars($rowCustomer['phone']);
   
@@ -74,8 +76,8 @@
 
       $selectStatus = 
       "<form method='post' action='orders-update.php?order_id=$order_id'         
-        onsubmit=\"return alert('Status för order $order_id uppdaterades')\">
-        <select name='statusSelect' id='statusSelect'>";
+        onsubmit=\"return alert('Status för order $order_id uppdaterades och ordern flyttas till aktiva beställningar')\">
+        <select name='statusSelectDone' id='statusSelect'>";
       if( $status == 'active'){
         $selectStatus .= "
         <option value='active' selected>Ny</option>
@@ -109,7 +111,7 @@
     endwhile;
     $tableOrders .= "</table></div>";
     echo $tableOrders;
-  ?>
+?>
   </div></div></section>
   
 </section>

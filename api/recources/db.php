@@ -1,9 +1,9 @@
 <?php
 //Conector to database
-$db_server= $_ENV["MYSQL_SERVER"];
-$db_database= $_ENV["MYSQL_DATABASE"];
-$db_username= $_ENV['MYSQL_USER'];
-$db_password= $_ENV["MYSQL_PASSWORD"];
+$db_server= "localhost:3306"; //$_ENV["MYSQL_SERVER"];
+$db_database= "webshop"; //$_ENV["MYSQL_DATABASE"];
+$db_username= "root"; //$_ENV['MYSQL_USER'];
+$db_password= "root"; //$_ENV["MYSQL_PASSWORD"];
 
 //skapa en global variabel som är nåbar i alla funktioner.
 global $db;

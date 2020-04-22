@@ -38,8 +38,18 @@
       // kolla igenom alla ordrar och spara order-id samt kundi-id
       $order_id = htmlspecialchars($row['order_id']);
       $customer_id = htmlspecialchars($row['customer_id']);
+      $status = htmlspecialchars($row['status']);
       $amount = htmlspecialchars($row['amount']);
       $time = htmlspecialchars($row['time']);
+      if($status == 'active'){
+        $statusText = 'Aktiv';
+      } else if($status == 'in progress') {
+        $statusText = 'Pågående';
+      } else if($status == 'done') {
+        $statusText = 'Avklarad';
+      } else {
+        $statusText = 'Oklar';
+      }
 
       $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
       $stmtCustomer = $db->prepare($sqlCustomer);
@@ -48,26 +58,25 @@
   
       $fname = htmlspecialchars($rowCustomer['firstname']);
       $sname = htmlspecialchars($rowCustomer['surname']);
-      $fullname = $fname." ".$sname;
-  
+
       $email = htmlspecialchars($rowCustomer['email']);
       $phone = htmlspecialchars($rowCustomer['phone']);
   
       $street = htmlspecialchars($rowCustomer['streetadress']);
       $zip = htmlspecialchars($rowCustomer['zip-code']);
       $city = htmlspecialchars($rowCustomer['city']);
-      $address = $street."<br>".$zip." ".$city;
+
       $tableOrders.= "
       <tr>
         <td><a href='showorder.php?id=$order_id'><h3>$order_id</h3></a></td>
         <td><p>$customer_id</p></td>
-        <td><p>$fullname</p></td>
+        <td><p>$fname $sname</p></td>
         <td><p>$email</p></td>
         <td><p>$phone</p></td>
-        <td><p>$address</p></td>
+        <td><p>$street <br>$zip $city</p></td>
         <td><p>$time</p></td>  
         <td><p>$amount</p></td>      
-        <td><br><a href='showorder.php?id=$order_id'><button class='btn__edit'>Ändra</button></a></td>
+        <td><br>$statusText</td>
       </tr>
     ";
     endwhile;

@@ -1,0 +1,190 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Värd: 127.0.0.1
+-- Tid vid skapande: 21 apr 2020 kl 15:33
+-- Serverversion: 10.4.11-MariaDB
+-- PHP-version: 7.4.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Databas: `webshop`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `category`
+--
+
+CREATE TABLE `category` (
+  `category_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `category`
+--
+
+INSERT INTO `category` (`category_id`, `name`) VALUES
+(1, 'Hygien'),
+(2, 'Mat'),
+(3, 'Rosor');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `customers`
+--
+
+CREATE TABLE `customers` (
+  `customer_id` int(11) NOT NULL,
+  `firstname` varchar(32) NOT NULL,
+  `surname` varchar(32) NOT NULL,
+  `streetadress` varchar(64) NOT NULL,
+  `city` int(11) NOT NULL,
+  `zip-code` int(11) NOT NULL,
+  `phone` int(32) DEFAULT NULL,
+  `email` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `amount` int(32) NOT NULL,
+  `time` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` text DEFAULT NULL,
+  `quantity` int(11) NOT NULL,
+  `image_file_name` varchar(50) NOT NULL,
+  `price` decimal(6,2) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `keywords` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `product`
+--
+
+INSERT INTO `product` (`product_id`, `name`, `description`, `quantity`, `image_file_name`, `price`, `category_id`, `keywords`) VALUES
+(1, 'Toapapper', 'Toalettpapper, vardagligt toapapper, är en typ av mjukpapper, som framför allt används till naturbehov men också för andra hygieniska ändamål.', 5, '', '5.00', 1, ''),
+(2, 'Daggros', 'Rosa glauca. Vacker ros med vildroskänsla. Får vackra rödbruna nypon på hösten. Mycket friskt och lättodlad ros. Vackert rödbruna nypon.', 15, 'daggros.png', '20.00', 3, 'ros blomma nypon'),
+(3, 'Ris', 'Ris kan delas in i två huvudgrupper beroende på hur det odlas; bergsris och sumpris.', 12, '', '2.00', 2, ''),
+(4, 'Västkustros', 'Västkustros är en rosväxtart som beskrevs av Fries. Västkustros ingår i släktet rosor, och familjen rosväxter.', 25, 'kaliforniaros.png', '33.00', 3, 'ros blomma rosväxt'),
+(5, 'Ingrid Bergman', 'Ingrid Bergman är en praktfull och odlingsvärd ros med stora, mörkröda blommor och spriralvända kronblad. Utnämd till årets ros år 2000 av världsförbundet.', 44, 'ingrid.png', '12.00', 3, 'ros växt planta'),
+(6, 'Desinfektionssprit', 'Desinfektionssprit, handsprit eller alkoholbaserat handdesinfektionsmedel, är en typ av desinfektionsmedel som främst används inom vård och omsorg.', 600, 'ris.png', '23.00', 1, 'mat ris råris'),
+(7, 'Råris', 'Råris är riskorn där bara yttersta delen av kornets skal är bortskalat, och där man låtit hinnan runt riset, som är svagt silverfärgad, sitta kvar.', 344, '', '11.00', 2, ''),
+(8, 'Plastros', 'Ros av plats.', 55, 'plastros.png', '1200.00', 3, 'ros blomma konstgjord dekoration'),
+(9, 'testpapper', 'TEST TEST TEST TEST TEST TEST TEST TEST ', 5, '', '5.00', 1, 'TEST ');
+
+--
+-- Index för dumpade tabeller
+--
+
+--
+-- Index för tabell `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Index för tabell `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`customer_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Index för tabell `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `category_id` (`category_id`,`product_id`,`customer_id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Index för tabell `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `catergory` (`category_id`);
+
+--
+-- AUTO_INCREMENT för dumpade tabeller
+--
+
+--
+-- AUTO_INCREMENT för tabell `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT för tabell `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT för tabell `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT för tabell `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Restriktioner för dumpade tabeller
+--
+
+--
+-- Restriktioner för tabell `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`),
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+
+--
+-- Restriktioner för tabell `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `catergory` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

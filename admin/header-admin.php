@@ -22,5 +22,7 @@
     <li><a href="index.php">Produkter</a></li>
     <li><a href="create-product.php">Skapa produkt</a></li>
     <li><a href="read-cat.php">Kategorier</a></li>
+    <li><a href="orders.php">Beställningar</a></li>
+     <li><a href="api-docs.php">API-Documentation</a></li>
   </ul>
 </nav>

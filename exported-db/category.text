@@ -1,0 +1,77 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.3
+-- https://www.phpmyadmin.net/
+--
+-- Värd: localhost:3306
+-- Tid vid skapande: 21 apr 2020 kl 09:53
+-- Serverversion: 5.7.26
+-- PHP-version: 7.4.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Databas: `webshop`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` text,
+  `quantity` int(11) NOT NULL,
+  `image_file_name` varchar(50) NOT NULL,
+  `price` decimal(6,2) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `keywords` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `product`
+--
+
+INSERT INTO `product` (`product_id`, `name`, `description`, `quantity`, `image_file_name`, `price`, `category_id`, `keywords`) VALUES
+(2, 'Daggros', 'Rosa glauca. Vacker ros med vildroskänsla. Får vackra rödbruna nypon på hösten. Mycket friskt och lättodlad ros. Vackert rödbruna nypon.', 15, 'daggros.png', '20.00', 3, 'ros blomma nypon'),
+(4, 'Kalifornisk ros', 'Rossläktet (Rosa) är ett växtsläkte som i familjen rosväxter med ca 200 arter spridda från subtropiska till kalltempererade områden. ', 25, 'kaliforniaros.png', '33.00', 3, 'ros blomma rosväxt'),
+(5, 'Ingrid Bergman', 'Ingrid Bergman är en praktfull och odlingsvärd ros med stora, mörkröda blommor och spriralvända kronblad. Utnämd till årets ros år 2000 av världsförbundet.', 44, 'ingrid.png', '12.00', 3, 'ros växt planta'),
+(6, 'Desinfektionssprit', 'Desinfektionssprit, handsprit eller alkoholbaserat handdesinfektionsmedel, är en typ av desinfektionsmedel som främst används inom vård och omsorg.', 600, '', '23.00', 1, ''),
+(7, 'Råris', 'Råris är riskorn där bara yttersta delen av kornets skal är bortskalat, och där man låtit hinnan runt riset, som är svagt silverfärgad, sitta kvar.', 344, 'ris.png', '11.00', 2, 'mat ris råris'),
+(8, 'Plastros', 'Ros av plats.', 55, 'plastros.png', '1200.00', 3, 'ros blomma konstgjord dekoration'),
+(16, 'Banan', 'Bananer eller dessertbananer är trivialnamn för ätliga bär som härstammar från stora blommande örter inom släktet Musa.', 13, 'banan.jpg', '12.00', 2, 'mat Guleböj banan tropisk frukt'),
+(18, 'Ananas', 'Ananas är en växt i familjen ananasväxter som ursprungligen hör hemma i Brasilien och Bolivia men som spridits runt i världen.', 2, 'ananas.jpg', '12.00', 2, 'mat ananas frukt tropiskt');
+
+--
+-- Index för dumpade tabeller
+--
+
+--
+-- Index för tabell `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `catergory` (`category_id`);
+
+--
+-- AUTO_INCREMENT för dumpade tabeller
+--
+
+--
+-- AUTO_INCREMENT för tabell `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- Restriktioner för dumpade tabeller
+--
+
+--
+-- Restriktioner för tabell `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `catergory` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);

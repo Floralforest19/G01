@@ -75,7 +75,7 @@
         <td><p>$phone</p></td>
         <td><p>$street <br>$zip $city</p></td>
         <td><p>$time</p></td>  
-        <td><p>$amount</p></td>      
+        <td><p>$amount kr</p></td>      
         <td><br>$statusText</td>
       </tr>
     ";

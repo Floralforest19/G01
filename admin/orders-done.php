@@ -33,13 +33,13 @@
   $tableOrders = "
   <table class='table'>
   <thead>
-    <th><a href='orders.php?id=order_id'>Order-id</a></th>
-    <th><a href='orders.php?id=customer_id'>Kund</a></th>
+    <th><a href='orders-done.php?id=order_id'>Order-id</a></th>
+    <th><a href='orders-done.php?id=customer_id'>Kund</a></th>
     <th>E-mail</th>
     <th>Telefon</th>
     <th>Adress</th>
-    <th><a href='orders.php?id=time'>Tid/datum</a></th>
-    <th><a href='orders.php?id=amount'>Summa</a></th>
+    <th><a href='orders-done.php?id=time'>Tid/datum</a></th>
+    <th><a href='orders-done.php?id=amount'>Summa</a></th>
     <th>Status</th>
   </thead>";
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :

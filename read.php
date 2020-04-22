@@ -11,10 +11,10 @@
 
 <div class='products__display'>
 
-  <section class='background'>
-    <h2>Produkter</h2>
-    <div class='menu__categories'>
-      <?php
+    <section class='background'>
+        <h2>Produkter</h2>
+        <div class='menu__categories'>
+            <?php
         $catHeading = "<h3>Alla produkter</h3>";
         if(isset($_GET['id'])){
           $id = htmlentities($_GET['id']);
@@ -42,11 +42,11 @@
 
         echo $catHeading;
       ?>
-    </div>
+        </div>
 
-<div class='product__wrapper'>
+        <div class='product__wrapper'>
 
-  <?php
+            <?php
   // loopar över arrayen som har resultatet från db
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // spara data från db i varsin variabel
@@ -68,11 +68,16 @@
             <img src='./images/$image' alt='$name'/>
           </div>
           <div class='box__text'>
+          <input type='hidden' class='product-id' value='$id'/>
+          <input type='hidden' class='product-name' value='$name'/>         
+          <input type='hidden' class='product-price' value='$price'/>
+          <input type='hidden' class='product-image' value='$image'/>
             <h3>$name</h3>
             <p>$price kr</p>
             <p>$description</p>
             <a href='showproduct.php?id=$id'>Läs mer</a><br>
-            <button>Lägg i varukorg</button>";
+            <p>Antal: <input type='number' class='product-quantity' min='1' max='$quantity' value='1'/></p>
+            <button class='add-to-cart'>Lägg i varukorg</button>";
             // läs mer bör gå till produktsidan
             // lägga till när vi introducerar varukorg
             //<a href='#' class='product__btn'>Köp</a>
@@ -88,4 +93,11 @@
 // stäng post div
   echo "</div></section>";
 ?>
-</div>
+        </div>
+
+        <script type="text/javascript">
+        //Vänta tills allt har laddats, då kör funktionen (som jquery document.ready())
+        window.onload = function() {
+            setAddProductToCartClickEvent();
+        }
+        </script>

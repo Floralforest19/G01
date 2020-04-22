@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
       rel="stylesheet"
   />
-  <title>Webshop - Skapa kategori</title>
+  <title>Webshop - Admin</title>
 </head>
 <body>
 
@@ -22,6 +22,7 @@
     <li><a href="index.php">Produkter</a></li>
     <li><a href="create-product.php">Skapa produkt</a></li>
     <li><a href="read-cat.php">Kategorier</a></li>
-    <li><a href="orders.php">Beställningar</a></li>
+    <li><a href="orders.php">Aktiva beställningar</a></li>
+    <li><a href="orders-done.php">Avslutade beställningar</a></li>
   </ul>
 </nav>

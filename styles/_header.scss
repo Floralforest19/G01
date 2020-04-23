@@ -165,14 +165,12 @@
   padding-left: 5px;
   padding-right: 15px;
   @media (min-width: 800px) {
-    background-color: $color-main;
     width: 119%;
   }
 
   @media (min-width: 1000px) {
     width: 159%;
     height: 150%;
-    background-color: $color-main;
     margin-left: -3em;
   }
 }
@@ -180,7 +178,15 @@
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   .header-search-bar:not(*:root),
   span.justForChrome {
-    width: 259%;
+    width: 89%;
+
+    @media (min-width: 800px) {
+      width: 119%;
+    }
+
+    @media (min-width: 1000px) {
+      width: 259%;
+    }
   }
 }
 
@@ -211,4 +217,9 @@
     flex-direction: row;
     justify-content: space-evenly;
   }
+}
+
+.search__feedback {
+  font-size: large;
+  z-index: 20;
 }

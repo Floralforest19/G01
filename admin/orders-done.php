@@ -83,27 +83,27 @@
       $zip = htmlspecialchars($rowCustomer['zip-code']);
       $city = htmlspecialchars($rowCustomer['city']);
 
-      $selectStatus = 
-      "<form method='post' action='orders-update.php?order_id=$order_id'         
-        onsubmit=\"return alert('Status för order $order_id uppdaterades och ordern flyttas till aktiva beställningar')\">
-        <select name='statusSelectDone' id='statusSelect'>";
-      if( $status == 'active'){
-        $selectStatus .= "
-        <option value='active' selected>Ny</option>
-        <option value='in progress'>Behandlas</option>
-        <option value='done'>Slutförd</option>";
-      } else if( $status == 'in progress'){
-        $selectStatus .= "
-        <option value='active'>Ny</option>
-        <option value='in progress' selected>Behandlas</option>
-        <option value='done'>Slutförd</option>";
-      } else if( $status == 'done'){
-        $selectStatus .= "
-        <option value='active'>Ny</option>
-        <option value='in progress'>Behandlas</option>
-        <option value='done' selected>Slutförd</option>";
-      }
-      $selectStatus .= "</select><input type='submit' value='Sätt status'></form>";
+      // $selectStatus = 
+      // "<form method='post' action='orders-update.php?order_id=$order_id'         
+      //   onsubmit=\"return alert('Status för order $order_id uppdaterades och ordern flyttas till aktiva beställningar')\">
+      //   <select name='statusSelectDone' id='statusSelect'>";
+      // if( $status == 'active'){
+      //   $selectStatus .= "
+      //   <option value='active' selected>Ny</option>
+      //   <option value='in progress'>Behandlas</option>
+      //   <option value='done'>Slutförd</option>";
+      // } else if( $status == 'in progress'){
+      //   $selectStatus .= "
+      //   <option value='active'>Ny</option>
+      //   <option value='in progress' selected>Behandlas</option>
+      //   <option value='done'>Slutförd</option>";
+      // } else if( $status == 'done'){
+      //   $selectStatus .= "
+      //   <option value='active'>Ny</option>
+      //   <option value='in progress'>Behandlas</option>
+      //   <option value='done' selected>Slutförd</option>";
+      // }
+      // $selectStatus .= "</select><input type='submit' value='Sätt status'></form>";
 
       $tableOrders.= "
       <tr>
@@ -114,7 +114,7 @@
         <td><p>$street <br>$zip $city</p></td>
         <td><p>$time</p></td>  
         <td><p>$amount kr</p></td>      
-        <td>$selectStatus</td>
+        <td>$statusText</td>
       </tr>
     ";
     endwhile;

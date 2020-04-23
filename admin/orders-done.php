@@ -9,9 +9,15 @@
 
 
 <section class='background'>
+
+
   <h2>Avslutade beställningar</h2>
   <div class="box__cat--form">
+<form class="header-search" name="searchBarForm" action="search.php" onsubmit="return validateForm('searchBarForm','input','feedbackBar')" method="post">
+  <input id="header-search" class="header-search-bar searchInput" type="search" name="input" placeholder="Filtrera...">
+  <p id="feedbackBar" class="search__feedback margin-no"> </p>
   <div class='nav__admin'>
+</form>
   <table class='table'>
   <thead>
     <th>Order-id</th>

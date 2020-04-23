@@ -15,7 +15,7 @@ if(isset($_GET['product_id'])){
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':product_id' , $product_id );
     $stmt->execute();
-  
+
     if($stmt->rowCount() > 0){
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       $name = htmlspecialchars($row['name']);
@@ -29,11 +29,11 @@ if(isset($_GET['product_id'])){
       echo 'Produkten finns inte';
       exit;
     }
-  
+
   }
 
 
-//2. Update product 
+//2. Update product
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
  $product_id = htmlspecialchars($_POST['product_id']);
@@ -46,17 +46,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 echo $product_id;
     $update = "UPDATE product
-            SET 
-            name = :name, 
-            description = :description, 
-            quantity = :quantity, 
+            SET
+            name = :name,
+            description = :description,
+            quantity = :quantity,
             image_file_name = :image_file_name,
             price = :price,
             category_id = :category_id
             WHERE product_id = :product_id";
-  
+
     $stmt = $db->prepare($update);
-  
+
     $stmt->bindParam(':name' , $name );
     $stmt->bindParam(':description'  , $description);
     $stmt->bindParam(':quantity'  , $quantity);
@@ -64,7 +64,7 @@ echo $product_id;
     $stmt->bindParam(':price'  , $price);
     $stmt->bindParam(':category_id'  , $category_id);
     $stmt->bindParam(':product_id'  , $product_id);
-  
+
     $stmt->execute();
     header('Location:index.php');
     exit;
@@ -84,16 +84,21 @@ echo $product_id;
         <?php
 // visa kategorierna
 require_once '../db.php';
-  $sql = "SELECT * FROM category 
+  $sql = "SELECT * FROM category
   WHERE category_id = $category_id
   ORDER BY name";
   $stmt = $db->prepare($sql);
   $stmt->execute();
   $selectCat = "<select name='category_id' id='category_id'>";
+  // förväljer den kategori som produkten redan hade tilldelats
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
     $catname = ucfirst(htmlspecialchars($row['name']));
     $id = htmlspecialchars($row['category_id']);
+    if($id == $category_id){
+    $selectCat .= "<option value='$id' selected>$catname</option>";
+    } else {
     $selectCat .= "<option value='$id'>$catname</option>";
+    }
   endwhile;
   $selectCat.= "</select>";
 

@@ -1,122 +1,214 @@
+.header {
+  // Hela <header>-taggen
+  min-height: 10vh;
+  max-height: 25vh;
+  max-width: 100vw;
+  height: fit-content;
+  display: grid;
+  background-color: $color-main;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 20% 60% 20%;
+  transition: all 0.01s linear;
+  position: sticky;
+  top: 0; /* Håller sig på toppen */
+  z-index: 10;
+  grid-auto-flow: column;
+  margin-bottom: 5px;
+  padding: 5px;
+  * {
+    transition: all 0.1s linear;
+  }
 
-.header {               // Hela <header>-taggen
-    min-height: 10vh;
-max-height: 25vh;
-max-width: 100vw;
-height: fit-content;
-display: grid;
-background-color: $color-main;
-grid-template-rows: 50% 50%;
-grid-template-columns: 20% 60% 20%;
-transition: all 0.01s linear;
-position: sticky;
-top: 0;             /* Håller sig på toppen */
-z-index: 10;
-grid-auto-flow: column;
-    margin-bottom: 5px;
-    padding: 5px;
-    * {
-        transition: all 0.1s linear;
-    }
+  @media (min-width: 800px) {
+    display: flex;
+    padding: 40px 0 26px 27px;
+  }
+
+  @media (min-width: 1000px) {
+    display: flex;
+    justify-content: space-around;
+    padding: 56px 0 46px 7px;
+  }
 }
 
+.header-top {
+  // Innehåller allt ovanför menyraden
+  visibility: visible;
+  opacity: 1;
+  grid-row: 1;
+  grid-column: 1 span;
+  width: 100vw;
+  max-height: 12.5vh;
+  display: grid;
 
-
-
-.header-top {           // Innehåller allt ovanför menyraden
-    visibility: visible;
-    opacity: 1;
-    grid-row: 1;
-    grid-column: 1 span;
-    width: 100vw;
+  @media (min-width: 800px) {
+    display: flex;
+    width: 36vw;
     max-height: 12.5vh;
+  }
 
-    display: grid;
+  @media (min-width: 1000px) {
+    display: flex;
+    width: 36vw;
+    max-height: 12.5vh;
+  }
 }
 
-
-
-
-
-.header-logo-main { //Loggan som är högst upp till vänster
-    place-self: center;
-    // grid-column-start: 1;
-    // grid-row: 1;
-    object-fit: contain;
+.header-logo-main {
+  //Loggan som är högst upp till vänster
+  place-self: center;
+  // grid-column-start: 1;
+  // grid-row: 1;
+  object-fit: contain;
+  width: 80%;
+  max-width: 100vw;
+  max-height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 5%;
+  place-self: center;
+  // transition:max-height 0.15s linear;
+  @media (min-width: 800px) {
     width: 80%;
-    max-width: 100vw;
-    max-height: 100%;
-    min-width: 0;
-    min-height: 0;
-    padding: 5%;
-    place-self: center;
-    // transition:max-height 0.15s linear;
+  }
 
+  @media (min-width: 1000px) {
+    width: 85%;
+  }
 }
-    
-.header-button-a {  // <a>-taggarna som innehåller logga till kontakt och varukorg
-    grid-column: 3;
-    grid-row: 2;
-    max-width: 100%;
-    max-height: 11vh;
-    min-width: 0;
-    min-height: 0;
-    display: grid;
-    padding: 2vw;
-    // grid-template-rows: repeat(3, 1fr);
-    p {
-        display: none;
-        padding-top: 0;
-        text-align: center;
-        font-size: 100%;                //******Behöver bestämma storlek på font, responsive********
-    }
+
+.header-button-a {
+  // <a>-taggarna som innehåller logga till kontakt och varukorg
+  grid-column: 3;
+  grid-row: 2;
+  max-width: 100%;
+  max-height: 11vh;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  padding: 2vw;
+  // grid-template-rows: repeat(3, 1fr);
+  p {
+    display: none;
+    padding-top: 0;
+    text-align: center;
+    font-size: 100%; //******Behöver bestämma storlek på font, responsive********
+  }
+
+  @media (min-width: 800px) {
+    width: 11%;
+  }
+
+  @media (min-width: 1000px) {
+    width: 11%;
+  }
 }
 
 .header-button-contact {
+  display: none;
+  @media (min-width: 800px) {
     display: none;
+  }
+
+  @media (min-width: 1000px) {
+    display: none;
+  }
 }
+
+@media (min-width: 800px) {
+  .header-button-cart {
+    display: grid;
+    margin-right: 1em;
+    padding: 0;
+    margin-left: 10em;
+  }
+
+  @media (min-width: 1000px) {
+    display: flex;
+    margin-right: 1em;
+  }
+}
+
 .header-nav {
-    display: inline-block;
-    cursor: pointer;
-    grid-row: 2;
-    grid-column: 1;
-    place-self: center;
+  display: inline-block;
+  cursor: pointer;
+  grid-row: 2;
+  grid-column: 1;
+  place-self: center;
+  @media (min-width: 800px) {
+    display: none;
+  }
+
+  @media (min-width: 1000px) {
+    flex-direction: none;
+  }
 }
 
-
-
-
-.header-search {    // Container för sökfältet som är i mitten
-    color: rgb(230, 251, 237);
-    font-size: 1rem;
-    font-size: 1rem;
-    grid-column: 2;
-    grid-row: 2;
-    margin-top: 1vw;
+.header-search {
+  // Container för sökfältet som är i mitten
+  color: rgb(230, 251, 237);
+  font-size: 1rem;
+  font-size: 1rem;
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 1vw;
 }
 
-.header-search-bar {    // Sökfältet
-    width: 89%;
-    height: 80%;
-    max-height: 70px;
-    background-color: $color-secondary;
-    border: 2px solid #333;
-    border-radius: 22px;
-    padding-left: 5px;
-    padding-right: 15px;
+.header-search-bar {
+  // Sökfältet
+  width: 89%;
+  height: 80%;
+  max-height: 70px;
+  background-color: $color-secondary;
+  border: 2px solid #333;
+  border-radius: 22px;
+  padding-left: 5px;
+  padding-right: 15px;
+  @media (min-width: 800px) {
+    background-color: $color-main;
+    width: 119%;
+  }
 
+  @media (min-width: 1000px) {
+    width: 159%;
+    height: 150%;
+    background-color: $color-main;
+    margin-left: -3em;
+  }
 }
-    
-    
-.header-logo-button { // Ikon till kontakt och kundvagn
-    grid-row-start: 1;
-    grid-row-end: 3;
-    max-width: 80%;
-    max-height: 66px;
-    min-width: 0;
-    object-fit: contain;
-    place-self: center;
-    &:hover {
-        transform: scale(1.1);;
-    }
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .header-search-bar:not(*:root),
+  span.justForChrome {
+    width: 259%;
+  }
+}
+
+.header-logo-button {
+  // Ikon till kontakt och kundvagn
+  grid-row-start: 1;
+  grid-row-end: 3;
+  max-width: 80%;
+  max-height: 66px;
+  min-width: 0;
+  object-fit: contain;
+  place-self: center;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.category_menu {
+  display: none;
+  @media (min-width: 800px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  @media (min-width: 1000px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 }

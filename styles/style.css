@@ -246,7 +246,7 @@ body * {
 
 @media (min-width: 800px) {
   .header-search-bar {
-    background-color: whitesmoke;
+    background-color: #1D99BA;
     width: 119%;
   }
 }
@@ -255,7 +255,7 @@ body * {
   .header-search-bar {
     width: 159%;
     height: 150%;
-    background-color: whitesmoke;
+    background-color: #1D99BA;
     margin-left: -3em;
   }
 }
@@ -1044,8 +1044,8 @@ h3 {
 
 @media (min-width: 1000px) {
   .footer-information {
-    -ms-grid-columns: 1fr 1fr 1fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+    -ms-grid-columns: 1fr 1fr 2fr;
+        grid-template-columns: 1fr 1fr 2fr;
     max-width: 1800px;
   }
 }

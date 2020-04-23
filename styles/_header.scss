@@ -165,14 +165,14 @@
   padding-left: 5px;
   padding-right: 15px;
   @media (min-width: 800px) {
-    background-color: whitesmoke;
+    background-color: $color-main;
     width: 119%;
   }
 
   @media (min-width: 1000px) {
     width: 159%;
     height: 150%;
-    background-color: whitesmoke;
+    background-color: $color-main;
     margin-left: -3em;
   }
 }

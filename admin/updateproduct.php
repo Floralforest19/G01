@@ -85,15 +85,19 @@ echo $product_id;
 // visa kategorierna
 require_once '../db.php';
   $sql = "SELECT * FROM category 
-  WHERE category_id = $category_id
   ORDER BY name";
   $stmt = $db->prepare($sql);
   $stmt->execute();
   $selectCat = "<select name='category_id' id='category_id'>";
+  // förväljer den kategori som produkten redan hade tilldelats
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
     $catname = ucfirst(htmlspecialchars($row['name']));
     $id = htmlspecialchars($row['category_id']);
+    if($id == $category_id){
+    $selectCat .= "<option value='$id' selected>$catname</option>";
+    } else {
     $selectCat .= "<option value='$id'>$catname</option>";
+    }
   endwhile;
   $selectCat.= "</select>";
 

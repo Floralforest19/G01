@@ -7,40 +7,53 @@
   require_once '../db.php';
 ?>
 
-
 <section class='background'>
   <h2>Aktiva beställningar</h2>
   <div class="box__cat--form">
   <div class='nav__admin'>
 
+  <table class='table'>
+  <thead>
+    <th>Order-id</th>
+    <th>Kund</th>
+    <th>E-mail</th>
+    <th>Telefon</th>
+    <th>Adress</th>
+    <th>
+      Datum/Tid
+      <a href='orders.php?id=time&order_sort=ASC' id='sumSort'>Stigande</a>
+      <a href='orders.php?id=time&order_sort=DESC' id='sumSort'>Fallande</a>
+    </th>
+    <th>
+      Summa
+      <a href='orders.php?id=amount&order_sort=ASC' id='sumSort'>Stigande</a>
+      <a href='orders.php?id=amount&order_sort=DESC' id='sumSort'>Fallande</a>
+    </th>
+    <th>
+      Status
+      <a href='orders.php?id=status&order_sort=ASC' id='sumSort'>Stigande</a>
+      <a href='orders.php?id=status&order_sort=DESC' id='sumSort'>Fallande</a>
+    </th>
+  </thead>
+
 <?php
 
   if( isset($_GET['id']) ){
     $id = htmlentities($_GET['id']);
+    $orderSort = htmlentities($_GET['order_sort']);
     // hämta från beställningar istället
     $sql = "SELECT * FROM orders 
             WHERE status = 'active' OR status = 'in progress'
-            ORDER BY $id ASC";
+            ORDER BY $id $orderSort";
   } else {
     $sql = "SELECT * FROM orders 
-    WHERE status = 'active' OR status = 'in progress'
-    ORDER BY order_id";
+            WHERE status = 'active' OR status = 'in progress'
+            ORDER BY order_id";
   }
   $stmt = $db->prepare($sql);
   $stmt->execute();
 
-  $tableOrders = "
-  <table class='table'>
-  <thead>
-    <th><a href='orders.php?id=order_id'>Order-id</a></th>
-    <th><a href='orders.php?id=customer_id'>Kund</a></th>
-    <th>E-mail</th>
-    <th>Telefon</th>
-    <th>Adress</th>
-    <th><a href='orders.php?id=time'>Tid/datum</a></th>
-    <th><a href='orders.php?id=amount'>Summa</a></th>
-    <th>Status</th>
-  </thead>";
+  $tableOrders = "";
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // kolla igenom alla ordrar och spara order-id samt kundi-id
       $order_id = htmlspecialchars($row['order_id']);
@@ -48,15 +61,6 @@
       $status = htmlspecialchars($row['status']);
       $amount = htmlspecialchars($row['amount']);
       $time = htmlspecialchars($row['time']);
-      if($status == 'active'){
-        $statusText = 'Ny';
-      } else if($status == 'in progress') {
-        $statusText = 'Behandlas';
-      } else if($status == 'done') {
-        $statusText = 'Slutförd';
-      } else {
-        $statusText = 'Status okänd';
-      }
 
       $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
       $stmtCustomer = $db->prepare($sqlCustomer);
@@ -113,5 +117,6 @@
   </div></div></section>
   
 </section>
+
 </body>
 </html>

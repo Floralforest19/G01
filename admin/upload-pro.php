@@ -46,7 +46,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
       $uploadOk = 0;
     }
     // Check file size
-    if ($_FILES["image_file_name"]["size"][$i] > 5000000) {
+    if ($_FILES["image_file_name"]["size"][$i] > 100000) {  // Begränsad till 1MB
     echo "Tyvärr, filen är för stor.<br>";
     $uploadOk = 0;
     }

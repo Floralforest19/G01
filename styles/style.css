@@ -934,4 +934,16 @@ h3 {
   -ms-grid-column-align: center;
       justify-self: center;
 }
+
+.contact-form-heading {
+  color: blue;
+}
+
+.contact-form-container {
+  display: -ms-grid;
+  display: grid;
+  gap: 1em;
+  padding: 2%;
+  background: lightblue;
+}
 /*# sourceMappingURL=style.css.map */

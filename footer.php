@@ -4,17 +4,16 @@
             <img class="footer-img" src="images/Logo .png" />
         </div>
         <div class="footer-middle-left">
-            <p class="p-footer"> Om Kris & Ros </p>
-            <p class="p-footer"> Kontakt </p>
-            <p class="p-footer"> Köpvillkor </p>
-            <p class="p-footer"> Retur & Reklamationer </p>
-            <p class="p-footer"> FAQ </p>
+        <a href="contact.php"><p class="p-footer"> Kontakt </p></a>
+            <br>
+            <br>
+            <br>
+            <p class="p-footer"> Följ oss på: </p>
+            <a href="https://www.facebook.com/"><p class="p-footer"> Facebook </p></a>
+            <a href="https://www.instagram.com/"><p class="p-footer"> Instagram </p></a>
+
         </div>
-        <div class="footer-middle-right">
-            <p class="p-footer"> Facebook </p>
-            <p class="p-footer"> Instagram </p>
-            <p class="p-footer"> Youtube </p>
-        </div>
+     
         <div class="footer-last">
             <h3 class="h3-footer">Om oss på Kris & Ros!</h3>
             <p class="h4-footer">Vi skapade Kris & Ros i Covid-19 tiderna, för att nå ut till alla de personer i

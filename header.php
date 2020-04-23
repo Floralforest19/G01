@@ -41,7 +41,7 @@
 
     <form class="header-search" name="searchBarForm" action="search.php" onsubmit="return validateForm('searchBarForm','input','feedbackBar')" method="post">
 
-        <input id="header-search" class="header-search-bar" type="search" name="input" placeholder="Sök...">
+        <input id="header-search" class="header-search-bar searchInput" type="search" name="input" placeholder="Sök...">
     </form>
 
       <p id="feedbackBar" class="search__feedback margin-no"></p>
@@ -57,10 +57,25 @@
         </a>
 
 
-
-
     <a id="goTop" class="goTop" href="#"><img class="goTop-img" src="./images/goTop.svg" alt="Go top arrow"></a>
 </header>
+
+<div class="category_menu">
+            <?php 
+                    require_once 'db.php';
+                    $sql2 = "SELECT * FROM category
+                    ORDER BY name";
+                    $stmt2 = $db->prepare($sql2);
+                    $stmt2->execute();
+                    $navLinks = "<a href='index.php?id=all'>Alla produkter</a> ";
+                    while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
+                      $name2 = $row2['name'];
+                      $id2 = $row2['category_id'];
+                      $navLinks .= "<br> <a href='index.php?id=$id2'>$name2 </a>";
+                    }
+                    echo $navLinks;
+            ?>
+        </div>
 
 <main id="main">
 <script src="header.js"></script>

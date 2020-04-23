@@ -37,6 +37,19 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   $name = htmlspecialchars($row['name']);
   $id = htmlspecialchars($row['product_id']);    
   $catId = htmlspecialchars($row['category_id']);
+
+
+  $bilder = htmlspecialchars($row['image_file_name']);
+
+  // Splittar upp alla bilder i en array
+  $bilderArray = explode(" * ", $bilder);
+  $förstaBild = $bilderArray[0];
+
+  // Ifall produkten inte har en bild så blir det standardbilden som är toapapper just nu
+  if ($förstaBild == "") {
+    $förstaBild = "toalettpapper.jpg";
+  }
+
   
   $sqlCat = "SELECT name FROM category WHERE category_id = $catId";
   $stmtCat = $db->prepare($sqlCat);
@@ -46,7 +59,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   
   $productsBox .= "<article class='box'>
   <div class='box__pic'>
-    <img src='../images/toalettpapper.jpg' alt='toalettpapper'/>
+    <img src='../images/$förstaBild' alt='toalettpapper'/>
   </div>
   <div class='box__text'>
     <h3>$name</h3>
@@ -60,7 +73,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 
   $table .= "<tr>
-              <td>   <img class='table__pic' src='../images/toalettpapper.jpg' alt='toalettpapper'/></td>
+              <td>   <img class='table__pic' src='$förstaBild' alt='toalettpapper'/></td>
               <td> $nameCat </td>
               <td> $name </td>
               <td> <a href='updateproduct.php?product_id=$id'

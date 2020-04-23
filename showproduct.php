@@ -14,14 +14,31 @@
     $description = htmlspecialchars($row['description']);
     $quantity = htmlspecialchars($row['quantity']);
     $price = htmlspecialchars($row['price']);
+    $image = htmlspecialchars($row['image_file_name']);
 
+    // Om det inte finns en bild läggs det upp en dummy
+    if(empty($image)){
+      $image = 'toalettpapper.jpg';
+    }
 
+    // Delar upp bild-strängen till en array
+    $imageArray = explode(" * ", $image);
+
+    // Kollar om bild-array har mer än ett värde
+    $imageCount = count($imageArray);
+
+    // Om bild-array har mer än ett värde är det första bilden som blir primär, sorteras i bokstavsordning.
+    if ($imageCount > 1) {
+      $image = $imageArray[0];
+    }
+
+    // Skriver ut produkten. OBS Endast 1 bild visas nu
   $thisPost = "
       <section class='background'>
         <h2>$name</h2>
         <article class='single__product__wrapper'>
           <div class='single__product__pic'>
-            <img src='./images/toalettpapper.jpg' alt='toalettpapper' />
+            <img src='./images/$image' alt='$name' />
           </div>
           <div class='single__product__text'>
             <p>$description</p>

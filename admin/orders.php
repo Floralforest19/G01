@@ -13,10 +13,23 @@
   <div class="box__cat--form">
   <div class='nav__admin'>
 
+  <table class='table'>
+  <thead>
+    <th><a href='orders.php?id=order_id&order_asc=ASC'>Order-id</a></th>
+    <th>Kund</th>
+    <th>E-mail</th>
+    <th>Telefon</th>
+    <th>Adress</th>
+    <th><a href='orders.php?id=time&order_asc=ASC'>Tid/datum</a></th>
+    <th><a href='orders.php?id=amount&order_asc=ASC'>Summa</a></th>
+    <th>Status</th>
+  </thead>
+
 <?php
 
   if( isset($_GET['id']) ){
     $id = htmlentities($_GET['id']);
+    $acsDec = htmlentities($_GET['order_asc']);
     // hämta från beställningar istället
     $sql = "SELECT * FROM orders 
             WHERE status = 'active' OR status = 'in progress'
@@ -29,18 +42,7 @@
   $stmt = $db->prepare($sql);
   $stmt->execute();
 
-  $tableOrders = "
-  <table class='table'>
-  <thead>
-    <th><a href='orders.php?id=order_id'>Order-id</a></th>
-    <th><a href='orders.php?id=customer_id'>Kund</a></th>
-    <th>E-mail</th>
-    <th>Telefon</th>
-    <th>Adress</th>
-    <th><a href='orders.php?id=time'>Tid/datum</a></th>
-    <th><a href='orders.php?id=amount'>Summa</a></th>
-    <th>Status</th>
-  </thead>";
+  $tableOrders = "";
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // kolla igenom alla ordrar och spara order-id samt kundi-id
       $order_id = htmlspecialchars($row['order_id']);
@@ -48,15 +50,6 @@
       $status = htmlspecialchars($row['status']);
       $amount = htmlspecialchars($row['amount']);
       $time = htmlspecialchars($row['time']);
-      if($status == 'active'){
-        $statusText = 'Ny';
-      } else if($status == 'in progress') {
-        $statusText = 'Behandlas';
-      } else if($status == 'done') {
-        $statusText = 'Slutförd';
-      } else {
-        $statusText = 'Status okänd';
-      }
 
       $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
       $stmtCustomer = $db->prepare($sqlCustomer);

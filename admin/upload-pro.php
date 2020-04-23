@@ -8,7 +8,6 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
   $quantity  = ($_POST['quantity']);
   $price  = ($_POST['price']);
   $category_id  = htmlspecialchars($_POST['test']);
-  // $image_file_name = htmlspecialchars(basename ($_FILES["image_file_name"]["name"]));
 
 
 

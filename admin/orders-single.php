@@ -1,4 +1,7 @@
 <?php 
+/**************************************** *
+ * show a single order
+**************************************** */
   // skriva ut på samma sätt som orderbekrftelse? Lägga till status bara
     require_once 'header-admin.php';
     require_once '../db.php';
@@ -47,7 +50,7 @@
       <th>Status</th>
     </thead>
     <tr>
-      <td><a href='showorder.php?id=$order_id'><h3>$order_id</h3></a></td>
+      <td><a href='orders-single.php?id=$order_id'><h3>$order_id</h3></a></td>
       <td><p>$customer_id</p></td>
       <td><p>$fullname</p></td>
       <td><p>$email</p></td>
@@ -55,7 +58,7 @@
       <td><p>$address</p></td>
       <td><p>$time</p></td>  
       <td><p>$amount</p></td>      
-      <td><a href='showorder.php?id=$order_id'><button class='btn__edit'>Arkivera</button></a></td>
+      <td><a href='orders-single.php?id=$order_id'><button class='btn__edit'>Arkivera</button></a></td>
     </tr>
   </table>
 </div></div></section>";

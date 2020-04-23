@@ -246,7 +246,6 @@ body * {
 
 @media (min-width: 800px) {
   .header-search-bar {
-    background-color: #1D99BA;
     width: 119%;
   }
 }
@@ -255,12 +254,25 @@ body * {
   .header-search-bar {
     width: 159%;
     height: 150%;
-    background-color: #1D99BA;
     margin-left: -3em;
   }
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .header-search-bar:not(*:root),
+  span.justForChrome {
+    width: 89%;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-width: 800px) {
+  .header-search-bar:not(*:root),
+  span.justForChrome {
+    width: 119%;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-width: 1000px) {
   .header-search-bar:not(*:root),
   span.justForChrome {
     width: 259%;
@@ -316,6 +328,11 @@ body * {
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
   }
+}
+
+.search__feedback {
+  font-size: large;
+  z-index: 20;
 }
 
 .bar1, .bar2, .bar3 {

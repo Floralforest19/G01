@@ -8,7 +8,7 @@ require_once 'header.php';
 
 <div id="emptyCart"></div>      
 
-<script src="cart.js"></script>
+<script src="js/cart-show-all-items.js"></script>
 
 <?php 
 require_once 'footer.php';

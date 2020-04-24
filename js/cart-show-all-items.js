@@ -98,6 +98,7 @@ function clearCartBtn() {
     // if current btn is "clear cart" clear local storage
     if ( confirm("Vill du tömma varukorgen?") == true ) { 
       localStorage.clear()
+      location.reload(); 
     }
     // rewrite cart
     getProducts() 

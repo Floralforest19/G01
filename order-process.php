@@ -4,7 +4,7 @@
 require_once "header.php";
 require_once 'db.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'):
+// if ($_SERVER['REQUEST_METHOD'] == 'POST'):
 
 /**********************************************
  * 
@@ -16,12 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'):
  **********************************************/
 
   $firstname  = htmlspecialchars($_POST['firstname']); 
-  $surname  = htmlspecialchars($_POST['surname']);
-  $email    = htmlspecialchars($_POST['email']);
-  $phone    = htmlspecialchars($_POST['phone']);
-  $address  = htmlspecialchars($_POST['address']);
-  $zip      = htmlspecialchars($_POST['zip']);
-  $city     = htmlspecialchars($_POST['city']);
+  $surname    = htmlspecialchars($_POST['surname']);
+  $email      = htmlspecialchars($_POST['email']);
+  $phone      = htmlspecialchars($_POST['phone']);
+  $address    = htmlspecialchars($_POST['address']);
+  $zip        = htmlspecialchars($_POST['zip']);
+  $city       = htmlspecialchars($_POST['city']);
 
     print_r($_POST);
 
@@ -35,6 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'):
 
 //$sql = "INSERT INTO table_name (username, email) VALUES ('$_POST[username]', '$_POST[email]')”; if (!mysql_query($user_info, $connect)) { die('Error: ' . mysql_error()); }
 
-endif;
+// endif;
 
 ?>

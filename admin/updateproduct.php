@@ -25,6 +25,13 @@ if(isset($_GET['product_id'])){
       $price  = htmlspecialchars($row['price']);
       $category_id  = htmlspecialchars($row['category_id']);
 
+      // Splittar upp alla bilder produkten har till en array: $image_array
+      $image_array = explode(" * ", $image_file_name);
+      
+      // Variabel som räknar hur många bilder produkten har. Minus två för att inkludera position "noll" och det sista värdet som alltid är tomt.
+      $totalfiles = count($image_array) - 2;
+
+
     }else{
       echo 'Produkten finns inte';
       exit;
@@ -79,7 +86,20 @@ echo $product_id;
 <h2>Uppdatera produkt</h2>
 
 <div class="update-product-form">
-    <form method="POST" style="display: grid;">  <!-- har lagt till display-grid för enkelhetens skull -->
+  <form method="POST" style="display: grid;">  <!-- har lagt till display-grid för enkelhetens skull -->
+
+  <?php
+      // Kontrollerar att bild finns på produkten     ***************************************************************************************
+    if (strlen($image_array[0]) > 0) {
+      echo "<div>";
+      for ($i=0; $i <= $totalfiles; $i++) { 
+        $image_printer = "<img src='../images/$image_array[$i]' alt='$name image $i' style='max-height: 150px;'/>";
+        echo $image_printer;
+      }
+      echo "</div>";
+    }
+  ?>
+
         Bild: <input name="image_file_name" type="text" required value="<?php echo $image_file_name; ?>">
         <?php
 // visa kategorierna

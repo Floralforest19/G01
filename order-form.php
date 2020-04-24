@@ -13,13 +13,7 @@ require_once 'header.php';
         <form action="order-send.php" method="POST">
             <div class="contact-form-container">
                 <div>
-
-                    <!-- id för att testa nå databasen, detta ska inte vara med sen
-                                        <label for="customer_id">id</label>
-                    <input type="text" name="customer_id" placeholder="Ange ditt id" required />
-                     -->
-
-
+                
                     <label for="firstname">Förnamn</label>
                     <input type="text" name="firstname" id="firstname" placeholder="Ange ditt förnamn" required />
 

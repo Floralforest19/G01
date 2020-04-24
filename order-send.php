@@ -54,11 +54,10 @@
       $zip        = htmlspecialchars($_POST['zip']);
       $city       = htmlspecialchars($_POST['city']);
 
-      $sql = "INSERT INTO `customers`('customer_id', `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`)
-              VALUES (NULL, $firstname, $surname, $address, $city, $zip, $phone, $email) ";
+      $sql = "INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`) 
+      VALUES (NULL, '$firstname', '$surname', '$address', '$city', '$zip', '$phone', '$email')";
       $stmt = $db->prepare($sql);
       $stmt->execute();
-
       // header('Location:order-confirmation.php');
     } else{
 

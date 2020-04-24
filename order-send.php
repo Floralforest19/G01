@@ -50,8 +50,8 @@
       VALUES (NULL, $new_customer_id, 'active', '500', CURRENT_TIMESTAMP)";
       $stmt4 = $db->prepare($sql4);
       $stmt4->execute();
-
-      header('Location:order-confirmation.php');
+      // header('Location:order-confirmation.php');
     } 
+    echo "working";
   }
 ?>

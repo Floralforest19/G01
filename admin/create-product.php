@@ -3,7 +3,7 @@
 
 <div>
 <form action="upload-pro.php" method="post" enctype="multipart/form-data" name="createProdForm">
-    <div>  <input type="file" name="image_file_name" id="image_file_name" type="text" class="input__cat" required placeholder="Bild"></div> 
+    <div>  <input type="file" name="image_file_name[]" id="image_file_name" type="text" class="input__cat" required placeholder="Bild" multiple></div> 
    
     <div> <?php
 // visa kategorierna

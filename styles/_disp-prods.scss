@@ -5,6 +5,7 @@
 
 // products menu
 .products__menu {
+  color: grey;
 }
 
 // alla produkters container
@@ -39,8 +40,30 @@
 }
 
 // köp knapp
-.products__btn{
+.products__btn {
   background: $color-main;
   margin: 1rem;
   padding: 1rem;
+}
+
+.minus, .plus {
+  border-radius: 0;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  border: 1px solid #ddd;
+  background: $color-secondary;
+}
+
+.inputAmount {
+  text-align: center;
+  width: 60px;
+  height: 30px;
+  border: 1px solid #ddd;
+}
+
+#confirmationDiv {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }

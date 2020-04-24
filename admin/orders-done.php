@@ -9,9 +9,17 @@
 
 
 <section class='background'>
+
+
   <h2>Avslutade beställningar</h2>
   <div class="box__cat--form">
-  <div class='nav__admin'>
+
+  <!-- <form class="header-search" name="searchBarForm" action="search.php" onsubmit="return validateForm('searchBarForm','input','feedbackBar')" method="post">
+    <input id="header-search" class="header-search-bar searchInput" type="search" name="input" placeholder="Filtrera...">
+    <p id="feedbackBar" class="search__feedback margin-no"> </p> -->
+    <div class='nav__admin'>
+  <!-- </form> -->
+
   <table class='table'>
   <thead>
     <th>Order-id</th>
@@ -20,14 +28,14 @@
     <th>Telefon</th>
     <th>Adress</th>
     <th>
-      Datum/Tid
-      <a href='orders-done.php?id=time&order_sort=ASC' id='sumSort'>Stigande</a>
-      <a href='orders-done.php?id=time&order_sort=DESC' id='sumSort'>Fallande</a>
+      Datum/Tid<br>
+      <a href='orders-done.php?id=time&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
+      <a href='orders-done.php?id=time&order_sort=DESC' id='sumSort'><i class="fas fa-angle-down"></i></a>
     </th>
     <th>
-      Summa
-      <a href='orders-done.php?id=amount&order_sort=ASC' id='sumSort'>Stigande</a>
-      <a href='orders-done.php?id=amount&order_sort=DESC' id='sumSort'>Fallande</a>
+      Summa<br>
+      <a href='orders-done.php?id=amount&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
+      <a href='orders-done.php?id=amount&order_sort=DESC' id='sumSort'><i class="fas fa-angle-down"></i></a>
     </th>
     <th>Status</th>
   </thead>
@@ -82,28 +90,6 @@
       $street = htmlspecialchars($rowCustomer['streetadress']);
       $zip = htmlspecialchars($rowCustomer['zip-code']);
       $city = htmlspecialchars($rowCustomer['city']);
-
-      // $selectStatus = 
-      // "<form method='post' action='orders-update.php?order_id=$order_id'         
-      //   onsubmit=\"return alert('Status för order $order_id uppdaterades och ordern flyttas till aktiva beställningar')\">
-      //   <select name='statusSelectDone' id='statusSelect'>";
-      // if( $status == 'active'){
-      //   $selectStatus .= "
-      //   <option value='active' selected>Ny</option>
-      //   <option value='in progress'>Behandlas</option>
-      //   <option value='done'>Slutförd</option>";
-      // } else if( $status == 'in progress'){
-      //   $selectStatus .= "
-      //   <option value='active'>Ny</option>
-      //   <option value='in progress' selected>Behandlas</option>
-      //   <option value='done'>Slutförd</option>";
-      // } else if( $status == 'done'){
-      //   $selectStatus .= "
-      //   <option value='active'>Ny</option>
-      //   <option value='in progress'>Behandlas</option>
-      //   <option value='done' selected>Slutförd</option>";
-      // }
-      // $selectStatus .= "</select><input type='submit' value='Sätt status'></form>";
 
       $tableOrders.= "
       <tr>

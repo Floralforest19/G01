@@ -9,6 +9,8 @@
       href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
       rel="stylesheet"
   />
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  
   <title>Webshop - Admin</title>
 </head>
 <body>
@@ -24,6 +26,5 @@
     <li><a href="read-cat.php">Kategorier</a></li>
     <li><a href="orders.php">Aktiva beställningar</a></li>
     <li><a href="orders-done.php">Avslutade beställningar</a></li>
-    <li><a href="api-docs.php">API-Dokumentation</a></li>
   </ul>
 </nav>

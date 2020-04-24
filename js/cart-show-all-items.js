@@ -55,7 +55,7 @@ function getProdsToCart(products) {
     <th></th><th></th><th></th><th>Total summa: </th><th>${totalSum} kr</th></tr>
   </thead>`
   // 3.4.5 display order button
-  if (localStorage.length > 0) { 
+  if (localStorage.getItem('shoppingCart').length > 0) { 
     dispCart.innerHTML +=
     `<thead class='thead thead-dark'><tr>
       <th></th><th></th><th></th><th></th><th><a href='#'><button id='orderBtn' class='btn__edit'>Beställ</button></a></th>

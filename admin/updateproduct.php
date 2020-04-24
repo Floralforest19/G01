@@ -79,7 +79,7 @@ echo $product_id;
 <h2>Uppdatera produkt</h2>
 
 <div class="update-product-form">
-    <form method="POST">
+    <form method="POST" style="display: grid;">  <!-- har lagt till display-grid för enkelhetens skull -->
         Bild: <input name="image_file_name" type="text" required value="<?php echo $image_file_name; ?>">
         <?php
 // visa kategorierna

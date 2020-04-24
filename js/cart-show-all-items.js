@@ -40,13 +40,13 @@ function getProdsToCart(products) {
     // 3.4.3 display items in table
     dispCart.innerHTML += `
       <tr id='${id}' class='table-row'>
-        <td><button id ='${id}deleteBtn' class='btn__delete'><i class='fa fa-trash'></i></button></td>
         <td>${name}</td>
         <td><button id='${id}MinusBtn' class='minus'><i class='fa fa-minus'></i></button>
         <input type='text' id='${id}Input' class='inputAmount' value='${quantity}'></input>
         <button id='${id}PlusBtn' class='plus'><i class='fa fa-plus'></i></button></td>
         <td>${price} kr</td>
         <td>${productSum} kr</td>
+        <td><button id ='${id}deleteBtn' class='btn__delete'><i class='fa fa-trash'></i></button></td>
       </tr>`
   }
   // 3.4.4 display table footer with total sum
@@ -72,8 +72,8 @@ function ifEmptyCart() {
     document.getElementById("emptyCart").innerHTML = ""
     dispCart.innerHTML += `
     <thead class='thead thead-dark'><tr>
-      <th><button id='clearCartBtn' class='btn__edit'>Töm varukorg</button></th>
       <th>Produkt</th><th>Antal</th><th>Pris/st</th><th>Summa</th>
+      <th><button id='clearCartBtn' class='btn__delete'>Töm varukorg</button></th>
     </tr></thead>`
   } else { 
     document.getElementById("emptyCart").innerHTML = "Varukorgen är tom!"
@@ -98,6 +98,7 @@ function clearCartBtn() {
     // if current btn is "clear cart" clear local storage
     if ( confirm("Vill du tömma varukorgen?") == true ) { 
       localStorage.clear()
+      // getProducts() borde köras egentligen istället för reload
       location.reload(); 
     }
     // rewrite cart

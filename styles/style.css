@@ -521,10 +521,6 @@ a {
   text-align: center;
 }
 
-.btn__delete {
-  width: 1rem;
-}
-
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

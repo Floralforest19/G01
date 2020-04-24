@@ -7,7 +7,7 @@
 
 // check if email exists
   if(isset($_POST['email'])){
-    $checkEmail = htmlspecialchars('email');
+  $checkEmail = htmlspecialchars($_POST['email']);
 
   $firstname  = htmlspecialchars($_POST['firstname']); 
   $surname    = htmlspecialchars($_POST['surname']);
@@ -17,24 +17,35 @@
   $zip        = htmlspecialchars($_POST['zip']);
   $city       = htmlspecialchars($_POST['city']);
 
+  echo "<pre>";
+  print_r($_POST);
+  echo "<pre>";
+
     // kolla ifall email existerar i db
-    $sql = "SELECT * FROM `customers` WHERE 'email' = '$checkEmail'";  
-    $stmt = $db->prepare($sql);
-    $stmt->execute();
+    $sql2 = "SELECT * FROM `customers` WHERE email = '$checkEmail'";  
+    $stmt2 = $db->prepare($sql2);
+    $stmt2->execute();
           
     $result = false; 
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
       $result = true; 
-      print_r($row);
+      echo "<pre>";
+      print_r($row2);
+      echo "<pre>";
+      echo "<br><br>"."KUNDEN EXSISTERAR"."<br><br>";
       // lägg till order till rätt kund
       // ta kund id:t
       // hämta kund info lägg till order 
             
-      // $sql = "UPDATE category SET name = '$catname' WHERE category_id = '$id' ";
       // $stmt = $db->prepare($sql);
       // $stmt->execute();
+      // $sql = "UPDATE customers SET firstname = 'Hej', surname = 'Svejs' WHERE firstname = 'Kalle' ";
+      //       $stmt = $db->prepare($sql);
+      //       $stmt->execute();
+
     }
     if(!$result){ // skapa ny kund och koppla order
+      echo "existerar inte";
       $firstname  = htmlspecialchars($_POST['firstname']); 
       $surname    = htmlspecialchars($_POST['surname']);
       $email      = htmlspecialchars($_POST['email']);
@@ -43,8 +54,8 @@
       $zip        = htmlspecialchars($_POST['zip']);
       $city       = htmlspecialchars($_POST['city']);
 
-      $sql = "INSERT INTO `customers`(`firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`)
-              VALUES ($firstname, $surname, $address, $city, $zip, $phone, $email) ";
+      $sql = "INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`) 
+      VALUES (NULL, 'Anders', 'Pluttt', 'DSADsdasdadas', 'dasda', '34567', '2345674567', 'stina@asdasda.aw');";
       $stmt = $db->prepare($sql);
       $stmt->execute();
 

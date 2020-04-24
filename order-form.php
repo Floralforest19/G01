@@ -5,11 +5,12 @@ require_once 'header.php';
 
     <section class="contact-form">
     <h2 class="contact-form-heading">Din beställning</h2>
+
     <!-- Här läggs en liten sammanfattning in om beställningen, tex totalsumman -->
-        <script type="text/javascript" src="display-pre-order.js"></script>
+    <table id='dispItems' class='display__order-items'></table>
 
         <h2 class="contact-form-heading">Dina uppgifter</h2>
-        <form action="order-process.php" method="POST">
+        <form action="order-send.php" method="POST">
             <div class="contact-form-container">
                 <div>
 
@@ -20,10 +21,10 @@ require_once 'header.php';
 
 
                     <label for="firstname">Förnamn</label>
-                    <input type="text" name="firstname" placeholder="Ange ditt förnamn" required />
+                    <input type="text" name="firstname" id="firstname" placeholder="Ange ditt förnamn" required />
 
                     <label for="surname">Efternamn</label>
-                    <input type="text" name="surname" id="lname" placeholder="Ange ditt efternamn" required />
+                    <input type="text" name="surname" id="surname" placeholder="Ange ditt efternamn" required />
 
                     <label for="email">Email</label>
                     <input type="text" name="email" id="email" placeholder="Ange din email" required />
@@ -46,6 +47,8 @@ require_once 'header.php';
             </div>
         </form>
     </section>
+
+    <script src="js/order-show-items.js"></script>
 
 <?php
 

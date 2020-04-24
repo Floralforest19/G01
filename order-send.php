@@ -42,6 +42,10 @@
       // $sql = "UPDATE customers SET firstname = 'Hej', surname = 'Svejs' WHERE firstname = 'Kalle' ";
       //       $stmt = $db->prepare($sql);
       //       $stmt->execute();
+      // $sql = "INSERT INTO `orders` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`) 
+      // VALUES (NULL, '$firstname', '$surname', '$address', '$city', '$zip', '$phone', '$email')";
+      // $stmt = $db->prepare($sql);
+      // $stmt->execute();
 
     }
     if(!$result){ // skapa ny kund och koppla order
@@ -55,7 +59,7 @@
       $city       = htmlspecialchars($_POST['city']);
 
       $sql = "INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`) 
-      VALUES (NULL, 'Anders', 'Pluttt', 'DSADsdasdadas', 'dasda', '34567', '2345674567', 'stina@asdasda.aw');";
+      VALUES (NULL, '$firstname', '$surname', '$address', '$city', '$zip', '$phone', '$email')";
       $stmt = $db->prepare($sql);
       $stmt->execute();
 

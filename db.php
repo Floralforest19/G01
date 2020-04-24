@@ -4,7 +4,7 @@
 **************************************** */
 
 $db_server   = "localhost";
-$db_database = "krisochros";
+$db_database = "webshop";
 $db_username = "root";
 $db_password = "root"; 
 

@@ -45,14 +45,14 @@ function getProdsToCart(products) {
         <td><button id='${id}MinusBtn' class='minus'><i class='fa fa-minus'></i></button>
         <input type='text' id='${id}Input' class='inputAmount' value='${quantity}'></input>
         <button id='${id}PlusBtn' class='plus'><i class='fa fa-plus'></i></button></td>
-        <td>${price}</td>
-        <td>${productSum}</td>
+        <td>${price} kr</td>
+        <td>${productSum} kr</td>
       </tr>`
   }
   // 3.4.4 display table footer with total sum
   dispCart.innerHTML += `
   <thead><tr class='table-row thead'>
-    <th></th><th></th><th></th><th>Total summa: </th><th>${totalSum}</th></tr>
+    <th></th><th></th><th></th><th>Total summa: </th><th>${totalSum} kr</th></tr>
   </thead>`
   // 3.4.5 display order button
   if (localStorage.length > 0) { 
@@ -98,6 +98,7 @@ function clearCartBtn() {
     // if current btn is "clear cart" clear local storage
     if ( confirm("Vill du tömma varukorgen?") == true ) { 
       localStorage.clear()
+      // getProducts() borde köras egentligen istället för reload
       location.reload(); 
     }
     // rewrite cart

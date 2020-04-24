@@ -58,7 +58,7 @@ function getProdsToCart(products) {
   if (localStorage.length > 0) { 
     dispCart.innerHTML +=
     `<thead class='thead thead-dark'><tr>
-      <th></th><th></th><th></th><th></th><th><a href='#'><button id='orderBtn' class='btn__edit'>Beställ</button></a></th>
+      <th></th><th></th><th></th><th></th><th><a href='order-form.php'><button id='orderBtn' class='btn__edit'>Beställ</button></a></th>
     </tr></thead>`
       
   }

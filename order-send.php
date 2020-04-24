@@ -9,10 +9,6 @@
   if(isset($_POST['email'])){
   $checkEmail = htmlspecialchars($_POST['email']);
 
-  echo "<pre>";
-  print_r($_POST);
-  echo "<pre>";
-
     // kolla ifall email existerar i db
     $sql2 = "SELECT * FROM `customers` WHERE email = '$checkEmail'";  
     $stmt2 = $db->prepare($sql2);
@@ -21,7 +17,6 @@
     $result = false; 
     while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
       $result = true;
-      echo "<br><br>"."KUNDEN EXSISTERAR"."<br><br>";
       $existing_customer_id = $row2['customer_id'];
 
       $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`) 
@@ -31,7 +26,6 @@
 
     }
     if(!$result){ // skapa ny kund och koppla order
-      echo "existerar inte";
       $firstname  = htmlspecialchars($_POST['firstname']); 
       $surname    = htmlspecialchars($_POST['surname']);
       $email      = htmlspecialchars($_POST['email']);
@@ -41,15 +35,23 @@
       $city       = htmlspecialchars($_POST['city']);
 
       $sql = "INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`) 
-      VALUES (NULL, '$firstname', '$surname', '$address', '$city', '$zip', '$phone', '$email')
-      AND INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`) 
-      VALUES (NULL, '$existing_customer_id', 'active', '500', CURRENT_TIMESTAMP)";
+      VALUES (NULL, '$firstname', '$surname', '$address', '$city', '$zip', '$phone', '$email')";
       $stmt = $db->prepare($sql);
       $stmt->execute();
 
-      // header('Location:order-confirmation.php');
-    } else{
+      $sql3 =" SELECT customer_id FROM customers ORDER BY customer_id DESC LIMIT 1";
+      $stmt3 = $db->prepare($sql3);
+      $stmt3->execute();
 
-    }
+      $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+      $new_customer_id = $row3['customer_id'];
+
+      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`) 
+      VALUES (NULL, $new_customer_id, 'active', '500', CURRENT_TIMESTAMP)";
+      $stmt4 = $db->prepare($sql4);
+      $stmt4->execute();
+
+      header('Location:order-confirmation.php');
+    } 
   }
 ?>

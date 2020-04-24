@@ -10,8 +10,9 @@ require_once 'header.php';
   </div>
 </section>
 
-<div id="emptyCart"></div>      
+<div id="emptyCart"></div>
 
+<script src="js/cart-localstorage.js"></script>
 <script src="js/cart-show-all-items.js"></script>
 
 <?php 

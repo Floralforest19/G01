@@ -7,7 +7,9 @@
 
 // check if email exists
   if(isset($_POST['email'])){
+  // spara email i en variabel för att jämföra och kolla om det är en ny kund
   $checkEmail = htmlspecialchars($_POST['email']);
+  // hämtar total summan på ordern som behövs för att spara ordern
   $order_sum = htmlspecialchars($_POST['order_sum']);
 
     // check if email exist in db
@@ -64,13 +66,13 @@
 
       // hämta info om de köpta produkterna och uppdaterar db med den nya mängden
       // $_POST['numbOfDiffProds'] innehåller antalet olika sorters produkter som köpts
-      for ($i=0; $i < $_POST['numbOfDiffProds']; $i++) { 
+      for ($i=0; $i < $_POST['numbOfDiffProds']; $i++) {
         // 0 = product_id, 1 = price, 2 = quantity
         $strBoughtProdInfo = $_POST["$i"];
         $arrIdPriceQuant = explode(",",$strBoughtProdInfo);
         $booughtProdId = $arrIdPriceQuant[0];
         $boughtQuantity = $arrIdPriceQuant[2];
-        
+
         // hämta produktens info från db
         $sql5 ="SELECT * FROM product WHERE product_id = $booughtProdId";
         $stmt5 = $db->prepare($sql5);

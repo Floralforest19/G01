@@ -8,6 +8,7 @@ function getProducts() {
   let products = cartObj.products;
   getProdsToCart(products);
   setUpPlusQuantityClickEvent();
+  setUpMinusQuantityClickEvent();
 }
 getProducts();
 
@@ -129,15 +130,70 @@ function setUpPlusQuantityClickEvent() {
       );
 
       //hämta ut produkten
-      //console.log("productIndex: " + productIndex);
-      //console.log("cart: " + JSON.stringify(shoppingCart));
-      //console.log("productid: " + productId);
       let foundProduct = shoppingCart.products[productIndex];
       console.log(JSON.stringify(foundProduct));
       let currentQuantity = foundProduct.quantity;
 
       //öka med 1
       currentQuantity = currentQuantity + 1;
+
+      //validera så quantity inte överstiger lagerstatus
+      let lagerstatusInput = document.querySelector(`#product-${productId}`);
+      let lagerstatusValue = parseInt(lagerstatusInput.value);
+
+      if (currentQuantity > lagerstatusValue) {
+        return false;
+      }
+
+      //uppdatera objektet
+      foundProduct.quantity = currentQuantity;
+
+      //spara produkten i varukorgen på rätt index
+      shoppingCart.products[productIndex] = foundProduct;
+
+      //spara varukorgen i local storage
+      saveShoppingCartInLocalStorage(shoppingCart);
+
+      //rendera ut allt igen
+      getProducts();
+    });
+  }
+}
+
+function setUpMinusQuantityClickEvent() {
+  //hämta ut alla minus knappar
+  let minusQuantityButtons = document.querySelectorAll(".minus");
+
+  for (let i = 0; i < minusQuantityButtons.length; i++) {
+    let minusQuantityButton = minusQuantityButtons[i];
+    console.log("minus" + minusQuantityButton);
+    //binda klick event på knappen
+    minusQuantityButton.addEventListener("click", function () {
+      //ta fram parentelement till knappen
+      let minusQuantityButtonParent =
+        minusQuantityButton.parentElement.parentElement;
+
+      //hämta ut produktid
+      let productId = minusQuantityButtonParent.getAttribute("id");
+
+      //hämta shopping carten
+      let shoppingCart = getShoppingCartFromLocalStorage();
+
+      let productIndex = shoppingCart.products.findIndex(
+        (product) => product.productId === productId
+      );
+
+      let foundProduct = shoppingCart.products[productIndex];
+      console.log(JSON.stringify(foundProduct));
+      let currentQuantity = foundProduct.quantity;
+
+      //minusa med 1
+      currentQuantity = currentQuantity - 1;
+
+      //validering (går inte att välja mindre än 1)
+      if (currentQuantity < 1) {
+        return false;
+      }
 
       //uppdatera objektet
       foundProduct.quantity = currentQuantity;

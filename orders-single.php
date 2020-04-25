@@ -5,26 +5,31 @@
   // skriva ut på samma sätt som orderbekrftelse? Lägga till status bara
     require_once 'header.php';
     require_once 'db.php';
+
     $order_id = htmlspecialchars($_GET['order_id']);
     // hämta från beställningar istället
     $order = "SELECT * FROM orders WHERE order_id=$order_id";
     $stmt = $db->prepare($order);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
     $customer_id = htmlspecialchars($_GET['customer_id']);
     $customer = "SELECT * FROM customers WHERE customer_id=$customer_id";
     $stmt = $db->prepare($customer);
     $stmt->execute();
     $customerRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
     $order_id = htmlspecialchars($row['order_id']);
     $customer_id = htmlspecialchars($row['customer_id']);
     $amount = htmlspecialchars($row['amount']);
     $time = htmlspecialchars($row['time']);
+
     $firstname = htmlspecialchars($customerRow['firstname']);
     $surname = htmlspecialchars($customerRow['surname']);
     $fullname = $firstname." ".$surname;
     $email = htmlspecialchars($customerRow['email']);
     $phone = htmlspecialchars($customerRow['phone']);
+
     $street = htmlspecialchars($customerRow['streetadress']);
     $zip = htmlspecialchars($customerRow['zip-code']);
     $city = htmlspecialchars($customerRow['city']);
@@ -44,6 +49,8 @@
       <th>Adress</th>
       <th>Tid/datum</th>
       <th>Summa</th>
+
+
     </thead>
     <tr>
       <td><h3>$order_id</h3></td>
@@ -54,6 +61,7 @@
       <td><p>$address</p></td>
       <td><p>$time</p></td>
       <td><p>$amount Kr</p></td>
+
     </tr>
   </table>
 </div></div></section>";
@@ -61,3 +69,4 @@
 
 require_once 'footer.php';
 ?>
+

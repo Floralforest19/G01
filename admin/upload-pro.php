@@ -23,8 +23,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
     for($i=0;$i<$totalfiles;$i++){
       $target_dir = "../images/";
 
-      //Sparar alla bilder och separerar bildernas sökväg, med två mellanslag, i en string
-      $imageCollection .= htmlspecialchars(basename ($_FILES["image_file_name"]["name"][$i])) . " * "; 
+      $addImageCollection = 1;  // Variabel som används för att se ifall bildens sökväg ska läggas till i produktens tabell.
       
       
       $target_file = $target_dir . basename($_FILES["image_file_name"]["name"][$i]);
@@ -39,6 +38,8 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
       } else {
         echo "Det här är ingen bild.<br>";
         $uploadOk = 0;
+        $addImageCollection = 0;
+        
       }
       
       
@@ -49,8 +50,9 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
       }
       // Check file size
       if ($_FILES["image_file_name"]["size"][$i] > 100000) {  // Begränsad till 1MB
-      echo "Tyvärr, filen är för stor.<br>";
-      $uploadOk = 0;
+        echo "Tyvärr, filen är för stor.<br>";
+        $uploadOk = 0;
+      $addImageCollection = 0;
       }
       
       // Allow certain file formats
@@ -58,7 +60,8 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
       && $imageFileType != "gif" ) {
         
         echo "Tyvärr, bara JPG, JPEG, PNG & GIF är tillåtna filformat.<br>";
-      $uploadOk = 0;
+        $uploadOk = 0;
+        $addImageCollection = 0;
       }
       
       // Check if $uploadOk is set to 0 by an error
@@ -73,7 +76,13 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
         } else {
           echo "Tyvärr, det blev något fel vid uppladdning av fil.<br>";
         }
-      echo "</div></tr>";
+        echo "</div></tr>";
+      }
+
+      // Om $addImageCollection är "1" så kommer bildens sökväg att läggat till under produktens image_file_name kolumn
+      if ($addImageCollection == 1) {
+        //Sparar alla bilder och separerar bildernas sökväg, med två mellanslag, i en string
+        $imageCollection .= htmlspecialchars(basename ($_FILES["image_file_name"]["name"][$i])) . " * ";
       }
     }   // Slut på bildernas for-loop.
   }   // Slut på if-sats som kollar ifall bild variabeln är tom.

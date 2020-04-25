@@ -29,7 +29,7 @@ if(isset($_GET['product_id'])){
       $image_array = explode(" * ", $image_file_name);
       
       // Variabel som räknar hur många bilder produkten har. Minus två för att inkludera position "noll" och det sista värdet som alltid är tomt.
-      $totalfiles = count($image_array) - 2;
+      $totalfiles = count($image_array) - 1;
 
 
     }else{
@@ -93,8 +93,11 @@ echo $product_id;
     if (strlen($image_array[0]) > 0) {
       echo "<div>";
       for ($i=0; $i <= $totalfiles; $i++) { 
-        $image_printer = "<img src='../images/$image_array[$i]' alt='$name image $i' style='max-height: 150px;'/>";
-        echo $image_printer;
+        if (strlen($image_array[$i]) > 0) {
+
+          $image_printer = "<img src='../images/$image_array[$i]' alt='$name image $i' style='max-height: 150px;'/>";
+          echo $image_printer;
+        }
       }
       echo "</div>";
     }

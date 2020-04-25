@@ -1,6 +1,16 @@
-let shoppingCart = localStorage.getItem("shoppingCart");
+// let shoppingCart = localStorage.getItem("shoppingCart");
 
-console.log(shoppingCart);
+// console.log(shoppingCart);
 
-return cart;
+function getProducts() {
+  let cartFromStorage = localStorage.getItem("shoppingCart");
+  let cartObj = JSON.parse(cartFromStorage);
+  let products = cartObj.products;
+  getProdsToCart(products);
+  console.log(products);
+}
+getProducts();
+
+
+
 // order-process(shoppinggcart)

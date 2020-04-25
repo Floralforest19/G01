@@ -20,19 +20,19 @@
     <th>Telefon</th>
     <th>Adress</th>
     <th>
-      Datum/Tid
-      <a href='orders.php?id=time&order_sort=ASC' id='sumSort'>Stigande</a>
-      <a href='orders.php?id=time&order_sort=DESC' id='sumSort'>Fallande</a>
+      Datum/Tid<br>
+      <a href='orders.php?id=time&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
+      <a href='orders.php?id=time&order_sort=DESC' id='sumSort'><i class="fas fa-angle-down"></i></a>
     </th>
     <th>
-      Summa
-      <a href='orders.php?id=amount&order_sort=ASC' id='sumSort'>Stigande</a>
-      <a href='orders.php?id=amount&order_sort=DESC' id='sumSort'>Fallande</a>
+      Summa<br>
+      <a href='orders.php?id=amount&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
+      <a href='orders.php?id=amount&order_sort=DESC' id='sumSort'><i class="fas fa-angle-down"></i></a>
     </th>
     <th>
-      Status
-      <a href='orders.php?id=status&order_sort=ASC' id='sumSort'>Stigande</a>
-      <a href='orders.php?id=status&order_sort=DESC' id='sumSort'>Fallande</a>
+      Status<br>
+      <a href='orders.php?id=status&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
+      <a href='orders.php?id=status&order_sort=DESC' id='sumSort'><i class="fas fa-angle-down"></i></a>
     </th>
   </thead>
 

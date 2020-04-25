@@ -7,7 +7,9 @@
 
 // check if email exists
   if(isset($_POST['email'])){
+  // spara email i en variabel för att jämföra och kolla om det är en ny kund
   $checkEmail = htmlspecialchars($_POST['email']);
+  // hämtar total summan på ordern som behövs för att spara ordern
   $order_sum = htmlspecialchars($_POST['order_sum']);
 
     // check if email exist in db
@@ -61,6 +63,33 @@
       $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
       $new_order_id = $row4['order_id'];
       $order_customer_id = $row4['customer_id'];
-      ("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
+
+      // hämta info om de köpta produkterna och uppdaterar db med den nya mängden
+      // $_POST['numbOfDiffProds'] innehåller antalet olika sorters produkter som köpts
+      for ($i=0; $i < $_POST['numbOfDiffProds']; $i++) { 
+        // 0 = product_id, 1 = price, 2 = quantity
+        $strBoughtProdInfo = $_POST["$i"];
+        $arrIdPriceQuant = explode(",",$strBoughtProdInfo);
+        $booughtProdId = $arrIdPriceQuant[0];
+        $boughtQuantity = $arrIdPriceQuant[2];
+        
+        // hämta produktens info från db
+        $sql5 ="SELECT * FROM product WHERE product_id = $booughtProdId";
+        $stmt5 = $db->prepare($sql5);
+        $stmt5->execute();
+        $row5 = $stmt5->fetch(PDO::FETCH_ASSOC);
+        // spara den gamla mängden varor i lager
+        $oldQuantity = $row5['quantity'];
+
+        // räkna ut nya antalet varor i lager. Gamla antalet - köpta antalet = nya antalet
+        $newQuantity = $oldQuantity - $boughtQuantity;
+
+        // uppdatera databasen med nya antalet varor i lager
+        $sql6="UPDATE product SET quantity = '$newQuantity' WHERE product_id = '$booughtProdId'";
+        $stmt6 = $db->prepare($sql6);
+        $stmt6->execute();
+      }
+      // skicka kund till bekräftelse
+      header("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
   }
 ?>

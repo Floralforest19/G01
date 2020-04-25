@@ -1,0 +1,189 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.3
+-- https://www.phpmyadmin.net/
+--
+-- Värd: localhost:3306
+-- Tid vid skapande: 23 apr 2020 kl 16:30
+-- Serverversion: 5.7.26
+-- PHP-version: 7.4.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Databas: `krisochros`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `category`
+--
+
+CREATE TABLE `category` (
+  `category_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `category`
+--
+
+INSERT INTO `category` (`category_id`, `name`) VALUES
+(1, 'Hygien'),
+(2, 'Mat'),
+(3, 'Rosor');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `customers`
+--
+
+CREATE TABLE `customers` (
+  `customer_id` int(11) NOT NULL,
+  `firstname` varchar(32) NOT NULL,
+  `surname` varchar(32) NOT NULL,
+  `streetadress` varchar(64) NOT NULL,
+  `city` varchar(64) NOT NULL,
+  `zip-code` varchar(64) NOT NULL,
+  `phone` int(32) DEFAULT NULL,
+  `email` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `customers`
+--
+
+INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`) VALUES
+(1, 'Kalle', 'Anka', 'Paradisäppelvägen 11', 'Ankeborg', 72464, 755000010, 'kalle@ankeborg.se'),
+(3, 'Kajsa', 'Anka', 'Andvägen 14', 'Stockholm', 18155, 755000011, 'kajsa@ankeborg.se');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `status` varchar(11) NOT NULL COMMENT 'Active/In progress/Done',
+  `amount` int(32) NOT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`) VALUES
+(1, 1, 'done', 12, '2019-01-21 16:59:49'),
+(2, 3, 'done', 300, '2020-02-10 16:59:49'),
+(3, 1, 'active', 2, '2020-04-21 17:41:09'),
+(4, 1, 'in progress', 500, '2020-04-01 18:17:27'),
+(5, 3, 'active', 20, '2020-04-22 14:17:58');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` text,
+  `quantity` int(11) NOT NULL,
+  `image_file_name` varchar(500) NOT NULL,
+  `price` decimal(6,2) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `product`
+--
+
+INSERT INTO `product` (`product_id`, `name`, `description`, `quantity`, `image_file_name`, `price`, `category_id`, `creation_date`) VALUES
+(2, 'Daggros', 'Rosa glauca. Vacker ros med vildroskänsla. Får vackra rödbruna nypon på hösten. Mycket friskt och lättodlad ros. Vackert rödbruna nypon.', 15, 'daggros.png', '20.00', 3, '2020-02-23 10:29:44'),
+(5, 'Ingrid Bergman', 'Ingrid Bergman är en praktfull och odlingsvärd ros med stora, mörkröda blommor och spriralvända kronblad. Utnämd till årets ros år 2000 av världsförbundet.', 44, 'ingrid.png', '12.00', 3, '2020-02-28 08:28:44'),
+(6, 'Toalettpapper', 'Desinfektionssprit, handsprit eller alkoholbaserat handdesinfektionsmedel, &auml;r en typ av desinfektionsmedel som fr&auml;mst anv&auml;nds inom v&aring;rd och omsorg.', 600, 'toalettpapper.jpg', '23.00', 1, '2020-04-03 16:18:44'),
+(7, 'Råris', 'Råris är riskorn där bara yttersta delen av kornets skal är bortskalat, och där man låtit hinnan runt riset, som är svagt silverfärgad, sitta kvar.', 344, 'ris.png', '11.00', 2, '2020-04-13 23:28:44'),
+(14, 'Tvål', 'Halka inte! ', 34, '88864.jpeg * ', '22.00', 1, '2020-04-23 17:48:10'),
+(19, 'Ananas', 'Fruktansvärt gott! ', 22, 'ananas.jpg * ', '22.00', 2, '2020-04-23 18:30:05');
+
+--
+-- Index för dumpade tabeller
+--
+
+--
+-- Index för tabell `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Index för tabell `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`customer_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Index för tabell `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `orders_ibfk_1` (`customer_id`);
+
+--
+-- Index för tabell `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `catergory` (`category_id`);
+
+--
+-- AUTO_INCREMENT för dumpade tabeller
+--
+
+--
+-- AUTO_INCREMENT för tabell `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT för tabell `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT för tabell `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT för tabell `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- Restriktioner för dumpade tabeller
+--
+
+--
+-- Restriktioner för tabell `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`);
+
+--
+-- Restriktioner för tabell `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `catergory` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);

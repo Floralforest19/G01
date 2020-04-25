@@ -14,7 +14,7 @@
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $customer_id = htmlspecialchars($_GET['customer_id']);
-    $customer = "SELECT * FROM customers WHERE customer_id=$customer_id"; 
+    $customer = "SELECT * FROM customers WHERE customer_id=$customer_id";
     $stmt = $db->prepare($customer);
     $stmt->execute();
     $customerRow = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -27,7 +27,6 @@
     $firstname = htmlspecialchars($customerRow['firstname']);
     $surname = htmlspecialchars($customerRow['surname']);
     $fullname = $firstname." ".$surname;
-
     $email = htmlspecialchars($customerRow['email']);
     $phone = htmlspecialchars($customerRow['phone']);
 
@@ -35,7 +34,6 @@
     $zip = htmlspecialchars($customerRow['zip-code']);
     $city = htmlspecialchars($customerRow['city']);
     $address = $street."<br>".$zip." ".$city;
-
     $thisPost = "
 <section class='background'>
 <h2>Orderbekräftelse</h2>
@@ -51,7 +49,8 @@
       <th>Adress</th>
       <th>Tid/datum</th>
       <th>Summa</th>
-      
+
+
     </thead>
     <tr>
       <td><h3>$order_id</h3></td>
@@ -60,13 +59,14 @@
       <td><p>$email</p></td>
       <td><p>$phone</p></td>
       <td><p>$address</p></td>
-      <td><p>$time</p></td>  
-      <td><p>$amount Kr</p></td>      
-      
+      <td><p>$time</p></td>
+      <td><p>$amount Kr</p></td>
+
     </tr>
   </table>
 </div></div></section>";
-
     echo $thisPost;
 
+require_once 'footer.php';
 ?>
+

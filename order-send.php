@@ -64,6 +64,6 @@
       $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
       $new_order_id = $row4['order_id'];
       $order_customer_id = $row4['customer_id'];
-      header("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
+      ("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
   }
 ?>

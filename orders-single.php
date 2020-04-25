@@ -21,17 +21,17 @@
      $customer = "SELECT * FROM customers WHERE firstname=firstname"; 
     $stmt = $db->prepare($customer);
     $stmt->execute();
-    $nameRow = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
      $customer = "SELECT * FROM customers WHERE email=email"; 
     $stmt = $db->prepare($customer);
     $stmt->execute();
-    $emailRow = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
       $customer = "SELECT * FROM customers WHERE phone=phone"; 
     $stmt = $db->prepare($customer);
     $stmt->execute();
-    $phoneRow = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
      $customer = "SELECT * FROM customers WHERE streetadress=streetadress"; 
     $stmt = $db->prepare($customer);

@@ -50,8 +50,14 @@
       VALUES (NULL, $new_customer_id, 'active', '500', CURRENT_TIMESTAMP)";
       $stmt4 = $db->prepare($sql4);
       $stmt4->execute();
-      // header('Location:order-confirmation.php');
-    } 
-    echo "working";
+    }
+      $sql4 =" SELECT order_id, customer_id FROM orders ORDER BY order_id DESC LIMIT 1";
+      $stmt4 = $db->prepare($sql4);
+      $stmt4->execute();
+
+      $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
+      $new_order_id = $row4['order_id'];
+      $order_customer_id = $row4['customer_id'];
+      header("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
   }
 ?>

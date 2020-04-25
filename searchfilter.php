@@ -11,7 +11,7 @@ if(isset($_POST['input']) ){
   $filter = htmlspecialchars($_POST['input']);
   echo "<div class='box__search--form'><h3>Visar resultat för: $filter</h3></div>";
   // prepare and execute sql request
-  $sql = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' OR `keywords` LIKE '%$filter%' ORDER BY `name` ASC";  
+  $sql = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' ORDER BY `name` ASC";  
   $stmt = $db->prepare($sql);
   $stmt->execute();
   $result = false;  

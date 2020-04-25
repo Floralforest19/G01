@@ -4,7 +4,6 @@
 **************************************** */
   // koppla till databas
   require_once '../db.php';
-  require_once 'header-admin.php';
 ?>
 
 <h2>Produkter</h2>
@@ -35,7 +34,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   // test
   // print_r($row);
   $name = htmlspecialchars($row['name']);
-  $id = htmlspecialchars($row['product_id']);    
+  $id = htmlspecialchars($row['product_id']);
   $catId = htmlspecialchars($row['category_id']);
 
 

@@ -30,10 +30,23 @@ function setAddProductToCartClickEvent() {
     //binda ett click event på alla lägg till knappar och skicka med produkt-id, namn, pris, antal och bild.
     addToCartButton.addEventListener("click", function () {
       //hämta ut current value från antalfältet vid klick
-      let chosenQuantity = addToCartButtonParent.querySelector(
+      let chosenQuantityElement = addToCartButtonParent.querySelector(
         ".product-quantity"
       );
-      let quantity = parseInt(chosenQuantity.value);
+      let quantity = parseInt(chosenQuantityElement.value);
+      let maxAllowedQuantity = parseInt(
+        chosenQuantityElement.getAttribute("max")
+      );
+
+      let quantityValidated = validateShoppingCartQuantity(
+        quantity,
+        maxAllowedQuantity
+      );
+
+      if (quantityValidated === false) {
+        alert(`Valt antal måste vara mellan 1 och ${maxAllowedQuantity}`);
+        return;
+      }
 
       //hämta cart från localstorage
       let shoppingCart = getShoppingCartFromLocalStorage();

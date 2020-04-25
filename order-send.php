@@ -20,7 +20,7 @@
     while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
       $result = true;
       $existing_customer_id = $row2['customer_id'];
-
+      // OBS!! AMOUNT SHOULD BE CHANGED
       $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`) 
       VALUES (NULL, '$existing_customer_id', 'active', '500', CURRENT_TIMESTAMP)";
       $stmt = $db->prepare($sql);

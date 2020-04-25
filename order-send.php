@@ -88,6 +88,6 @@
         $stmt6->execute();
       }
       // skicka kund till bekräftelse
-      // header("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
+      header("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
   }
 ?>

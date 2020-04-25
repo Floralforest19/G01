@@ -3,32 +3,33 @@
     * read info from db & show, add categories
   **************************************** */
 
-  require_once 'db.php'; 
+  require_once 'db.php';
 
 // check if email exists
   if(isset($_POST['email'])){
   $checkEmail = htmlspecialchars($_POST['email']);
+  $order_sum = htmlspecialchars($_POST['order_sum']);
 
     // check if email exist in db
-    $sql2 = "SELECT * FROM `customers` WHERE email = '$checkEmail'";  
+    $sql2 = "SELECT * FROM `customers` WHERE email = '$checkEmail'";
     $stmt2 = $db->prepare($sql2);
     $stmt2->execute();
-    
-    $result = false; 
+
+    $result = false;
 
     // if customer exist, save order to customer with existing id
     while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
       $result = true;
       $existing_customer_id = $row2['customer_id'];
       // OBS!! AMOUNT SHOULD BE CHANGED
-      $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`) 
-      VALUES (NULL, '$existing_customer_id', 'active', '500', CURRENT_TIMESTAMP)";
+      $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`)
+      VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', CURRENT_TIMESTAMP)";
       $stmt = $db->prepare($sql);
       $stmt->execute();
 
     }
     if(!$result){ // custmomer doesn't exist, save new customer info
-      $firstname  = htmlspecialchars($_POST['firstname']); 
+      $firstname  = htmlspecialchars($_POST['firstname']);
       $surname    = htmlspecialchars($_POST['surname']);
       $email      = htmlspecialchars($_POST['email']);
       $phone      = htmlspecialchars($_POST['phone']);
@@ -36,7 +37,7 @@
       $zip        = htmlspecialchars($_POST['zip']);
       $city       = htmlspecialchars($_POST['city']);
 
-      $sql = "INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`) 
+      $sql = "INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`)
       VALUES (NULL, '$firstname', '$surname', '$address', '$city', '$zip', '$phone', '$email')";
       $stmt = $db->prepare($sql);
       $stmt->execute();
@@ -50,8 +51,8 @@
       $new_customer_id = $row3['customer_id'];
 
       // save order to new customer OBS!! AMOUNT SHOULD BE CHANGED
-      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`) 
-      VALUES (NULL, $new_customer_id, 'active', '500', CURRENT_TIMESTAMP)";
+      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`)
+      VALUES (NULL, $new_customer_id, 'active', '$order_sum', CURRENT_TIMESTAMP)";
       $stmt4 = $db->prepare($sql4);
       $stmt4->execute();
     }

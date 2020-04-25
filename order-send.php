@@ -7,7 +7,9 @@
 
 // check if email exists
   if(isset($_POST['email'])){
+  // spara email i en variabel för att jämföra och kolla om det är en ny kund
   $checkEmail = htmlspecialchars($_POST['email']);
+  // hämtar total summan på ordern som behövs för att spara ordern
   $order_sum = htmlspecialchars($_POST['order_sum']);
 
     // check if email exist in db
@@ -61,9 +63,6 @@
       $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
       $new_order_id = $row4['order_id'];
       $order_customer_id = $row4['customer_id'];
-<<<<<<< HEAD
-      ("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
-=======
 
       // hämta info om de köpta produkterna och uppdaterar db med den nya mängden
       // $_POST['numbOfDiffProds'] innehåller antalet olika sorters produkter som köpts
@@ -92,6 +91,5 @@
       }
       // skicka kund till bekräftelse
       header("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
->>>>>>> 41ee7664305f5d2f1cedae20fb502b9184e29018
   }
 ?>

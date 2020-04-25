@@ -36,14 +36,17 @@ require_once 'header.php';
                     <input type="text" name="city" id="city" placeholder="Ange din postadress" required />
                     
                 </div>
+                <!-- send order info with post -->
             <div class="contact-form-submit">
                 <button class="contact-form-button" type="submit">Skicka beställning</button>
             </div>
+                <div id="orderItems"></div>
         </form>
+        <br>
     </section>
 
     <script src="js/order-show-items.js"></script>
-    <script src="display-pre-order.js"></script>
+    <script src="display.js"></script>
 
 <?php
 

@@ -46,7 +46,7 @@ CREATE TABLE `customers` (
   `surname` varchar(32) NOT NULL,
   `streetadress` varchar(64) NOT NULL,
   `city` varchar(64) NOT NULL,
-  `zip-code` int(11) NOT NULL,
+  `zip-code` varchar(64) NOT NULL,
   `phone` int(32) DEFAULT NULL,
   `email` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -58,4 +58,6 @@
   </table>
 </div></div></section>";
     echo $thisPost;
+
+require_once 'footer.php';
 ?>

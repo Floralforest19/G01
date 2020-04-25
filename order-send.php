@@ -16,17 +16,14 @@
     $stmt2->execute();
 
     $result = false;
-
     // if customer exist, save order to customer with existing id
     while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
       $result = true;
       $existing_customer_id = $row2['customer_id'];
-      // OBS!! AMOUNT SHOULD BE CHANGED
       $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`)
       VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', CURRENT_TIMESTAMP)";
       $stmt = $db->prepare($sql);
       $stmt->execute();
-
     }
     if(!$result){ // custmomer doesn't exist, save new customer info
       $firstname  = htmlspecialchars($_POST['firstname']);
@@ -64,6 +61,33 @@
       $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
       $new_order_id = $row4['order_id'];
       $order_customer_id = $row4['customer_id'];
+
+      // hämta info om de köpta produkterna och uppdaterar db med den nya mängden
+      // $_POST['numbOfDiffProds'] innehåller antalet olika sorters produkter som köpts
+      for ($i=0; $i < $_POST['numbOfDiffProds']; $i++) { 
+        // 0 = product_id, 1 = price, 2 = quantity
+        $strBoughtProdInfo = $_POST["$i"];
+        $arrIdPriceQuant = explode(",",$strBoughtProdInfo);
+        $booughtProdId = $arrIdPriceQuant[0];
+        $boughtQuantity = $arrIdPriceQuant[2];
+        
+        // hämta produktens info från db
+        $sql5 ="SELECT * FROM product WHERE product_id = $booughtProdId";
+        $stmt5 = $db->prepare($sql5);
+        $stmt5->execute();
+        $row5 = $stmt5->fetch(PDO::FETCH_ASSOC);
+        // spara den gamla mängden varor i lager
+        $oldQuantity = $row5['quantity'];
+
+        // räkna ut nya antalet varor i lager. Gamla antalet - köpta antalet = nya antalet
+        $newQuantity = $oldQuantity - $boughtQuantity;
+
+        // uppdatera databasen med nya antalet varor i lager
+        $sql6="UPDATE product SET quantity = '$newQuantity' WHERE product_id = '$booughtProdId'";
+        $stmt6 = $db->prepare($sql6);
+        $stmt6->execute();
+      }
+      // skicka kund till bekräftelse
       header("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
   }
 ?>

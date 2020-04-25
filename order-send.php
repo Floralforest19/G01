@@ -8,6 +8,7 @@
 // check if email exists
   if(isset($_POST['email'])){
   $checkEmail = htmlspecialchars($_POST['email']);
+  $order_sum = htmlspecialchars($_POST['order_sum']);
 
     // check if email exist in db
     $sql2 = "SELECT * FROM `customers` WHERE email = '$checkEmail'";
@@ -22,7 +23,7 @@
       $existing_customer_id = $row2['customer_id'];
       // OBS!! AMOUNT SHOULD BE CHANGED
       $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`)
-      VALUES (NULL, '$existing_customer_id', 'active', '500', CURRENT_TIMESTAMP)";
+      VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', CURRENT_TIMESTAMP)";
       $stmt = $db->prepare($sql);
       $stmt->execute();
 
@@ -51,7 +52,7 @@
 
       // save order to new customer OBS!! AMOUNT SHOULD BE CHANGED
       $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`)
-      VALUES (NULL, $new_customer_id, 'active', '500', CURRENT_TIMESTAMP)";
+      VALUES (NULL, $new_customer_id, 'active', '$order_sum', CURRENT_TIMESTAMP)";
       $stmt4 = $db->prepare($sql4);
       $stmt4->execute();
     }

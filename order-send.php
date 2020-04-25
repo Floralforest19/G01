@@ -7,7 +7,9 @@
 
 // check if email exists
   if(isset($_POST['email'])){
+  // spara email i en variabel för att jämföra och kolla om det är en ny kund
   $checkEmail = htmlspecialchars($_POST['email']);
+  // hämtar total summan på ordern som behövs för att spara ordern
   $order_sum = htmlspecialchars($_POST['order_sum']);
 
     // check if email exist in db

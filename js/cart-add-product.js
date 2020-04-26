@@ -59,6 +59,13 @@ function setAddProductToCartClickEvent() {
       //om den finns, då skall vi updatera denna med quantity
       if (indexOfExisting !== -1) {
         let existingProduct = shoppingCart.products[indexOfExisting];
+
+        let newQuantity = existingProduct.quantity + quantity;
+        if (newQuantity > maxAllowedQuantity) {
+          alert("Det finns inte tillräckligt många varor i lager");
+          return;
+        }
+
         existingProduct.quantity = existingProduct.quantity + quantity;
 
         //spara med nya antalet

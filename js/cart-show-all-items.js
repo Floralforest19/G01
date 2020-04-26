@@ -7,6 +7,8 @@ function getProducts() {
   let cartObj = JSON.parse(cartFromStorage);
   let products = cartObj.products;
   getProdsToCart(products);
+  setUpPlusQuantityClickEvent();
+  setUpMinusQuantityClickEvent();
 }
 getProducts();
 
@@ -57,7 +59,7 @@ function getProdsToCart(products) {
   // 3.4.5 display order button
   if (localStorage.getItem("shoppingCart").length > 0) {
     dispCart.innerHTML += `<thead class='thead thead-dark'><tr>
-      <th></th><th></th><th></th><th></th><th><a href='#'><button id='orderBtn' class='btn__edit'>Beställ</button></a></th>
+      <th></th><th></th><th></th><th></th><th><a href='order-form.php'><button id='orderBtn' class='btn__edit'>Beställ</button></a></th>
     </tr></thead>`;
   }
   // 3.5 add lister to clear cart button
@@ -106,39 +108,104 @@ function clearCartBtn() {
     });
 }
 
-function test() {
-  let deleteProductBtn = document.querySelectorAll(".btn__delete");
+//-----plus minus quantity buttons-----//
 
-  console.log(deleteProductBtn);
+function setUpPlusQuantityClickEvent() {
+  //Hämta ut alla plus antal knappar
+  let plusQuantityButtons = document.querySelectorAll(".plus");
 
-  for (let i = 0; i < deleteProductBtn.length; i++) {
-    //binda ett click event på alla lägg till knappar och skicka med produkt-id, namn, pris, antal och bild.
-    deleteProductBtn[i].addEventListener("click", function (e) {
-      console.log(e.currentTarget.id);
-      console.log(e.currentTarget.parentElement.id);
-      for (
-        let i = 0;
-        i < getShoppingCartFromLocalStorage().products.length;
-        i++
-      ) {
-        let id = getShoppingCartFromLocalStorage().products[0].productId;
+  for (let i = 0; i < plusQuantityButtons.length; i++) {
+    let plusQuantityButton = plusQuantityButtons[i];
 
-        if (id == parent.id) {
-        }
+    plusQuantityButton.addEventListener("click", function () {
+      let plusQuantityButtonParent =
+        plusQuantityButton.parentElement.parentElement;
+      let productId = plusQuantityButtonParent.getAttribute("id");
 
-        console.log(parentElement.parentElement.id);
+      let shoppingCart = getShoppingCartFromLocalStorage();
+
+      //sök fram vart produkten ligger i carten
+      let productIndex = shoppingCart.products.findIndex(
+        (product) => product.productId === productId
+      );
+
+      //hämta ut produkten
+      let foundProduct = shoppingCart.products[productIndex];
+      console.log(JSON.stringify(foundProduct));
+      let currentQuantity = foundProduct.quantity;
+
+      //öka med 1
+      currentQuantity = currentQuantity + 1;
+
+      //validera så quantity inte överstiger lagerstatus
+      let lagerstatusInput = document.querySelector(`#product-${productId}`);
+      let lagerstatusValue = parseInt(lagerstatusInput.value);
+
+      if (currentQuantity > lagerstatusValue) {
+        return false;
       }
-      //När man trycker på knappen vill vi hämta json file från localstorage.
-      //Json som string måste parse
-      //Loopa genom att kolla om produkten stämmer samma med knappen
-      //Om det stämmer ska man ta bort den.
 
-      // localStorage.removeItem("shoppingCart");
-      // location.reload();
+      //uppdatera objektet
+      foundProduct.quantity = currentQuantity;
+
+      //spara produkten i varukorgen på rätt index
+      shoppingCart.products[productIndex] = foundProduct;
+
+      //spara varukorgen i local storage
+      saveShoppingCartInLocalStorage(shoppingCart);
+
+      //rendera ut allt igen
+      getProducts();
     });
   }
 }
 
-test();
+function setUpMinusQuantityClickEvent() {
+  //hämta ut alla minus knappar
+  let minusQuantityButtons = document.querySelectorAll(".minus");
 
-console.log(getShoppingCartFromLocalStorage().products[0].productId);
+  for (let i = 0; i < minusQuantityButtons.length; i++) {
+    let minusQuantityButton = minusQuantityButtons[i];
+    console.log("minus" + minusQuantityButton);
+    //binda klick event på knappen
+    minusQuantityButton.addEventListener("click", function () {
+      //ta fram parentelement till knappen
+      let minusQuantityButtonParent =
+        minusQuantityButton.parentElement.parentElement;
+
+      //hämta ut produktid
+      let productId = minusQuantityButtonParent.getAttribute("id");
+
+      //hämta shopping carten
+      let shoppingCart = getShoppingCartFromLocalStorage();
+
+      let productIndex = shoppingCart.products.findIndex(
+        (product) => product.productId === productId
+      );
+
+      let foundProduct = shoppingCart.products[productIndex];
+      console.log(JSON.stringify(foundProduct));
+      let currentQuantity = foundProduct.quantity;
+
+      //minusa med 1
+      currentQuantity = currentQuantity - 1;
+
+      //validering (går inte att välja mindre än 1)
+      if (currentQuantity < 1) {
+        return false;
+      }
+
+      //uppdatera objektet
+      foundProduct.quantity = currentQuantity;
+
+      //spara produkten i varukorgen på rätt index
+      shoppingCart.products[productIndex] = foundProduct;
+
+      //spara varukorgen i local storage
+      saveShoppingCartInLocalStorage(shoppingCart);
+
+      //rendera ut allt igen
+      getProducts();
+    });
+  }
+}

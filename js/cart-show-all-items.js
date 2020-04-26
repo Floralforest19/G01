@@ -7,6 +7,7 @@ function getProducts() {
   let cartObj = JSON.parse(cartFromStorage);
   let products = cartObj.products;
   getProdsToCart(products);
+  setUpDeleteClickEvent();
   setUpPlusQuantityClickEvent();
   setUpMinusQuantityClickEvent();
 }
@@ -48,19 +49,21 @@ function getProdsToCart(products) {
         <button id='${id}PlusBtn' class='plus'><i class='fa fa-plus'></i></button></td>
         <td>${price} kr</td>
         <td>${productSum} kr</td>
-        <td><button id ='${id}deleteBtn' class='btn__delete'><i class='fa fa-trash'></i></button></td>
+        <td><button id ='${id}deleteBtn' class='btn__delete btn__delete--item'><i class='fa fa-trash'></i></button></td>
       </tr>`;
   }
   // 3.4.4 display table footer with total sum
+  if (products.length > 0) {
   dispCart.innerHTML += `
   <thead><tr class='table-row thead'>
     <th></th><th></th><th></th><th>Total summa: </th><th>${totalSum} kr</th></tr>
   </thead>`;
   // 3.4.5 display order button
-  if (localStorage.getItem("shoppingCart").length > 0) {
     dispCart.innerHTML += `<thead class='thead thead-dark'><tr>
       <th></th><th></th><th></th><th></th><th><a href='order-form.php'><button id='orderBtn' class='btn__edit'>Beställ</button></a></th>
     </tr></thead>`;
+  } else {
+    dispCart.innerHTML += `<h3>Varukorgen är tom</h3>`;
   }
   // 3.5 add lister to clear cart button
   clearCartBtn();
@@ -68,15 +71,13 @@ function getProdsToCart(products) {
 
 // 3.2 either writes empty cart or table heading
 function ifEmptyCart() {
-  if (localStorage.getItem("shoppingCart").length > 0) {
+  if (localStorage.getItem("shoppingCart").length > 15) {
     document.getElementById("emptyCart").innerHTML = "";
     dispCart.innerHTML += `
     <thead class='thead thead-dark'><tr>
       <th>Produkt</th><th>Antal</th><th>Pris/st</th><th>Summa</th>
       <th><button id='clearCartBtn' class='btn__delete'>Töm varukorg</button></th>
     </tr></thead>`;
-  } else {
-    document.getElementById("emptyCart").innerHTML = "Varukorgen är tom!";
   }
 }
 
@@ -209,3 +210,32 @@ function setUpMinusQuantityClickEvent() {
     });
   }
 }
+
+function setUpDeleteClickEvent(){
+    //hämta ut alla delete knappar
+    let deleteButtons = document.querySelectorAll(".btn__delete--item");
+  
+    for (let i = 0; i < deleteButtons.length; i++) {
+      let deleteButton = deleteButtons[i];
+      // sätt click-event på knappen
+      deleteButton.addEventListener("click", function () {
+        //ta fram parentelement till knappen, finns satt på tabellraden
+        let deleteButtonParent = deleteButton.parentElement.parentElement;
+        //hämta ut produktens id
+        let productId = deleteButtonParent.getAttribute("id");
+        //hämta shoppingvagnen
+        let shoppingCart = getShoppingCartFromLocalStorage();
+        // produktens index i vagnen
+        let productIndex = shoppingCart.products.findIndex(
+          (product) => product.productId === productId
+        );
+        // ta bort produkten från listan
+        shoppingCart.products.splice(productIndex,1);  
+        // spara nya vagnen i local storage
+        saveShoppingCartInLocalStorage(shoppingCart)
+        // uppdatera korgen
+        getProducts();
+      });
+    }
+  }
+  

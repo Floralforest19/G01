@@ -15,7 +15,7 @@ const main = document.getElementById("main");
 
 // Endast mobil och mindre än 800px
 if (
-  /Android|webOS|chrome|firefox|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   )
 ) {
@@ -49,7 +49,7 @@ function scrollFunctionHeader() {
 }
 
 if (
-  /Android|webOS|chrome|firefox|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  /Android|webOS|firefox|chrome|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   )
 ) {
@@ -66,7 +66,7 @@ if (
 }
 
 if (
-  /Android|webOS|chrome|firefox|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  /Android|webOS|firefox|chrome|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   )
 ) {

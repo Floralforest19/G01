@@ -72,7 +72,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 
   $table .= "<tr>
-              <td>   <img class='table__pic' src='$förstaBild' alt='toalettpapper'/></td>
+              <td>   <img class='table__pic' src='../images/$förstaBild' alt='$name'/></td>
               <td> $nameCat </td>
               <td> $name </td>
               <td> <a href='updateproduct.php?product_id=$id'

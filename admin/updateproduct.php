@@ -36,15 +36,37 @@ if(isset($_GET['product_id'])){
 //2. Update product
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
- $product_id = htmlspecialchars($_POST['product_id']);
+    $product_id = htmlspecialchars($_POST['product_id']);
     $name = htmlspecialchars($_POST['name']);
     $description  = htmlspecialchars($_POST['description']);
     $quantity   = htmlspecialchars($_POST['quantity']);
     $image_file_name = htmlspecialchars($_POST['image_file_name']);
     $price = htmlspecialchars($_POST['price']);
     $category_id = htmlspecialchars($_POST['category_id']);
+    // hämta kategori namn
+    $sqlCatname = "SELECT name FROM category WHERE category_id = $category_id";
+    $stmtCatname = $db->prepare($sqlCatname);
+    $stmtCatname->execute();
+    $rowCatname = $stmtCatname->fetch(PDO::FETCH_ASSOC);
+    $catName = htmlspecialchars($rowCatname['name']);
 
-echo $product_id;
+    echo "<section class='background'>
+        <h3>$name uppdaterades - <a href='index.php'>Tillbaka till produkter</a></h3>
+        <article class='single__product__wrapper'>
+          <div class='single__product__pic'>
+            <img src='../images/$image_file_name' alt='$name' />
+          </div>
+          <div class='single__product__text'>
+            <p>$catName</p>
+            <h3>$name</h3>
+            <p>$description</p>
+            <p>Pris: $price sek</p>
+            <p>I lager: $quantity st</p>
+          </div>
+        </article>
+      </section>";
+    
+    
     $update = "UPDATE product
             SET
             name = :name,
@@ -85,19 +107,19 @@ echo $product_id;
 // visa kategorierna
 require_once '../db.php';
   $sql = "SELECT * FROM category
-  WHERE category_id = $category_id
   ORDER BY name";
   $stmt = $db->prepare($sql);
   $stmt->execute();
+  
   $selectCat = "<select name='category_id' id='category_id'>";
   // förväljer den kategori som produkten redan hade tilldelats
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
     $catname = ucfirst(htmlspecialchars($row['name']));
-    $id = htmlspecialchars($row['category_id']);
-    if($id == $category_id){
-    $selectCat .= "<option value='$id' selected>$catname</option>";
+    $category_select_id = htmlspecialchars($row['category_id']);
+    if($category_id == $category_select_id){
+    $selectCat .= "<option value='$category_select_id' selected>$catname</option>";
     } else {
-    $selectCat .= "<option value='$id'>$catname</option>";
+    $selectCat .= "<option value='$category_select_id'>$catname</option>";
     }
   endwhile;
   $selectCat.= "</select>";

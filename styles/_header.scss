@@ -6,8 +6,8 @@
   height: fit-content;
   display: grid;
   background-color: $color-main;
-  grid-template-rows: 50% 50%;
-  grid-template-columns: 20% 60% 20%;
+  //   grid-template-rows: 50% 50%;
+    grid-template-columns: 20% 60% 20%;
   transition: all 0.01s linear;
   position: sticky;
   top: 0; /* Håller sig på toppen */

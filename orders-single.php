@@ -77,7 +77,6 @@
   </table>
   
 </div></div></section>";
-
     echo $thisPost;
     
  ?>   
@@ -91,3 +90,4 @@
  <?php
 require_once 'footer.php';
 ?>
+

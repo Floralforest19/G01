@@ -4,7 +4,7 @@
 **************************************** */
 
 $db_server   = "localhost";
-$db_database = "webshop2"; // OBS!! placeholder name
+$db_database = "krisochros";
 $db_username = "root";
 $db_password = "root"; 
 

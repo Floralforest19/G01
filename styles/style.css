@@ -819,6 +819,34 @@ body {
   color: #eb4b88;
 }
 
+.display__order-items {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.display__order-items {
+  margin-top: 2rem;
+}
+
+.display__order-items td, .display__order-items th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table__show-items--name {
+  text-align: left;
+}
+
+.display__order-items tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.display__order-items th {
+  background-color: #ff9378;
+  color: white;
+}
+
 button, .cat-form-btn {
   margin-top: 1em;
   margin-bottom: 1em;

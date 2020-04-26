@@ -75,7 +75,7 @@
       }
 
       if($quantity > 0){
-        $quantityText = "Antal i lager - ".$quantity;
+        $quantityText = "Finns i lager";
         echo "
         <article class='box'>
           <div class='box__pic'>
@@ -90,7 +90,7 @@
             <p>$price kr</p>
             <p>$description</p>
             <a href='showproduct.php?id=$id'>Läs mer</a><br>
-            <p>Antal: <input type='number' class='product-quantity' min='1' max='$quantity' value='1'/></p>
+            <p><input type='number' class='product-quantity' min='1' max='$quantity' value='1'/></p>
             <button class='add-to-cart'>Lägg i varukorg</button>";
             // läs mer bör gå till produktsidan
             // lägga till när vi introducerar varukorg

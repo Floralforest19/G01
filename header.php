@@ -11,8 +11,10 @@
 </head>
 <body>
 <header id="header" class="header">
+
+
     <div id="header-top" class="header-top">
-        <img id="header-logo-main" class="header-logo-main" src="images/logga skis - test.png" alt="temp logo">
+        <a href="index.php"><img id="header-logo-main" class="header-logo-main" src="images/logga skis - test.png" alt="temp logo"></a>
     </div>
 
     <div id="header-nav" class="header-nav">

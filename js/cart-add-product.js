@@ -44,7 +44,9 @@ function setAddProductToCartClickEvent() {
       );
 
       if (quantityValidated === false) {
-        alert(`Valt antal måste vara ett helnummmer mellan 1 och ${maxAllowedQuantity}`);
+        alert(
+          `Valt antal måste vara ett helnummmer mellan 1 och ${maxAllowedQuantity}`
+        );
         return;
       }
 

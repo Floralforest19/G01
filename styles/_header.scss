@@ -6,7 +6,7 @@
   height: fit-content;
   display: grid;
   background-color: $color-main;
-  grid-template-rows: 50% 50%;
+  //   grid-template-rows: 50% 50%;
   grid-template-columns: 20% 60% 20%;
   transition: all 0.01s linear;
   position: sticky;
@@ -219,7 +219,49 @@
   }
 }
 
+//Feedback man får tillbaka från search bar
 .search__feedback {
-  font-size: large;
   z-index: 20;
+  @media (min-width: 800px) {
+    position: absolute;
+    top: 6em;
+    left: 17em;
+  }
+
+  @media (min-width: 1000px) {
+    position: absolute;
+    top: 7em;
+    left: 25em;
+  }
+
+  @media (min-width: 1300px) {
+    position: absolute;
+    top: 7em;
+    left: 35em;
+  }
+}
+
+//ONLY FIREFOX
+@-moz-document url-prefix() {
+  .search__feedback {
+    position: absolute;
+    top: 4em;
+    left: 5em;
+    @media (min-width: 800px) {
+      position: absolute;
+      top: 7em;
+      left: 17em;
+    }
+
+    @media (min-width: 1000px) {
+      position: absolute;
+      top: 9em;
+      left: 23em;
+    }
+  }
+}
+
+//Antal produkter i varukorgen
+#updateCart {
+  text-align: center;
 }

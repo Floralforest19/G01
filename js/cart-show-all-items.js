@@ -54,11 +54,11 @@ function getProdsToCart(products) {
   }
   // 3.4.4 display table footer with total sum
   if (products.length > 0) {
-  dispCart.innerHTML += `
+    dispCart.innerHTML += `
   <thead><tr class='table-row thead'>
     <th></th><th></th><th></th><th>Total summa: </th><th>${totalSum} kr</th></tr>
   </thead>`;
-  // 3.4.5 display order button
+    // 3.4.5 display order button
     dispCart.innerHTML += `<thead class='thead thead-dark'><tr>
       <th></th><th></th><th></th><th></th><th><a href='order-form.php'><button id='orderBtn' class='btn__edit'>Beställ</button></a></th>
     </tr></thead>`;
@@ -211,31 +211,32 @@ function setUpMinusQuantityClickEvent() {
   }
 }
 
-function setUpDeleteClickEvent(){
-    //hämta ut alla delete knappar
-    let deleteButtons = document.querySelectorAll(".btn__delete--item");
-  
-    for (let i = 0; i < deleteButtons.length; i++) {
-      let deleteButton = deleteButtons[i];
-      // sätt click-event på knappen
-      deleteButton.addEventListener("click", function () {
-        //ta fram parentelement till knappen, finns satt på tabellraden
-        let deleteButtonParent = deleteButton.parentElement.parentElement;
-        //hämta ut produktens id
-        let productId = deleteButtonParent.getAttribute("id");
-        //hämta shoppingvagnen
-        let shoppingCart = getShoppingCartFromLocalStorage();
-        // produktens index i vagnen
-        let productIndex = shoppingCart.products.findIndex(
-          (product) => product.productId === productId
-        );
-        // ta bort produkten från listan
-        shoppingCart.products.splice(productIndex,1);  
+function setUpDeleteClickEvent() {
+  //hämta ut alla delete knappar
+  let deleteButtons = document.querySelectorAll(".btn__delete--item");
+  for (let i = 0; i < deleteButtons.length; i++) {
+    let deleteButton = deleteButtons[i];
+    // sätt click-event på knappen
+    deleteButton.addEventListener("click", function () {
+      //ta fram parentelement till knappen, finns satt på tabellraden
+      let deleteButtonParent = deleteButton.parentElement.parentElement;
+      //hämta ut produktens id
+      let productId = deleteButtonParent.getAttribute("id");
+      //hämta shoppingvagnen
+      let shoppingCart = getShoppingCartFromLocalStorage();
+      // produktens index i vagnen
+      let productIndex = shoppingCart.products.findIndex(
+        (product) => product.productId === productId
+      );
+      if (confirm("Vill du ta bort produkten?") == true) {
+        // ta bort produkten från listan
+        shoppingCart.products.splice(productIndex, 1);
         // spara nya vagnen i local storage
-        saveShoppingCartInLocalStorage(shoppingCart)
-        // uppdatera korgen
-        getProducts();
-      });
-    }
+      }
+      saveShoppingCartInLocalStorage(shoppingCart);
+      // uppdatera korgen
+      getProducts();
+    });
   }
-  
+}
+

@@ -1,4 +1,5 @@
-button, .cat-form-btn {
+button,
+.cat-form-btn {
   margin-top: 1em;
   margin-bottom: 1em;
   width: 128px;
@@ -15,7 +16,8 @@ button, .cat-form-btn {
   transition: all 500ms ease;
 }
 
-button:hover, .cat-form-btn:hover {
+button:hover,
+.cat-form-btn:hover {
   background-color: $button-hover-color;
   cursor: pointer;
 }
@@ -24,7 +26,8 @@ button:hover, .cat-form-btn:hover {
   width: 50px;
 }
 
-.btn__delete, .btn__edit {
+.btn__delete,
+.btn__edit {
   background-color: $second-head-color;
   font-size: 14px;
   font-weight: 600;
@@ -44,9 +47,12 @@ button:hover, .cat-form-btn:hover {
   width: auto;
 }
 
-// .contact-form-button {
-//   border-radius: 60px;
-//   background-color: #ff9378;
-//   font-size: 18px;
-//   font-weight: 800;
-// }
+.send-order-btn {
+  height: 78px;
+  width: 250px;
+}
+
+.add-to-cart {
+  background: $orange-button;
+  font-size: 14px;
+}

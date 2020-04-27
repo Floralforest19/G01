@@ -1,9 +1,9 @@
 function validateShoppingCartQuantity(chosenQuantityByUser, quantityInStock) {
-  if (isNaN(chosenQuantityByUser)) {
+  if (!Number.isInteger(chosenQuantityByUser)) {
     return false;
   }
 
-  if (isNaN(quantityInStock)) {
+  if (!Number.isInteger(quantityInStock)) {
     return false;
   }
 

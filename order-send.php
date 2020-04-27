@@ -7,11 +7,6 @@
 
 // check if email exists
   if(isset($_POST['email'])){
-
-  // Kolla om alternativ leveransadress är ifylld skicka då nya adressen till order
-  // if($_POST['lev'] == 'on'){
-
-  // }
     
   // spara email i en variabel för att jämföra och kolla om det är en ny kund
   $checkEmail = htmlspecialchars($_POST['email']);
@@ -34,7 +29,7 @@ $order_sum = htmlspecialchars($_POST['order_sum']);
       $stmt = $db->prepare($sql);
       $stmt->execute();
     }
-    if(!$result){ // customer doesn't exist, save new customer info
+    if(!$result){ // custmomer doesn't exist, save new customer info
       $firstname  = htmlspecialchars($_POST['firstname']);
       $surname    = htmlspecialchars($_POST['surname']);
       $email      = htmlspecialchars($_POST['email']);

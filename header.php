@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="styles\style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-    <title>Webshop v2.0</title>
+    <title>Webshop v3.0</title>
 </head>
 <body>
 <header id="header" class="header">
+
+
     <div id="header-top" class="header-top">
-        <img id="header-logo-main" class="header-logo-main" src="images/logga skis - test.png" alt="temp logo">
+        <a href="index.php"><img id="header-logo-main" class="header-logo-main" src="images/logga skis - test.png" alt="temp logo"></a>
     </div>
 
     <div id="header-nav" class="header-nav">

@@ -61,7 +61,7 @@ function getProdsToCart(products) {
     <td></td>
     <td></td>
     <td>Fraktavgift: </td>
-    <td>${shippingFee} kr</td>
+    <td id="shippingFee">${shippingFee} kr</td>
   </tr>`
   dispItems.innerHTML += `
   <thead>

@@ -29,6 +29,7 @@ function getProdsToCart(products) {
 
   // 3.3 initalize totalSum
   let totalSum = 0;
+  let shippingFee = 0;
 
   // 3.4 loop over local storage to display added products
   for (let i = 0; i < products.length; i++) {
@@ -39,6 +40,11 @@ function getProdsToCart(products) {
     let quantity = parseInt(products[i].quantity);
     let productSum = quantity * price;
     totalSum += productSum;
+    if(totalSum >= 500){
+      shippingFee = 0
+    } else {
+      shippingFee = 50
+    }
 
     // 3.4.3 display items in table
     dispCart.innerHTML += `
@@ -54,9 +60,24 @@ function getProdsToCart(products) {
   }
   // 3.4.4 display table footer with total sum
   if (products.length > 0) {
+    if(totalSum >= 500){
+      dispCart.innerHTML += `
+      <thead><tr class='table-row thead'>
+        <th>Fri frakt vid köp över 500 kr</th><th></th><th></th><th>Fraktavgift: </th><th>${shippingFee} kr</th></tr>
+      </thead>`;
+    } else {
+      dispCart.innerHTML += `
+      <thead><tr class='table-row thead'>
+        <th>Grattis, fri frakt!</th><th></th><th></th><th>Fraktavgift: </th><th>${shippingFee} kr</th></tr>
+      </thead>`;
+    }
     dispCart.innerHTML += `
   <thead><tr class='table-row thead'>
-    <th></th><th></th><th></th><th>Total summa: </th><th>${totalSum} kr</th></tr>
+    <th></th><th></th><th></th><th>Produktsumma: </th><th>${totalSum} kr</th></tr>
+  </thead>`;
+    dispCart.innerHTML += `
+  <thead><tr class='table-row thead'>
+    <th></th><th></th><th></th><th>Total summa: </th><th>${totalSum+shippingFee} kr</th></tr>
   </thead>`;
     // 3.4.5 display order button
     dispCart.innerHTML += `<thead class='thead thead-dark'><tr>
@@ -239,4 +260,3 @@ function setUpDeleteClickEvent() {
     });
   }
 }
-

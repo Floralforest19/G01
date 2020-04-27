@@ -596,6 +596,14 @@ a {
   text-align: center;
 }
 
+.sale__old {
+  text-decoration: line-through;
+}
+
+.sale__new {
+  color: #eb4b88;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

@@ -50,6 +50,7 @@
     </a>
     <a class="header-button-a header-button-cart" href="cart.php">
         <img class="header-logo-button" src="./images/shoppingcart.png" alt="Shopping cart">
+        <span id="updateCart">(0)</span>
         <p>Cart</p>
     </a>
 

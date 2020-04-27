@@ -1,68 +1,77 @@
-.footer{
-     max-height: 100vh;
-    height: fit-content;
-    display: grid;
-    background-color: $color-footer;
+.footer {
+  max-height: 100vh;
+  height: fit-content;
+  display: grid;
+  background-color: $color-main;
 }
 
-.footer-information{
-     display: grid;
+.footer-information {
+  display: grid;
   gap: 1em;
   padding: 2%;
-  
 
-   @media (min-width: $iphonePlus-size) {
+  @media (min-width: $iphonePlus-size) {
     grid-template-columns: 1fr;
   }
   @media (min-width: $tablet-size) {
     grid-template-columns: 1fr;
   }
-   @media (min-width: $desktop-size) {
+  @media (min-width: $desktop-size) {
     grid-template-columns: 1fr 1fr 2fr;
     max-width: 1800px;
   }
-  
 }
-.footer-img{
+
+//Internet Explore
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .footer-information {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.footer-img {
+  display: none;
+  @media (min-width: $iphonePlus-size) {
     display: none;
-     @media (min-width: $iphonePlus-size) {
-     display: none;
   }
-     @media (min-width: $tablet-size) {
-   display: none;
+  @media (min-width: $tablet-size) {
+    display: none;
   }
-    @media (min-width: $desktop-size) {
+  @media (min-width: $desktop-size) {
     max-width: 1800px;
     display: unset;
   }
 }
-.footer-img-copy{
-    height: 10px;
-    width: 10px;
+.footer-img-copy {
+  height: 10px;
+  width: 10px;
 }
-.footer-middle-left{
-    padding-top: 20px;
+.footer-middle-left {
+  padding-top: 20px;
 }
-.footer-middle-right{
-    padding-top: 20px;
+.footer-middle-right {
+  padding-top: 20px;
 }
- .footer-last{
-        display: grid;
-        justify-content: left;
-    }
-.h3-footer{
-    color: $main-head-color;
-    $main-font: poppins;
+.footer-last {
+  display: grid;
+  justify-content: left;
 }
-.h4-footer{
-    color: $main-head-color;
-    $main-font: poppins;
+.h3-footer {
+  color: $main-head-color;
+  $main-font: poppins;
 }
-.p-footer{
-    color: black;
-    $main-font: poppins;
+.h4-footer {
+  color: $main-head-color;
+  $main-font: poppins;
 }
-.footer-bottom{
-    padding: 10px;
-    justify-self: center;
+.p-footer {
+  color: black;
+  $main-font: poppins;
+}
+.footer-bottom {
+  padding: 10px;
+  justify-self: center;
 }

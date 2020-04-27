@@ -98,7 +98,7 @@ function ifEmptyCart() {
     document.getElementById("emptyCart").innerHTML = "";
     dispCart.innerHTML += `
     <thead class='thead thead-dark'><tr>
-      <th>Produkt</th><th>Antal</th><th>Pris/st</th><th>Summa</th>
+      <th class='t-row'>Produkt</th><th class='t-row'>Antal</th><th class='t-row'>Pris/st</th><th class='t-row'>Summa</th>
       <th><button id='clearCartBtn' class='btn__delete'>Töm varukorg</button></th>
     </tr></thead>`;
   }

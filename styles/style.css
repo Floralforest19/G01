@@ -452,6 +452,7 @@ body * {
   max-height: 10vw;
   max-width: 10vw;
   rotate: 270deg;
+  display: none;
 }
 
 @media (min-width: 800px) {

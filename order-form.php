@@ -3,16 +3,16 @@ require_once 'header.php';
 ?>
 
 
-    <section class="order-form">
-    <h2 class="order-form-heading">Din beställning</h2>
+    <section class="contact-form">
+    <h2 class="contact-form-heading">Din beställning</h2>
 
     <!-- Här läggs en liten sammanfattning in om beställningen, tex totalsumman -->
     <table id='dispItems' class='display__order-items'></table>
 
-        <h2 class="order-form-heading">Dina uppgifter</h2>
+        <h2 class="contact-form-heading">Dina uppgifter</h2>
         <form action="order-send.php" method="POST">
-            <div class="order-form-container">
-                <div class="order-form-objects">
+            <div class="contact-form-container">
+                <div class="contact-form-objects">
                 
                     <label for="firstname">Förnamn</label>
                     <input type="text" name="firstname" id="firstname" placeholder="Ange ditt förnamn" required />
@@ -34,7 +34,22 @@ require_once 'header.php';
 
                     <label for="city">Postort</label>
                     <input type="text" name="city" id="city" placeholder="Ange din postadress" required />
+
+                    <label for="leverans">Annan leveransaddress?</label>
+                    <input type="checkbox" id="leverans" name="lev" value="on" onclick="myFunction()">
+
+                <div id="checked" style="display:none">
+                
+                    <label for="address2">Leveransadress</label>
+                    <input type="text" name="address2" id="address2" placeholder="Ange leveransadress" />
+
+                    <label for="zip2">Postnummer</label>
+                    <input type="text" name="zip2" id="zip2" placeholder="Ange postnummer" />
+
+                    <label for="city2">Postort</label>
+                    <input type="text" name="city2" id="city2" placeholder="Ange postort" />
                     
+                </div>
                 </div>
                 <!-- send order info with post -->
             <div class="contact-form-submit">
@@ -47,6 +62,7 @@ require_once 'header.php';
 
     <script src="js/order-show-items.js"></script>
     <script src="js/order-send-items.js"></script>
+    <script src="other-address.js"></script>
 
 <?php
 

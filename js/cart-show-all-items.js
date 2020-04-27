@@ -63,12 +63,12 @@ function getProdsToCart(products) {
     if(totalSum >= 500){
       dispCart.innerHTML += `
       <thead><tr class='table-row thead'>
-        <th>Fri frakt vid köp över 500 kr</th><th></th><th></th><th>Fraktavgift: </th><th>${shippingFee} kr</th></tr>
+        <th>Grattis, fri frakt!</th><th></th><th></th><th>Fraktavgift: </th><th>${shippingFee} kr</th></tr>
       </thead>`;
     } else {
       dispCart.innerHTML += `
       <thead><tr class='table-row thead'>
-        <th>Grattis, fri frakt!</th><th></th><th></th><th>Fraktavgift: </th><th>${shippingFee} kr</th></tr>
+        <th>Fri frakt vid köp över 500 kr</th><th></th><th></th><th>Fraktavgift: </th><th>${shippingFee} kr</th></tr>
       </thead>`;
     }
     dispCart.innerHTML += `

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles\style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-    <title>Webshop v2.0</title>
+    <title>Webshop v3.0</title>
 </head>
 <body>
 <header id="header" class="header">

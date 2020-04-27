@@ -17,7 +17,8 @@
         "pages/_contact.scss",
         "pages/_contact-thanks.scss",
         "_footer.scss",
-        "_footer-admin.scss"
+        "_footer-admin.scss",
+        "layout/_order-form.scss"
     ],
     "names": [],
     "file": "style.css"

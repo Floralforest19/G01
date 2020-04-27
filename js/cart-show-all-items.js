@@ -29,7 +29,7 @@ function getProdsToCart(products) {
 
   // 3.3 initalize totalSum
   let totalSum = 0;
-  let shippingFee = 50;
+  let shippingFee = 0;
 
   // 3.4 loop over local storage to display added products
   for (let i = 0; i < products.length; i++) {
@@ -68,9 +68,13 @@ function getProdsToCart(products) {
     } else {
       dispCart.innerHTML += `
       <thead><tr class='table-row thead'>
-        <th>Gratis, fri frakt!</th><th></th><th></th><th>Fraktavgift: </th><th>${shippingFee} kr</th></tr>
+        <th>Grattis, fri frakt!</th><th></th><th></th><th>Fraktavgift: </th><th>${shippingFee} kr</th></tr>
       </thead>`;
     }
+    dispCart.innerHTML += `
+  <thead><tr class='table-row thead'>
+    <th></th><th></th><th></th><th>Produktsumma: </th><th>${totalSum} kr</th></tr>
+  </thead>`;
     dispCart.innerHTML += `
   <thead><tr class='table-row thead'>
     <th></th><th></th><th></th><th>Total summa: </th><th>${totalSum+shippingFee} kr</th></tr>

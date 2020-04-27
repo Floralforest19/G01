@@ -4,11 +4,12 @@
   border-collapse: collapse;
 }
 
-.display__order-items  {
+.display__order-items {
   margin-top: 2rem;
 }
 
-.display__order-items td, .display__order-items th {
+.display__order-items td,
+.display__order-items th {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -17,11 +18,80 @@
   text-align: left;
 }
 
-.display__order-items tr:nth-child(even){
+.display__order-items tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
 .display__order-items th {
   background-color: $orange-button;
   color: white;
+}
+
+.table {
+  width: 100%;
+  @media (max-width: $iphonePlus-size) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    /* Hide table headers */
+    .t-row {
+      display: none;
+    }
+
+    tr {
+      border: 1px solid #ccc;
+    }
+
+    td {
+      /* Behave  like a "row" */
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+    }
+
+    td:before {
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+    .inputAmount {
+      width: 39px;
+    }
+
+    .minus,
+    .plus {
+      width: 13px;
+    }
+
+    .btn__delete--item {
+      width: 85px;
+    }
+    /*
+    Label the data
+    */
+    td:nth-of-type(1):before {
+      content: "Produkt";
+    }
+    td:nth-of-type(2):before {
+      content: "Antal";
+    }
+    td:nth-of-type(3):before {
+      content: "Pris";
+    }
+    td:nth-of-type(4):before {
+      content: "Summa";
+    }
+  }
 }

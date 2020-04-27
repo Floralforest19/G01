@@ -46,7 +46,7 @@ require_once 'header.php';
     </section>
 
     <script src="js/order-show-items.js"></script>
-    <script src="display.js"></script>
+    <script src="js/order-send-items.js"></script>
 
 <?php
 

@@ -9,6 +9,7 @@
   if(isset($_POST['email'])){
   $checkEmail = htmlspecialchars($_POST['email']);
   $order_sum = htmlspecialchars($_POST['order_sum']);
+  // $order_prod = htmlspecialchars($_POST['order_prod']);
 
     // check if email exist in db
     $sql2 = "SELECT * FROM `customers` WHERE email = '$checkEmail'";

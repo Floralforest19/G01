@@ -3,16 +3,16 @@ require_once 'header.php';
 ?>
 
 
-    <section class="contact-form">
-    <h2 class="contact-form-heading">Din beställning</h2>
+    <section class="order-form">
+    <h2 class="order-form-heading">Din beställning</h2>
 
     <!-- Här läggs en liten sammanfattning in om beställningen, tex totalsumman -->
     <table id='dispItems' class='display__order-items'></table>
 
-        <h2 class="contact-form-heading">Dina uppgifter</h2>
+        <h2 class="order-form-heading">Dina uppgifter</h2>
         <form action="order-send.php" method="POST">
-            <div class="contact-form-container">
-                <div>
+            <div class="order-form-container">
+                <div class="order-form-objects">
                 
                     <label for="firstname">Förnamn</label>
                     <input type="text" name="firstname" id="firstname" placeholder="Ange ditt förnamn" required />
@@ -37,8 +37,8 @@ require_once 'header.php';
                     
                 </div>
                 <!-- send order info with post -->
-            <div class="contact-form-submit">
-                <button class="contact-form-button" type="submit">Skicka beställning</button>
+            <div class="order-form-submit" >
+                <button class="order-form-button" type="submit">Skicka beställning</button>
             </div>
                 <div id="orderItems"></div>
         </form>

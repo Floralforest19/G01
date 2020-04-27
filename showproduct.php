@@ -44,7 +44,7 @@
             <p>$description</p>
             <h2>Pris: $price sek</h2>
             <h3>I lager: $quantity st</h3>
-            <button>Lägg i varukorg</button>
+            <button class='add-to-cart'>Lägg i varukorg</button>
           </div>
         </article>
       </section>";

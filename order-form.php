@@ -44,7 +44,7 @@ require_once 'header.php';
                 </div>
                 <!-- send order info with post -->
             <div class="contact-form-submit">
-                <button class="contact-form-button" type="submit">Skicka beställning</button>
+                <button class="contact-form-button send-order-btn" type="submit">Skicka beställning</button>
             </div>
                 <div id="orderItems"></div>
         </form>

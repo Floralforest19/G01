@@ -14,9 +14,9 @@ getProducts()
 function getProdsToCart(products) {
   dispItems.innerHTML = `
   <thead>
-    <th>Produkt</th>
-    <th>Pris</th>
+    <th class='table__show-items--name'>Produkt</th>
     <th>Antal</th>
+    <th>Pris</th>
     <th>Summa</th>
   </thead>`
 
@@ -36,9 +36,9 @@ function getProdsToCart(products) {
     // 3.4.3 display items in table
     dispItems.innerHTML += `
       <tr id='${id}' class='table-row'>
-        <td>${name}</td>
-        <td>${price} kr/st</td>
+        <td class='table__show-items--name'>${name}</td>
         <td>${quantity} st</td>
+        <td>${price} kr/st</td>
         <td>${productSum} kr</td>
       </tr>`
   }

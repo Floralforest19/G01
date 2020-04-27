@@ -1,6 +1,6 @@
 function setAddProductToCartClickEvent() {
   let addToCartButtons = document.querySelectorAll(".add-to-cart");
-
+  updateCart();
   //loopa över alla knappar
   for (let i = 0; i < addToCartButtons.length; i++) {
     let addToCartButton = addToCartButtons[i];
@@ -90,10 +90,22 @@ function setAddProductToCartClickEvent() {
       saveShoppingCartInLocalStorage(shoppingCart);
 
       console.log(JSON.stringify(shoppingCart));
+      updateCart();
 
       //Att tänka på:
       //här kannske vi vill updatera en shopping cart icon
       //här kannske vi vill rendera någonting på sidan
     });
   }
+}
+
+function updateCart() {
+  let sum = 0;
+  if (localStorage.getItem("shoppingCart").length > 0) {
+    let products = JSON.parse(localStorage.getItem("shoppingCart")).products;
+    for (let i = 0; i < products.length; i++) {
+      sum += products[i].quantity;
+    }
+  }
+  document.getElementById("updateCart").innerHTML = " (" + sum + ")";
 }

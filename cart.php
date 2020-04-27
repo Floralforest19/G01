@@ -22,7 +22,6 @@ require_once 'header.php';
 ?>
 
 
-<a href="cart.php"><i class="fa fa-shopping-cart"></i> <span id="updateCart"> (0)</span></a>
 
 <section class='background'>
     <div class='menu__categories'>

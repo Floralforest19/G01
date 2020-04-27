@@ -77,8 +77,7 @@
       $city = htmlspecialchars($rowCustomer['city']);
 
       $selectStatus = 
-      "<form method='post' action='orders-update.php?order_id=$order_id'         
-        onsubmit=\"return alert('Status för order $order_id uppdaterades')\">
+      "<form method='post' action='orders-update.php?order_id=$order_id'>
         <select name='statusSelect' id='statusSelect'>";
       if( $status == 'active'){
         $selectStatus .= "

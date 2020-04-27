@@ -33,7 +33,7 @@ function setAddProductToCartClickEvent() {
       let chosenQuantityElement = addToCartButtonParent.querySelector(
         ".product-quantity"
       );
-      let quantity = parseInt(chosenQuantityElement.value);
+      let quantity = parseFloat(chosenQuantityElement.value);
       let maxAllowedQuantity = parseInt(
         chosenQuantityElement.getAttribute("max")
       );
@@ -44,7 +44,7 @@ function setAddProductToCartClickEvent() {
       );
 
       if (quantityValidated === false) {
-        alert(`Valt antal måste vara mellan 1 och ${maxAllowedQuantity}`);
+        alert(`Valt antal måste vara ett helnummmer mellan 1 och ${maxAllowedQuantity}`);
         return;
       }
 

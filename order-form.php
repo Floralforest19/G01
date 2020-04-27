@@ -38,18 +38,18 @@ require_once 'header.php';
                     <label for="leverans">Annan leveransaddress?</label>
                     <input type="checkbox" id="leverans" name="lev" value="on" onclick="myFunction()">
 
-                <div id="checked" style="display:none">
+                    <div id="checked" style="display:none">
                 
-                    <label for="address2">Leveransadress</label>
-                    <input type="text" name="address2" id="address2" placeholder="Ange leveransadress" />
-
-                    <label for="zip2">Postnummer</label>
-                    <input type="text" name="zip2" id="zip2" placeholder="Ange postnummer" />
-
-                    <label for="city2">Postort</label>
-                    <input type="text" name="city2" id="city2" placeholder="Ange postort" />
+                        <label for="address2">Leveransadress</label>
+                        <input type="text" name="address2" id="address2" placeholder="Ange leveransadress" />
                     
-                </div>
+                        <label for="zip2">Postnummer</label>
+                        <input type="text" name="zip2" id="zip2" placeholder="Ange postnummer" />
+
+                        <label for="city2">Postort</label>
+                        <input type="text" name="city2" id="city2" placeholder="Ange postort" />
+                    
+                    </div>
                 </div>
                 <!-- send order info with post -->
             <div class="contact-form-submit">

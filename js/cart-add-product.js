@@ -21,11 +21,15 @@ function setAddProductToCartClickEvent() {
     let hiddenProductName = addToCartButtonParent.querySelector(
       ".product-name"
     );
+    let hiddenProductName = addToCartButtonParent.querySelector(
+      ".product-sale"
+    );
 
     let productId = hiddenProductIdInput.value;
     let productPrice = hiddenProductPrice.value;
     let productName = hiddenProductName.value;
     let productImageName = hiddenProductImage.value;
+    let productSale = hiddenProductSale.value;
 
     //binda ett click event på alla lägg till knappar och skicka med produkt-id, namn, pris, antal och bild.
     addToCartButton.addEventListener("click", function () {

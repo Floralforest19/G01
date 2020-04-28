@@ -31,25 +31,34 @@
     if ($imageCount > 1) {
       $image = $imageArray[0];
     }
-
+    // rea varor
+    if($quantity < 10){
+      $priceText = "<p class='sale__old'>$price kr</p>
+      <p class='sale__new'>".$price*0.9." kr</p>";
+    } else {
+      $priceText = "<h4>$price kr</h4>";
+    }    
     // Skriver ut produkten. OBS Endast 1 bild visas nu
   $thisPost = "
       <section class='background'>
-        <h2>$name</h2>
+      <h2>$name</h2>
         <article class='single__product__wrapper'>
           <div class='single__product__pic'>
             <img src='./images/$image' alt='$name' />
           </div>
           <div class='single__product__text'>
-          <input type='hidden' class='product-id' value='$id'/>
+            <input type='hidden' class='product-id' value='$id'/>
             <input type='hidden' class='product-name' value='$name'/>         
             <input type='hidden' class='product-price' value='$price'/>
             <input type='hidden' class='product-image' value='$image'/>
+            <input type='hidden' class='product-sale' value='$quantity'/>
+            <h3>$name</h3>
             <p>$description</p>
-            <h2>Pris: $price sek</h2>
-            <h3>I lager: $quantity st</h3>
+            <p>Pris:</p>
+            $priceText
             <p><input type='number' class='product-quantity' min='1' max='$quantity' value='1'/></p>
             <button class='add-to-cart'>Lägg i varukorg</button>
+            <p>I lager: $quantity st</p>
           </div>
         </article>
       </section>";

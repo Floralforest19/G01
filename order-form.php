@@ -36,7 +36,7 @@ require_once 'header.php';
                     <input type="text" name="city" id="city" placeholder="Ange din postadress" required />
 
                     <label for="leverans">Annan leveransaddress?</label>
-                    <input type="checkbox" id="leverans" name="lev" value="on" onclick="myFunction()">
+                    <input type="checkbox" id="leverans" value="on" onclick="myFunction()">
 
                     <div id="checked" style="display:none">
                 
@@ -56,14 +56,17 @@ require_once 'header.php';
                 <button class="contact-form-button send-order-btn" type="submit">Skicka beställning</button>
             </div>
                 <div id="orderItems"></div>
+                <!-- skickar json info till db -->
+                <input type="hidden" name="order_info" id="order_info" value=''/>
         </form>
         <br>
     </section>
 
-    <script src="js/save-order-info.js"></script>
     <script src="js/order-show-items.js"></script>
     <script src="js/order-send-items.js"></script>
     <script src="other-address.js"></script>
+    <!-- sparar info från local storage till db -->
+    <script src="js/save-order-info.js"></script>
 
 <?php
 

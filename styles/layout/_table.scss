@@ -28,8 +28,8 @@
 }
 
 .table {
-  width: 100%;
   @media (max-width: $iphonePlus-size) {
+    width: 100%;
     table,
     thead,
     tbody,

@@ -70,10 +70,6 @@
       <th>Tid/datum</th>
       <td><p>$time</p></td>
    </tr>
-   <tr>   
-      <th>Summa</th>
-      <td><p>$amount Kr</p></td>
-    </tr>
   </table>
   
 </div></div></section>";

@@ -51,7 +51,7 @@ function getProdsToCart(products) {
       <tr id='${id}' class='table-row'>
         <td>${name}</td>
         <td><button id='${id}MinusBtn' class='minus'><i class='fa fa-minus'></i></button>
-        <input type='text' id='${id}Input' class='inputAmount' value='${quantity}'></input>
+        <input type='text' id='${id}Input' class='inputAmount' value='${quantity}' readonly></input>
         <button id='${id}PlusBtn' class='plus'><i class='fa fa-plus'></i></button></td>
         <td>${price} kr</td>
         <td>${productSum} kr</td>

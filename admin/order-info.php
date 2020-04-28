@@ -82,24 +82,16 @@ if( isset($_GET['order_id'])){
         <td>$statusText</td>
       </tr>
     </table>
-
-    </div></div></section>";
+    </div>
+    <table id='dispItems' class='display__order-items'>
+    </div></section>";
 
     echo $tableOrders;
 
   }
-  echo gettype($order_info)."<br><br>";
-  echo "<pre>";
-  print_r($order_info);
-  echo "</pre><br><br>";
-  $test = json_encode($order_info);
-  echo gettype($test)."<br><br>";
-
-  $manage = json_decode($test, true);
-  echo $manage."<br><br>";
-  echo gettype($manage)."<br><br>";
-
-  
-
+  // echo "<p id='json'>$order_info</p>";
+  echo "<input type='hidden' id='json' value='$order_info'/>";
 
  ?>
+
+<script src="../js/order-info.js"></script>

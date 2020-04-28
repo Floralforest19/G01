@@ -12,7 +12,7 @@ require_once 'header.php';
         <form action="order-send.php" method="POST">
             <div class="contact-form-container">
                 <div class="contact-form-objects">
-                
+
                     <label for="firstname">Förnamn</label>
                     <input type="text" name="firstname" id="firstname" placeholder="Ange ditt förnamn" required />
 
@@ -41,13 +41,13 @@ require_once 'header.php';
 
                         <label for="address2">Leveransadress</label>
                         <input type="text" name="address2" id="address2" placeholder="Ange leveransadress" />
-                    
+
                         <label for="zip2">Postnummer</label>
                         <input type="text" name="zip2" id="zip2" placeholder="Ange postnummer" />
 
                         <label for="city2">Postort</label>
                         <input type="text" name="city2" id="city2" placeholder="Ange postort" />
-                    
+
                     </div>
                 </div>
 
@@ -57,6 +57,8 @@ require_once 'header.php';
                 <button class="contact-form-button send-order-btn" type="submit">Skicka beställning</button>
             </div>
                 <div id="orderItems"></div>
+                <!-- skickar json info till db -->
+                <input type="hidden" name="order_info" id="order_info" value=''/>
         </form>
         <br>
     </section>
@@ -64,9 +66,10 @@ require_once 'header.php';
     <script src="js/order-show-items.js"></script>
     <script src="js/order-send-items.js"></script>
     <script src="other-address.js"></script>
+    <!-- sparar info från local storage till db -->
+    <script src="js/save-order-info.js"></script>
 
 <?php
 
 require_once 'footer.php';
 ?>
-

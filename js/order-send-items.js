@@ -4,7 +4,6 @@ function getProductInfo() {
   let cartFromStorage = localStorage.getItem('shoppingCart')
   let cartObj = JSON.parse(cartFromStorage)
   let products = cartObj.products
-  console.log(products)
   getProdsToForm(products)
 }
 getProductInfo();

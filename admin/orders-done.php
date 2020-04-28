@@ -23,19 +23,12 @@
   <table class='table'>
   <thead>
     <th>Order-id</th>
-    <th>Kund</th>
     <th>E-mail</th>
-    <th>Telefon</th>
-    <th>Adress</th>
     <th>
-      Datum/Tid<br>
-      <a href='orders-done.php?id=time&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
-      <a href='orders-done.php?id=time&order_sort=DESC' id='sumSort'><i class="fas fa-angle-down"></i></a>
+      Datum/Tid 
     </th>
     <th>
-      Summa<br>
-      <a href='orders-done.php?id=amount&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
-      <a href='orders-done.php?id=amount&order_sort=DESC' id='sumSort'><i class="fas fa-angle-down"></i></a>
+      Summa
     </th>
     <th>Status</th>
   </thead>
@@ -66,15 +59,6 @@
       $status = htmlspecialchars($row['status']);
       $amount = htmlspecialchars($row['amount']);
       $time = htmlspecialchars($row['time']);
-      if($status == 'active'){
-        $statusText = 'Ny';
-      } else if($status == 'in progress') {
-        $statusText = 'Behandlas';
-      } else if($status == 'done') {
-        $statusText = 'Slutförd';
-      } else {
-        $statusText = 'Status okänd';
-      }
 
       $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
       $stmtCustomer = $db->prepare($sqlCustomer);
@@ -91,16 +75,23 @@
       $zip = htmlspecialchars($rowCustomer['zip-code']);
       $city = htmlspecialchars($rowCustomer['city']);
 
+      if($status == 'active'){
+        $statusText = 'Ny';
+      } else if($status == 'in progress') {
+        $statusText = 'Behandlas';
+      } else if($status == 'done') {
+        $statusText = 'Slutförd';
+      } else {
+        $statusText = 'Status okänd';
+      }
+
       $tableOrders.= "
       <tr>
-        <td><p>$order_id</p></td>
-        <td><p>$fname $sname</p></td>
-        <td><p>$email</p></td>
-        <td><p>$phone</p></td>
-        <td><p>$street <br>$zip $city</p></td>
-        <td><p>$time</p></td>  
-        <td><p>$amount kr</p></td>      
-        <td>$statusText</td>
+      <td><a href='order-info.php?order_id=$order_id'><p>$order_id</p></a></td>
+      <td><a href='order-info.php?order_id=$order_id'><p>$email</p></a></td>
+      <td><p>$time</p></td>  
+      <td><p>$amount kr</p></td>      
+      <td>$statusText</td>
       </tr>
     ";
     endwhile;

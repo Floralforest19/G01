@@ -49,7 +49,7 @@ function getProdsToCart(products) {
         <td class='table__show-items--name'>${name}</td>
         <td>${quantity} st</td>
         <td>${priceText}</td>
-        <td>${productSum} kr</td>
+        <td>${productSum.toFixed(2)} kr</td>
       </tr>`
 
     totalSum += productSum

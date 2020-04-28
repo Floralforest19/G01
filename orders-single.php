@@ -12,15 +12,14 @@
     $stmt = $db->prepare($order);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $customer_id = htmlspecialchars($row['customer_id']);
 
-    $customer_id = htmlspecialchars($_GET['customer_id']);
     $customer = "SELECT * FROM customers WHERE customer_id=$customer_id";
     $stmt = $db->prepare($customer);
     $stmt->execute();
     $customerRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $order_id = htmlspecialchars($row['order_id']);
-    $customer_id = htmlspecialchars($row['customer_id']);
     $amount = htmlspecialchars($row['amount']);
     $time = htmlspecialchars($row['time']);
 

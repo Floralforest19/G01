@@ -596,6 +596,15 @@ a {
   text-align: center;
 }
 
+.sale__old {
+  text-decoration: line-through;
+}
+
+.sale__new {
+  color: #eb4b88;
+  font-size: 1.25rem;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -647,6 +656,38 @@ body {
     -ms-grid-columns: 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr;
     max-width: 1800px;
+  }
+}
+
+.product__wrapper--newitem {
+  display: -ms-grid;
+  display: grid;
+  gap: 1em;
+  padding: 2%;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  text-align: center;
+}
+
+@media (min-width: 500px) {
+  .product__wrapper--newitem {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 800px) {
+  .product__wrapper--newitem {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .product__wrapper--newitem {
+    gap: 4vw;
   }
 }
 
@@ -859,7 +900,8 @@ body {
   margin-top: 2rem;
 }
 
-.display__order-items td, .display__order-items th {
+.display__order-items td,
+.display__order-items th {
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -875,6 +917,72 @@ body {
 .display__order-items th {
   background-color: #ff9378;
   color: white;
+}
+
+.table {
+  width: 100%;
+}
+
+@media (max-width: 500px) {
+  .table {
+    /* Hide table headers */
+    /*
+    Label the data
+    */
+  }
+  .table table,
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td,
+  .table tr {
+    display: block;
+  }
+  .table .t-row {
+    display: none;
+  }
+  .table tr {
+    border: 1px solid #ccc;
+  }
+  .table td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+  .table td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+  .table .inputAmount {
+    width: 39px;
+  }
+  .table .minus,
+  .table .plus {
+    width: 13px;
+  }
+  .table .btn__delete--item {
+    width: 85px;
+  }
+  .table td:nth-of-type(1):before {
+    content: "Produkt";
+  }
+  .table td:nth-of-type(2):before {
+    content: "Antal";
+  }
+  .table td:nth-of-type(3):before {
+    content: "Pris";
+  }
+  .table td:nth-of-type(4):before {
+    content: "Summa";
+  }
 }
 
 button,

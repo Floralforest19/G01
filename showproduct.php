@@ -34,7 +34,7 @@
     // rea varor
     if($quantity < 10){
       $priceText = "<p class='sale__old'>$price kr</p>
-      <p class='sale__new'>".$price*0.9." kr</p>";
+      <p class='sale__new'>".number_format($price*0.9,2)." kr</p>";
     } else {
       $priceText = "<h4>$price kr</h4>";
     }    

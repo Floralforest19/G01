@@ -78,7 +78,7 @@
         // rea varor
         if($quantity < 10){
           $priceText = "<a href='showproduct.php?id=$id'><p class='sale__old'>$price kr</p></a>
-          <a href='showproduct.php?id=$id'><p class='sale__new'>".$price*0.9." kr</p></a>";
+          <a href='showproduct.php?id=$id'><p class='sale__new'>".number_format($price*0.9,2)." kr</p></a>";
         } else {
           $priceText = "<a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>";
         }

@@ -38,7 +38,7 @@ require_once 'header.php';
                     <input type="checkbox" id="leverans" name="lev" value="on" onclick="otherAddress()">
 
                     <div id="checked" style="display:none">
-                
+
                         <label for="address2">Leveransadress</label>
                         <input type="text" name="address2" id="address2" placeholder="Ange leveransadress" />
                     
@@ -50,7 +50,9 @@ require_once 'header.php';
                     
                     </div>
                 </div>
-                <!-- send order info with post -->
+
+                <script src="validateinp.js"></script>
+
             <div class="contact-form-submit">
                 <button class="contact-form-button send-order-btn" type="submit">Skicka beställning</button>
             </div>

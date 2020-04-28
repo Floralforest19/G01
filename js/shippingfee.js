@@ -2,14 +2,13 @@
  Calculate which zip-code who will receive free shipping
  *****/
 
-let shipping_adress_city = `${city}`
-let shippingAmount = `${amount}`
 
 var shippingFeeCity = function (shipping_adress_city) {
-   shipping_adress_city = shipping_adress_city.toLowerCase();
+   shipping_adress_city = shipping_adress_city.toUpperCase();
+   let shippingFeeCity = document.getElementById("shippingFee")
    if (shipping_adress_city == 'STOCKHOLM') {
-      alert('Grattis du får gratis frakt');
+      shippingFeeCity.innerHTML = '0kr';
    } else {
-      return 50;
+      shippingFeeCity.innerHTML = '50kr';
    }
 }

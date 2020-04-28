@@ -1,4 +1,4 @@
-function myFunction() {
+function otherAddress() {
   // Get the checkbox
   let checkBox = document.getElementById("leverans");
   // Get the output text

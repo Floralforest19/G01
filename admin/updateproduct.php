@@ -43,7 +43,7 @@ if(isset($_GET['product_id'])){
 //2. Update product
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
- $product_id = htmlspecialchars($_POST['product_id']);
+    $product_id = htmlspecialchars($_POST['product_id']);
     $name = htmlspecialchars($_POST['name']);
     $description  = htmlspecialchars($_POST['description']);
     $quantity   = htmlspecialchars($_POST['quantity']);
@@ -254,19 +254,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 // visa kategorierna
 require_once '../db.php';
   $sql = "SELECT * FROM category
-  WHERE category_id = $category_id
   ORDER BY name";
   $stmt = $db->prepare($sql);
   $stmt->execute();
+  
   $selectCat = "<select name='category_id' id='category_id'>";
   // förväljer den kategori som produkten redan hade tilldelats
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
     $catname = ucfirst(htmlspecialchars($row['name']));
-    $id = htmlspecialchars($row['category_id']);
-    if($id == $category_id){
-    $selectCat .= "<option value='$id' selected>$catname</option>";
+    $category_select_id = htmlspecialchars($row['category_id']);
+    if($category_id == $category_select_id){
+    $selectCat .= "<option value='$category_select_id' selected>$catname</option>";
     } else {
-    $selectCat .= "<option value='$id'>$catname</option>";
+    $selectCat .= "<option value='$category_select_id'>$catname</option>";
     }
   endwhile;
   $selectCat.= "</select>";

@@ -1,6 +1,6 @@
 function setAddProductToCartClickEvent() {
   let addToCartButtons = document.querySelectorAll(".add-to-cart");
-
+  // updateCart();
   //loopa över alla knappar
   for (let i = 0; i < addToCartButtons.length; i++) {
     let addToCartButton = addToCartButtons[i];
@@ -33,7 +33,7 @@ function setAddProductToCartClickEvent() {
       let chosenQuantityElement = addToCartButtonParent.querySelector(
         ".product-quantity"
       );
-      let quantity = parseInt(chosenQuantityElement.value);
+      let quantity = parseFloat(chosenQuantityElement.value);
       let maxAllowedQuantity = parseInt(
         chosenQuantityElement.getAttribute("max")
       );
@@ -44,7 +44,9 @@ function setAddProductToCartClickEvent() {
       );
 
       if (quantityValidated === false) {
-        alert(`Valt antal måste vara mellan 1 och ${maxAllowedQuantity}`);
+        alert(
+          `Valt antal måste vara ett helnummmer mellan 1 och ${maxAllowedQuantity}`
+        );
         return;
       }
 
@@ -59,6 +61,13 @@ function setAddProductToCartClickEvent() {
       //om den finns, då skall vi updatera denna med quantity
       if (indexOfExisting !== -1) {
         let existingProduct = shoppingCart.products[indexOfExisting];
+
+        let newQuantity = existingProduct.quantity + quantity;
+        if (newQuantity > maxAllowedQuantity) {
+          alert("Det finns inte tillräckligt många varor i lager");
+          return;
+        }
+
         existingProduct.quantity = existingProduct.quantity + quantity;
 
         //spara med nya antalet
@@ -83,6 +92,7 @@ function setAddProductToCartClickEvent() {
       saveShoppingCartInLocalStorage(shoppingCart);
 
       console.log(JSON.stringify(shoppingCart));
+      // updateCart();
 
       //Att tänka på:
       //här kannske vi vill updatera en shopping cart icon
@@ -90,3 +100,14 @@ function setAddProductToCartClickEvent() {
     });
   }
 }
+
+// function updateCart() {
+//   let sum = 0;
+//   if (localStorage.getItem("shoppingCart").length > 0) {
+//     let products = JSON.parse(localStorage.getItem("shoppingCart")).products;
+//     for (let i = 0; i < products.length; i++) {
+//       sum += products[i].quantity;
+//     }
+//   }
+//   document.getElementById("updateCart").innerHTML = " (" + sum + ")";
+// }

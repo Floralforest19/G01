@@ -77,8 +77,7 @@
       $city = htmlspecialchars($rowCustomer['city']);
 
       $selectStatus = 
-      "<form method='post' action='orders-update.php?order_id=$order_id'         
-        onsubmit=\"return alert('Status för order $order_id uppdaterades')\">
+      "<form method='post' action='orders-update.php?order_id=$order_id'>
         <select name='statusSelect' id='statusSelect'>";
       if( $status == 'active'){
         $selectStatus .= "
@@ -101,7 +100,7 @@
       $tableOrders.= "
       <tr>
         <td><p>$order_id</p></td>
-        <td><p>$customer_id - $fname $sname</p></td>
+        <td><p>$fname $sname</p></td>
         <td><p>$email</p></td>
         <td><p>$phone</p></td>
         <td><p>$street <br>$zip $city</p></td>

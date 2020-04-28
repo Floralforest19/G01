@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="styles\style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-    <title>Header v0.01</title>
+    <title>Webshop v3.0</title>
 </head>
 <body>
 <header id="header" class="header">
+
+
     <div id="header-top" class="header-top">
-        <img id="header-logo-main" class="header-logo-main" src="images/logga skis - test.png" alt="temp logo">
+        <a href="index.php"><img id="header-logo-main" class="header-logo-main" src="images/logga skis - test.png" alt="temp logo"></a>
     </div>
 
     <div id="header-nav" class="header-nav">
@@ -28,7 +30,8 @@
                     ORDER BY name";
                     $stmt2 = $db->prepare($sql2);
                     $stmt2->execute();
-                    $navLinks = "<a href='index.php?id=all'>Alla produkter</a> ";
+                    $navLinks = "<a href='index.php?id=all'>Alla produkter</a> 
+                    <a href='new.php'>Nyheter</a> ";
                     while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
                       $name2 = $row2['name'];
                       $id2 = $row2['category_id'];
@@ -50,6 +53,7 @@
     </a>
     <a class="header-button-a header-button-cart" href="cart.php">
         <img class="header-logo-button" src="./images/shoppingcart.png" alt="Shopping cart">
+        <span id="updateCart">(0)</span>
         <p>Cart</p>
     </a>
 
@@ -63,7 +67,8 @@
             ORDER BY name";
             $stmt2 = $db->prepare($sql2);
             $stmt2->execute();
-            $navLinks = "<a href='index.php?id=all'>Alla produkter</a> ";
+            $navLinks = "<a href='index.php?id=all'>Alla produkter</a> 
+            <a href='new.php'>Nyheter</a> ";
             while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
               $name2 = $row2['name'];
               $id2 = $row2['category_id'];

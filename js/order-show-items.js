@@ -14,14 +14,15 @@ getProducts()
 function getProdsToCart(products) {
   dispItems.innerHTML = `
   <thead>
-    <th>Produkt</th>
-    <th>Pris</th>
+    <th class='table__show-items--name'>Produkt</th>
     <th>Antal</th>
+    <th>Pris</th>
     <th>Summa</th>
   </thead>`
 
   // 3.3 initalize totalSum
   let totalSum = 0
+  let shippingFee = 50;
 
   // 3.4 loop over local storage to display added products
   for (let i = 0; i < products.length; i++) {
@@ -32,23 +33,42 @@ function getProdsToCart(products) {
     let quantity = parseInt(products[i].quantity)
     let productSum = quantity * price
     totalSum += productSum
+    if(totalSum >= 500){
+      shippingFee = 0
+    } else {
+      shippingFee = 50
+    }
 
     // 3.4.3 display items in table
     dispItems.innerHTML += `
       <tr id='${id}' class='table-row'>
-        <td>${name}</td>
-        <td>${price} kr/st</td>
+        <td class='table__show-items--name'>${name}</td>
         <td>${quantity} st</td>
+        <td>${price} kr/st</td>
         <td>${productSum} kr</td>
       </tr>`
   }
   // 3.4.4 display table footer with total sum
   dispItems.innerHTML += `
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Produktsumma: </td>
+    <td>${totalSum} kr</td>
+  </tr>`
+  dispItems.innerHTML += `
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Fraktavgift: </td>
+    <td id="shippingFee">${shippingFee} kr</td>
+  </tr>`
+  dispItems.innerHTML += `
   <thead>
     <th></th>
     <th></th>
     <th>Total summa: </th>
-    <th>${totalSum} kr</th>
+    <th>${totalSum+shippingFee} kr</th>
   </thead>`
 
 }

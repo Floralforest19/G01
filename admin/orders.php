@@ -15,10 +15,7 @@
   <table class='table'>
   <thead>
     <th>Order-id</th>
-    <th>Kund</th>
     <th>E-mail</th>
-    <th>Telefon</th>
-    <th>Adress</th>
     <th>
       Datum/Tid<br>
       <a href='orders.php?id=time&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
@@ -67,18 +64,10 @@
       $stmtCustomer->execute();
       $rowCustomer = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
   
-      $fname = htmlspecialchars($rowCustomer['firstname']);
-      $sname = htmlspecialchars($rowCustomer['surname']);
       $email = htmlspecialchars($rowCustomer['email']);
-      $phone = htmlspecialchars($rowCustomer['phone']);
-  
-      $street = htmlspecialchars($rowCustomer['streetadress']);
-      $zip = htmlspecialchars($rowCustomer['zip-code']);
-      $city = htmlspecialchars($rowCustomer['city']);
 
       $selectStatus = 
-      "<form method='post' action='orders-update.php?order_id=$order_id'         
-        onsubmit=\"return alert('Status för order $order_id uppdaterades')\">
+      "<form method='post' action='orders-update.php?order_id=$order_id'>
         <select name='statusSelect' id='statusSelect'>";
       if( $status == 'active'){
         $selectStatus .= "
@@ -100,11 +89,8 @@
 
       $tableOrders.= "
       <tr>
-        <td><p>$order_id</p></td>
-        <td><p>$customer_id - $fname $sname</p></td>
-        <td><p>$email</p></td>
-        <td><p>$phone</p></td>
-        <td><p>$street <br>$zip $city</p></td>
+        <td><a href='order-info.php?order_id=$order_id'><p>$order_id</p></a></td>
+        <td><a href='order-info.php?order_id=$order_id'><p>$email</p></a></td>
         <td><p>$time</p></td>  
         <td><p>$amount kr</p></td>      
         <td>$selectStatus</td>

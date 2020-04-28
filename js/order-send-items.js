@@ -1,13 +1,12 @@
-let orderItems = document.getElementById("orderItems")
+let orderItems = document.getElementById("orderItems");
 
 function getProductInfo() {
   let cartFromStorage = localStorage.getItem('shoppingCart')
   let cartObj = JSON.parse(cartFromStorage)
   let products = cartObj.products
-  console.log(products)
   getProdsToForm(products)
 }
-getProductInfo()
+getProductInfo();
 
 function getProdsToForm(products) {
   orderItems.innerHTML = ``

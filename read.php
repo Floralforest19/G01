@@ -73,33 +73,34 @@
       if ($imageCount > 1) {
         $image = $imageArray[0];
       }
-
+      // skriv ut 
       if($quantity > 0){
-        $quantityText = "Antal i lager - ".$quantity;
+        // rea varor
+        if($quantity < 10){
+          $priceText = "<a href='showproduct.php?id=$id'><p class='sale__old'>$price kr</p></a>
+          <a href='showproduct.php?id=$id'><p class='sale__new'>".number_format($price*0.9,2)." kr</p></a>";
+        } else {
+          $priceText = "<a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>";
+        }
         echo "
         <article class='box'>
           <div class='box__pic'>
-            <img src='./images/$image' alt='$name'/>
+          <a href='showproduct.php?id=$id'><img src='./images/$image' alt='$name'/></a>
           </div>
           <div class='box__text'>
-          <input type='hidden' class='product-id' value='$id'/>
-          <input type='hidden' class='product-name' value='$name'/>         
-          <input type='hidden' class='product-price' value='$price'/>
-          <input type='hidden' class='product-image' value='$image'/>
-            <h3>$name</h3>
-            <p>$price kr</p>
-            <p>$description</p>
-            <a href='showproduct.php?id=$id'>Läs mer</a><br>
-            <p>Antal: <input type='number' class='product-quantity' min='1' max='$quantity' value='1'/></p>
-            <button class='add-to-cart'>Lägg i varukorg</button>";
-            // läs mer bör gå till produktsidan
-            // lägga till när vi introducerar varukorg
-            //<a href='#' class='product__btn'>Köp</a>
-            echo "<p class=''>$quantityText</p>
+            <input type='hidden' class='product-id' value='$id'/>
+            <input type='hidden' class='product-name' value='$name'/>         
+            <input type='hidden' class='product-price' value='$price'/>
+            <input type='hidden' class='product-image' value='$image'/>
+            <input type='hidden' class='product-sale' value='$quantity'/>
+            <a href='showproduct.php?id=$id'><h3>$name</h3></a>
+            $priceText
+            <a href='showproduct.php?id=$id'>Läs mer</a><br></a>
+            <p><input type='number' class='product-quantity' min='1' max='$quantity' value='1'/></p>
+            <button class='add-to-cart'>Lägg i varukorg</button>
+            <p>$quantity i lager</p>
           </div>
         </article>";
-      } else {
-        $quantityText = "Ej i lager";
       }
 
   // avsluta while loop

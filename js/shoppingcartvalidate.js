@@ -1,4 +1,12 @@
 function validateShoppingCartQuantity(chosenQuantityByUser, quantityInStock) {
+  if (!Number.isInteger(chosenQuantityByUser)) {
+    return false;
+  }
+
+  if (!Number.isInteger(quantityInStock)) {
+    return false;
+  }
+
   if (chosenQuantityByUser > quantityInStock) {
     return false;
   }

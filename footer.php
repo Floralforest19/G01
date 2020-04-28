@@ -26,5 +26,5 @@
     <div class="footer-bottom">
     <img class="footer-img-bottom" src="images/icon-5.png"> © by Kris & Ros   
 </div>
-<a href="#top">Back to top</a>
+<a href="#top"><i class="fas fa-arrow-up"></i>Back to top</a>
 </footer>

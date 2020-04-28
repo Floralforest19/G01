@@ -60,6 +60,7 @@ require_once 'header.php';
         <br>
     </section>
 
+    <script src="js/save-order-info.js"></script>
     <script src="js/order-show-items.js"></script>
     <script src="js/order-send-items.js"></script>
     <script src="other-address.js"></script>

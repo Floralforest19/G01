@@ -1,6 +1,6 @@
 <?php
   /**************************************** *
-   * read info from db & display 3 newest posts
+   *  display post with 10 or fewer in storage
   **************************************** */
   require_once 'db.php';
   require_once 'header.php'
@@ -8,16 +8,13 @@
 
 <div class='products__display'>
   <section class='background'>
-    <h2>Nya produkter</h2>
-    <!-- <h3>Ta gärna en titt på våra senaste varor</h3> -->
+    <h2>Sista chansen - 10% rabatt</h2>
     <div class='product__wrapper--newitem'>
-
     <?php
       // hämta de tre senaste produkterna
-      $sqlNew =" SELECT * FROM product ORDER BY creation_date DESC LIMIT 3";
+      $sqlNew =" SELECT * FROM product WHERE quantity < 10 ORDER BY quantity";
       $stmtNew = $db->prepare($sqlNew);
       $stmtNew->execute();
-
       // loopar över arrayen som har resultatet från db
       while($rowNew = $stmtNew->fetch(PDO::FETCH_ASSOC)) :
         // spara data från db i varsin variabel
@@ -26,17 +23,13 @@
         $category = strtoupper(htmlspecialchars($rowNew['category_id']));
         $quantity = htmlspecialchars($rowNew['quantity']);
         $price = htmlspecialchars($rowNew['price']);
+        // bildhantering
         $image = htmlspecialchars($rowNew['image_file_name']);
-
-        // Om det inte finns en bild läggs det upp en dummy
         if(empty($image)){
           $image = 'toalettpapper.jpg';
         }
-        // Delar upp bild-strängen till en array
         $imageArray = explode(" * ", $image);
-        // Kollar om bild-array har mer än ett värde
         $imageCount = count($imageArray);
-        // Om bild-array har mer än ett värde är det första bilden som blir primär, sorteras i bokstavsordning.
         if ($imageCount > 1) {
           $image = $imageArray[0];
         }

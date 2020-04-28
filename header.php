@@ -31,7 +31,8 @@
                     $stmt2 = $db->prepare($sql2);
                     $stmt2->execute();
                     $navLinks = "<a href='index.php?id=all'>Alla produkter</a> 
-                    <a href='new.php'>Nyheter</a> ";
+                    <a href='new.php'>Nyheter</a>
+                    <a href='lastchance.php'>Sista chansen</a>";
                     while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
                       $name2 = $row2['name'];
                       $id2 = $row2['category_id'];
@@ -68,7 +69,8 @@
             $stmt2 = $db->prepare($sql2);
             $stmt2->execute();
             $navLinks = "<a href='index.php?id=all'>Alla produkter</a> 
-            <a href='new.php'>Nyheter</a> ";
+            <a href='new.php'>Nyheter</a>
+            <a href='lastchance.php'>Sista chansen</a>";
             while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
               $name2 = $row2['name'];
               $id2 = $row2['category_id'];

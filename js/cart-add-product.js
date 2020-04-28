@@ -21,11 +21,15 @@ function setAddProductToCartClickEvent() {
     let hiddenProductName = addToCartButtonParent.querySelector(
       ".product-name"
     );
+    let hiddenProductSale = addToCartButtonParent.querySelector(
+      ".product-sale"
+    );
 
     let productId = hiddenProductIdInput.value;
     let productPrice = hiddenProductPrice.value;
     let productName = hiddenProductName.value;
     let productImageName = hiddenProductImage.value;
+    let productSaleQuantity = hiddenProductSale.value;
 
     //binda ett click event på alla lägg till knappar och skicka med produkt-id, namn, pris, antal och bild.
     addToCartButton.addEventListener("click", function () {
@@ -73,6 +77,12 @@ function setAddProductToCartClickEvent() {
         //spara med nya antalet
         shoppingCart.products[indexOfExisting] = existingProduct;
       } else {
+        // lägg till rea status
+        if(maxAllowedQuantity<10){
+          productSaleQuantity = maxAllowedQuantity
+        } else {
+          productSaleQuantity = maxAllowedQuantity
+        }
         //skapa ett javascript objekt för EN produkt och sätt dess properties
         let product = {
           productName: productName,
@@ -80,6 +90,7 @@ function setAddProductToCartClickEvent() {
           productId: productId,
           productPrice: productPrice,
           quantity: quantity,
+          productSaleQuantity: productSaleQuantity,
         };
 
         //lägg till produkten i shoppingcarten

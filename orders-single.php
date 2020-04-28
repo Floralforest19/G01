@@ -29,10 +29,23 @@
     $email = htmlspecialchars($customerRow['email']);
     $phone = htmlspecialchars($customerRow['phone']);
 
-    $street = htmlspecialchars($customerRow['streetadress']);
-    $zip = htmlspecialchars($customerRow['zip-code']);
-    $city = htmlspecialchars($customerRow['city']);
-    $address = $street."<br>".$zip." ".$city;
+    // if other address is available show this in confirmation order
+    if ($row['other_address'] != NULL) {
+
+      $street = htmlspecialchars($row['other_address']);
+      $zip = htmlspecialchars($row['other_zip']);
+      $city = htmlspecialchars($row['other_city']);
+      $address = $street."<br>".$zip." ".$city;
+
+    } else { // if not show the customers own address
+    
+      $street = htmlspecialchars($customerRow['streetadress']);
+      $zip = htmlspecialchars($customerRow['zip-code']);
+      $city = htmlspecialchars($customerRow['city']);
+      $address = $street."<br>".$zip." ".$city;
+
+    }
+
     $thisPost = "
    
 <h2>Tack för ditt köp!<br> Ett kvitto kommer att skickas till den mail du angivit</h2>   

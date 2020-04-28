@@ -2,7 +2,6 @@
 require_once 'header.php';
 ?>
 
-
     <section class="contact-form">
     <h2 class="contact-form-heading">Din beställning</h2>
 
@@ -13,7 +12,7 @@ require_once 'header.php';
         <form action="order-send.php" method="POST">
             <div class="contact-form-container">
                 <div class="contact-form-objects">
-                
+
                     <label for="firstname">Förnamn</label>
                     <input type="text" name="firstname" id="firstname" placeholder="Ange ditt förnamn" required />
 
@@ -36,19 +35,19 @@ require_once 'header.php';
                     <input type="text" name="city" id="city" placeholder="Ange din postadress" required />
 
                     <label for="leverans">Annan leveransaddress?</label>
-                    <input type="checkbox" id="leverans" value="on" onclick="myFunction()">
+                    <input type="checkbox" id="leverans" name="lev" value="on" onclick="otherAddress()">
 
                     <div id="checked" style="display:none">
-                
+
                         <label for="address2">Leveransadress</label>
                         <input type="text" name="address2" id="address2" placeholder="Ange leveransadress" />
-                    
+
                         <label for="zip2">Postnummer</label>
                         <input type="text" name="zip2" id="zip2" placeholder="Ange postnummer" />
 
                         <label for="city2">Postort</label>
                         <input type="text" name="city2" id="city2" placeholder="Ange postort" />
-                    
+
                     </div>
                 </div>
                 <!-- send order info with post -->
@@ -72,4 +71,3 @@ require_once 'header.php';
 
 require_once 'footer.php';
 ?>
-

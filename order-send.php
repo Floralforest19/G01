@@ -7,6 +7,8 @@
 
 // check if email exists
   if(isset($_POST['email'])){
+    // json meed info från loacl storage
+    $order_info = ($_POST['order_info']);
     
   // spara email i en variabel för att jämföra och kolla om det är en ny kund
   $checkEmail = htmlspecialchars($_POST['email']);
@@ -31,13 +33,13 @@
         $zip2        = htmlspecialchars($_POST['zip2']);
         $city2       = htmlspecialchars($_POST['city2']);
 
-        $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`, `other_address`, `other_zip`, `other_city`)
-        VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', CURRENT_TIMESTAMP, '$address2', '$zip2', '$city2')";
+        $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`, `other_address`, `other_zip`, `other_city`,`order_info`)
+        VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', CURRENT_TIMESTAMP, '$address2', '$zip2', '$city2','$order_info')";
         $stmt = $db->prepare($sql);
         $stmt->execute();
     }else{
-        $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`)
-        VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', CURRENT_TIMESTAMP)";
+        $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`,`order_info`)
+        VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', CURRENT_TIMESTAMP,'$order_info')";
         $stmt = $db->prepare($sql);
         $stmt->execute();
       }
@@ -72,14 +74,14 @@
         $city2       = htmlspecialchars($_POST['city2']);
 
       // save order to new customer together with new address
-      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`, `other_address`, `other_zip`, `other_city`)
-      VALUES (NULL, $new_customer_id, 'active', '$order_sum', CURRENT_TIMESTAMP, '$address2', '$zip2', '$city2')";
+      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`, `other_address`, `other_zip`, `other_city`,`order_info`)
+      VALUES (NULL, $new_customer_id, 'active', '$order_sum', CURRENT_TIMESTAMP, '$address2', '$zip2', '$city2', '$order_info')";
       $stmt4 = $db->prepare($sql4);
       $stmt4->execute();
     }else{
       // save order to new customer OBS!! AMOUNT SHOULD BE CHANGED
-      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`)
-      VALUES (NULL, $new_customer_id, 'active', '$order_sum', CURRENT_TIMESTAMP)";
+      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`, `order_info`)
+      VALUES (NULL, $new_customer_id, 'active', '$order_sum', CURRENT_TIMESTAMP, '$order_info')";
       $stmt4 = $db->prepare($sql4);
       $stmt4->execute();
     }

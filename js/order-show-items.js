@@ -1,45 +1,45 @@
 // 1. connect to HTML-document
-let dispItems = document.getElementById("dispItems")
+let dispItems = document.getElementById("dispItems");
 
 // 2. get data from json and send it thowards getProdsToCart
 function getProducts() {
-  let cartFromStorage = localStorage.getItem('shoppingCart')
-  let cartObj = JSON.parse(cartFromStorage)
-  let products = cartObj.products
-  getProdsToCart(products)
+  let cartFromStorage = localStorage.getItem("shoppingCart");
+  let cartObj = JSON.parse(cartFromStorage);
+  let products = cartObj.products;
+  getProdsToCart(products);
 }
-getProducts()
+getProducts();
 
 // 3. display cart with product info and delete buttons, products change for user
 function getProdsToCart(products) {
   dispItems.innerHTML = `
-  <thead>
+  <thead class='t-top-order'>
     <th class='table__show-items--name'>Produkt</th>
     <th>Antal</th>
     <th>Pris</th>
     <th>Summa</th>
-  </thead>`
+  </thead>`;
 
   // 3.3 initalize totalSum
-  let totalSum = 0
+  let totalSum = 0;
   let shippingFee = 50;
 
   // 3.4 loop over local storage to display added products
   for (let i = 0; i < products.length; i++) {
-    let name = products[i].productName
-    let id = products[i].productId
-    let price = products[i].productPrice
-    let quantity = parseInt(products[i].quantity)
+    let name = products[i].productName;
+    let id = products[i].productId;
+    let price = products[i].productPrice;
+    let quantity = parseInt(products[i].quantity);
     let productSaleQuantity = parseInt(products[i].productSaleQuantity);
-    let priceText = ''
+    let priceText = "";
 
-    if(productSaleQuantity <10){
-      priceText += '<p class="sale__old">'+price+" kr</p>"
-      price *= 0.9
-      price = price.toFixed(2)
-      priceText +=  '<p class="sale__new">'+price+' kr</p>'
+    if (productSaleQuantity < 10) {
+      priceText += '<p class="sale__old">' + price + " kr</p>";
+      price *= 0.9;
+      price = price.toFixed(2);
+      priceText += '<p class="sale__new">' + price + " kr</p>";
     } else {
-      priceText =  price
+      priceText = price;
     }
     let productSum = quantity * price;
 
@@ -50,37 +50,36 @@ function getProdsToCart(products) {
         <td>${quantity} st</td>
         <td>${priceText}</td>
         <td>${productSum.toFixed(2)} kr</td>
-      </tr>`
+      </tr>`;
 
-    totalSum += productSum
+    totalSum += productSum;
 
-    if(totalSum >= 500){
-      shippingFee = 0
+    if (totalSum >= 500) {
+      shippingFee = 0;
     } else {
-      shippingFee = 50
+      shippingFee = 50;
     }
   }
   // 3.4.4 display table footer with total sum
   dispItems.innerHTML += `
-  <tr>
-    <td></td>
-    <td></td>
-    <td>Produktsumma: </td>
-    <td>${totalSum.toFixed(2)} kr</td>
-  </tr>`
+  <thead class='t-order'>
+    <th></th>
+    <th></th>
+    <th>Produktsumma: </th>
+    <th>${totalSum.toFixed(2)} kr</th>
+  </thead>`;
   dispItems.innerHTML += `
-  <tr>
-    <td></td>
-    <td></td>
-    <td>Fraktavgift: </td>
-    <td id="shippingFee">${shippingFee} kr</td>
-  </tr>`
+  <thead class='t-order'>
+    <th></th>
+    <th></th>
+    <th>Fraktavgift: </th>
+    <th id="shippingFee">${shippingFee} kr</th>
+  </thead>`;
   dispItems.innerHTML += `
-  <thead>
+  <thead  class='t-bottom-order'>
     <th></th>
     <th></th>
     <th>Total summa: </th>
-    <th>${(totalSum+shippingFee).toFixed(2)} kr</th>
-  </thead>`
-
+    <th>${(totalSum + shippingFee).toFixed(2)} kr</th>
+  </thead>`;
 }

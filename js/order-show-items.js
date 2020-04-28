@@ -66,7 +66,7 @@ function getProdsToCart(products) {
     <td></td>
     <td></td>
     <td>Produktsumma: </td>
-    <td>${totalSum} kr</td>
+    <td>${totalSum.toFixed(2)} kr</td>
   </tr>`
   dispItems.innerHTML += `
   <tr>
@@ -80,7 +80,7 @@ function getProdsToCart(products) {
     <th></th>
     <th></th>
     <th>Total summa: </th>
-    <th>${totalSum+shippingFee} kr</th>
+    <th>${(totalSum+shippingFee).toFixed(2)} kr</th>
   </thead>`
 
 }

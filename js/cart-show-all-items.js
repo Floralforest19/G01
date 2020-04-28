@@ -40,10 +40,10 @@ function getProdsToCart(products) {
     let quantity = parseInt(products[i].quantity);
     let productSum = quantity * price;
     totalSum += productSum;
-    if(totalSum >= 500){
-      shippingFee = 0
+    if (totalSum >= 500) {
+      shippingFee = 0;
     } else {
-      shippingFee = 50
+      shippingFee = 50;
     }
 
     // 3.4.3 display items in table
@@ -60,7 +60,7 @@ function getProdsToCart(products) {
   }
   // 3.4.4 display table footer with total sum
   if (products.length > 0) {
-    if(totalSum >= 500){
+    if (totalSum >= 500) {
       dispCart.innerHTML += `
       <thead><tr class='table-row thead'>
         <th>Grattis, fri frakt!</th><th></th><th></th><th>Fraktavgift: </th><th>${shippingFee} kr</th></tr>
@@ -77,7 +77,9 @@ function getProdsToCart(products) {
   </thead>`;
     dispCart.innerHTML += `
   <thead><tr class='table-row thead'>
-    <th></th><th></th><th></th><th>Total summa: </th><th>${totalSum+shippingFee} kr</th></tr>
+    <th></th><th></th><th></th><th>Total summa: </th><th>${
+      totalSum + shippingFee
+    } kr</th></tr>
   </thead>`;
     // 3.4.5 display order button
     dispCart.innerHTML += `<thead class='thead thead-dark'><tr>
@@ -96,7 +98,7 @@ function ifEmptyCart() {
     document.getElementById("emptyCart").innerHTML = "";
     dispCart.innerHTML += `
     <thead class='thead thead-dark'><tr>
-      <th>Produkt</th><th>Antal</th><th>Pris/st</th><th>Summa</th>
+      <th class='t-row'>Produkt</th><th class='t-row'>Antal</th><th class='t-row'>Pris/st</th><th class='t-row'>Summa</th>
       <th><button id='clearCartBtn' class='btn__delete'>Töm varukorg</button></th>
     </tr></thead>`;
   }

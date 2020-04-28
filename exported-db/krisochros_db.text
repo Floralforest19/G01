@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: localhost:3306
--- Tid vid skapande: 28 apr 2020 kl 16:13
+-- Tid vid skapande: 28 apr 2020 kl 17:31
 -- Serverversion: 5.7.26
 -- PHP-version: 7.4.2
 
@@ -13,6 +13,26 @@ SET time_zone = "+00:00";
 --
 -- Databas: `krisochros`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `category`
+--
+
+CREATE TABLE `category` (
+  `category_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `category`
+--
+
+INSERT INTO `category` (`category_id`, `name`) VALUES
+(1, 'Hygien'),
+(2, 'Mat'),
+(3, 'Rosor');
 
 -- --------------------------------------------------------
 
@@ -37,11 +57,80 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`) VALUES
 (1, 'Kalle', 'Anka', 'Paradisäppelvägen 11', 'Ankeborg', '72464', '755000010', 'kalle@ankeborg.se'),
-(3, 'Kajsa', 'Anka', 'Andvägen 14', 'Stockholm', '18155', '755000011', 'kajsa@ankeborg.se');
+(3, 'Kajsa', 'Anka', 'Andvägen 14', 'Stockholm', '18155', '755000011', 'kajsa@ankeborg.se'),
+(32, 'Jan-Olov', 'Granberg', 'Triangelgatan 33 B', 'Furulund', '244 62', '704407132', 'adsadaas@lploiu.se'),
+(33, 'Stina', 'Englesson', 'dasdasdd 2', 'Stockholm', '74329', '0732012000', 'dmad@sdasda.se');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `status` varchar(11) NOT NULL COMMENT 'Active/In progress/Done',
+  `amount` int(32) NOT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `order_info` json DEFAULT NULL,
+  `other_address` varchar(64) DEFAULT NULL,
+  `other_zip` varchar(64) DEFAULT NULL,
+  `other_city` varchar(64) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`, `order_info`, `other_address`, `other_zip`, `other_city`) VALUES
+(1, 1, 'done', 12, '2019-01-21 16:59:49', '{\"products\": [{\"quantity\": 2, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 4000}, {\"quantity\": 2, \"productId\": \"14\", \"productName\": \"Tvål\", \"productPrice\": \"22.00\", \"productImageName\": \"88864.jpeg\", \"productSaleQuantity\": 489}]}', NULL, NULL, NULL),
+(2, 3, 'done', 300, '2020-02-10 16:59:49', '{\"products\": [{\"quantity\": 2, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 4000}, {\"quantity\": 2, \"productId\": \"14\", \"productName\": \"Tvål\", \"productPrice\": \"22.00\", \"productImageName\": \"88864.jpeg\", \"productSaleQuantity\": 489}]}', NULL, NULL, NULL),
+(3, 1, 'active', 2, '2020-04-21 17:41:09', '{\"products\": [{\"quantity\": 2, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 4000}, {\"quantity\": 2, \"productId\": \"14\", \"productName\": \"Tvål\", \"productPrice\": \"22.00\", \"productImageName\": \"88864.jpeg\", \"productSaleQuantity\": 489}]}', NULL, NULL, NULL),
+(4, 1, 'in progress', 500, '2020-04-01 18:17:27', '{\"products\": [{\"quantity\": 2, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 4000}, {\"quantity\": 2, \"productId\": \"14\", \"productName\": \"Tvål\", \"productPrice\": \"22.00\", \"productImageName\": \"88864.jpeg\", \"productSaleQuantity\": 489}]}', NULL, NULL, NULL),
+(5, 3, 'done', 20, '2020-04-22 14:17:58', '{\"products\": [{\"quantity\": 2, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 4000}, {\"quantity\": 2, \"productId\": \"14\", \"productName\": \"Tvål\", \"productPrice\": \"22.00\", \"productImageName\": \"88864.jpeg\", \"productSaleQuantity\": 489}]}', 'Pengabingen 1', '56784', 'Ankeborg'),
+(183, 32, 'done', 70, '2020-04-28 18:21:25', '{\"products\": [{\"quantity\": 2, \"productId\": \"6\", \"productName\": \"Toalettpapper\", \"productPrice\": \"23.00\", \"productImageName\": \"toalettpapper.jpg\", \"productSaleQuantity\": 7}, {\"quantity\": 2, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 3933}]}', NULL, NULL, NULL),
+(184, 33, 'active', 133, '2020-04-28 18:25:50', '{\"products\": [{\"quantity\": 4, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\"}, {\"quantity\": 2, \"productId\": \"2\", \"productName\": \"Daggros\", \"productPrice\": \"20.00\", \"productImageName\": \"daggros.png\"}, {\"quantity\": 1, \"productId\": \"6\", \"productName\": \"Toalettpapper\", \"productPrice\": \"23.00\", \"productImageName\": \"toalettpapper.jpg\", \"productSaleQuantity\": 5}, {\"quantity\": 1, \"productId\": \"14\", \"productName\": \"Tvål\", \"productPrice\": \"22.00\", \"productImageName\": \"88864.jpeg\", \"productSaleQuantity\": 423}]}', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` text,
+  `quantity` int(11) NOT NULL,
+  `image_file_name` varchar(500) NOT NULL,
+  `price` decimal(6,2) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `product`
+--
+
+INSERT INTO `product` (`product_id`, `name`, `description`, `quantity`, `image_file_name`, `price`, `category_id`, `creation_date`) VALUES
+(2, 'Daggros', 'Rosa glauca. Vacker ros med vildroskänsla. Får vackra rödbruna nypon på hösten. Mycket friskt och lättodlad ros. Vackert rödbruna nypon.', 642, 'daggros.png', '20.00', 3, '2020-02-23 10:29:44'),
+(5, 'Ingrid Bergman', 'Ingrid Bergman är en praktfull och odlingsvärd ros med stora, mörkröda blommor och spriralvända kronblad. Utnämd till årets ros år 2000 av världsförbundet.', 697, 'ingrid.png', '120.00', 3, '2020-02-28 08:28:44'),
+(6, 'Toalettpapper', 'Desinfektionssprit, handsprit eller alkoholbaserat handdesinfektionsmedel, är en typ av desinfektionsmedel som främst används inom vård och omsorg.', 4, 'toalettpapper.jpg', '23.00', 1, '2020-04-03 16:18:44'),
+(7, 'Ris', 'Råris är riskorn där bara yttersta delen av kornets skal är bortskalat, och där man låtit hinnan runt riset, som är svagt silverfärgad, sitta kvar.', 0, 'ris.png', '11.00', 2, '2020-04-13 23:28:44'),
+(14, 'Tvål', 'Halka inte! ', 422, '88864.jpeg', '22.00', 1, '2020-04-23 17:48:10'),
+(21, 'Rosor', 'För alla tillfällen. ', 0, 'plastros.png', '120.00', 3, '2020-04-27 18:10:06'),
+(22, 'Banan', 'Apornas favorit! ', 3927, 'banan.jpg', '12.00', 2, '2020-04-27 18:11:51');
 
 --
 -- Index för dumpade tabeller
 --
+
+--
+-- Index för tabell `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
 
 --
 -- Index för tabell `customers`
@@ -51,11 +140,59 @@ ALTER TABLE `customers`
   ADD KEY `customer_id` (`customer_id`);
 
 --
+-- Index för tabell `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `orders_ibfk_1` (`customer_id`);
+
+--
+-- Index för tabell `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `catergory` (`category_id`);
+
+--
 -- AUTO_INCREMENT för dumpade tabeller
 --
+
+--
+-- AUTO_INCREMENT för tabell `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT för tabell `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT för tabell `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+
+--
+-- AUTO_INCREMENT för tabell `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- Restriktioner för dumpade tabeller
+--
+
+--
+-- Restriktioner för tabell `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`);
+
+--
+-- Restriktioner för tabell `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `catergory` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);

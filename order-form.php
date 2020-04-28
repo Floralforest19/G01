@@ -2,7 +2,6 @@
 require_once 'header.php';
 ?>
 
-
     <section class="contact-form">
     <h2 class="contact-form-heading">Din beställning</h2>
 
@@ -36,7 +35,7 @@ require_once 'header.php';
                     <input type="text" name="city" id="city" placeholder="Ange din postadress" required />
 
                     <label for="leverans">Annan leveransaddress?</label>
-                    <input type="checkbox" id="leverans" name="lev" value="on" onclick="myFunction()">
+                    <input type="checkbox" id="leverans" name="lev" value="on" onclick="otherAddress()">
 
                     <div id="checked" style="display:none">
                 

@@ -73,9 +73,15 @@
       if ($imageCount > 1) {
         $image = $imageArray[0];
       }
-
+      // skriv ut 
       if($quantity > 0){
-        $quantityText = "$quantity i lager";
+        // rea varor
+        if($quantity < 10){
+          $priceText = "<a href='showproduct.php?id=$id'><p class='sale__old'>$price kr</p></a>
+          <a href='showproduct.php?id=$id'><p class='sale__new'>".$price*0.9." kr</p></a>";
+        } else {
+          $priceText = "<a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>";
+        }
         echo "
         <article class='box'>
           <div class='box__pic'>
@@ -87,18 +93,13 @@
             <input type='hidden' class='product-price' value='$price'/>
             <input type='hidden' class='product-image' value='$image'/>
             <a href='showproduct.php?id=$id'><h3>$name</h3></a>
-            <a href='showproduct.php?id=$id'><p>$price kr</p></a>
+            $priceText
             <a href='showproduct.php?id=$id'>Läs mer</a><br></a>
             <p><input type='number' class='product-quantity' min='1' max='$quantity' value='1'/></p>
-            <button class='add-to-cart'>Lägg i varukorg</button>";
-            // läs mer bör gå till produktsidan
-            // lägga till när vi introducerar varukorg
-            //<a href='#' class='product__btn'>Köp</a>
-            echo "<p class=''>$quantityText</p>
+            <button class='add-to-cart'>Lägg i varukorg</button>
+            <p>$quantity i lager</p>
           </div>
         </article>";
-      } else {
-        $quantityText = "Ej i lager";
       }
 
   // avsluta while loop

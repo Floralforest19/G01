@@ -9,15 +9,12 @@
 <div class='products__display'>
   <section class='background'>
     <h2>Sista chansen - 10% rabatt</h2>
-    <!-- <h3>Ta gärna en titt på våra senaste varor</h3> -->
     <div class='product__wrapper--newitem'>
-
     <?php
       // hämta de tre senaste produkterna
       $sqlNew =" SELECT * FROM product WHERE quantity < 10 ORDER BY quantity";
       $stmtNew = $db->prepare($sqlNew);
       $stmtNew->execute();
-
       // loopar över arrayen som har resultatet från db
       while($rowNew = $stmtNew->fetch(PDO::FETCH_ASSOC)) :
         // spara data från db i varsin variabel
@@ -26,22 +23,25 @@
         $category = strtoupper(htmlspecialchars($rowNew['category_id']));
         $quantity = htmlspecialchars($rowNew['quantity']);
         $price = htmlspecialchars($rowNew['price']);
+        // bildhantering
         $image = htmlspecialchars($rowNew['image_file_name']);
-
-        // Om det inte finns en bild läggs det upp en dummy
         if(empty($image)){
           $image = 'toalettpapper.jpg';
         }
-        // Delar upp bild-strängen till en array
         $imageArray = explode(" * ", $image);
-        // Kollar om bild-array har mer än ett värde
         $imageCount = count($imageArray);
-        // Om bild-array har mer än ett värde är det första bilden som blir primär, sorteras i bokstavsordning.
         if ($imageCount > 1) {
           $image = $imageArray[0];
         }
+        // skriv ut 
         if($quantity > 0){
-          $quantityText = "$quantity i lager";
+          // rea varor
+          if($quantity < 10){
+            $priceText = "<a href='showproduct.php?id=$id'><p class='sale__old'>$price kr</p></a>
+            <a href='showproduct.php?id=$id'><p class='sale__new'>".$price*0.9." kr</p></a>";
+          } else {
+            $priceText = "<a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>";
+          }
           echo "
           <article class='box'>
             <div class='box__pic'>
@@ -53,16 +53,13 @@
               <input type='hidden' class='product-price' value='$price'/>
               <input type='hidden' class='product-image' value='$image'/>
               <a href='showproduct.php?id=$id'><h3>$name</h3></a>
-              <a href='showproduct.php?id=$id'><p class='sale__old'>$price kr</p></a>
-              <a href='showproduct.php?id=$id'><p class='sale__new'>".$price*0.9." kr</p></a>
+              $priceText
               <a href='showproduct.php?id=$id'>Läs mer</a><br></a>
               <p><input type='number' class='product-quantity' min='1' max='$quantity' value='1'/></p>
-              <button class='add-to-cart'>Lägg i varukorg</button>";
-              echo "<p class=''>$quantityText</p>
+              <button class='add-to-cart'>Lägg i varukorg</button>
+              <p>$quantity i lager</p>
             </div>
           </article>";
-        } else {
-          $quantityText = "Ej i lager";
         }
       endwhile;
     echo "</div></section>";

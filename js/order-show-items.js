@@ -27,26 +27,38 @@ function getProdsToCart(products) {
   // 3.4 loop over local storage to display added products
   for (let i = 0; i < products.length; i++) {
     let name = products[i].productName
-    let image = products[i].productImageName
     let id = products[i].productId
     let price = products[i].productPrice
     let quantity = parseInt(products[i].quantity)
-    let productSum = quantity * price
-    totalSum += productSum
-    if(totalSum >= 500){
-      shippingFee = 0
+    let productSaleQuantity = parseInt(products[i].productSaleQuantity);
+    let priceText = ''
+
+    if(productSaleQuantity <10){
+      priceText += '<p class="sale__old">'+price+" kr</p>"
+      price *= 0.9
+      price = price.toFixed(2)
+      priceText +=  '<p class="sale__new">'+price+' kr</p>'
     } else {
-      shippingFee = 50
+      priceText =  price
     }
+    let productSum = quantity * price;
 
     // 3.4.3 display items in table
     dispItems.innerHTML += `
       <tr id='${id}' class='table-row'>
         <td class='table__show-items--name'>${name}</td>
         <td>${quantity} st</td>
-        <td>${price} kr/st</td>
+        <td>${priceText}</td>
         <td>${productSum} kr</td>
       </tr>`
+
+    totalSum += productSum
+
+    if(totalSum >= 500){
+      shippingFee = 0
+    } else {
+      shippingFee = 50
+    }
   }
   // 3.4.4 display table footer with total sum
   dispItems.innerHTML += `

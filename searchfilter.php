@@ -28,9 +28,20 @@ if(isset($_POST['input']) ){
     $quantity = htmlspecialchars($row['quantity']);
     $image = htmlspecialchars($row['image_file_name']);
     // if no image show other image
-    if(empty($image)){
-      $image = 'toalettpapper.jpg';
-    }
+      // Om det inte finns en bild läggs det upp en dummy
+      if(empty($image)){
+        $image = 'toalettpapper.jpg';
+      }
+      // Delar upp bild-strängen till en array
+      $imageArray = explode(" * ", $image);
+
+      // Kollar om bild-array har mer än ett värde
+      $imageCount = count($imageArray);
+
+      // Om bild-array har mer än ett värde är det första bilden som blir primär, sorteras i bokstavsordning.
+      if ($imageCount > 1) {
+        $image = $imageArray[0];
+      }
     if($quantity > 0){
       if($quantity < 10){
         $priceText = "<a href='showproduct.php?id=$id'><p class='sale__old'>$price kr</p></a>

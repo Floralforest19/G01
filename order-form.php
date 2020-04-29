@@ -36,7 +36,7 @@ require_once 'header.php';
                     <input type="text" name="city" id="city" placeholder="Ange din postadress" required onkeyup="shippingFeeCity(this.value)" onclick="shippingFeeCity(this.value)"/>
 
                     <label for="leverans">Annan leveransaddress?</label>
-                    <input type="checkbox" id="leverans" name="lev" value="on" onclick="myFunction()">
+                    <input type="checkbox" id="leverans" name="lev" value="on" onclick="otherAddress()">
 
                     <div id="checked" style="display:none">
                 

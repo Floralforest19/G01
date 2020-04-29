@@ -28,9 +28,12 @@ if(isset($_GET['product_id'])){
 
       // Splittar upp alla bilder produkten har till en array: $image_array
       $image_array = explode(" * ", $image_file_name);
-      
+
       // Variabel som räknar hur många bilder produkten har. Minus två för att inkludera position "noll" och det sista värdet som alltid är tomt.
       $totalfiles = count($image_array) - 1;
+
+      // Kontrollerar hur många bilder som redan finns för att begränsa hur många bilder som kan laddas upp
+
 
     }else{
       echo 'Produkten finns inte';
@@ -38,7 +41,6 @@ if(isset($_GET['product_id'])){
     }
 
   }
-
 
 //2. Update product
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -52,15 +54,32 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $category_id = htmlspecialchars($_POST['category_id']);
     
   // räkna antalet filer/bilder som ska laddas upp
-  $totalfiles = count($_FILES['image_file_name']['name']);
+  $totalfilesNew = count($_FILES['image_file_name']['name']);
+
+  // Räknar ihop totala antalet bilder som ska sparas, max 5st
+  $image_total = 0;
   
   // Skapa variabel som ska lagra alla bilder
   $imageCollection = "";
 
+  // Sparar gamla valda bilder i stängen $imageCollection
+  for ($i=0; $i < $totalfiles; $i++) { 
+    if ($_POST["image_radio_$i"] == "save") {
+      $imageCollection .= $image_array[$i] . " * ";
+
+      $image_total++; // Summan av bilder som produkten kommer att ha, om det är 5 så går det inte att lägga till fler bilder
+    }
+  }
+
+
+
+
+
   // Kontrollerar ifall en bild är uppladdad genom att räkna längden på första variabeln i bild-arrayn
-  if (strlen(htmlspecialchars(basename($_FILES["image_file_name"]["name"][0]))) > 1) {
+  // if (strlen(htmlspecialchars(basename($_FILES["image_file_name"]["name"][0]))) > 1) {     *** Behövs det här? ***
     // Loopar över alla filer/bilder
-    for($i=0;$i<$totalfiles;$i++){
+    for($i=0;$i<$totalfilesNew;$i++){
+      
       $target_dir = "../images/";
 
       $addImageCollection = 1;  // Variabel som används för att se ifall bildens sökväg ska läggas till i produktens tabell.
@@ -83,16 +102,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       }
       
       
-      // Check if file already exists
-      if (file_exists($target_file)) {
-        echo "Den här bilden finns redan.<br>";
-        $uploadOk = 0;
-      }
+      // Check if file already exists           *** Behövs det här? ***
+      // if (file_exists($target_file)) {
+      //   echo "Den här bilden finns redan.<br>";
+      //   $uploadOk = 0;
+      // }
       // Check file size
       if ($_FILES["image_file_name"]["size"][$i] > 1000000) {  // Begränsad till 1MB
         echo "Tyvärr, filen är för stor.<br>";
         $uploadOk = 0;
-      $addImageCollection = 0;
+        $addImageCollection = 0;
       }
       
       // Allow certain file formats
@@ -111,11 +130,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // if everything is ok, try to upload file
       } else {
       
-        if (move_uploaded_file($_FILES["image_file_name"]["tmp_name"][$i], $target_file)) {
-          echo " Bilden ". basename( $_FILES["image_file_name"]["name"][$i]). " har laddats upp.<br>";
-        } else {
+        if (!move_uploaded_file($_FILES["image_file_name"]["tmp_name"][$i], $target_file)) {
           echo "Tyvärr, det blev något fel vid uppladdning av fil.<br>";
-        }
+        } 
+        // else {
+        //   echo " Bilden ". basename( $_FILES["image_file_name"]["name"][$i]). " har laddats upp.<br>";
+        // }
         echo "</div></tr>";
       }
 
@@ -124,55 +144,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         //Sparar alla bilder och separerar bildernas sökväg, med två mellanslag, i en string
         $imageCollection .= htmlspecialchars(basename ($_FILES["image_file_name"]["name"][$i])) . " * ";
       }
-    }   // Slut på bildernas for-loop.
-  }   // Slut på if-sats som kollar ifall bild variabeln är tom.
-
-  if (strlen($image_array[0]) > 0) {
-    
-    if ($_POST['image_radio'] == "new") { // Om användaren har valt att spara över de gamla bilderna
-      $update = "UPDATE product
-      SET
-      name = :name,
-      description = :description,
-      quantity = :quantity,
-      image_file_name = :imageCollection,
-      price = :price,
-      category_id = :category_id
-      WHERE product_id = :product_id";
-
-      $stmt = $db->prepare($update);
-
-      $stmt->bindParam(':name' , $name );
-      $stmt->bindParam(':description'  , $description);
-      $stmt->bindParam(':quantity'  , $quantity);
-      $stmt->bindParam(':price'  , $price);
-      $stmt->bindParam(':category_id'  , $category_id);
-      $stmt->bindParam(':product_id'  , $product_id);
 
 
-      $stmt->bindParam(':imageCollection' , $imageCollection);
-
-    } else {  // Om användaren har valt att behålla de gamla bilderna
-      $update = "UPDATE product
-      SET
-      name = :name,
-      description = :description,
-      quantity = :quantity,
-      price = :price,
-      category_id = :category_id
-      WHERE product_id = :product_id";
-
-      $stmt = $db->prepare($update);
-
-      $stmt->bindParam(':name' , $name );
-      $stmt->bindParam(':description'  , $description);
-      $stmt->bindParam(':quantity'  , $quantity);
-      $stmt->bindParam(':price'  , $price);
-      $stmt->bindParam(':category_id'  , $category_id);
-      $stmt->bindParam(':product_id'  , $product_id);
-
+      $image_total++;
+      if ($image_total > 5) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
+        header("Location:updateproduct.php?product_id=$product_id&uppladdning=fel");
+        exit;
       }
-  } else {
+
+
+
+    }   // Slut på bildernas for-loop.
+  // }   // Slut på if-sats som kollar ifall bild variabeln är tom.    *** Behövs det här? *** start på rad 105
+
     $update = "UPDATE product
     SET
     name = :name,
@@ -194,16 +178,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 
     $stmt->bindParam(':imageCollection' , $imageCollection);
-  }
 
     $stmt->execute();
 
-    header('Location:index.php');
+    header("Location:updateproduct.php?product_id=$product_id");
     exit;
   }else if (isset($_GET['product_id']) == false) {
     echo 'Produkten finns inte';
     exit;
-  }
+  } // Slut på updatering av produkt
 
 
 ?>
@@ -216,41 +199,38 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   <?php
       // Kontrollerar att bild finns på produkten
 
-    if (strlen($image_array[0]) > 0) {
+    if (strlen($image_array[0]) > 0) {  // Kollar ifall index-0 innehåller något
       echo "<div>";
       echo 'Produktens nuvarande bild/er: ';
-      for ($i=0; $i <= $totalfiles; $i++) { 
+      for ($i=0; $i <= $totalfiles; $i++) {  // Loopar imageArray för att skriva ut alla bilder
         echo '<br>';
-        if (strlen($image_array[$i]) > 0) {
-
-          $image_printer = "<img src='../images/$image_array[$i]' alt='$name image $i' style='max-height: 150px;'/>";
+        if (strlen($image_array[$i]) > 0) {   // Kollar ifall indexet innehåller något
+          $image_printer = "<div>";
+          $image_printer .= "<img src='../images/$image_array[$i]' alt='$name image $i' style='max-height: 150px;'/>";
+          $image_printer .= "<div>
+          Spara bild: <input type='radio' name='image_radio_$i' value='save' checked> Ja 
+          <input type='radio' name='image_radio_$i' value='trash'> Nej 
+          </div>
+          </div>";
           echo $image_printer;
+          
         }
       }
       echo "</div>";
-  ?>
-      <div>  
-        <input type="file" name="image_file_name[]" id="image_file_name" type="text" class="input__cat" placeholder="Bild" multiple>
-      </div> 
-
-      <br>
-      Vill du spara de gamla bilderna: 
-      <div>
-        <input type="radio" name="image_radio" id="image_old" <?php if (strlen($image_array[0]) > 0) { echo "checked"; }?> value="save" > Ja 
-        
-        
-        <input type="radio" name="image_radio" id="image_new" <?php if (!strlen($image_array[0]) > 0) { echo "checked"; }?> value="new">Nej
-      </div>
-
-      <?php
 
     } else {
       echo "Produkten har ingen bild än. <br><br>";
-    ?>
-      <div>  <input type="file" name="image_file_name[]" id="image_file_name" type="text" class="input__cat" placeholder="Bild" multiple></div>
-    <?php
     }
-
+    
+    if (isset($_GET['uppladdning']) == true) {
+      echo "<h4 style='color: red;'>En produkt får max ha 5 bilder.</h4>";
+    }
+    ?>
+      <div>  
+        <input type="file" name="image_file_name[]" id="image_file_name" type="text" class="input__cat" placeholder="Bild" multiple>
+      </div>
+      <br>
+    <?php
 // visa kategorierna
 require_once '../db.php';
   $sql = "SELECT * FROM category

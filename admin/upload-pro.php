@@ -16,11 +16,14 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
   
   // Skapa variabel som ska lagra alla bilder
   $imageCollection = "";
+  $imageCounter = 0;  // Räknar bilderna som läggs upp. Max 5
 
   // Kontrollerar ifall en bild är uppladdad genom att räkna längden på första variabeln i bild-arrayn
   if (strlen(htmlspecialchars(basename ($_FILES["image_file_name"]["name"][0]))) > 1) {
     // Loopar över alla filer/bilder
     for($i=0;$i<$totalfiles;$i++){
+
+
       $target_dir = "../images/";
 
       $addImageCollection = 1;  // Variabel som används för att se ifall bildens sökväg ska läggas till i produktens tabell.
@@ -84,6 +87,11 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
         //Sparar alla bilder och separerar bildernas sökväg, med två mellanslag, i en string
         $imageCollection .= htmlspecialchars(basename ($_FILES["image_file_name"]["name"][$i])) . " * ";
       }
+      $imageCounter++;
+      if ($imageCounter >= 5) {
+        header("Location:create-product.php?uppladdning=fel");
+        exit;
+      }
     }   // Slut på bildernas for-loop.
   }   // Slut på if-sats som kollar ifall bild variabeln är tom.
 
@@ -105,6 +113,9 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
   $stmt->bindParam(':category_id' , $category_id );
 
   $stmt->execute();
+
+  header("Location:index.php"); // Efter att produkten skapats hamnar man på startsidan för admin
+  exit;
 } 
 
 ?>

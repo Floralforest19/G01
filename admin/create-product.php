@@ -3,6 +3,11 @@
 
 <div>
 <form action="upload-pro.php" method="post" enctype="multipart/form-data" name="createProdForm">
+    <?php
+      if (isset($_GET['uppladdning']) == true) {
+        echo "<h4 style='color: red;'>En produkt får max ha 5 bilder.</h4>";
+      }
+    ?>
     <div>  <input type="file" name="image_file_name[]" id="image_file_name" type="text" class="input__cat" placeholder="Bild" multiple></div> 
    
     <div> <?php

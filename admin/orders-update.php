@@ -14,11 +14,15 @@
       $location ='orders-done.php';
 
     }
+  
     $sql2 = "UPDATE orders 
     SET status = '$selectValue' 
-    WHERE order_id = '$order_id'";
+    WHERE order_id = '$order_id'"; // kan behöva deta för att skicka rät rad till nya tabellen
     $stmt2 = $db->prepare($sql2);
     $stmt2->execute();
+
+    /// ny sql som skickar raden till nya tabellen
   } 
+  // kan du kommentera bort medan du jobbar för att se felmeddelaned etc
   header("Location:$location");
 ?>

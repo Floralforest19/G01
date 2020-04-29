@@ -27,7 +27,7 @@
 }
 
 .container {
-  max-width: 400px;
+  max-width: 70%;
   margin: auto;
 }
 
@@ -40,4 +40,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 5px;
+}
+
+.imgs img {
+  cursor: pointer;
 }

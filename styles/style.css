@@ -1673,7 +1673,7 @@ h3 {
 }
 
 .container {
-  max-width: 400px;
+  max-width: 70%;
   margin: auto;
 }
 
@@ -1688,5 +1688,9 @@ h3 {
   -ms-grid-columns: (1fr)[4];
       grid-template-columns: repeat(4, 1fr);
   grid-gap: 5px;
+}
+
+.imgs img {
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */

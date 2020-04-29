@@ -13,7 +13,7 @@
 
 if( isset($_GET['order_id'])){
   $order_id = htmlspecialchars($_GET['order_id']);
-  $sql = "SELECT * FROM `orders` WHERE `order_id` LIKE '$order_id'";
+  $sql = "SELECT * FROM `orders_archive` WHERE `order_id` LIKE '$order_id'";
   $stmt = $db->prepare($sql);
   $stmt->execute();
 
@@ -32,24 +32,16 @@ if( isset($_GET['order_id'])){
   $shipping_fee = htmlspecialchars($rowOrder['shipping_fee']);
   $time = htmlspecialchars($rowOrder['time']);
   $order_info = htmlspecialchars($rowOrder['order_info']);
-  $status = htmlspecialchars($rowOrder['status']);
   $name = htmlspecialchars($rowCustomer['firstname'])." ".htmlspecialchars($rowCustomer['surname']);
   $city = htmlspecialchars($rowCustomer['city']);
   $street = htmlspecialchars($rowCustomer['streetadress']);
   $zip = htmlspecialchars($rowCustomer['zip-code']);
   $other_city = htmlspecialchars($rowOrder['other_city']);
-  if($status == 'active'){
-    $statusText = 'Ny';
-  } else if($status == 'in progress') {
-    $statusText = 'Behandlas';
-  }
 
   $tableOrders = "  
   <h2>Order $order_id</h2>
   <div class='box__cat--form'>
-  <div class='nav__admin'>";
-  $tableOrders .=
-  "  
+  <div class='nav__admin'>
     <table class='table'>
       <tr>
         <th>Order-id</th>
@@ -57,7 +49,7 @@ if( isset($_GET['order_id'])){
       </tr>
     <tr>
       <th>Status</th>
-      <td>$statusText</td>
+      <td>Slutförd</td>
     </tr>
       <tr>
         <th>Kund</th>
@@ -73,7 +65,7 @@ if( isset($_GET['order_id'])){
 
     // leveransadress existerar ifall sant
     if( $other_city != null ){
-      $tableShippingAddress = "
+      $tableShippingAddress = "  
           <tr>
             <th>Leveransadress</th>
             <td>$street<br>$zip $city</td>

@@ -1,0 +1,76 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.3
+-- https://www.phpmyadmin.net/
+--
+-- Värd: localhost:3306
+-- Tid vid skapande: 29 apr 2020 kl 21:21
+-- Serverversion: 5.7.26
+-- PHP-version: 7.4.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Databas: `krisochros`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` text,
+  `quantity` int(11) NOT NULL,
+  `image_file_name` varchar(500) NOT NULL,
+  `price` decimal(6,2) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `product`
+--
+
+INSERT INTO `product` (`product_id`, `name`, `description`, `quantity`, `image_file_name`, `price`, `category_id`, `creation_date`) VALUES
+(2, 'Daggros', 'Rosa glauca. Vacker ros med vildroskänsla. Får vackra rödbruna nypon på hösten. Mycket friskt och lättodlad ros. Vackert rödbruna nypon.', 9, 'daggros.png', '20.00', 3, '2020-02-23 10:29:44'),
+(5, 'Ingrid Bergman', 'Ingrid Bergman är en praktfull och odlingsvärd ros med stora, mörkröda blommor och spriralvända kronblad. Utnämd till årets ros år 2000 av världsförbundet.', 7, 'ingrid.png', '359.00', 3, '2020-02-28 08:28:44'),
+(6, 'Toalettpapper', 'Toalettpapper som passar vid nödläge.', 9, 'toalettpapper.jpg', '23.00', 1, '2020-04-03 16:18:44'),
+(7, 'Ris', 'Råris är riskorn där bara yttersta delen av kornets skal är bortskalat, och där man låtit hinnan runt riset, som är svagt silverfärgad, sitta kvar.', 994, 'ris.png', '11.00', 2, '2020-04-13 23:28:44'),
+(14, 'Tvål', 'Halka inte! ', 406, '88864.jpeg', '22.00', 1, '2020-04-23 17:48:10'),
+(21, 'Rosor', 'För alla tillfällen. ', 700, 'plastros.png', '120.00', 3, '2020-04-27 18:10:06'),
+(22, 'Banan', 'Apornas favorit! ', 3846, 'banan.jpg', '12.00', 2, '2020-04-27 18:11:51');
+
+--
+-- Index för dumpade tabeller
+--
+
+--
+-- Index för tabell `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `catergory` (`category_id`);
+
+--
+-- AUTO_INCREMENT för dumpade tabeller
+--
+
+--
+-- AUTO_INCREMENT för tabell `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- Restriktioner för dumpade tabeller
+--
+
+--
+-- Restriktioner för tabell `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `catergory` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);

@@ -15,6 +15,8 @@
   
   // hämtar total summan på ordern som behövs för att spara ordern
   $order_sum = htmlspecialchars($_POST['order_sum']);
+  $total_amount = $order_sum;
+  $shipping_fee = 0;
 
     // check if email exist in db
     $sql2 = "SELECT * FROM `customers` WHERE email = '$checkEmail'";
@@ -26,20 +28,30 @@
     while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
       $result = true;
       $existing_customer_id = $row2['customer_id'];
-
+      
       // om anna leveransadress är ifylld skicka med denna i ordern
-      if($_POST['lev'] == 'on'){
+      if( strlen(htmlspecialchars($_POST['city2'])) > 0 ){
         $address2    = htmlspecialchars($_POST['address2']);
         $zip2        = htmlspecialchars($_POST['zip2']);
         $city2       = htmlspecialchars($_POST['city2']);
-
-        $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`, `other_address`, `other_zip`, `other_city`,`order_info`)
-        VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', CURRENT_TIMESTAMP, '$address2', '$zip2', '$city2','$order_info')";
+        // kolla om fraktavgift
+        if(strtolower($city2) !== 'stockholm' && $order_sum < 500){
+          $shipping_fee += 50;
+        }
+        $total_amount += $shipping_fee;
+        $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `shipping_fee`, `total_amount`, `time`, `other_address`, `other_zip`, `other_city`,`order_info`)
+        VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', '$shipping_fee', '$total_amount', CURRENT_TIMESTAMP, '$address2', '$zip2', '$city2','$order_info')";
         $stmt = $db->prepare($sql);
         $stmt->execute();
     }else{
-        $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`,`order_info`)
-        VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', CURRENT_TIMESTAMP,'$order_info')";
+        // kolla om fraktavgift
+        $city       = htmlspecialchars($_POST['city']);
+        if(strtolower($city) !== 'stockholm' && $order_sum < 500){
+          $shipping_fee += 50;
+        }
+        $total_amount += $shipping_fee;
+        $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `shipping_fee`, `total_amount`, `time`,`order_info`)
+        VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', '$shipping_fee', '$total_amount', CURRENT_TIMESTAMP,'$order_info')";
         $stmt = $db->prepare($sql);
         $stmt->execute();
       }
@@ -68,20 +80,29 @@
       $new_customer_id = $row3['customer_id'];
 
       // om anna leveransadress är ifylld skicka med denna i ordern
-      if($_POST['lev'] == 'on'){
+      if(strlen(htmlspecialchars($_POST['city2'])) > 0){
         $address2    = htmlspecialchars($_POST['address2']);
         $zip2        = htmlspecialchars($_POST['zip2']);
         $city2       = htmlspecialchars($_POST['city2']);
-
+        // kolla om fraktavgift
+        if(strtolower($city2) !== 'stockholm' && $order_sum < 500){
+          $shipping_fee += 50;
+        }
+        $total_amount += $shipping_fee;
       // save order to new customer together with new address
-      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`, `other_address`, `other_zip`, `other_city`,`order_info`)
-      VALUES (NULL, $new_customer_id, 'active', '$order_sum', CURRENT_TIMESTAMP, '$address2', '$zip2', '$city2', '$order_info')";
+      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `shipping_fee`, `total_amount`, `time`, `other_address`, `other_zip`, `other_city`,`order_info`)
+      VALUES (NULL, $new_customer_id, 'active', '$order_sum', '$shipping_fee', '$total_amount', CURRENT_TIMESTAMP, '$address2', '$zip2', '$city2', '$order_info')";
       $stmt4 = $db->prepare($sql4);
       $stmt4->execute();
     }else{
+        // kolla om fraktavgift
+        if(strtolower($city) !== 'stockholm' && $order_sum < 500){
+          $shipping_fee += 50;
+        }
+        $total_amount += $shipping_fee;
       // save order to new customer OBS!! AMOUNT SHOULD BE CHANGED
-      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`, `order_info`)
-      VALUES (NULL, $new_customer_id, 'active', '$order_sum', CURRENT_TIMESTAMP, '$order_info')";
+      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `shipping_fee`, `total_amount`, `time`, `order_info`)
+      VALUES (NULL, $new_customer_id, 'active', '$order_sum', '$shipping_fee', '$total_amount', CURRENT_TIMESTAMP, '$order_info')";
       $stmt4 = $db->prepare($sql4);
       $stmt4->execute();
     }

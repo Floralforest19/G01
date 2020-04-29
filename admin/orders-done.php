@@ -35,6 +35,9 @@
 
 <?php
 
+
+
+
   if( isset($_GET['id']) ){
     $id = htmlentities($_GET['id']);
     $orderSort = htmlentities($_GET['order_sort']);
@@ -42,6 +45,8 @@
     $sql = "SELECT * FROM orders 
             WHERE status = 'done'
             ORDER BY $id $orderSort";
+
+    
   } else {
     $sql = "SELECT * FROM orders 
     WHERE status = 'done'
@@ -53,7 +58,7 @@
 
   $tableOrders = "";
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
-      // kolla igenom alla ordrar och spara order-id samt kundi-id
+      // kolla igenom alla ordrar och spara order-id samt kund-id
       $order_id = htmlspecialchars($row['order_id']);
       $customer_id = htmlspecialchars($row['customer_id']);
       $status = htmlspecialchars($row['status']);

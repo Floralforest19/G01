@@ -12,6 +12,7 @@
     } else {
       $selectValue = htmlspecialchars($_POST['statusSelectDone']);
       $location ='orders-done.php';
+
     }
     $sql2 = "UPDATE orders 
     SET status = '$selectValue' 

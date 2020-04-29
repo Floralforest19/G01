@@ -2,6 +2,10 @@
   text-align: center;
   width: 100%;
   border-collapse: collapse;
+  @media (max-width: $iphonePlus-size) {
+    text-align: left;
+    width: 108%;
+  }
 }
 
 .display__order-items {
@@ -22,11 +26,17 @@
   background-color: #f2f2f2;
 }
 
-.display__order-items th {
+.t-order {
+  background-color: #f2f2f2;
+}
+
+.t-top-order,
+.t-bottom-order {
   background-color: $orange-button;
   color: white;
 }
 
+// table för varukorgen för mobil
 .table {
   @media (max-width: $iphonePlus-size) {
     width: 100%;
@@ -82,6 +92,81 @@
     Label the data
     */
     td:nth-of-type(1):before {
+      content: "Produkt";
+    }
+    td:nth-of-type(2):before {
+      content: "Antal";
+    }
+    td:nth-of-type(3):before {
+      content: "Pris";
+    }
+    td:nth-of-type(4):before {
+      content: "Summa";
+    }
+  }
+}
+
+//
+.display__order-items {
+  @media (max-width: $iphonePlus-size) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    /* Hide table headers */
+    .t-top-order {
+      display: none;
+    }
+    .t-order,
+    .t-bottom-order {
+      text-align: center;
+    }
+
+    tr {
+      border: 1px solid #ccc;
+    }
+    th {
+      border: 0px;
+    }
+
+    td {
+      /* Behave  like a "row" */
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+    }
+
+    td:before {
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+    .inputAmount {
+      width: 39px;
+    }
+
+    .minus,
+    .plus {
+      width: 13px;
+    }
+
+    .btn__delete--item {
+      width: 85px;
+    }
+    /*
+    Label the data
+    */
+    .name-td:nth-of-type(1):before {
       content: "Produkt";
     }
     td:nth-of-type(2):before {

@@ -13,7 +13,7 @@
 
 if( isset($_GET['order_id'])){
   $order_id = htmlspecialchars($_GET['order_id']);
-  $sql = "SELECT * FROM `orders` WHERE `order_id` LIKE '$order_id'";
+  $sql = "SELECT * FROM `orders_archive` WHERE `order_id` LIKE '$order_id'";
   $stmt = $db->prepare($sql);
   $stmt->execute();
 
@@ -34,25 +34,31 @@ if( isset($_GET['order_id'])){
   $order_info = htmlspecialchars($rowOrder['order_info']);
   $name = htmlspecialchars($rowCustomer['firstname'])." ".htmlspecialchars($rowCustomer['surname']);
   $city = htmlspecialchars($rowCustomer['city']);
+  $street = htmlspecialchars($rowCustomer['streetadress']);
+  $zip = htmlspecialchars($rowCustomer['zip-code']);
   $other_city = htmlspecialchars($rowOrder['other_city']);
 
   $tableOrders = "  
-  <h2>Orderinformation - $order_id</h2>
+  <h2>Order $order_id</h2>
   <div class='box__cat--form'>
-  <div class='nav__admin'>";
-  $tableOrders .=
-  "  
+  <div class='nav__admin'>
     <table class='table'>
-      <thead>
-        <th>Kund</th>
-        <th>Faktureringsadress</th>
-      </thead>
       <tr>
-        <td><p>$name</p></td>
-        <td><span id='customerCity'>$city</span></td>
+        <th>Order-id</th>
+        <td>$order_id</td>
       </tr>
-    </table>
-    </div>";
+    <tr>
+      <th>Status</th>
+      <td>Slutförd</td>
+    </tr>
+      <tr>
+        <th>Kund</th>
+        <td>$name</td>
+      </tr>
+      <tr>
+        <th>Faktureringsadress</th>
+        <td>$street<br>$zip $city</td>
+      </tr>";
 
     }
     echo $tableOrders;
@@ -60,26 +66,18 @@ if( isset($_GET['order_id'])){
     // leveransadress existerar ifall sant
     if( $other_city != null ){
       $tableShippingAddress = "  
-      <div class='nav__admin'>
-        <table class='table'>
-          <thead>
-            <th>Mottagare</th><th>Leveransadress</th>
-          </thead>
           <tr>
-            <td><p>$name</p></td><td><span id='otherCity'>$other_city</span></td>
+            <th>Leveransadress</th>
+            <td>$street<br>$zip $city</td>
           </tr>
         </table>
       </div>";
       echo $tableShippingAddress;
     } else {
       $tableShippingAddress = "  
-      <div class='nav__admin'>
-        <table class='table'>
-          <thead>
-            <th>Leveransadress</th>
-          </thead>
           <tr>
-            <td><p>Samma som faktureringsadressen</p></td>
+            <th>Leveransadress</th>
+            <td>Samma som ovan</td>
           </tr>
         </table>
       </div>";
@@ -90,38 +88,38 @@ if( isset($_GET['order_id'])){
   // produkt info
   $tableProducts = "
   <div class='nav__admin'>
-    <table id='dispItems' class='table'>
-      <thead>
-        <th class='table__show-items--name'>Produkt</th>
-        <th>Antal</th>
-        <th>Pris</th>
-        <th>Summa</th>
-      </thead>
+  <table id='dispItems' class='table'>
+  <thead>
+    <th class='table__show-items--name'>Produkt</th>
+    <th>Antal</th>
+    <th>Pris</th>
+    <th>Summa</th>
+  </thead>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Produktsumma: </td>
+    <td>".number_format($amount,2)." kr</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Fraktavgift: </td>
+    <td>$shipping_fee kr</td>
+  </tr>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Total summa: </th>
+    <th>".number_format($total_amount,2)." kr</th>
+  </tr>
     </table>
-  </div>
-  <div class='nav__admin'>
-  <table class='table'>
-    <tr>
-      <td>Produktsumma</td>
-      <td>".number_format($amount,2)." kr</td>
-    </tr>
-    <tr>
-      <td>Fraktavgift</td>
-      <td>$shipping_fee kr</td>
-    </tr>
-    <tr>
-      <td>Total summa</td>
-      <td>".number_format($total_amount,2)." kr</td>
-    </tr>
-  </table>
   </div>";
   echo $tableProducts;
-
   echo "</section>";
   
-  // echo "<p id='json'>$order_info</p>";
   echo "<input type='hidden' id='json' value='$order_info'/>";
-
+    
  ?>
 
-<script src="../js/order-info2.js"></script>
+<script src="../js/order-info.js"></script>

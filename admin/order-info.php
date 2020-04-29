@@ -17,104 +17,117 @@ if( isset($_GET['order_id'])){
   $stmt = $db->prepare($sql);
   $stmt->execute();
 
+  // hämta order info
   $rowOrder = $stmt->fetch(PDO::FETCH_ASSOC);
-    // order info
-    $order_id = htmlspecialchars($rowOrder['order_id']);
-    $customer_id = htmlspecialchars($rowOrder['customer_id']);
-    $status = htmlspecialchars($rowOrder['status']);
-    $amount = htmlspecialchars($rowOrder['amount']);
-    $time = htmlspecialchars($rowOrder['time']);
-    $order_info = htmlspecialchars($rowOrder['order_info']);
-
-    // kund info
-    $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
-    $stmtCustomer = $db->prepare($sqlCustomer);
-    $stmtCustomer->execute();
-    $rowCustomer = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
+  // hämta kund info
+  $customer_id = htmlspecialchars($rowOrder['customer_id']);
+  $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
+  $stmtCustomer = $db->prepare($sqlCustomer);
+  $stmtCustomer->execute();
+  $rowCustomer = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
   
-    $fname = htmlspecialchars($rowCustomer['firstname']);
-    $sname = htmlspecialchars($rowCustomer['surname']);
-    $email = htmlspecialchars($rowCustomer['email']);
-    $phone = htmlspecialchars($rowCustomer['phone']);
-  
-    $street = htmlspecialchars($rowCustomer['streetadress']);
-    $zip = htmlspecialchars($rowCustomer['zip-code']);
-    $city = htmlspecialchars($rowCustomer['city']);
-    $other_city = htmlspecialchars($rowOrder['other_city']);
-
-    // status på svenska
-    if($status == 'active'){
-      $statusText = 'Ny';
-    } else if($status == 'in progress') {
-      $statusText = 'Behandlas';
-    } else if($status == 'done') {
-      $statusText = 'Slutförd';
-
-
-
-    } else {
-      $statusText = 'Status okänd';
-    }
+  // spara info i variabler
+  $amount = htmlspecialchars($rowOrder['amount']);
+  $total_amount = htmlspecialchars($rowOrder['total_amount']);
+  $shipping_fee = htmlspecialchars($rowOrder['shipping_fee']);
+  $time = htmlspecialchars($rowOrder['time']);
+  $order_info = htmlspecialchars($rowOrder['order_info']);
+  $status = htmlspecialchars($rowOrder['status']);
+  $name = htmlspecialchars($rowCustomer['firstname'])." ".htmlspecialchars($rowCustomer['surname']);
+  $city = htmlspecialchars($rowCustomer['city']);
+  $street = htmlspecialchars($rowCustomer['streetadress']);
+  $zip = htmlspecialchars($rowCustomer['zip-code']);
+  $other_city = htmlspecialchars($rowOrder['other_city']);
+  if($status == 'active'){
+    $statusText = 'Ny';
+  } else if($status == 'in progress') {
+    $statusText = 'Behandlas';
+  }
 
   $tableOrders = "  
-  <h2>Orderinformation - $order_id</h2>
+  <h2>Order $order_id</h2>
   <div class='box__cat--form'>
-  <div class='nav__admin'>
+  <div class='nav__admin'>";
+  $tableOrders .=
+  "  
     <table class='table'>
-      <thead>
-        <th>Order-id</th>
-        <th>Kund</th>
-        <th>E-mail</th>
-        <th>Telefon</th>
-        <th>Kundadress</th>
-        <th>
-          Datum/Tid
-        </th>
-        <th>
-          Summa
-        </th>
-        <th>Status</th>
-      </thead>
       <tr>
-        <td><p>$order_id</p></td>
-        <td><p>$fname $sname</p></td>
-        <td><p>$email</p></td>
-        <td><p>$phone</p></td>
-        <td><p>$street <br>$zip $city</p></td>
-        <td><p>$time</p></td>  
-        <td><p id='amountWithSale'></p></td>      
-        <td>$statusText</td>
+        <th>Order-id</th>
+        <td>$order_id</td>
       </tr>
-    </table>
-    </div>";
+    <tr>
+      <th>Status</th>
+      <td>$statusText</td>
+    </tr>
+      <tr>
+        <th>Kund</th>
+        <td>$name</td>
+      </tr>
+      <tr>
+        <th>Faktureringsadress</th>
+        <td>$street<br>$zip $city</td>
+      </tr>";
+
     }
     echo $tableOrders;
 
     // leveransadress existerar ifall sant
     if( $other_city != null ){
+      $tableShippingAddress = "
+          <tr>
+            <th>Leveransadress</th>
+            <td>$street<br>$zip $city</td>
+          </tr>
+        </table>
+      </div>";
+      echo $tableShippingAddress;
+    } else {
       $tableShippingAddress = "  
-    <table class='table'>
-      <thead>
-        <th>Mottagare</th>
-        <th>Leveransadress</th>
-      </thead>
-      <tr>
-        <td><p>$fname $sname</p></td>
-        <td><p>$street <br>$zip <span id='otherCity'>$city</span></p></td>
-      </tr>
-    </table>
-    ";
+          <tr>
+            <th>Leveransadress</th>
+            <td>Samma som ovan</td>
+          </tr>
+        </table>
+      </div>";
+      echo $tableShippingAddress;
 
-    echo $tableShippingAddress;
-    
-    } 
-echo "<div class='nav__admin'>
-<table id='dispItems' class='table'></table></div>
-</div></section>";
+    }
   
-  // echo "<p id='json'>$order_info</p>";
+  // produkt info
+  $tableProducts = "
+  <div class='nav__admin'>
+  <table id='dispItems' class='table'>
+  <thead>
+    <th class='table__show-items--name'>Produkt</th>
+    <th>Antal</th>
+    <th>Pris</th>
+    <th>Summa</th>
+  </thead>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Produktsumma: </td>
+    <td>".number_format($amount,2)." kr</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Fraktavgift: </td>
+    <td>$shipping_fee kr</td>
+  </tr>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Total summa: </th>
+    <th>".number_format($total_amount,2)." kr</th>
+  </tr>
+    </table>
+  </div>";
+  echo $tableProducts;
+  echo "</section>";
+  
   echo "<input type='hidden' id='json' value='$order_info'/>";
-
+    
  ?>
 
 <script src="../js/order-info.js"></script>

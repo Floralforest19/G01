@@ -162,7 +162,15 @@ body * {
   .header-logo-main:not(*:root),
   span.justForChrome {
     width: 85%;
-    margin-top: -1em;
+    margin-top: -0.5em;
+    margin-left: 1em;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-width: 1200px) {
+  .header-logo-main:not(*:root),
+  span.justForChrome {
+    margin-left: 5em;
   }
 }
 
@@ -320,7 +328,14 @@ body * {
 @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-width: 1000px) {
   .header-search-bar:not(*:root),
   span.justForChrome {
-    width: 259%;
+    width: 119%;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-width: 1200px) {
+  .header-search-bar:not(*:root),
+  span.justForChrome {
+    width: 219%;
   }
 }
 

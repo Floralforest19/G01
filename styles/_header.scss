@@ -100,7 +100,11 @@
 
     @media (min-width: 1000px) {
       width: 85%;
-      margin-top: -1em;
+      margin-top: -0.5em;
+      margin-left: 1em;
+    }
+    @media (min-width: 1200px) {
+      margin-left: 5em;
     }
   }
 }
@@ -221,7 +225,10 @@
     }
 
     @media (min-width: 1000px) {
-      width: 259%;
+      width: 119%;
+    }
+    @media (min-width: 1200px) {
+      width: 219%;
     }
   }
 }

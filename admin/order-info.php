@@ -49,6 +49,9 @@ if( isset($_GET['order_id'])){
       $statusText = 'Behandlas';
     } else if($status == 'done') {
       $statusText = 'Slutförd';
+
+
+
     } else {
       $statusText = 'Status okänd';
     }

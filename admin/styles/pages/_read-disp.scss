@@ -1,0 +1,13 @@
+.top-section {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  padding-bottom: 2em;
+  grid-gap:2em;
+}
+
+.products__display {
+  display: flex;
+  justify-content: center;
+}

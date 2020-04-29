@@ -42,14 +42,12 @@
     $id = htmlentities($_GET['id']);
     $orderSort = htmlentities($_GET['order_sort']);
     // hämta från beställningar istället
-    $sql = "SELECT * FROM orders 
-            WHERE status = 'done'
+    $sql = "SELECT * FROM orders_archive 
             ORDER BY $id $orderSort";
 
     
   } else {
-    $sql = "SELECT * FROM orders 
-    WHERE status = 'done'
+    $sql = "SELECT * FROM orders_archive 
     ORDER BY order_id";
   }
   $stmt = $db->prepare($sql);
@@ -80,15 +78,15 @@
       $zip = htmlspecialchars($rowCustomer['zip-code']);
       $city = htmlspecialchars($rowCustomer['city']);
 
-      if($status == 'active'){
-        $statusText = 'Ny';
-      } else if($status == 'in progress') {
-        $statusText = 'Behandlas';
-      } else if($status == 'done') {
-        $statusText = 'Slutförd';
-      } else {
-        $statusText = 'Status okänd';
-      }
+      // if($status == 'active'){
+      //   $statusText = 'Ny';
+      // } else if($status == 'in progress') {
+      //   $statusText = 'Behandlas';
+      // } else if($status == 'done') {
+      //   $statusText = 'Slutförd';
+      // } else {
+      //   $statusText = 'Status okänd';
+      // }
 
       $tableOrders.= "
       <tr>
@@ -96,7 +94,7 @@
       <td><a href='order-info.php?order_id=$order_id'><p>$email</p></a></td>
       <td><p>$time</p></td>  
       <td><p>$amount kr</p></td>      
-      <td>$statusText</td>
+      <td>Slutförd</td>
       </tr>
     ";
     endwhile;

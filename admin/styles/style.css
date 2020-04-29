@@ -265,6 +265,15 @@ body {
   width: 100px;
 }
 
+.sale__old {
+  text-decoration: line-through;
+}
+
+.sale__new {
+  color: #eb4b88;
+  font-size: 1.25rem;
+}
+
 .product__btn {
   background: #F4D9B5;
   font-size: 20px;

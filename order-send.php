@@ -9,7 +9,7 @@
   if(isset($_POST['email'])){
     // json meed info från loacl storage
     $order_info = ($_POST['order_info']);
-    
+
   // spara email i en variabel för att jämföra och kolla om det är en ny kund
   $checkEmail = htmlspecialchars($_POST['email']);
   

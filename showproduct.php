@@ -34,7 +34,7 @@
       
       $skrivImage = "";
       for ($i=0; $i < $imageCount; $i++) { 
-        $skrivImage .= "<img src='./images/$imageArray[$i]' style='max-width: 100px; max-height: 100px;'/>";
+        $skrivImage .= "<img src='./images/$imageArray[$i]'/>";
       }
     }
     // rea varor
@@ -48,11 +48,20 @@
   $thisPost = "
       <section class='background'>
       <h2>$name</h2>
-        <article class='single__product__wrapper'>
-          <div class='single__product__pic'>
-            <img src='./images/$image' alt='$name' />
-            $skrivImage
-          </div>
+      
+      <article class='single__product__wrapper'>
+      <div class='container'>
+        
+      <div class='single__product__pic main-img'>
+          <img src='./images/$image' alt='$name' id='current' />
+        </div>
+        
+        <div class='imgs'>
+          $skrivImage
+        </div>
+
+        </div>
+
           <div class='single__product__text'>
             <input type='hidden' class='product-id' value='$id'/>
             <input type='hidden' class='product-name' value='$name'/>         
@@ -67,6 +76,7 @@
             <button class='add-to-cart'>Lägg i varukorg</button>
             <p>I lager: $quantity st</p>
           </div>
+          
         </article>
       </section>";
 

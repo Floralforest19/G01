@@ -2,13 +2,12 @@
   display: grid;
   gap: 2em;
   padding: 2%;
-  margin: 2%;
+  margin: 2% 5% 5% 5%;
   background-color: $product-background-color;
   box-shadow: 0 2px 4px 0 $shadow;
 
   @media (min-width: $desktop-size) {
     grid-template-columns: 1fr 1fr;
-    max-width: 1300px;
   }
 }
 
@@ -25,4 +24,20 @@
 .single__product__text {
   place-self: center;
   margin: 2em;
+}
+
+.container {
+  max-width: 400px;
+  margin: auto;
+}
+
+.main-img img,
+.imgs img {
+  width: 100%;
+}
+
+.imgs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
 }

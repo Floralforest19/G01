@@ -11,7 +11,7 @@ if(isset($_POST['input']) ){
   $filter = htmlspecialchars($_POST['input']);
   echo "<div class='box__search--form'><h3>Visar resultat för: $filter</h3></div>";
   // prepare and execute sql request
-  $sql = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' OR `keywords` LIKE '%$filter%' ORDER BY `name` ASC";  
+  $sql = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' ORDER BY `name` ASC";  
   $stmt = $db->prepare($sql);
   $stmt->execute();
   $result = false;  
@@ -28,24 +28,37 @@ if(isset($_POST['input']) ){
     $quantity = htmlspecialchars($row['quantity']);
     $image = htmlspecialchars($row['image_file_name']);
     // if no image show other image
-    if(empty($image)){
-      $image = 'toalettpapper.jpg';
-    }
+      // Om det inte finns en bild läggs det upp en dummy
+      if(empty($image)){
+        $image = 'toalettpapper.jpg';
+      }
+      // Delar upp bild-strängen till en array
+      $imageArray = explode(" * ", $image);
+
+      // Kollar om bild-array har mer än ett värde
+      $imageCount = count($imageArray);
+
+      // Om bild-array har mer än ett värde är det första bilden som blir primär, sorteras i bokstavsordning.
+      if ($imageCount > 1) {
+        $image = $imageArray[0];
+      }
     if($quantity > 0){
+      if($quantity < 10){
+        $priceText = "<a href='showproduct.php?id=$id'><p class='sale__old'>$price kr</p></a>
+        <a href='showproduct.php?id=$id'><p class='sale__new'>".number_format($price*0.9,2)." kr</p></a>";
+      } else {
+        $priceText = "<a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>";
+      }
     // product exist and in db and is in storage, show result
     echo "<article class='box__search'>
             <div class='box__pic--search'>
-              <img src='./images/$image' alt='$name'/>
+              <a href='showproduct.php?id=$id'><img src='./images/$image' alt='$name'/></a>
             </div>
             <div class='box__text--search'>
-              <h3>$name</h3>
-              <p>$price kr</p>
-              <p>$description</p>
-              <a href='showproduct.php?id=$id'>Läs mer</a><br>";
-              // lägga till när vi introducerar varukorg
-              // <button>Lägg i varukorg</button>
-              //<a href='#' class='product__btn'>Köp</a>
-              echo "
+              <a href='showproduct.php?id=$id'><h3>$name</h3></a>
+              $priceText
+              <a href='showproduct.php?id=$id'>Läs mer</a>
+              <p>$quantity i lager</p><br>
             </div>
           </article>";
     } else {

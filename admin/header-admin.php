@@ -9,7 +9,9 @@
       href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
       rel="stylesheet"
   />
-  <title>Webshop - Skapa kategori</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  
+  <title>Webshop v3.0 - Admin</title>
 </head>
 <body>
 
@@ -17,11 +19,10 @@
 <nav class="nav__admin">
   <ul>
     <li><a href="../index.php">Hem</a></li>
-    <li><a href="../search.php">Sök</a></li>
-    <li><a href="../contact.php">Kontakt</a></li><br>
     <li><a href="index.php">Produkter</a></li>
     <li><a href="create-product.php">Skapa produkt</a></li>
     <li><a href="read-cat.php">Kategorier</a></li>
-    <li><a href="orders.php">Beställningar</a></li>
+    <li><a href="orders.php">Aktiva beställningar</a></li>
+    <li><a href="orders-done.php">Avslutade beställningar</a></li>
   </ul>
 </nav>

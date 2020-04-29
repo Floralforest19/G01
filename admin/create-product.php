@@ -3,7 +3,7 @@
 
 <div>
 <form action="upload-pro.php" method="post" enctype="multipart/form-data" name="createProdForm">
-    <div>  <input type="file" name="image_file_name" id="image_file_name" type="text" class="input__cat" required placeholder="Bild"></div> 
+    <div>  <input type="file" name="image_file_name[]" id="image_file_name" type="text" class="input__cat" placeholder="Bild" multiple></div> 
    
     <div> <?php
 // visa kategorierna
@@ -23,7 +23,7 @@ require_once '../db.php';
   echo $selectCat;
 ?>
 </div> 
-
+      <!-- Dessa inputs är required -->
    <div> <input name="name" type="text" class="input__cat" required placeholder="Produktnamn"></div> 
    <div> <textarea name="description" type="text" cols="30" rows="5" class="input__cat" required placeholder="Beskrivning"> </textarea></div> 
    <div>  <input name="quantity" type="number" class="input__cat" required placeholder="Antal"></div> 

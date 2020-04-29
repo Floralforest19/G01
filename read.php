@@ -11,10 +11,10 @@
 
 <div class='products__display'>
 
-  <section class='background'>
-    <h2>Produkter</h2>
-    <div class='menu__categories'>
-      <?php
+    <section class='background'>
+        <h2>Produkter</h2>
+        <div class='menu__categories'>
+            <?php
         $catHeading = "<h3>Alla produkter</h3>";
         if(isset($_GET['id'])){
           $id = htmlentities($_GET['id']);
@@ -42,11 +42,11 @@
 
         echo $catHeading;
       ?>
-    </div>
+        </div>
 
-<div class='product__wrapper'>
+        <div class='product__wrapper'>
 
-  <?php
+            <?php
   // loopar över arrayen som har resultatet från db
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // spara data från db i varsin variabel
@@ -57,30 +57,50 @@
       $quantity = htmlspecialchars($row['quantity']);
       $price = htmlspecialchars($row['price']);
       $image = htmlspecialchars($row['image_file_name']);
+
+      // Om det inte finns en bild läggs det upp en dummy
       if(empty($image)){
         $image = 'toalettpapper.jpg';
       }
+
+      // Delar upp bild-strängen till en array
+      $imageArray = explode(" * ", $image);
+
+      // Kollar om bild-array har mer än ett värde
+      $imageCount = count($imageArray);
+
+      // Om bild-array har mer än ett värde är det första bilden som blir primär, sorteras i bokstavsordning.
+      if ($imageCount > 1) {
+        $image = $imageArray[0];
+      }
+      // skriv ut 
       if($quantity > 0){
-        $quantityText = "Antal i lager - ".$quantity;
+        // rea varor
+        if($quantity < 10){
+          $priceText = "<a href='showproduct.php?id=$id'><p class='sale__old'>$price kr</p></a>
+          <a href='showproduct.php?id=$id'><p class='sale__new'>".number_format($price*0.9,2)." kr</p></a>";
+        } else {
+          $priceText = "<a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>";
+        }
         echo "
         <article class='box'>
           <div class='box__pic'>
-            <img src='./images/$image' alt='$name'/>
+          <a href='showproduct.php?id=$id'><img src='./images/$image' alt='$name'/></a>
           </div>
           <div class='box__text'>
-            <h3>$name</h3>
-            <p>$price kr</p>
-            <p>$description</p>
-            <a href='showproduct.php?id=$id'>Läs mer</a><br>
-            <button>Lägg i varukorg</button>";
-            // läs mer bör gå till produktsidan
-            // lägga till när vi introducerar varukorg
-            //<a href='#' class='product__btn'>Köp</a>
-            echo "<p class=''>$quantityText</p>
+            <input type='hidden' class='product-id' value='$id'/>
+            <input type='hidden' class='product-name' value='$name'/>         
+            <input type='hidden' class='product-price' value='$price'/>
+            <input type='hidden' class='product-image' value='$image'/>
+            <input type='hidden' class='product-sale' value='$quantity'/>
+            <a href='showproduct.php?id=$id'><h3>$name</h3></a>
+            $priceText
+            <a href='showproduct.php?id=$id'>Läs mer</a><br></a>
+            <p><input type='number' class='product-quantity' min='1' max='$quantity' value='1'/></p>
+            <button class='add-to-cart'>Lägg i varukorg</button>
+            <p>$quantity i lager</p>
           </div>
         </article>";
-      } else {
-        $quantityText = "Ej i lager";
       }
 
   // avsluta while loop
@@ -88,4 +108,11 @@
 // stäng post div
   echo "</div></section>";
 ?>
-</div>
+        </div>
+
+        <script type="text/javascript">
+        //Vänta tills allt har laddats, då kör funktionen (som jquery document.ready())
+        window.onload = function() {
+            setAddProductToCartClickEvent();
+        }
+        </script>

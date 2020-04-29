@@ -46,7 +46,7 @@ function getProdsToCart(products) {
     // 3.4.3 display items in table
     dispItems.innerHTML += `
       <tr id='${id}' class='table-row'>
-        <td class='table__show-items--name'>${name}</td>
+        <td class='table__show-items--name name-td'>${name}</td>
         <td>${quantity} st</td>
         <td>${priceText}</td>
         <td>${productSum.toFixed(2)} kr</td>

@@ -5,9 +5,21 @@
   // koppla till databas
   require_once '../db.php';
 ?>
-
+<div class='top-section'>
 <h2>Produkter</h2>
 <a href='create-product.php'> <button class='product__btn'> Skapa ny produkt</button> </a> 
+
+<form action="#" method="post">
+        Visa som lista
+        <input type="checkbox" name="formProductList" value="Yes" />
+        Visa som bildprodukter
+
+        <input type="checkbox" name="formProductBox" value="No" />
+
+        <input type="submit" name="formSubmit" value="Submit" />
+
+    </form>
+</div>
 
 <div class='products__display'>
 
@@ -96,18 +108,6 @@ $productsBox .= '</div>';
 // echo $table;
 
 ?>
-
-    <form action="#" method="post">
-        Visa som lista
-        <input type="checkbox" name="formProductList" value="Yes" />
-        Visa som bildprodukter
-
-        <input type="checkbox" name="formProductBox" value="No" />
-
-        <input type="submit" name="formSubmit" value="Submit" />
-
-    </form>
-
 
     <?php
 

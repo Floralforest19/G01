@@ -25,11 +25,17 @@
     $imageArray = explode(" * ", $image);
 
     // Kollar om bild-array har mer än ett värde
-    $imageCount = count($imageArray);
+    $imageCount = count($imageArray)-1;
+    $skrivImage = "";
 
     // Om bild-array har mer än ett värde är det första bilden som blir primär, sorteras i bokstavsordning.
     if ($imageCount > 1) {
       $image = $imageArray[0];
+      
+      $skrivImage = "";
+      for ($i=0; $i < $imageCount; $i++) { 
+        $skrivImage .= "<img src='./images/$imageArray[$i]' style='max-width: 100px; max-height: 100px;'/>";
+      }
     }
     // rea varor
     if($quantity < 10){
@@ -45,6 +51,7 @@
         <article class='single__product__wrapper'>
           <div class='single__product__pic'>
             <img src='./images/$image' alt='$name' />
+            $skrivImage
           </div>
           <div class='single__product__text'>
             <input type='hidden' class='product-id' value='$id'/>
@@ -71,6 +78,7 @@ require_once 'footer.php';
 <script type="text/javascript" src="js/shoppingcartvalidate.js"></script>
 <script type="text/javascript" src="js/cart-localstorage.js"></script>
 <script type="text/javascript" src="js/cart-add-product.js"></script>
+<script type="text/javascript" src="js/product-gallery.js"></script>
 
 <script type="text/javascript">
 //Vänta tills allt har laddats, då kör funktionen (som jquery document.ready())

@@ -53,6 +53,16 @@
   border: solid black 1px;
 }
 
+//input anpassad för mobil mindre än 350px
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .contact-form input:not(*:root),
+  span.justForChrome {
+    @media (max-width: 350px) {
+      width: 80%;
+    }
+  }
+}
+
 .contact-form textarea {
   display: block;
   width: 100%;

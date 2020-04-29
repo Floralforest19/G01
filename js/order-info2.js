@@ -13,17 +13,6 @@ getProducts()
 
 // 3. display cart with product info and delete buttons, products change for user
 function getProdsToCart(products) {
-  dispItems.innerHTML = `
-  <thead>
-    <th class='table__show-items--name'>Produkt</th>
-    <th>Antal</th>
-    <th>Pris</th>
-    <th>Summa</th>
-  </thead>`
-
-  // 3.3 initalize totalSum
-  let totalSum = 0
-  let shippingFee = 50;
 
   // 3.4 loop over local storage to display added products
   for (let i = 0; i < products.length; i++) {
@@ -54,57 +43,5 @@ function getProdsToCart(products) {
       </tr>`
 
     totalSum += productSum
-
-    if(totalSum >= 500){
-      shippingFee = 0
-    } else {
-      shippingFee = 50
-    }
-  }
-  // 3.4.4 display table footer with total sum
-  dispItems.innerHTML += `
-  <tr>
-    <td></td>
-    <td></td>
-    <td>Produktsumma: </td>
-    <td>${totalSum.toFixed(2)} kr</td>
-  </tr>`
-  if(shippingFee == 50 ){
-    let shippingCity = checkCity().toLowerCase()
-    if(shippingCity == 'stockholm'){
-      shippingFee = 0
-    }
-  }
-  dispItems.innerHTML += `
-  <tr>
-    <td></td>
-    <td></td>
-    <td>Fraktavgift: </td>
-    <td id="shippingFee">${shippingFee} kr</td>
-  </tr>`
-  dispItems.innerHTML += `
-  <thead>
-    <th></th>
-    <th></th>
-    <th>Total summa: </th>
-    <th>${(totalSum+shippingFee).toFixed(2)} kr</th>
-  </thead>`
-  // document.getElementById('amountWithSale').innerHTML = (totalSum+shippingFee).toFixed(2)+" kr";
-
-}
-
-function checkCity(){
-  let otherCity = document.getElementById('otherCity')
-  let customerCity = document.getElementById('customerCity')
-  // Kolla om det är i sthlm 
-  if( otherCity.innerHTML == null ){
-    let shippingCity = customerCity.innerHTML
-    if(shippingCitytoLowerCase() == 'stockholm'){
-      
-    }
-    return shippingCity
-  } else {
-    let shippingCity = otherCity.innerHTML
-    return shippingCity
   }
 }

@@ -28,6 +28,8 @@ if( isset($_GET['order_id'])){
   
   // spara info i variabler
   $amount = htmlspecialchars($rowOrder['amount']);
+  $total_amount = htmlspecialchars($rowOrder['total_amount']);
+  $shipping_fee = htmlspecialchars($rowOrder['shipping_fee']);
   $time = htmlspecialchars($rowOrder['time']);
   $order_info = htmlspecialchars($rowOrder['order_info']);
   $name = htmlspecialchars($rowCustomer['firstname'])." ".htmlspecialchars($rowCustomer['surname']);
@@ -44,12 +46,10 @@ if( isset($_GET['order_id'])){
       <thead>
         <th>Kund</th>
         <th>Faktureringsadress</th>
-        <th>Ordersumma</th>
       </thead>
       <tr>
         <td><p>$name</p></td>
         <td><span id='customerCity'>$city</span></td>
-        <td><p>$amount kr</p></td>        
       </tr>
     </table>
     </div>";
@@ -71,12 +71,49 @@ if( isset($_GET['order_id'])){
         </table>
       </div>";
       echo $tableShippingAddress;
-    } 
+    } else {
+      $tableShippingAddress = "  
+      <div class='nav__admin'>
+        <table class='table'>
+          <thead>
+            <th>Leveransadress</th>
+          </thead>
+          <tr>
+            <td><p>Samma som faktureringsadressen</p></td>
+          </tr>
+        </table>
+      </div>";
+      echo $tableShippingAddress;
+
+    }
   
   // produkt info
   $tableProducts = "
   <div class='nav__admin'>
-        <table id='dispItems' class='table'></table></div>
+    <table id='dispItems' class='table'>
+      <thead>
+        <th class='table__show-items--name'>Produkt</th>
+        <th>Antal</th>
+        <th>Pris</th>
+        <th>Summa</th>
+      </thead>
+    </table>
+  </div>
+  <div class='nav__admin'>
+  <table class='table'>
+    <tr>
+      <td>Produktsumma</td>
+      <td>".number_format($amount,2)." kr</td>
+    </tr>
+    <tr>
+      <td>Fraktavgift</td>
+      <td>$shipping_fee kr</td>
+    </tr>
+    <tr>
+      <td>Total summa</td>
+      <td>".number_format($total_amount,2)." kr</td>
+    </tr>
+  </table>
   </div>";
   echo $tableProducts;
 

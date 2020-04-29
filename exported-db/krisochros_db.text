@@ -17,26 +17,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `category`
---
-
-CREATE TABLE `category` (
-  `category_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumpning av Data i tabell `category`
---
-
-INSERT INTO `category` (`category_id`, `name`) VALUES
-(1, 'Hygien'),
-(2, 'Mat'),
-(3, 'Rosor');
-
--- --------------------------------------------------------
-
---
 -- Tabellstruktur `customers`
 --
 
@@ -127,12 +107,6 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `quantity`, `image_f
 --
 
 --
--- Index för tabell `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`category_id`);
-
---
 -- Index för tabell `customers`
 --
 ALTER TABLE `customers`
@@ -140,28 +114,8 @@ ALTER TABLE `customers`
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- Index för tabell `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `orders_ibfk_1` (`customer_id`);
-
---
--- Index för tabell `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`product_id`),
-  ADD KEY `catergory` (`category_id`);
-
---
 -- AUTO_INCREMENT för dumpade tabeller
 --
-
---
--- AUTO_INCREMENT för tabell `category`
---
-ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT för tabell `customers`

@@ -6,9 +6,7 @@ let dispItems = document.getElementById("dispItems")
 // 2. get data from json and send it thowards getProdsToCart
 function getProducts() {
   let stringJSON = document.getElementById('json').value
-
   let myObj = JSON.parse(stringJSON)
-  console.log(typeof(myObj))
   console.log(myObj.products)
   let products = myObj.products
   getProdsToCart(products)
@@ -87,5 +85,13 @@ function getProdsToCart(products) {
     <th>Total summa: </th>
     <th>${(totalSum+shippingFee).toFixed(2)} kr</th>
   </thead>`
+  document.getElementById('amountWithSale').innerHTML = (totalSum+shippingFee).toFixed(2)+" kr";
 
+  let otherCity = document.getElementById('otherCity');
+  console.log(shippingFee)
+  console.log(otherCity.innerHTML)
+  // Kolla om det är i sthlm 
+  if(shippingFee == null){
+    console.log("same address")
+  }
 }

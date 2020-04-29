@@ -77,6 +77,10 @@
   padding: 1rem;
   background: $color-white;
   border-radius: 1rem;
+  @media (max-width: 500px) {
+    // mobil beställningsbekräftelse bakgrund
+    background: $bakground-color;
+  }
 }
 
 .box__cat--form--main {

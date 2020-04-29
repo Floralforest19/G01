@@ -162,7 +162,15 @@ body * {
   .header-logo-main:not(*:root),
   span.justForChrome {
     width: 85%;
-    margin-top: -1em;
+    margin-top: -0.5em;
+    margin-left: 1em;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-width: 1200px) {
+  .header-logo-main:not(*:root),
+  span.justForChrome {
+    margin-left: 5em;
   }
 }
 
@@ -320,7 +328,14 @@ body * {
 @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-width: 1000px) {
   .header-search-bar:not(*:root),
   span.justForChrome {
-    width: 259%;
+    width: 119%;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-width: 1200px) {
+  .header-search-bar:not(*:root),
+  span.justForChrome {
+    width: 219%;
   }
 }
 
@@ -766,6 +781,12 @@ body {
   border-radius: 1rem;
 }
 
+@media (max-width: 500px) {
+  .box__cat--form {
+    background: #f1f1f1;
+  }
+}
+
 .box__cat--form--main {
   border: 2px solid rgba(110, 110, 110, 0.5);
 }
@@ -1043,6 +1064,9 @@ body {
   .display__order-items td:nth-of-type(4):before {
     content: "Summa";
   }
+  .display__order-items .customer-td {
+    padding-left: 5%;
+  }
 }
 
 button,
@@ -1186,6 +1210,13 @@ h3 {
   margin: 10px 0 0 0;
   padding: 10px;
   border: solid black 1px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (max-width: 350px) {
+  .contact-form input:not(*:root),
+  span.justForChrome {
+    width: 80%;
+  }
 }
 
 .contact-form textarea {

@@ -17,12 +17,24 @@ function getProdsToForm(products) {
     let id = products[i].productId
     let price = products[i].productPrice
     let quantity = parseInt(products[i].quantity)
+    //
+    let productSaleQuantity = parseInt(products[i].productSaleQuantity);
+    let priceText = ''
+
+    if(productSaleQuantity <10){
+      price *= 0.9
+      price = price.toFixed(2)
+    } else {
+      priceText =  price
+    }
+
     let productSum = quantity * price
     totalSum += productSum
     
     let value = `${id},${price},${quantity}`
     orderItems.innerHTML += `<input type="hidden" name="${i}" value="${value}"/>`
   }
+    console.log(totalSum)
   orderItems.innerHTML += `<input type="hidden" name="numbOfDiffProds" value="${numbOfDiffProds}"/>`
   orderItems.innerHTML += `<input type="hidden" name="order_sum" value="${totalSum}"/>`
 }

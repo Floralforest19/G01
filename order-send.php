@@ -122,6 +122,6 @@
         $stmt6->execute();
       }
       // skicka kund till bekräftelse
-      header("Location:orders-single.php?order_id=$new_order_id");
+      header("Location:orders-single.php?order_id=".$new_order_id."&city=".$_POST['city']);
   }
 ?>

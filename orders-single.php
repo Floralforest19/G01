@@ -88,7 +88,8 @@
     echo $thisPost;
     
  ?>   
- <script src="js/order-show-items.js"></script>
+  <script src="js/shippingfee.js"></script>
+  <script src="js/order-show-items.js"></script>
  <script>
     function clearLocal(){
         localStorage.clear()

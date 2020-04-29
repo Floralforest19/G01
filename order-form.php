@@ -34,7 +34,7 @@ require_once 'header.php';
                 <label for="city">Postort</label>
 
                 <input type="text" name="city" id="city" placeholder="Ange din postadress" required
-                    onkeyup="shippingFeeCity(this.value)" onclick="shippingFeeCity(this.value)" />
+                    onkeyup="calcShippingFee(this.value, 0, 'shippingFee')" onclick="calcShippingFee(this.value,'shippingFee')" />
 
                 <label for="leverans">Annan leveransaddress?</label>
                 <input type="checkbox" id="leverans" name="lev" value="on" onclick="otherAddress()">
@@ -50,7 +50,7 @@ require_once 'header.php';
 
                     <label for="city2">Postort</label>
                     <input type="text" name="city2" id="city2" placeholder="Ange postort"
-                        onkeyup="shippingFeeCity(this.value)" onclick="shippingFeeCity(this.value)" />
+                        onkeyup="calcShippingFee(this.value, 0, 'shippingFee')" onclick="calcShippingFee(this.value,'shippingFee')" />
 
                 </div>
             </div>
@@ -65,9 +65,9 @@ require_once 'header.php';
     <br>
 </section>
 
+<script src="js/shippingfee.js"></script>
 <script src="js/order-show-items.js"></script>
 <script src="js/order-send-items.js"></script>
-<script src="js/shippingfee.js"></script>
 <script src="other-address.js"></script>
 <script src="js/save-order-info.js"></script>
 

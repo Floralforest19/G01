@@ -48,7 +48,7 @@ require_once 'header.php';
                         <input type="text" name="zip2" id="zip2" placeholder="Ange postnummer" />
 
                         <label for="city2">Postort</label>
-                        <input type="text" name="city2" id="city2" placeholder="Ange postort" required onkeyup="shippingFeeCity(this.value)" onclick="shippingFeeCity(this.value)" />
+                        <input type="text" name="city2" id="city2" placeholder="Ange postort" onkeyup="shippingFeeCity(this.value)" onclick="shippingFeeCity(this.value)" />
                     
                     </div>
                 </div>

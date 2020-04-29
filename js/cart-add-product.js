@@ -111,6 +111,14 @@ function setAddProductToCartClickEvent() {
 
 function updateCart2() {
   let sum = 0;
+  if(localStorage.getItem("shoppingCart") == null) {
+    let emptyShoppingCart = {
+      products: [],
+    };
+
+  let shoppingCartString = JSON.stringify(emptyShoppingCart);
+  window.localStorage.setItem("shoppingCart", shoppingCartString);
+  }
   if (localStorage.getItem("shoppingCart").length > 0) {
     let products = JSON.parse(localStorage.getItem("shoppingCart")).products;
     for (let i = 0; i < products.length; i++) {

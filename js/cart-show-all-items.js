@@ -136,6 +136,7 @@ function clearCartBtn() {
       if (confirm("Vill du tömma varukorgen?") == true) {
         localStorage.clear();
         // getProducts() borde köras egentligen istället för reload
+        createNewShoppingCartInLocalStorage();
         location.reload();
       }
       // rewrite cart

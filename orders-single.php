@@ -56,31 +56,31 @@
   <table class='display__order-items'>
     <tr>
       <th>Order-id</th>
-      <td><h3>$order_id</h3></td>
+      <td class='customer-td'><h3>$order_id</h3></td>
     </tr>
     <tr>  
       <th>Kund-id</th>
-      <td><p>$customer_id</p></td>
+      <td class='customer-td'><p>$customer_id</p></td>
     </tr>
     <tr>  
       <th>Namn</th>
-      <td><p>$firstname</p></td>
+      <td class='customer-td'><p>$firstname</p></td>
     </tr> 
     <tr> 
       <th>E-mail</th>
-      <td><p>$email</p></td>
+      <td class='customer-td'><p>$email</p></td>
     </tr> 
     <tr>  
       <th>Telefon</th>
-      <td><p>$phone</p></td>
+      <td class='customer-td'><p>$phone</p></td>
     </tr>
     <tr>
       <th>Adress</th>
-      <td><p>$address</p></td>
+      <td class='customer-td'><p>$address</p></td>
    </tr>   
    <tr>   
       <th>Tid/datum</th>
-      <td><p>$time</p></td>
+      <td class='customer-td'><p>$time</p></td>
    </tr>
   </table>
   

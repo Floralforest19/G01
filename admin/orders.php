@@ -89,8 +89,8 @@
 
       $tableOrders.= "
       <tr>
-        <td><a href='order-info.php?order_id=$order_id'><p>$order_id</p></a></td>
-        <td><a href='order-info.php?order_id=$order_id'><p>$email</p></a></td>
+        <td><a href='order-info2.php?order_id=$order_id'><p>$order_id</p></a></td>
+        <td><a href='order-info2.php?order_id=$order_id'><p>$email</p></a></td>
         <td><p>$time</p></td>  
         <td><p>$amount kr</p></td>      
         <td>$selectStatus</td>

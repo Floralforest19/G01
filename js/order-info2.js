@@ -89,7 +89,7 @@ function getProdsToCart(products) {
     <th>Total summa: </th>
     <th>${(totalSum+shippingFee).toFixed(2)} kr</th>
   </thead>`
-  document.getElementById('amountWithSale').innerHTML = (totalSum+shippingFee).toFixed(2)+" kr";
+  // document.getElementById('amountWithSale').innerHTML = (totalSum+shippingFee).toFixed(2)+" kr";
 
 }
 

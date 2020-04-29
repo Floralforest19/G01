@@ -25,11 +25,17 @@
     $imageArray = explode(" * ", $image);
 
     // Kollar om bild-array har mer än ett värde
-    $imageCount = count($imageArray);
+    $imageCount = count($imageArray)-1;
+    $skrivImage = "";
 
     // Om bild-array har mer än ett värde är det första bilden som blir primär, sorteras i bokstavsordning.
     if ($imageCount > 1) {
       $image = $imageArray[0];
+      
+      $skrivImage = "";
+      for ($i=0; $i < $imageCount; $i++) { 
+        $skrivImage .= "<img src='./images/$imageArray[$i]'/>";
+      }
     }
     // rea varor
     if($quantity < 10){
@@ -42,10 +48,20 @@
   $thisPost = "
       <section class='background'>
       <h2>$name</h2>
-        <article class='single__product__wrapper'>
-          <div class='single__product__pic'>
-            <img src='./images/$image' alt='$name' />
-          </div>
+      
+      <article class='single__product__wrapper'>
+      <div class='container'>
+        
+      <div class='single__product__pic main-img'>
+          <img src='./images/$image' alt='$name' id='current' />
+        </div>
+        
+        <div class='imgs'>
+          $skrivImage
+        </div>
+
+        </div>
+
           <div class='single__product__text'>
             <input type='hidden' class='product-id' value='$id'/>
             <input type='hidden' class='product-name' value='$name'/>         
@@ -60,6 +76,7 @@
             <button class='add-to-cart'>Lägg i varukorg</button>
             <p>I lager: $quantity st</p>
           </div>
+          
         </article>
       </section>";
 
@@ -71,6 +88,7 @@ require_once 'footer.php';
 <script type="text/javascript" src="js/shoppingcartvalidate.js"></script>
 <script type="text/javascript" src="js/cart-localstorage.js"></script>
 <script type="text/javascript" src="js/cart-add-product.js"></script>
+<script type="text/javascript" src="js/product-gallery.js"></script>
 
 <script type="text/javascript">
 //Vänta tills allt har laddats, då kör funktionen (som jquery document.ready())

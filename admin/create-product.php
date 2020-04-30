@@ -17,7 +17,7 @@ require_once '../db.php';
   ORDER BY name";
   $stmt = $db->prepare($sql);
   $stmt->execute();
-  $selectCat = "<select name='test' id='category_id'>";
+  $selectCat = "<select name='test' id='category_id' class='text'>";
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
     $name = ucfirst(htmlspecialchars($row['name']));
     $id = htmlspecialchars($row['category_id']);
@@ -34,7 +34,7 @@ require_once '../db.php';
    <div>  <input name="quantity" type="number" class="input__cat" required placeholder="Antal"></div> 
    <div>  <input name="price" type="number" class="input__cat" required placeholder="Pris"></div> 
 
-    <input type="submit" value="Lägg till produkt">
+    <input class="product__btn" type="submit" value="Lägg till produkt">
 </form>
 
 </div>

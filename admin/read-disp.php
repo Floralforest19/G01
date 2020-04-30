@@ -16,7 +16,7 @@
 
         <input type="checkbox" name="formProductBox" value="No" />
 
-        <input type="submit" name="formSubmit" value="Submit" />
+        <input class="submit__btn" type="submit" name="formSubmit" value="Submit" />
 
     </form>
 </div>

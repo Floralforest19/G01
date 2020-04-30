@@ -28,8 +28,8 @@ if( isset($_GET['order_id'])){
   
   // spara info i variabler
   $amount = htmlspecialchars($rowOrder['amount']);
-  $total_amount = htmlspecialchars($rowOrder['total_amount']);
   $shipping_fee = htmlspecialchars($rowOrder['shipping_fee']);
+  $total_amount = $amount + $shipping_fee;
   $time = htmlspecialchars($rowOrder['time']);
   $order_info = htmlspecialchars($rowOrder['order_info']);
   $name = htmlspecialchars($rowCustomer['firstname'])." ".htmlspecialchars($rowCustomer['surname']);

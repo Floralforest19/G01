@@ -108,7 +108,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       //   $uploadOk = 0;
       // }
       // Check file size
-      if ($_FILES["image_file_name"]["size"][$i] > 1000000) {  // Begränsad till 1MB
+      if ($_FILES["image_file_name"]["size"][$i] > 2000000) {  // Begränsad till 2MB
         echo "Tyvärr, filen är för stor.<br>";
         $uploadOk = 0;
         $addImageCollection = 0;

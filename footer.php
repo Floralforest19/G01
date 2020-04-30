@@ -22,9 +22,15 @@
                 individ inom riskgrupp som är i behov av mat och hygien.
                 Vi bakom Kris & Ros heter Christopher, Jing-Jing, Maria, Mikaela, Stina och Rebecka </p>
         </div>
-    </div>
-    <div class="footer-bottom">
-    <img class="footer-img-bottom" src="images/icon-5.png"> © by Kris & Ros   
+
+    </div> 
+        <div class=footer-bottom-container>
+            <a href="#top"><img src="images/back_top.png" class="rocket"/></a>
+            
+            <div class="footer-bottom">
+                <img src="images/icon-5.png"><p> © by Kris & Ros<p>
+            </div>
+        </div>
 </div>
-<a href="#top"><i class="fas fa-arrow-up"></i>Back to top</a>
+
 </footer>

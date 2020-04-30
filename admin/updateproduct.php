@@ -238,7 +238,7 @@ require_once '../db.php';
   $stmt = $db->prepare($sql);
   $stmt->execute();
   
-  $selectCat = "<select name='category_id' id='category_id'>";
+  $selectCat = "<select name='category_id' id='category_id' class='text'>";
   // förväljer den kategori som produkten redan hade tilldelats
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
     $catname = ucfirst(htmlspecialchars($row['name']));
@@ -253,12 +253,12 @@ require_once '../db.php';
 
   echo 'Kategori: ' . $selectCat;
 ?>
-        Namn: <input name="name" type="text" required value="<?php echo $name; ?>">
-        Beskrivning: <textarea name="description" type="text" cols="30" rows="5"
+        Namn: <input class="input__cat" name="name" type="text" required value="<?php echo $name; ?>">
+        Beskrivning: <textarea class="input__cat" name="description" type="text" cols="30" rows="5"
             required><?php echo $description; ?></textarea>
-        Antal: <input name="quantity" type="number" required value="<?php echo $quantity; ?>">
-        Pris: <input name="price" type="number" required value="<?php echo $price; ?>">
-        <input type="submit" value="Uppdatera produkt">
-        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+        Antal: <input class="input__cat" name="quantity" type="number" required value="<?php echo $quantity; ?>">
+        Pris: <input class="input__cat" name="price" type="number" required value="<?php echo $price; ?>">
+        <input class="product__btn" type="submit" value="Uppdatera produkt">
+        <input class="input__cat" type="hidden" name="product_id" value="<?php echo $product_id; ?>">
     </form>
 </div>

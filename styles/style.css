@@ -77,7 +77,7 @@ body * {
   opacity: 1;
   -ms-grid-row: 1;
   grid-row: 1;
-  grid-column: 1 span;
+  grid-column: 2 span;
   width: 100vw;
   max-height: 12.5vh;
   display: -ms-grid;
@@ -162,7 +162,7 @@ body * {
   .header-logo-main:not(*:root),
   span.justForChrome {
     width: 85%;
-    margin-top: -0.5em;
+    margin-top: -19px;
     margin-left: 1em;
   }
 }
@@ -273,7 +273,7 @@ body * {
   grid-column: 2;
   -ms-grid-row: 2;
   grid-row: 2;
-  margin-top: 1vw;
+  margin-top: 2vw;
 }
 
 .header-search-bar {
@@ -283,16 +283,16 @@ body * {
   background-color: #18b2e0;
   border: 2px solid #333;
   border-radius: 22px;
-  padding-left: 5px;
+  padding-left: 15px;
   padding-right: 15px;
-  font-size: 21px;
+  font-size: 25px;
   color: white;
+  line-height: 2;
 }
 
 @media (min-width: 800px) {
   .header-search-bar {
     width: 119%;
-    margin-left: 1em;
   }
 }
 
@@ -305,9 +305,7 @@ body * {
 
 @media (min-width: 1200px) {
   .header-search-bar {
-    width: 159%;
     height: 150%;
-    margin-left: -3em;
   }
 }
 
@@ -335,7 +333,7 @@ body * {
 @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-width: 1200px) {
   .header-search-bar:not(*:root),
   span.justForChrome {
-    width: 219%;
+    width: 139%;
   }
 }
 
@@ -387,56 +385,6 @@ body * {
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
-  }
-}
-
-.search__feedback {
-  z-index: 20;
-}
-
-@media (min-width: 800px) {
-  .search__feedback {
-    position: absolute;
-    top: 6em;
-    left: 17em;
-  }
-}
-
-@media (min-width: 1000px) {
-  .search__feedback {
-    position: absolute;
-    top: 7em;
-    left: 25em;
-  }
-}
-
-@media (min-width: 1300px) {
-  .search__feedback {
-    position: absolute;
-    top: 7em;
-    left: 35em;
-  }
-}
-
-@-moz-document url-prefix() {
-  .search__feedback {
-    position: absolute;
-    top: 4em;
-    left: 5em;
-  }
-  @media (min-width: 800px) {
-    .search__feedback {
-      position: absolute;
-      top: 7em;
-      left: 17em;
-    }
-  }
-  @media (min-width: 1000px) {
-    .search__feedback {
-      position: absolute;
-      top: 9em;
-      left: 23em;
-    }
   }
 }
 
@@ -891,7 +839,8 @@ body {
 }
 
 .search__feedback {
-  color: #eb4b88;
+  color: yellow;
+  font-size: 15px;
 }
 
 .display__order-items {

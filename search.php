@@ -9,7 +9,8 @@
   require_once 'footer.php'; 
 ?>
 
- </main>
+</main>
 </body>
+
 </html>
- <script src="validateinput.js"></script>
+<script src="validateinput.js"></script>

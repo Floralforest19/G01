@@ -58,6 +58,8 @@
       $customer_id = htmlspecialchars($row['customer_id']);
       $status = htmlspecialchars($row['status']);
       $amount = htmlspecialchars($row['amount']);
+      $shipping_fee = htmlspecialchars($row['shipping_fee']);
+      $total_amount = floatval($amount) + floatval($shipping_fee);
       $time = htmlspecialchars($row['time']);
 
       $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
@@ -96,7 +98,7 @@
         <td><a href='order-info.php?order_id=$order_id'><p>$fname $sname</p></a></td>  
         <td><a href='order-info.php?order_id=$order_id'><p>$email</p></a></td>
         <td><p>$time</p></td>  
-        <td><p>$amount kr</p></td>      
+        <td><p>".number_format($total_amount,2)." kr</p></td>      
         <td>$selectStatus</td>
       </tr>
     ";

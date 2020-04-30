@@ -52,7 +52,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
         $uploadOk = 0;
       }
       // Check file size
-      if ($_FILES["image_file_name"]["size"][$i] > 1000000) {  // Begränsad till 1MB
+      if ($_FILES["image_file_name"]["size"][$i] > 2000000) {  // Begränsad till 2MB
         echo "Tyvärr, filen är för stor.<br>";
         $uploadOk = 0;
       $addImageCollection = 0;
@@ -114,7 +114,15 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
 
   $stmt->execute();
 
-  header("Location:index.php"); // Efter att produkten skapats hamnar man på startsidan för admin
+  $sql4 =" SELECT product_id FROM product ORDER BY product_id DESC LIMIT 1";
+  $stmt4 = $db->prepare($sql4);
+  $stmt4->execute();
+
+  $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
+  $new_product_id = $row4['product_id'];
+
+
+  header("Location:updateproduct.php?product_id=$new_product_id&new=true"); // Efter att produkten skapats hamnar man på startsidan för admin
   exit;
 } 
 

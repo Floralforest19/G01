@@ -29,7 +29,7 @@ if(isset($_GET['product_id'])){
       // Splittar upp alla bilder produkten har till en array: $image_array
       $image_array = explode(" * ", $image_file_name);
 
-      // Variabel som räknar hur många bilder produkten har. Minus två för att inkludera position "noll" och det sista värdet som alltid är tomt.
+      // Variabel som räknar hur många bilder produkten har. Minus ett för att inkludera position "noll" och det sista värdet som alltid är tomt.
       $totalfiles = count($image_array) - 1;
 
       // Kontrollerar hur många bilder som redan finns för att begränsa hur många bilder som kan laddas upp
@@ -45,14 +45,14 @@ if(isset($_GET['product_id'])){
 //2. Update product
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    $product_id = htmlspecialchars($_POST['product_id']);
-    $name = htmlspecialchars($_POST['name']);
-    $description  = htmlspecialchars($_POST['description']);
-    $quantity   = htmlspecialchars($_POST['quantity']);
-
-    $price = htmlspecialchars($_POST['price']);
-    $category_id = htmlspecialchars($_POST['category_id']);
-    
+  $product_id = htmlspecialchars($_POST['product_id']);
+  $name = htmlspecialchars($_POST['name']);
+  $description  = htmlspecialchars($_POST['description']);
+  $quantity   = htmlspecialchars($_POST['quantity']);
+  $price = htmlspecialchars($_POST['price']);
+  $category_id = htmlspecialchars($_POST['category_id']);
+  $image_primary = htmlspecialchars($_POST['image_primary']);
+  
   // räkna antalet filer/bilder som ska laddas upp
   $totalfilesNew = count($_FILES['image_file_name']['name']);
 
@@ -62,12 +62,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   // Skapa variabel som ska lagra alla bilder
   $imageCollection = "";
 
-  // Sparar gamla valda bilder i stängen $imageCollection
-  for ($i=0; $i < $totalfiles; $i++) { 
-    if ($_POST["image_radio_$i"] == "save") {
-      $imageCollection .= $image_array[$i] . " * ";
+  // Skapa variabel som säger till ifall användaren valt att radera en primär bild
+  $image_primary_error = 0;
+  
 
+
+  // Loopar bilderna som produkten redan har
+  for ($i=0; $i < $totalfiles; $i++) { 
+    if ($_POST["image_radio_$i"] == "save" || $image_primary == $i) { // Sparar gamla bilder i stängen $imageCollection
+      if ($image_primary == $i && $i != 0 && $totalfiles > 0) {
+        $imageCollection = $image_array[$i] . " * " . $imageCollection; // Sätter primära bilden i början på strängen som sparas på databsen.
+      } else {
+        $imageCollection .= $image_array[$i] . " * ";
+      }
       $image_total++; // Summan av bilder som produkten kommer att ha, om det är 5 så går det inte att lägga till fler bilder
+    }
+    if ($_POST["image_radio_$i"] == "trash" && $image_primary == $i && $totalfiles > 0) {  // Ifall primära bilden har valts att tas bort så kommer ett felmeddelande säga att det inte går
+      $image_primary_error = 1;
     }
   }
 
@@ -76,7 +87,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 
   // Kontrollerar ifall en bild är uppladdad genom att räkna längden på första variabeln i bild-arrayn
-  // if (strlen(htmlspecialchars(basename($_FILES["image_file_name"]["name"][0]))) > 1) {     *** Behövs det här? ***
+  if (strlen(htmlspecialchars(basename($_FILES["image_file_name"]["name"][0]))) > 1) {   //  *** Behövs det här? *** Jag tror det.
     // Loopar över alla filer/bilder
     for($i=0;$i<$totalfilesNew;$i++){
       
@@ -107,8 +118,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       //   echo "Den här bilden finns redan.<br>";
       //   $uploadOk = 0;
       // }
+
       // Check file size
-      if ($_FILES["image_file_name"]["size"][$i] > 1000000) {  // Begränsad till 1MB
+      if ($_FILES["image_file_name"]["size"][$i] > 2000000) {  // Begränsad till 2MB
         echo "Tyvärr, filen är för stor.<br>";
         $uploadOk = 0;
         $addImageCollection = 0;
@@ -148,14 +160,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
       $image_total++;
       if ($image_total > 5) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
-        header("Location:updateproduct.php?product_id=$product_id&uppladdning=fel");
+        if ($image_primary_error == 0) {
+          header("Location:updateproduct.php?product_id=$product_id&uppladdning=max5");
+        }else { 
+          header("Location:updateproduct.php?product_id=$product_id&uppladdning=max5&primary=error");  // Om primärbild har valts att raderas och mer än 5 bilder försöker sparas på en produkt visas felmeddelande
+        }
         exit;
+      }
+      if ($image_primary_error == 1) { // Om primärbild har valts att raderas visas felmeddelande
+        header("Location:updateproduct.php?product_id=$product_id&primary=error");
       }
 
 
 
     }   // Slut på bildernas for-loop.
-  // }   // Slut på if-sats som kollar ifall bild variabeln är tom.    *** Behövs det här? *** start på rad 105
+  }   // Slut på if-sats som kollar ifall bild variabeln är tom.    *** Behövs det här? *** start på rad 105
 
     $update = "UPDATE product
     SET
@@ -181,17 +200,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $stmt->execute();
 
+    print_r($image_primary);
     header("Location:updateproduct.php?product_id=$product_id");
     exit;
   }else if (isset($_GET['product_id']) == false) {
     echo 'Produkten finns inte';
     exit;
   } // Slut på updatering av produkt
-
-
 ?>
 
-<h2>Uppdatera produkt</h2>
+<?php
+  if (isset($_GET['new'])) {
+    echo "<h2>Produkt skapad</h2>";
+  } else {
+    echo "<h2>Uppdatera produkt</h2>";
+  }
+?>
 
 <div class="update-product-form">
   <form method="POST" enctype="multipart/form-data" >  <!-- har lagt till display-grid för enkelhetens skull -->
@@ -210,8 +234,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
           $image_printer .= "<div>
           Spara bild: <input type='radio' name='image_radio_$i' value='save' checked> Ja 
           <input type='radio' name='image_radio_$i' value='trash'> Nej 
-          </div>
           </div>";
+          if ($i == 0) {  // Radiobutton som bestämmer vilken bild som ska vara primära bilden, första bilden är primär by default
+            $image_printer .= "Primär bild: <input type='radio' name='image_primary' value='0' checked>
+            </div>";
+          } else {
+            $image_printer .= "Primär bild: <input type='radio' name='image_primary' value='$i'>
+            </div>";
+          }
+
           echo $image_printer;
           
         }
@@ -222,7 +253,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       echo "Produkten har ingen bild än. <br><br>";
     }
     
-    if (isset($_GET['uppladdning']) == true) {
+    if (isset($_GET['primary']) == true) { // Om primärbild har valts att raderas visas felmeddelande
+      echo "<h4 style='color: red;'>Kan ej ta bort primär bild.</h4>";
+    }
+    if (isset($_GET['uppladdning']) == true) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
       echo "<h4 style='color: red;'>En produkt får max ha 5 bilder.</h4>";
     }
     ?>

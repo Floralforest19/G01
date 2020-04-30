@@ -3,10 +3,8 @@
  *****/
 //"shippingFee"
 var calcShippingFee = function (shipping_adress_city, sum, id = false) {
-   if (!shipping_adress_city)
-      return 50; //Default value
 
-   shipping_adress_city = shipping_adress_city.toUpperCase();
+   shipping_adress_city = (shipping_adress_city) ? shipping_adress_city.toUpperCase() : false;
    var price = 0;
 
    if (shipping_adress_city == 'STOCKHOLM' || sum >= 500) {

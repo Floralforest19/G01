@@ -10,13 +10,17 @@
 <section class='background'>
   <h2>Aktiva beställningar</h2>
   <div class="box__cat--form">
+  <form action="">
+    <input type="text" id="filterInput" placholder="Filtrera efter stad">
+  </form>
+
   <div class='nav__admin'>
 
   <table class='table'>
   <thead>
     <th>Order-id</th>
     <th>Kund</th>
-    <th>E-mail</th>
+    <!-- <th>E-mail</th> -->
     <th>Leveransadress</th>
     <th>
       Datum/Tid<br>
@@ -110,9 +114,9 @@
       $tableOrders.= "
       <tr>
         <td><a href='order-info.php?order_id=$order_id'><p>$order_id</p></a></td>
-        <td><a href='order-info.php?order_id=$order_id'><p>$fname $sname</p></a></td>  
-        <td><a href='order-info.php?order_id=$order_id'><p>$email</p></a></td>
-        <td><p>$shippingAddress</p></td>  
+        <td><a href='order-info.php?order_id=$order_id'><p>$fname $sname</p></a></td>  ";
+        //<td><a href='order-info.php?order_id=$order_id'><p>$email</p></a></td>
+        $tableOrders.= "<td>$shippingAddress</td>
         <td><p>$time</p></td>  
         <td><p>".number_format($total_amount,2)." kr</p></td>      
         <td>$selectStatus</td>
@@ -125,6 +129,7 @@
   </div></div></section>
   
 </section>
+<script src="../js/filter-orders.js"></script>
 
 </body>
 </html>

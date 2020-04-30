@@ -20,6 +20,7 @@
     <th>Order-id</th>
     <th>Kund</th>
     <th>E-mail</th>
+    <th>Leveransadress</th>
     <th>
       Datum/Tid<br>
       <a href='orders-done.php?id=time&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
@@ -70,15 +71,26 @@
       $email = htmlspecialchars($rowCustomer['email']);
       $phone = htmlspecialchars($rowCustomer['phone']);
   
-      $street = htmlspecialchars($rowCustomer['streetadress']);
-      $zip = htmlspecialchars($rowCustomer['zip-code']);
-      $city = htmlspecialchars($rowCustomer['city']);
+      $customer_city = htmlspecialchars($rowCustomer['city']);
+      $customer_zip = htmlspecialchars($rowCustomer['zip-code']);
+      $customer_address = htmlspecialchars($rowCustomer['streetadress']);
+
+      $other_city = htmlspecialchars($row['other_city']);
+      $other_zip = htmlspecialchars($row['other_zip']);
+      $other_address = htmlspecialchars($row['other_address']);
+      // beroende på om det finns nån annan leveransadress
+      if( strlen(htmlspecialchars($row['other_city'])) > 0 ){
+        $shippingAddress = "$other_address<br><span class='shipping_address'>$other_city</span> $other_zip";
+      } else {
+        $shippingAddress = "$customer_address<br><span class='shipping_address'>$customer_city</span> $customer_zip";
+      }
 
       $tableOrders.= "
       <tr>
       <td><a href='order-info-done.php?order_id=$order_id'><p>$order_id</p></a></td>
       <td><a href='order-info-done.php?order_id=$order_id'><p>$fname $sname</p></a></td>  
       <td><a href='order-info-done.php?order_id=$order_id'><p>$email</p></a></td>
+      <td>$shippingAddress</td>
       <td><p>$time</p></td>  
       <td><p>".number_format($total_amount,2)." kr</p></td>       
       <td>Slutförd</td>

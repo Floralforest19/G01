@@ -62,8 +62,6 @@ require_once 'header.php';
                     <input type="text" name="city2" id="city2" placeholder="Ange postort"
 
                        autocomplete="off" onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
-                        onkeyup="calcShippingFee(this.value, 0, 'shippingFee')"
-                        onclick="calcShippingFee(this.value,'shippingFee')" />
                     <div id="city2Feedback" style="color:#eb4b88"></div>
 
 

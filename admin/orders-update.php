@@ -12,12 +12,19 @@
     } else {
       $selectValue = htmlspecialchars($_POST['statusSelectDone']);
       $location ='orders-done.php';
+
     }
-    $sql2 = "UPDATE orders 
-    SET status = '$selectValue' 
+    $sql2 = "INSERT INTO `orders_archive` 
+    SELECT * FROM orders
     WHERE order_id = '$order_id'";
     $stmt2 = $db->prepare($sql2);
     $stmt2->execute();
+
+    $sql3 = "DELETE FROM `orders` 
+    WHERE order_id = '$order_id'";
+    $stmt3 = $db->prepare($sql3);
+    $stmt3->execute();
+
   } 
   header("Location:$location");
 ?>

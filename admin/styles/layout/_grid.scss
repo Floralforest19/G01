@@ -20,13 +20,16 @@
   }
 }
 
-.box, .box__search, .box__cat {
+.box,
+.box__search,
+.box__cat {
   display: flex;
   flex-direction: column;
   background-color: $product-background-color;
   box-shadow: 0 2px 4px 0 $shadow;
   color: $basic-text-color;
   align-content: center;
+  padding: 0 0.5em 0 0.5em;
 }
 
 .box__search {
@@ -42,7 +45,8 @@
   margin: 1vw 4vw;
 }
 
-.box__search--form, .box__cat--form  {
+.box__search--form,
+.box__cat--form {
   margin: 2vw 5vw;
   @media (min-width: $desktop-size) {
     margin: 3vw 10vw;
@@ -59,7 +63,8 @@
   border: 2px solid $shadow;
 }
 
-.box__pic,.box__pic--search {
+.box__pic,
+.box__pic--search {
   max-width: 158px;
   margin: 1em;
   align-self: center;
@@ -133,7 +138,7 @@
 }
 
 .input__cat {
-  width: 100%  ;
+  width: 100%;
   padding: 0.5rem;
   font-size: 14px;
   border-radius: 10px;
@@ -153,7 +158,7 @@
       & + li {
         margin-left: 1rem;
       }
-        display: inline;
+      display: inline;
       a {
         color: $second-head-color;
         &:hover {

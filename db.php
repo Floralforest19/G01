@@ -6,7 +6,7 @@
 $db_server   = "localhost";
 $db_database = "krisochros";
 $db_username = "root";
-$db_password = ""; 
+$db_password = "root"; 
 
 try {
   $db = new PDO("mysql:host=$db_server;dbname=$db_database;charset=utf8" 

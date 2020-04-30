@@ -7,12 +7,16 @@
 
 // check if email exists
   if(isset($_POST['email'])){
-    
+    // json meed info från loacl storage
+    $order_info = ($_POST['order_info']);
+
   // spara email i en variabel för att jämföra och kolla om det är en ny kund
   $checkEmail = htmlspecialchars($_POST['email']);
+  
   // hämtar total summan på ordern som behövs för att spara ordern
-
-$order_sum = htmlspecialchars($_POST['order_sum']);
+  $order_sum = htmlspecialchars($_POST['order_sum']);
+  $total_amount = $order_sum;
+  $shipping_fee = 0;
 
     // check if email exist in db
     $sql2 = "SELECT * FROM `customers` WHERE email = '$checkEmail'";
@@ -24,11 +28,35 @@ $order_sum = htmlspecialchars($_POST['order_sum']);
     while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
       $result = true;
       $existing_customer_id = $row2['customer_id'];
-      $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`)
-      VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', CURRENT_TIMESTAMP)";
-      $stmt = $db->prepare($sql);
-      $stmt->execute();
-    }
+      
+      // om anna leveransadress är ifylld skicka med denna i ordern
+      if( strlen(htmlspecialchars($_POST['city2'])) > 0 ){
+        $address2    = htmlspecialchars($_POST['address2']);
+        $zip2        = htmlspecialchars($_POST['zip2']);
+        $city2       = htmlspecialchars($_POST['city2']);
+        // kolla om fraktavgift
+        if(strtolower($city2) !== 'stockholm' && $order_sum < 500){
+          $shipping_fee += 50;
+        }
+        $total_amount += $shipping_fee;
+        $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `shipping_fee`, `total_amount`, `time`, `other_address`, `other_zip`, `other_city`,`order_info`)
+        VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', '$shipping_fee', '$total_amount', CURRENT_TIMESTAMP, '$address2', '$zip2', '$city2','$order_info')";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+    }else{
+        // kolla om fraktavgift
+        $city       = htmlspecialchars($_POST['city']);
+        if(strtolower($city) !== 'stockholm' && $order_sum < 500){
+          $shipping_fee += 50;
+        }
+        $total_amount += $shipping_fee;
+        $sql = "INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `shipping_fee`, `total_amount`, `time`,`order_info`)
+        VALUES (NULL, '$existing_customer_id', 'active', '$order_sum', '$shipping_fee', '$total_amount', CURRENT_TIMESTAMP,'$order_info')";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+      }
+  }
+
     if(!$result){ // custmomer doesn't exist, save new customer info
       $firstname  = htmlspecialchars($_POST['firstname']);
       $surname    = htmlspecialchars($_POST['surname']);
@@ -37,7 +65,7 @@ $order_sum = htmlspecialchars($_POST['order_sum']);
       $address    = htmlspecialchars($_POST['address']);
       $zip        = htmlspecialchars($_POST['zip']);
       $city       = htmlspecialchars($_POST['city']);
-
+      
       $sql = "INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`)
       VALUES (NULL, '$firstname', '$surname', '$address', '$city', '$zip', '$phone', '$email')";
       $stmt = $db->prepare($sql);
@@ -51,12 +79,35 @@ $order_sum = htmlspecialchars($_POST['order_sum']);
       $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
       $new_customer_id = $row3['customer_id'];
 
+      // om anna leveransadress är ifylld skicka med denna i ordern
+      if(strlen(htmlspecialchars($_POST['city2'])) > 0){
+        $address2    = htmlspecialchars($_POST['address2']);
+        $zip2        = htmlspecialchars($_POST['zip2']);
+        $city2       = htmlspecialchars($_POST['city2']);
+        // kolla om fraktavgift
+        if(strtolower($city2) !== 'stockholm' && $order_sum < 500){
+          $shipping_fee += 50;
+        }
+        $total_amount += $shipping_fee;
+      // save order to new customer together with new address
+      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `shipping_fee`, `total_amount`, `time`, `other_address`, `other_zip`, `other_city`,`order_info`)
+      VALUES (NULL, $new_customer_id, 'active', '$order_sum', '$shipping_fee', '$total_amount', CURRENT_TIMESTAMP, '$address2', '$zip2', '$city2', '$order_info')";
+      $stmt4 = $db->prepare($sql4);
+      $stmt4->execute();
+    }else{
+        // kolla om fraktavgift
+        if(strtolower($city) !== 'stockholm' && $order_sum < 500){
+          $shipping_fee += 50;
+        }
+        $total_amount += $shipping_fee;
       // save order to new customer OBS!! AMOUNT SHOULD BE CHANGED
-      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `time`)
-      VALUES (NULL, $new_customer_id, 'active', '$order_sum', CURRENT_TIMESTAMP)";
+      $sql4 ="INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `shipping_fee`, `total_amount`, `time`, `order_info`)
+      VALUES (NULL, $new_customer_id, 'active', '$order_sum', '$shipping_fee', '$total_amount', CURRENT_TIMESTAMP, '$order_info')";
       $stmt4 = $db->prepare($sql4);
       $stmt4->execute();
     }
+  }
+    
       // send customer info to order confirmation page
       $sql4 =" SELECT order_id, customer_id FROM orders ORDER BY order_id DESC LIMIT 1";
       $stmt4 = $db->prepare($sql4);
@@ -65,7 +116,6 @@ $order_sum = htmlspecialchars($_POST['order_sum']);
       $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
       $new_order_id = $row4['order_id'];
       $order_customer_id = $row4['customer_id'];
-
 
       // hämta info om de köpta produkterna och uppdaterar db med den nya mängden
       // $_POST['numbOfDiffProds'] innehåller antalet olika sorters produkter som köpts
@@ -93,6 +143,6 @@ $order_sum = htmlspecialchars($_POST['order_sum']);
         $stmt6->execute();
       }
       // skicka kund till bekräftelse
-      header("Location:orders-single.php?order_id=$new_order_id&customer_id=$order_customer_id");
+      header("Location:orders-single.php?order_id=".$new_order_id."&city=".$_POST['city']);
   }
 ?>

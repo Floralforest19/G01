@@ -8,13 +8,7 @@ function getProducts() {
   let products = cartObj.products;
   getProdsToCart(products);
 }
-
-// Read query string from url
-const urlParams = new URLSearchParams(window.location.search);
-
-
 getProducts();
-
 
 // 3. display cart with product info and delete buttons, products change for user
 function getProdsToCart(products) {
@@ -27,8 +21,8 @@ function getProdsToCart(products) {
   </thead>`;
 
   // 3.3 initalize totalSum
+  let totalSum = 0;
   let shippingFee = 50;
-  var totalSum = 0;
 
   // 3.4 loop over local storage to display added products
   for (let i = 0; i < products.length; i++) {
@@ -59,11 +53,13 @@ function getProdsToCart(products) {
       </tr>`;
 
     totalSum += productSum;
+
+    if (totalSum >= 500) {
+      shippingFee = 0;
+    } else {
+      shippingFee = 50;
+    }
   }
-
-  feePrice = calcShippingFee(urlParams.get('city'), totalSum, false)
-
-
   // 3.4.4 display table footer with total sum
   dispItems.innerHTML += `
   <thead class='t-order'>
@@ -77,7 +73,7 @@ function getProdsToCart(products) {
     <th></th>
     <th></th>
     <th>Fraktavgift: </th>
-    <th id="shippingFee">${feePrice}kr</th>
+    <th id="shippingFee">${shippingFee} kr</th>
   </thead>`;
   dispItems.innerHTML += `
   <thead class='t-bottom-order'>
@@ -86,5 +82,4 @@ function getProdsToCart(products) {
     <th>Total summa: </th>
     <th>${(totalSum + shippingFee).toFixed(2)} kr</th>
   </thead>`;
-
 }

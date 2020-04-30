@@ -67,3 +67,12 @@
   flex-direction: column;
   text-align: center;
 }
+
+.sale__old {
+  text-decoration: line-through;
+}
+
+.sale__new {
+  color: #eb4b88;
+  font-size: 1.25rem;
+}

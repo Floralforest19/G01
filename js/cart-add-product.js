@@ -1,6 +1,6 @@
 function setAddProductToCartClickEvent() {
   let addToCartButtons = document.querySelectorAll(".add-to-cart");
-  // updateCart();
+  updateCart2();
   //loopa över alla knappar
   for (let i = 0; i < addToCartButtons.length; i++) {
     let addToCartButton = addToCartButtons[i];
@@ -21,11 +21,15 @@ function setAddProductToCartClickEvent() {
     let hiddenProductName = addToCartButtonParent.querySelector(
       ".product-name"
     );
+    let hiddenProductSale = addToCartButtonParent.querySelector(
+      ".product-sale"
+    );
 
     let productId = hiddenProductIdInput.value;
     let productPrice = hiddenProductPrice.value;
     let productName = hiddenProductName.value;
     let productImageName = hiddenProductImage.value;
+    let productSaleQuantity = hiddenProductSale.value;
 
     //binda ett click event på alla lägg till knappar och skicka med produkt-id, namn, pris, antal och bild.
     addToCartButton.addEventListener("click", function () {
@@ -73,6 +77,12 @@ function setAddProductToCartClickEvent() {
         //spara med nya antalet
         shoppingCart.products[indexOfExisting] = existingProduct;
       } else {
+        // lägg till rea status
+        if (maxAllowedQuantity < 10) {
+          productSaleQuantity = maxAllowedQuantity;
+        } else {
+          productSaleQuantity = maxAllowedQuantity;
+        }
         //skapa ett javascript objekt för EN produkt och sätt dess properties
         let product = {
           productName: productName,
@@ -80,6 +90,7 @@ function setAddProductToCartClickEvent() {
           productId: productId,
           productPrice: productPrice,
           quantity: quantity,
+          productSaleQuantity: productSaleQuantity,
         };
 
         //lägg till produkten i shoppingcarten
@@ -92,22 +103,27 @@ function setAddProductToCartClickEvent() {
       saveShoppingCartInLocalStorage(shoppingCart);
 
       console.log(JSON.stringify(shoppingCart));
-      // updateCart();
 
-      //Att tänka på:
-      //här kannske vi vill updatera en shopping cart icon
-      //här kannske vi vill rendera någonting på sidan
+      updateCart2();
     });
   }
 }
 
-// function updateCart() {
-//   let sum = 0;
-//   if (localStorage.getItem("shoppingCart").length > 0) {
-//     let products = JSON.parse(localStorage.getItem("shoppingCart")).products;
-//     for (let i = 0; i < products.length; i++) {
-//       sum += products[i].quantity;
-//     }
-//   }
-//   document.getElementById("updateCart").innerHTML = " (" + sum + ")";
-// }
+function updateCart2() {
+  let sum = 0;
+  if(localStorage.getItem("shoppingCart") == null) {
+    let emptyShoppingCart = {
+      products: [],
+    };
+
+  let shoppingCartString = JSON.stringify(emptyShoppingCart);
+  window.localStorage.setItem("shoppingCart", shoppingCartString);
+  }
+  if (localStorage.getItem("shoppingCart").length > 0) {
+    let products = JSON.parse(localStorage.getItem("shoppingCart")).products;
+    for (let i = 0; i < products.length; i++) {
+      sum += products[i].quantity;
+    }
+  }
+  document.getElementById("updateCart").innerHTML = " (" + sum + ")";
+}

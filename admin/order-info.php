@@ -38,6 +38,8 @@ if( isset($_GET['order_id'])){
   $street = htmlspecialchars($rowCustomer['streetadress']);
   $zip = htmlspecialchars($rowCustomer['zip-code']);
   $other_city = htmlspecialchars($rowOrder['other_city']);
+  $other_zip = htmlspecialchars($rowOrder['other_zip']);
+  $other_street = htmlspecialchars($rowOrder['other_address']);
   if($status == 'active'){
     $statusText = 'Ny';
   } else if($status == 'in progress') {
@@ -76,7 +78,7 @@ if( isset($_GET['order_id'])){
       $tableShippingAddress = "
           <tr>
             <th>Leveransadress</th>
-            <td>$street<br>$zip $city</td>
+            <td>$other_street<br>$other_zip $other_city</td>
           </tr>
         </table>
       </div>";

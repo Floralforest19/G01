@@ -9,22 +9,27 @@
     if(isset($_POST['statusSelect'])){
       $selectValue = htmlspecialchars($_POST['statusSelect']);
       $location ='orders.php';
+      // ifall order statusen ska ändras från/till ny/behandlas
+      $sql = "UPDATE orders 
+      SET status = '$selectValue' 
+      WHERE order_id = '$order_id'";
+      $stmt = $db->prepare($sql);
+      $stmt->execute();
     } else {
       $selectValue = htmlspecialchars($_POST['statusSelectDone']);
       $location ='orders-done.php';
+      // ifall ordern ska arkiveras och sflyttas till ny tabell
+      $sql2 = "INSERT INTO `orders_archive` 
+      SELECT * FROM orders
+      WHERE order_id = '$order_id'";
+      $stmt2 = $db->prepare($sql2);
+      $stmt2->execute();
 
+      $sql3 = "DELETE FROM `orders` 
+      WHERE order_id = '$order_id'";
+      $stmt3 = $db->prepare($sql3);
+      $stmt3->execute();
     }
-    $sql2 = "INSERT INTO `orders_archive` 
-    SELECT * FROM orders
-    WHERE order_id = '$order_id'";
-    $stmt2 = $db->prepare($sql2);
-    $stmt2->execute();
-
-    $sql3 = "DELETE FROM `orders` 
-    WHERE order_id = '$order_id'";
-    $stmt3 = $db->prepare($sql3);
-    $stmt3->execute();
-
   } 
   header("Location:$location");
 ?>

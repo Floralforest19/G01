@@ -2,11 +2,12 @@
 let dispItems = document.getElementById("dispItems");
 
 // 2. get data from json and send it thowards getProdsToCart
-function getProducts() {
+function getProducts(city = false) {
+  console.log(city)
   let cartFromStorage = localStorage.getItem("shoppingCart");
   let cartObj = JSON.parse(cartFromStorage);
   let products = cartObj.products;
-  getProdsToCart(products);
+  getProdsToCart(products, city);
 }
 
 // Read query string from url
@@ -17,7 +18,7 @@ getProducts();
 
 
 // 3. display cart with product info and delete buttons, products change for user
-function getProdsToCart(products) {
+function getProdsToCart(products, city = false) {
   dispItems.innerHTML = `
   <thead class='t-top-order'>
     <th class='table__show-items--name'>Produkt</th>
@@ -61,8 +62,9 @@ function getProdsToCart(products) {
     totalSum += productSum;
   }
 
-  feePrice = calcShippingFee(urlParams.get('city'), totalSum, false)
+  var city = (city) ? city : (urlParams.get('city2')) ? urlParams.get('city2') : urlParams.get('city');
 
+  feePrice = calcShippingFee(city, totalSum)
 
   // 3.4.4 display table footer with total sum
   dispItems.innerHTML += `
@@ -84,7 +86,7 @@ function getProdsToCart(products) {
     <th></th>
     <th></th>
     <th>Total summa: </th>
-    <th>${(totalSum + shippingFee).toFixed(2)} kr</th>
+    <th>${(totalSum + feePrice).toFixed(2)} kr</th>
   </thead>`;
 
 }

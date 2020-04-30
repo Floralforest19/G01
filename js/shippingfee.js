@@ -4,7 +4,7 @@
 //"shippingFee"
 var calcShippingFee = function (shipping_adress_city, sum, id = false) {
    if (!shipping_adress_city)
-      return "50"; //Default value
+      return 50; //Default value
 
    shipping_adress_city = shipping_adress_city.toUpperCase();
    var price = 0;

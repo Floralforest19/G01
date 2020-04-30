@@ -3,7 +3,6 @@ let dispItems = document.getElementById("dispItems");
 
 // 2. get data from json and send it thowards getProdsToCart
 function getProducts(city = false) {
-  console.log(city)
   let cartFromStorage = localStorage.getItem("shoppingCart");
   let cartObj = JSON.parse(cartFromStorage);
   let products = cartObj.products;
@@ -63,8 +62,7 @@ function getProdsToCart(products, city = false) {
   }
 
   var city = (city) ? city : (urlParams.get('city2')) ? urlParams.get('city2') : urlParams.get('city');
-
-  feePrice = calcShippingFee(city, totalSum)
+  feePrice = calcShippingFee(city, totalSum);
 
   // 3.4.4 display table footer with total sum
   dispItems.innerHTML += `

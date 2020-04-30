@@ -43,6 +43,7 @@
         </div>
     </div>
 
+    <div class="search-feedback-wrapper">
     <form class="header-search" name="searchBarForm" action="search.php" onsubmit="return validateForm('searchBarForm','input','feedbackBar')" method="post">
         <input id="header-search" class="header-search-bar searchInput" type="search" name="input" placeholder="Sök...">
     </form>
@@ -52,6 +53,8 @@
         <img class="header-logo-button" src="./images/phone.png" alt="Phone">
         <p>Contact</p>
     </a>
+    </div>
+
     <a class="header-button-a header-button-cart" href="cart.php">
         <img class="header-logo-button" src="./images/shoppingcart.png" alt="Shopping cart">
         <span id="updateCart">(0)</span>

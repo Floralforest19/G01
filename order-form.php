@@ -38,9 +38,10 @@ require_once 'header.php';
                 <div id="zipFeedback" style="color:#eb4b88"></div>
 
                 <label for="city">Postort</label>
-                <input type="text" name="city" id="city" placeholder="Ange din postadress"
-                    onkeyup="calcShippingFee(this.value, 0, 'shippingFee')"
-                    onclick="calcShippingFee(this.value,'shippingFee')" />
+
+
+                <input type="text" name="city" id="city" placeholder="Ange din postadress" required
+                   autocomplete="off" onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
                 <div id="cityFeedback" style="color:#eb4b88"></div>
 
                 <label for="leverans">Annan leveransaddress?</label>
@@ -59,9 +60,10 @@ require_once 'header.php';
 
                     <label for="city2">Postort</label>
                     <input type="text" name="city2" id="city2" placeholder="Ange postort"
-                        onkeyup="calcShippingFee(this.value, 0, 'shippingFee')"
-                        onclick="calcShippingFee(this.value,'shippingFee')" />
+
+                       autocomplete="off" onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
                     <div id="city2Feedback" style="color:#eb4b88"></div>
+
 
                 </div>
             </div>

@@ -1,0 +1,242 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.3
+-- https://www.phpmyadmin.net/
+--
+-- Värd: localhost:3306
+-- Tid vid skapande: 30 apr 2020 kl 09:51
+-- Serverversion: 5.7.26
+-- PHP-version: 7.4.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+01:00";
+
+--
+-- Databas: `krisochros`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `category`
+--
+
+CREATE TABLE `category` (
+  `category_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `category`
+--
+
+INSERT INTO `category` (`category_id`, `name`) VALUES
+(1, 'Hygien'),
+(2, 'Mat'),
+(3, 'Rosor');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `customers`
+--
+
+CREATE TABLE `customers` (
+  `customer_id` int(11) NOT NULL,
+  `firstname` varchar(32) NOT NULL,
+  `surname` varchar(32) NOT NULL,
+  `streetadress` varchar(64) NOT NULL,
+  `city` varchar(64) NOT NULL,
+  `zip-code` varchar(64) NOT NULL,
+  `phone` varchar(64) DEFAULT NULL,
+  `email` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `customers`
+--
+
+INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`) VALUES
+(1, 'Kalle', 'Anka', 'Paradisäppelvägen 11', 'Ankeborg', '72464', '755000010', 'kalle@ankeborg.se'),
+(3, 'Kajsa', 'Anka', 'Andvägen 14', 'Stockholm', '18155', '755000011', 'kajsa@ankeborg.se'),
+(40, 'Musse', 'Pigg', 'Hålet i väggen 5', 'Ankeborg', '12345', '1234567890', 'musen@pigg.se'),
+(41, 'Stina', 'Englesson', 'Periskopvägen 4', 'Lidingö', '181 55', '704470712', 'rsenglesson@gmail.com'),
+(42, 'Jan-Olov', 'Granberg', 'Triangelgatan 33 B', 'Furulund', '244 62', '704407132', 'adsadaas@lploiu.se'),
+(43, 'Anders', 'Persson', 'Per 1', 'Stockholm', '12345', '01234567890', 'anders@per.se'),
+(44, 'Jan-Olov', 'Granberg', 'Triangelgatan 33 B', 'Furulund', '244 62', '704407132', 'fsdsdf@lploiu.se');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `status` varchar(11) NOT NULL COMMENT 'Active/In progress/Done',
+  `amount` double NOT NULL,
+  `shipping_fee` int(64) NOT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `order_info` json DEFAULT NULL,
+  `other_address` varchar(64) DEFAULT NULL,
+  `other_zip` varchar(64) DEFAULT NULL,
+  `other_city` varchar(64) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `customer_id`, `status`, `amount`, `shipping_fee`, `time`, `order_info`, `other_address`, `other_zip`, `other_city`) VALUES
+(267, 3, 'active', 249, 50, '2020-04-29 23:18:06', '{\"products\": [{\"quantity\": 5, \"productId\": \"14\", \"productName\": \"Tvål\", \"productPrice\": \"22.00\", \"productImageName\": \"88864.jpeg\", \"productSaleQuantity\": 422}, {\"quantity\": 7, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 3858}, {\"quantity\": 5, \"productId\": \"7\", \"productName\": \"Ris\", \"productPrice\": \"11.00\", \"productImageName\": \"ris.png\", \"productSaleQuantity\": 999}]}', 'Periskopvägen 4', '18155', 'Lidingö'),
+(268, 1, 'active', 453, 50, '2020-04-29 23:19:57', '{\"products\": [{\"quantity\": 2, \"productId\": \"2\", \"productName\": \"Daggros\", \"productPrice\": \"20.00\", \"productImageName\": \"daggros.png\", \"productSaleQuantity\": 578}, {\"quantity\": 5, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 3851}, {\"quantity\": 2, \"productId\": \"21\", \"productName\": \"Rosor\", \"productPrice\": \"120.00\", \"productImageName\": \"plastros.png\", \"productSaleQuantity\": 9}, {\"quantity\": 5, \"productId\": \"6\", \"productName\": \"Toalettpapper\", \"productPrice\": \"23.00\", \"productImageName\": \"toalettpapper.jpg\", \"productSaleQuantity\": 199}, {\"quantity\": 1, \"productId\": \"14\", \"productName\": \"Tvål\", \"productPrice\": \"22.00\", \"productImageName\": \"88864.jpeg\", \"productSaleQuantity\": 417}]}', 'Hjulbäck 324', '98712', 'Hjulbäck'),
+(269, 1, 'active', 773.1, 50, '2020-04-29 23:20:43', '{\"products\": [{\"quantity\": 1, \"productId\": \"5\", \"productName\": \"Ingrid Bergman\", \"productPrice\": \"359.00\", \"productImageName\": \"ingrid.png\", \"productSaleQuantity\": 8}, {\"quantity\": 10, \"productId\": \"14\", \"productName\": \"Tvål\", \"productPrice\": \"22.00\", \"productImageName\": \"88864.jpeg\", \"productSaleQuantity\": 416}, {\"quantity\": 10, \"productId\": \"6\", \"productName\": \"Toalettpapper\", \"productPrice\": \"23.00\", \"productImageName\": \"toalettpapper.jpg\", \"productSaleQuantity\": 194}]}', NULL, NULL, NULL),
+(270, 41, 'active', 56.7, 0, '2020-04-30 09:43:28', '{\"products\": [{\"quantity\": 2, \"productId\": \"2\", \"productName\": \"Daggros\", \"productPrice\": \"20.00\", \"productImageName\": \"daggros.png\", \"productSaleQuantity\": 9}, {\"quantity\": 1, \"productId\": \"6\", \"productName\": \"Toalettpapper\", \"productPrice\": \"23.00\", \"productImageName\": \"toalettpapper.jpg\", \"productSaleQuantity\": 9}]}', 'Bergsundsgatan 11', '181012', 'Stockholm'),
+(271, 42, 'active', 353.1, 50, '2020-04-30 10:02:05', '{\"products\": [{\"quantity\": 1, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 3846}, {\"quantity\": 1, \"productId\": \"2\", \"productName\": \"Daggros\", \"productPrice\": \"20.00\", \"productImageName\": \"daggros.png\", \"productSaleQuantity\": 7}, {\"quantity\": 1, \"productId\": \"5\", \"productName\": \"Ingrid Bergman\", \"productPrice\": \"359.00\", \"productImageName\": \"ingrid.png\", \"productSaleQuantity\": 7}]}', 'Periskopvägen 4', '181 55', 'Stockoholm'),
+(272, 42, 'active', 1322.4, 0, '2020-04-30 10:18:46', '{\"products\": [{\"quantity\": 1, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 3845}, {\"quantity\": 1, \"productId\": \"2\", \"productName\": \"Daggros\", \"productPrice\": \"20.00\", \"productImageName\": \"daggros.png\", \"productSaleQuantity\": 6}, {\"quantity\": 4, \"productId\": \"5\", \"productName\": \"Ingrid Bergman\", \"productPrice\": \"359.00\", \"productImageName\": \"ingrid.png\", \"productSaleQuantity\": 6}]}', 'Bergsundsgatan 11', '12345', 'Stockholm'),
+(273, 43, 'active', 321, 50, '2020-04-30 10:36:14', '{\"products\": [{\"quantity\": 1, \"productId\": \"30\", \"productName\": \"Rosor\", \"productPrice\": \"321.00\", \"productImageName\": \"rose03.png\", \"productSaleQuantity\": 123}]}', 'Periskopvägen 4', '181 55', 'Lidingö'),
+(274, 44, 'active', 441, 50, '2020-04-30 11:34:07', '{\"products\": [{\"quantity\": 1, \"productId\": \"30\", \"productName\": \"Rosor\", \"productPrice\": \"321.00\", \"productImageName\": \"rose03.png\", \"productSaleQuantity\": 122}, {\"quantity\": 1, \"productId\": \"26\", \"productName\": \"Rosornas krig\", \"productPrice\": \"120.00\", \"productImageName\": \"rose04.png\", \"productSaleQuantity\": 1200}]}', NULL, NULL, NULL),
+(275, 42, 'active', 30, 50, '2020-04-30 11:46:03', '{\"products\": [{\"quantity\": 1, \"productId\": \"22\", \"productName\": \"Banan\", \"productPrice\": \"12.00\", \"productImageName\": \"banan.jpg\", \"productSaleQuantity\": 3844}, {\"quantity\": 1, \"productId\": \"2\", \"productName\": \"Daggros\", \"productPrice\": \"20.00\", \"productImageName\": \"daggros.png\", \"productSaleQuantity\": 5}]}', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `orders_archive`
+--
+
+CREATE TABLE `orders_archive` (
+  `order_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `status` varchar(11) NOT NULL COMMENT 'Active/In progress/Done',
+  `amount` int(32) NOT NULL,
+  `shipping_fee` int(64) NOT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `order_info` json DEFAULT NULL,
+  `other_address` varchar(64) DEFAULT NULL,
+  `other_zip` varchar(64) DEFAULT NULL,
+  `other_city` varchar(64) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `orders_archive`
+--
+
+INSERT INTO `orders_archive` (`order_id`, `customer_id`, `status`, `amount`, `shipping_fee`, `time`, `order_info`, `other_address`, `other_zip`, `other_city`) VALUES
+(2, 3, 'active', 646, 50, '2020-02-10 16:59:49', '{\"products\": [{\"quantity\": 2, \"productId\": \"5\", \"productName\": \"Ingrid Bergman\", \"productPrice\": \"359.00\", \"productImageName\": \"ingrid.png\", \"productSaleQuantity\": 8}]}', 'Vägen 3', '13455', 'Alingsås'),
+(3, 1, 'active', 323, 50, '2020-04-21 17:41:09', '{\"products\": [{\"quantity\": 1, \"productId\": \"5\", \"productName\": \"Ingrid Bergman\", \"productPrice\": \"359.00\", \"productImageName\": \"ingrid.png\", \"productSaleQuantity\": 8}]}', 'Vägen 3', '13455', 'Alingsås'),
+(266, 3, 'active', 503, 0, '2020-04-29 23:16:42', '{\"products\": [{\"quantity\": 1, \"productId\": \"5\", \"productName\": \"Ingrid Bergman\", \"productPrice\": \"359.00\", \"productImageName\": \"ingrid.png\", \"productSaleQuantity\": 9}, {\"quantity\": 9, \"productId\": \"2\", \"productName\": \"Daggros\", \"productPrice\": \"20.00\", \"productImageName\": \"daggros.png\", \"productSaleQuantity\": 587}]}', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` text,
+  `quantity` int(11) NOT NULL,
+  `image_file_name` varchar(500) NOT NULL,
+  `price` decimal(6,2) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumpning av Data i tabell `product`
+--
+
+INSERT INTO `product` (`product_id`, `name`, `description`, `quantity`, `image_file_name`, `price`, `category_id`, `creation_date`) VALUES
+(2, 'Daggros', 'Rosa glauca. Vacker ros med vildroskänsla. Får vackra rödbruna nypon på hösten. Mycket friskt och lättodlad ros. Vackert rödbruna nypon.', 4, 'daggros.png', '20.00', 3, '2020-02-23 10:29:44'),
+(5, 'Ingrid Bergman', 'Ingrid Bergman är en praktfull och odlingsvärd ros med stora, mörkröda blommor och spriralvända kronblad. Utnämd till årets ros år 2000 av världsförbundet.', 2, 'ingrid.png', '359.00', 3, '2020-02-28 08:28:44'),
+(6, 'Toalettpapper', 'Toalettpapper som passar vid nödläge.', 8, 'toalettpapper.jpg', '23.00', 1, '2020-04-03 16:18:44'),
+(7, 'Ris', 'Råris är riskorn där bara yttersta delen av kornets skal är bortskalat, och där man låtit hinnan runt riset, som är svagt silverfärgad, sitta kvar.', 994, 'ris.png', '11.00', 2, '2020-04-13 23:28:44'),
+(14, 'Tvål', 'Halka inte! ', 406, '88864.jpeg', '22.00', 1, '2020-04-23 17:48:10'),
+(21, 'Rosor', 'För alla tillfällen. ', 700, 'plastros.png', '120.00', 3, '2020-04-27 18:10:06'),
+(22, 'Banan', 'Apornas favorit! ', 3843, 'banan.jpg', '12.00', 2, '2020-04-27 18:11:51'),
+(26, 'Rosornas krig', 'Rosor i massor för botanikälskare. ', 1199, 'rose04.png * ', '120.00', 3, '2020-04-29 23:46:15'),
+(30, 'Rosor', 'Blommor ', 121, 'rose03.png * rose04.png * ', '321.00', 3, '2020-04-30 10:22:07');
+
+--
+-- Index för dumpade tabeller
+--
+
+--
+-- Index för tabell `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Index för tabell `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`customer_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Index för tabell `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `orders_ibfk_1` (`customer_id`);
+
+--
+-- Index för tabell `orders_archive`
+--
+ALTER TABLE `orders_archive`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Index för tabell `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `catergory` (`category_id`);
+
+--
+-- AUTO_INCREMENT för dumpade tabeller
+--
+
+--
+-- AUTO_INCREMENT för tabell `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT för tabell `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT för tabell `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=276;
+
+--
+-- AUTO_INCREMENT för tabell `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- Restriktioner för dumpade tabeller
+--
+
+--
+-- Restriktioner för tabell `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`);
+
+--
+-- Restriktioner för tabell `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `catergory` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);

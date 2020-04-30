@@ -88,7 +88,7 @@
 
       $selectStatus = 
       "<form method='post' action='orders-update.php?order_id=$order_id'>
-        <select name='statusSelect' id='statusSelect'>";
+        <select name='statusSelect' class='statusSelect'>";
       if( $status == 'active'){
         $selectStatus .= "
         <option value='active' selected>Ny</option>

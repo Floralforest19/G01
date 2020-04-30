@@ -4,7 +4,7 @@ function filterAdresses(){
   filterInput.addEventListener('keyup',function (e) {
     let filterPhrase = e.currentTarget.value
     console.log(filterPhrase)
-    getAddresses()
+    getAddresses(filterPhrase)
 
   })
 
@@ -13,12 +13,15 @@ function filterAdresses(){
 
 
 
-function getAddresses(){
+function getAddresses(filterPhrase){
   let allAddresses = document.querySelectorAll('.shipping_address')
+  let cityArray = []
   allAddresses.forEach(address => {
-    let city = address.innerHTML
-    if (city.toLowerCase() == 'stockholm' ){
-      console.log(city)
-    }
+    let city = address.innerHTML.toLowerCase()
+    cityArray.push(city)
   });
+    
+  cityArray = cityArray.filter(filterPhrase)
 }
+
+filterAdresses()

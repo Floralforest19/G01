@@ -10,9 +10,11 @@
 <section class='background'>
   <h2>Aktiva beställningar</h2>
   <div class="box__cat--form">
-  <form action="">
-    <input type="text" id="filterInput" placholder="Filtrera efter stad">
-  </form>
+  <div class="nav__admin">
+    <form action="">
+      <input type="text" id="filterInput" placholder="Filtrera efter stad">
+    </form>
+  </div>
 
   <div class='nav__admin'>
 
@@ -92,7 +94,7 @@
 
       $selectStatus = 
       "<form method='post' action='orders-update.php?order_id=$order_id'>
-        <select name='statusSelect' id='statusSelect'>";
+        <select name='statusSelect' class='statusSelect'>";
       if( $status == 'active'){
         $selectStatus .= "
         <option value='active' selected>Ny</option>

@@ -64,7 +64,7 @@
     </tr>
     <tr>  
       <th>Namn</th>
-      <td class='customer-td'><p>$firstname</p></td>
+      <td class='customer-td'><p>$firstname $surname</p></td>
     </tr> 
     <tr> 
       <th>E-mail</th>
@@ -75,7 +75,7 @@
       <td class='customer-td'><p>$phone</p></td>
     </tr>
     <tr>
-      <th>Adress</th>
+      <th>Leveransadress</th>
       <td class='customer-td'><p>$address</p></td>
    </tr>   
    <tr>   

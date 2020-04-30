@@ -124,7 +124,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       }
       
       // Check if $uploadOk is set to 0 by an error
-      if ($uploadOk == 0) {
+      if ($uploadOk == 0 || $image_total >= 5) {
         
         echo "Filen gick inte att ladda upp.";
         // if everything is ok, try to upload file

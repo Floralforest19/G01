@@ -88,7 +88,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
         $imageCollection .= htmlspecialchars(basename ($_FILES["image_file_name"]["name"][$i])) . " * ";
       }
       $imageCounter++;
-      if ($imageCounter >= 5) {
+      if ($imageCounter > 5) {
         header("Location:create-product.php?uppladdning=fel");
         exit;
       }

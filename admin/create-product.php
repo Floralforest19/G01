@@ -33,8 +33,10 @@ require_once '../db.php';
    <div> <textarea name="description" type="text" cols="30" rows="5" class="input__cat" required placeholder="Beskrivning"> </textarea></div> 
    <div>  <input name="quantity" type="number" class="input__cat" required placeholder="Antal"></div> 
    <div>  <input name="price" type="number" class="input__cat" required placeholder="Pris"></div> 
-
-    <input class="product__btn" type="submit" value="Lägg till produkt">
+    <div style="display: flex;justify-content: center;justify-content: space-evenly;">
+      <a class="btn__delete " href="index.php" style="margin: 0;text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
+      <input class="product__btn" type="submit" value="Lägg till produkt">
+    </div>
 </form>
 
 </div>

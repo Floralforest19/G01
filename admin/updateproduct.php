@@ -69,16 +69,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
   // Loopar bilderna som produkten redan har
   for ($i=0; $i < $totalfiles; $i++) { 
-    if ($_POST["image_radio_$i"] == "save" || $image_primary == $i) { // Sparar gamla bilder i stängen $imageCollection
+    if ($_POST["image_radio_$i"] == "save") { // Sparar gamla bilder i stängen $imageCollection
       if ($image_primary == $i && $i != 0 && $totalfiles > 0) {
         $imageCollection = $image_array[$i] . " * " . $imageCollection; // Sätter primära bilden i början på strängen som sparas på databsen.
       } else {
         $imageCollection .= $image_array[$i] . " * ";
       }
       $image_total++; // Summan av bilder som produkten kommer att ha, om det är 5 så går det inte att lägga till fler bilder
-    }
-    if ($_POST["image_radio_$i"] == "trash" && $image_primary == $i && $totalfiles > 0) {  // Ifall primära bilden har valts att tas bort så kommer ett felmeddelande säga att det inte går
-      $image_primary_error = 1;
     }
   }
 
@@ -160,21 +157,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
       $image_total++;
       if ($image_total > 5) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
-        if ($image_primary_error == 0) {
           header("Location:updateproduct.php?product_id=$product_id&uppladdning=max5");
-        }else { 
-          header("Location:updateproduct.php?product_id=$product_id&uppladdning=max5&primary=error");  // Om primärbild har valts att raderas och mer än 5 bilder försöker sparas på en produkt visas felmeddelande
-        }
         exit;
-      }
-      if ($image_primary_error == 1) { // Om primärbild har valts att raderas visas felmeddelande
-        header("Location:updateproduct.php?product_id=$product_id&primary=error");
-      }
-
-
-
+      }      
     }   // Slut på bildernas for-loop.
-  }   // Slut på if-sats som kollar ifall bild variabeln är tom.    *** Behövs det här? *** start på rad 105
+  }   // Slut på if-sats som kollar ifall bild variabeln är tom.    *** Behövs det här? *** start på rad 105 - Jag tror det.
+
+
 
     $update = "UPDATE product
     SET
@@ -200,7 +189,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $stmt->execute();
 
-    print_r($image_primary);
     header("Location:updateproduct.php?product_id=$product_id");
     exit;
   }else if (isset($_GET['product_id']) == false) {
@@ -251,10 +239,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     } else {
       echo "Produkten har ingen bild än. <br><br>";
-    }
-    
-    if (isset($_GET['primary']) == true) { // Om primärbild har valts att raderas visas felmeddelande
-      echo "<h4 style='color: red;'>Kan ej ta bort primär bild.</h4>";
     }
     if (isset($_GET['uppladdning']) == true) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
       echo "<h4 style='color: red;'>En produkt får max ha 5 bilder.</h4>";

@@ -17,12 +17,12 @@
             <?php
         $catHeading = "<h3>Alla produkter</h3>";
         if(isset($_GET['id'])){
-          $id    = htmlentities($_GET['id']);
-          $sql2  = "SELECT * FROM category WHERE category_id = '$id'";
+          $id = htmlentities($_GET['id']);
+          $sql2 = "SELECT * FROM category WHERE category_id = '$id'";
           $stmt2 = $db->prepare($sql2);
           $stmt2->execute();
-          while( $row2  = $stmt2->fetch(PDO::FETCH_ASSOC) ){
-            $name2      = $row2['name'];
+          while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
+            $name2 = $row2['name'];
             $catHeading = "<h3>$name2</h3>";
           }
           if($id != 'all'){
@@ -50,13 +50,13 @@
   // loopar över arrayen som har resultatet från db
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // spara data från db i varsin variabel
-      $id          = htmlspecialchars($row['product_id']); // $row = array
-      $name        = htmlspecialchars($row['name']);
+      $id = htmlspecialchars($row['product_id']); // $row = array
+      $name = htmlspecialchars($row['name']);
       $description = htmlspecialchars($row['description']);
-      $category    = strtoupper(htmlspecialchars($row['category_id']));
-      $quantity    = htmlspecialchars($row['quantity']);
-      $price       = htmlspecialchars($row['price']);
-      $image       = htmlspecialchars($row['image_file_name']);
+      $category = strtoupper(htmlspecialchars($row['category_id']));
+      $quantity = htmlspecialchars($row['quantity']);
+      $price = htmlspecialchars($row['price']);
+      $image = htmlspecialchars($row['image_file_name']);
 
       // Om det inte finns en bild läggs det upp en dummy
       if(empty($image)){

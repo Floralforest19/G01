@@ -8,7 +8,7 @@ if(isset($_GET['id'])){
   // ta id från get
   $id = htmlspecialchars($_GET['id']); 
 
-  $sql  = "DELETE FROM category WHERE category_id = :id";
+  $sql = "DELETE FROM category WHERE category_id = :id";
   $stmt = $db->prepare($sql);
   $stmt->bindParam(':id', $id);
   $stmt->execute();

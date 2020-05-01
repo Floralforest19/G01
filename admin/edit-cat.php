@@ -7,11 +7,11 @@
 
   // get current name and set as placeholder in form
   if(isset($_GET['id'])){
-    $id   = htmlspecialchars($_GET['id']); 
-    $sql  = "SELECT name FROM category WHERE category_id = $id";
+    $id = htmlspecialchars($_GET['id']); 
+    $sql = "SELECT name FROM category WHERE category_id = $id";
     $stmt = $db->prepare($sql);
     $stmt->execute();
-    $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $name = htmlspecialchars($row['name']);
   }
 ?>
@@ -23,7 +23,7 @@
       <input name="catname" type="text" class="input__cat" required placeholder="<?php echo $name ?>">
       <?php // kolla om kategori existerat --> ge feedback
         if(isset($_POST['catname'])){
-          $id      = htmlspecialchars($_GET['id']); 
+          $id = htmlspecialchars($_GET['id']); 
           $catname = ucfirst(htmlspecialchars($_POST['catname'])); 
           // kolla om kategorin finns i databasen
           $sql = "SELECT `name` FROM `category` WHERE `name` LIKE '$catname'";

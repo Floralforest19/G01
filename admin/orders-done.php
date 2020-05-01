@@ -35,7 +35,7 @@
 
 <?php
   if( isset($_GET['id']) ){
-    $id        = htmlentities($_GET['id']);
+    $id = htmlentities($_GET['id']);
     $orderSort = htmlentities($_GET['order_sort']);
     // hämta från beställningar istället
     $sql = "SELECT * FROM orders_archive 
@@ -51,26 +51,28 @@
   $tableOrders = "";
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // kolla igenom alla ordrar och spara order-id samt kund-id
-      $order_id     = htmlspecialchars($row['order_id']);
-      $customer_id  = htmlspecialchars($row['customer_id']);
-      $status       = htmlspecialchars($row['status']);
-      $amount       = htmlspecialchars($row['amount']);
+      $order_id = htmlspecialchars($row['order_id']);
+      $customer_id = htmlspecialchars($row['customer_id']);
+      $status = htmlspecialchars($row['status']);
+      $amount = htmlspecialchars($row['amount']);
       $shipping_fee = htmlspecialchars($row['shipping_fee']);
       $total_amount = floatval($amount) + floatval($shipping_fee);
-      $time         = htmlspecialchars($row['time']);
+      $time = htmlspecialchars($row['time']);
 
-      $sqlCustomer  = "SELECT * FROM customers WHERE customer_id = $customer_id";
+      $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
       $stmtCustomer = $db->prepare($sqlCustomer);
       $stmtCustomer->execute();
-      $rowCustomer  = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
+      $rowCustomer = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
   
-      $fname  = htmlspecialchars($rowCustomer['firstname']);
-      $sname  = htmlspecialchars($rowCustomer['surname']);
-      $email  = htmlspecialchars($rowCustomer['email']);
-      $phone  = htmlspecialchars($rowCustomer['phone']);
+      $fname = htmlspecialchars($rowCustomer['firstname']);
+      $sname = htmlspecialchars($rowCustomer['surname']);
+
+      $email = htmlspecialchars($rowCustomer['email']);
+      $phone = htmlspecialchars($rowCustomer['phone']);
+  
       $street = htmlspecialchars($rowCustomer['streetadress']);
-      $zip    = htmlspecialchars($rowCustomer['zip-code']);
-      $city   = htmlspecialchars($rowCustomer['city']);
+      $zip = htmlspecialchars($rowCustomer['zip-code']);
+      $city = htmlspecialchars($rowCustomer['city']);
 
       $tableOrders.= "
       <tr>

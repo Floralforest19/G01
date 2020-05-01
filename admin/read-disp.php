@@ -10,16 +10,28 @@
 <a href='create-product.php'> <button class='product__btn'> Skapa ny produkt</button> </a> 
 
 <form action="#" method="post">
-        Visa som lista
-        <input type="checkbox" name="formProductList" value="Yes" />
-        Visa som bildprodukter
+        <h4 style="text-align: center;">Utseende</h4>
 
-        <input type="checkbox" name="formProductBox" value="No" />
+        <?php
+        if(isset($_POST['formProductList']) && 
+        $_POST['formProductList'] == 'Lista') {
+              echo "<input class='submit__btn' type='submit' name='formProductBox' value='Rutnät'  style='background-color: #B5DFF4'/>";
+              echo "<input class='submit__btn' type='submit' name='formProductList' value='Lista' style='background-color: #8CC2DD'/>";
+          }
+          else 
+          {
+              echo "<input class='submit__btn' type='submit' name='formProductBox' value='Rutnät'  style='background-color: #8CC2DD'/>";
+              echo "<input class='submit__btn' type='submit' name='formProductList' value='Lista' style='background-color: #B5DFF4'/>";
+          }	 
+        ?>
+        <!-- <input class="submit__btn" type="submit" name="formProductBox" value="Rutnät"  style="background-color: #B5DFF4"/>
 
-        <input class="submit__btn" type="submit" name="formSubmit" value="Submit" />
+        <input class="submit__btn" type="submit" name="formProductList" value="Lista" style="background-color: #B5DFF4"/> -->
 
     </form>
 </div>
+
+
 
 <div class='products__display'>
 
@@ -115,7 +127,7 @@ $productsBox .= '</div>';
 
 
 if(isset($_POST['formProductList']) && 
-   $_POST['formProductList'] == 'Yes') 
+   $_POST['formProductList'] == 'Lista') 
 {
     echo $table;
 }

@@ -9,7 +9,10 @@ tableDiv.appendChild(tableOutput)
 
 // filtrera ordrar
 function filterPhrase() {
+  // koppla till input för filtrering
   let filterInput = document.getElementById('filterInput')
+  let statusForm = document.getElementById('statusForm')
+  console.log(statusForm)
   filterInput.addEventListener('input', function (e) {
     let test = e.currentTarget.value
     fetch('orders-information.php')  

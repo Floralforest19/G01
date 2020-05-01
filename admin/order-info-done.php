@@ -28,8 +28,8 @@ if( isset($_GET['order_id'])){
   
   // spara info i variabler
   $amount = htmlspecialchars($rowOrder['amount']);
-  $total_amount = htmlspecialchars($rowOrder['total_amount']);
   $shipping_fee = htmlspecialchars($rowOrder['shipping_fee']);
+  $total_amount = $amount + $shipping_fee;
   $time = htmlspecialchars($rowOrder['time']);
   $order_info = htmlspecialchars($rowOrder['order_info']);
   $name = htmlspecialchars($rowCustomer['firstname'])." ".htmlspecialchars($rowCustomer['surname']);
@@ -37,6 +37,8 @@ if( isset($_GET['order_id'])){
   $street = htmlspecialchars($rowCustomer['streetadress']);
   $zip = htmlspecialchars($rowCustomer['zip-code']);
   $other_city = htmlspecialchars($rowOrder['other_city']);
+  $other_zip = htmlspecialchars($rowOrder['other_zip']);
+  $other_street = htmlspecialchars($rowOrder['other_address']);
 
   $tableOrders = "  
   <h2>Order $order_id</h2>
@@ -68,7 +70,7 @@ if( isset($_GET['order_id'])){
       $tableShippingAddress = "  
           <tr>
             <th>Leveransadress</th>
-            <td>$street<br>$zip $city</td>
+            <td>$other_street<br>$other_zip $other_city</td>
           </tr>
         </table>
       </div>";

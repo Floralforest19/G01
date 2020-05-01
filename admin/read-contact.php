@@ -1,5 +1,5 @@
 <?php /**************************************** *
-  * read info from db & show, add categories
+  * read info from db & show messages
 **************************************** */
 require_once 'header-admin.php';
 require_once '../db.php';
@@ -7,7 +7,7 @@ require_once '../db.php';
 
 <section class='background'>
 
-  <h2>Kontakt</h2>
+  <h2>Kundmeddleanden</h2>
 <?php
     // visa kategorierna
     $sql = "SELECT * FROM contactform ORDER BY contactemail";
@@ -27,7 +27,7 @@ require_once '../db.php';
       echo "</div></tr></table></div>";
     endwhile;
   ?>
-    
+
 </section>
 </body>
 </html>

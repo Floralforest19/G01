@@ -10,7 +10,7 @@
       rel="stylesheet"
   />
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  
+
   <title>Webshop v3.0 - Admin</title>
 </head>
 <body>
@@ -24,6 +24,6 @@
     <li><a href="read-cat.php">Kategorier</a></li>
     <li><a href="orders.php">Aktiva beställningar</a></li>
     <li><a href="orders-done.php">Avslutade beställningar</a></li>
-    <li><a href="orders-done.php">Kundmeddelanden</a></li>
+    <li><a href="read-contact.php">Kundmeddelanden</a></li>
   </ul>
 </nav>

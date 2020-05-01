@@ -276,7 +276,10 @@ require_once '../db.php';
             required><?php echo $description; ?></textarea>
         Antal: <input class="input__cat" name="quantity" type="number" required value="<?php echo $quantity; ?>">
         Pris: <input class="input__cat" name="price" type="number" required value="<?php echo $price; ?>">
-        <input class="product__btn" type="submit" value="Uppdatera produkt">
+        <div style="display: flex;justify-content: center;justify-content: space-evenly;">
+          <a class="btn__delete " href="index.php" style="margin: 0;text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
+          <input class="product__btn" type="submit" value="Uppdatera produkt">
+        </div>
         <input class="input__cat" type="hidden" name="product_id" value="<?php echo $product_id; ?>">
     </form>
 </div>

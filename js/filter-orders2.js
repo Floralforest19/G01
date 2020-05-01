@@ -1,6 +1,10 @@
+// koppla till DOM
 let tableDiv = document.getElementById('table_div')
+// skapa tabell
 let tableOutput = document.createElement('table')
+// lägg till klass till tabell
 tableOutput.classList.add('table')
+// lägg till nyskapade elementet i diven i DOM
 tableDiv.appendChild(tableOutput)
 
 // filtrera ordrar
@@ -16,15 +20,15 @@ function filterPhrase() {
     })
   })
 }
-// filtrera
+// filtrerar på sta utifrån input från användare
 filterPhrase()
 
-// hämta order info
+// hämta order info från informations fil
 fetch('orders-information.php')
   .then(resp => resp.json())
   .then(order => showOrders(order))
 
-// visa ordar i DOM
+// funktion som ritar ut ordrar i DOM
 function showOrders(order) {
   let table = `
       <thead>

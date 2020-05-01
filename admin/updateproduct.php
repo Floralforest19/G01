@@ -65,7 +65,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   // Skapa variabel som säger till ifall användaren valt att radera en primär bild
   $image_primary_error = 0;
   
+  // Skapa variabel som säger till ifall en bild är för stor
+  $tooBig = 0;
 
+  // Skapa variabel som säger till ifall en bild inte har format som är OK
+  $imageFormat = 0;
 
   // Loopar bilderna som produkten redan har
   for ($i=0; $i < $totalfiles; $i++) { 
@@ -121,6 +125,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         echo "Tyvärr, filen är för stor.<br>";
         $uploadOk = 0;
         $addImageCollection = 0;
+        $tooBig = 1;
       }
       
       // Allow certain file formats
@@ -130,6 +135,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         echo "Tyvärr, bara JPG, JPEG, PNG & GIF är tillåtna filformat.<br>";
         $uploadOk = 0;
         $addImageCollection = 0;
+        $imageFormat = 1;
       }
       
       // Check if $uploadOk is set to 0 by an error
@@ -154,10 +160,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $imageCollection .= htmlspecialchars(basename ($_FILES["image_file_name"]["name"][$i])) . " * ";
       }
 
-
+      // Error message skapande ifall bilduppladdning blev fel
       $image_total++;
-      if ($image_total > 5) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
-          header("Location:updateproduct.php?product_id=$product_id&uppladdning=max5");
+      if ($image_total > 5 || $tooBig > 0 || $imageFormat > 0) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
+          header("Location:updateproduct.php?product_id=$product_id&uppladdning=error");
         exit;
       }      
     }   // Slut på bildernas for-loop.
@@ -206,7 +212,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 ?>
 
 <div class="update-product-form">
-  <form method="POST" enctype="multipart/form-data" class='wrap'>  <!-- har lagt till display-grid för enkelhetens skull -->
+  <form method="POST" enctype="multipart/form-data" style="padding-left: 10%;padding-right: 10%;">
 
   <?php
       // Kontrollerar att bild finns på produkten
@@ -217,7 +223,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       for ($i=0; $i <= $totalfiles; $i++) {  // Loopar imageArray för att skriva ut alla bilder
         echo '<br>';
         if (strlen($image_array[$i]) > 0) {   // Kollar ifall indexet innehåller något
-          $image_printer = "<div>";
+          $image_printer = "<div style='border: 1px solid #ddd;border-radius: 10px;padding: 7px;background-color: white;display: table;'>";
           $image_printer .= "<img src='../images/$image_array[$i]' alt='$name image $i' style='max-height: 150px;'/>";
           $image_printer .= "<div>
           Spara bild: <input type='radio' name='image_radio_$i' value='save' checked> Ja 
@@ -241,7 +247,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       echo "Produkten har ingen bild än. <br><br>";
     }
     if (isset($_GET['uppladdning']) == true) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
-      echo "<h4 style='color: red;'>En produkt får max ha 5 bilder.</h4>";
+      echo "<h4 style='color: red;'>En produkt får max ha 5 bilder.<br>Godkända filformat är JPG, JPEG, PNG & GIF.<br>En bild får vara max 2MB stor.</h4>";
     }
     ?>
       <div>  
@@ -267,9 +273,9 @@ require_once '../db.php';
     $selectCat .= "<option value='$category_select_id'>$catname</option>";
     }
   endwhile;
-  $selectCat.= "</select><br>";
+  $selectCat.= "</select>";
 
-  echo 'Kategori:<br>' . $selectCat;
+  echo 'Kategori: ' . $selectCat;
 ?>
         Namn: <input class="input__cat" name="name" type="text" required value="<?php echo $name; ?>">
         Beskrivning: <textarea class="input__cat" name="description" type="text" cols="30" rows="5"

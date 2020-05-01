@@ -10,9 +10,8 @@ if(isset($_POST['input']) ){
   // filter from user input
   $filter = htmlspecialchars($_POST['input']);
   echo "<div class='box__search--form'><h3>Visar resultat för: $filter</h3></div>";
-  
   // prepare and execute sql request
-  $sql  = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' ORDER BY `name` ASC";  
+  $sql = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' ORDER BY `name` ASC";  
   $stmt = $db->prepare($sql);
   $stmt->execute();
   $result = false;  
@@ -22,12 +21,12 @@ if(isset($_POST['input']) ){
     $result = true;
     // product exist in database
     $productsFound++;
-    $name        = htmlspecialchars($row['name']);
-    $price       = htmlspecialchars($row['price']);
-    $id          = htmlspecialchars($row['product_id']);
+    $name = htmlspecialchars($row['name']);
+    $price = htmlspecialchars($row['price']);
+    $id = htmlspecialchars($row['product_id']);
     $description = htmlspecialchars($row['description']);
-    $quantity    = htmlspecialchars($row['quantity']);
-    $image       = htmlspecialchars($row['image_file_name']);
+    $quantity = htmlspecialchars($row['quantity']);
+    $image = htmlspecialchars($row['image_file_name']);
     // if no image show other image
       // Om det inte finns en bild läggs det upp en dummy
       if(empty($image)){

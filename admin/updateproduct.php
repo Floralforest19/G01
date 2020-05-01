@@ -11,19 +11,19 @@ require_once '../db.php';
 //1. Get product data.
 if(isset($_GET['product_id'])){
     $product_id = htmlspecialchars($_GET['product_id']);
-    $sql = "SELECT * FROM product WHERE product_id = :product_id";
-    $stmt = $db->prepare($sql);
+    $sql        = "SELECT * FROM product WHERE product_id = :product_id";
+    $stmt       = $db->prepare($sql);
     $stmt->bindParam(':product_id' , $product_id );
     $stmt->execute();
 
     if($stmt->rowCount() > 0){
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
-      $name = htmlspecialchars($row['name']);
-      $description  = htmlspecialchars($row['description']);
-      $quantity  = htmlspecialchars($row['quantity']);
+      $row              = $stmt->fetch(PDO::FETCH_ASSOC);
+      $name             = htmlspecialchars($row['name']);
+      $description      = htmlspecialchars($row['description']);
+      $quantity         = htmlspecialchars($row['quantity']);
       $image_file_name  = htmlspecialchars($row['image_file_name']);
-      $price  = htmlspecialchars($row['price']);
-      $category_id  = htmlspecialchars($row['category_id']);
+      $price            = htmlspecialchars($row['price']);
+      $category_id      = htmlspecialchars($row['category_id']);
 
 
       // Splittar upp alla bilder produkten har till en array: $image_array
@@ -45,12 +45,12 @@ if(isset($_GET['product_id'])){
 //2. Update product
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-  $product_id = htmlspecialchars($_POST['product_id']);
-  $name = htmlspecialchars($_POST['name']);
-  $description  = htmlspecialchars($_POST['description']);
-  $quantity   = htmlspecialchars($_POST['quantity']);
-  $price = htmlspecialchars($_POST['price']);
-  $category_id = htmlspecialchars($_POST['category_id']);
+  $product_id    = htmlspecialchars($_POST['product_id']);
+  $name          = htmlspecialchars($_POST['name']);
+  $description   = htmlspecialchars($_POST['description']);
+  $quantity      = htmlspecialchars($_POST['quantity']);
+  $price         = htmlspecialchars($_POST['price']);
+  $category_id   = htmlspecialchars($_POST['category_id']);
   $image_primary = htmlspecialchars($_POST['image_primary']);
   
   // räkna antalet filer/bilder som ska laddas upp
@@ -97,8 +97,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       $addImageCollection = 1;  // Variabel som används för att se ifall bildens sökväg ska läggas till i produktens tabell.
       
       
-      $target_file = $target_dir . basename($_FILES["image_file_name"]["name"][$i]);
-      $uploadOk = 1;
+      $target_file   = $target_dir . basename($_FILES["image_file_name"]["name"][$i]);
+      $uploadOk      = 1;
       $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
       
@@ -212,7 +212,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 ?>
 
 <div class="update-product-form">
-  <form method="POST" name="update-form" enctype="multipart/form-data" style="padding-left: 10%;padding-right: 10%;" onsubmit="return validateAll()">
+  <form method="POST" name="update-form" enctype="multipart/form-data" style="padding-left: 10%;padding-right: 10%;" onsubmit="return validateAll()" class='wrap'>
 
   <?php
       // Kontrollerar att bild finns på produkten
@@ -273,7 +273,7 @@ require_once '../db.php';
     $selectCat .= "<option value='$category_select_id'>$catname</option>";
     }
   endwhile;
-  $selectCat.= "</select>";
+  $selectCat.= "</select><br>";
 
   echo 'Kategori: ' . $selectCat;
 ?><label for="name">Namn:</label>
@@ -293,7 +293,7 @@ require_once '../db.php';
 <div id="numberFeedback" style="color:#eb4b88"></div>
 
         <div style="display: flex;justify-content: center;justify-content: space-evenly;">
-          <a class="btn__delete " href="index.php" style="margin: 0;text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
+          <a class="btn__delete del" href="index.php" style="text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
           <input class="product__btn" type="submit" value="Uppdatera produkt">
         </div>
         <input class="input__cat" type="hidden" name="product_id" value="<?php echo $product_id; ?>">

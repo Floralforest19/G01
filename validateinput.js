@@ -82,7 +82,7 @@ function validateEmail(formName, inputName, feedbackId) {
 
 function validatePhonenumber(formName, inputName, feedbackId) {
   document.getElementById(feedbackId).innerHTML = "";
-  let phone   = document.forms[formName][inputName].value;
+  let phone = document.forms[formName][inputName].value;
   var phoneno = /* /([-\s]?\d){6,10}/;*/ /^([0-9-+]){6,30}$/;
   if (phone.match(phoneno)) {
     return true;

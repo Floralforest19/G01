@@ -13,31 +13,31 @@
 
 if( isset($_GET['order_id'])){
   $order_id = htmlspecialchars($_GET['order_id']);
-  $sql      = "SELECT * FROM `orders_archive` WHERE `order_id` LIKE '$order_id'";
-  $stmt     = $db->prepare($sql);
+  $sql = "SELECT * FROM `orders_archive` WHERE `order_id` LIKE '$order_id'";
+  $stmt = $db->prepare($sql);
   $stmt->execute();
 
   // hämta order info
   $rowOrder = $stmt->fetch(PDO::FETCH_ASSOC);
   // hämta kund info
-  $customer_id  = htmlspecialchars($rowOrder['customer_id']);
-  $sqlCustomer  = "SELECT * FROM customers WHERE customer_id = $customer_id";
+  $customer_id = htmlspecialchars($rowOrder['customer_id']);
+  $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
   $stmtCustomer = $db->prepare($sqlCustomer);
   $stmtCustomer->execute();
-  $rowCustomer  = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
+  $rowCustomer = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
   
   // spara info i variabler
-  $amount       = htmlspecialchars($rowOrder['amount']);
+  $amount = htmlspecialchars($rowOrder['amount']);
   $shipping_fee = htmlspecialchars($rowOrder['shipping_fee']);
   $total_amount = $amount + $shipping_fee;
-  $time         = htmlspecialchars($rowOrder['time']);
-  $order_info   = htmlspecialchars($rowOrder['order_info']);
-  $name         = htmlspecialchars($rowCustomer['firstname'])." ".htmlspecialchars($rowCustomer['surname']);
-  $city         = htmlspecialchars($rowCustomer['city']);
-  $street       = htmlspecialchars($rowCustomer['streetadress']);
-  $zip          = htmlspecialchars($rowCustomer['zip-code']);
-  $other_city   = htmlspecialchars($rowOrder['other_city']);
-  $other_zip    = htmlspecialchars($rowOrder['other_zip']);
+  $time = htmlspecialchars($rowOrder['time']);
+  $order_info = htmlspecialchars($rowOrder['order_info']);
+  $name = htmlspecialchars($rowCustomer['firstname'])." ".htmlspecialchars($rowCustomer['surname']);
+  $city = htmlspecialchars($rowCustomer['city']);
+  $street = htmlspecialchars($rowCustomer['streetadress']);
+  $zip = htmlspecialchars($rowCustomer['zip-code']);
+  $other_city = htmlspecialchars($rowOrder['other_city']);
+  $other_zip = htmlspecialchars($rowOrder['other_zip']);
   $other_street = htmlspecialchars($rowOrder['other_address']);
 
   $tableOrders = "  

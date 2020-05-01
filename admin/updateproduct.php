@@ -206,7 +206,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 ?>
 
 <div class="update-product-form">
-  <form method="POST" enctype="multipart/form-data" >  <!-- har lagt till display-grid för enkelhetens skull -->
+  <form method="POST" enctype="multipart/form-data" class='wrap'>  <!-- har lagt till display-grid för enkelhetens skull -->
 
   <?php
       // Kontrollerar att bild finns på produkten
@@ -267,9 +267,9 @@ require_once '../db.php';
     $selectCat .= "<option value='$category_select_id'>$catname</option>";
     }
   endwhile;
-  $selectCat.= "</select>";
+  $selectCat.= "</select><br>";
 
-  echo 'Kategori: ' . $selectCat;
+  echo 'Kategori:<br>' . $selectCat;
 ?>
         Namn: <input class="input__cat" name="name" type="text" required value="<?php echo $name; ?>">
         Beskrivning: <textarea class="input__cat" name="description" type="text" cols="30" rows="5"

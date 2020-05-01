@@ -212,7 +212,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 ?>
 
 <div class="update-product-form">
-  <form method="POST" enctype="multipart/form-data" style="padding-left: 10%;padding-right: 10%;">
+  <form method="POST" name="update-form" enctype="multipart/form-data" style="padding-left: 10%;padding-right: 10%;" onsubmit="return validateAll()">
 
   <?php
       // Kontrollerar att bild finns på produkten
@@ -276,12 +276,22 @@ require_once '../db.php';
   $selectCat.= "</select>";
 
   echo 'Kategori: ' . $selectCat;
-?>
-        Namn: <input class="input__cat" name="name" type="text" required value="<?php echo $name; ?>">
-        Beskrivning: <textarea class="input__cat" name="description" type="text" cols="30" rows="5"
-            required><?php echo $description; ?></textarea>
-        Antal: <input class="input__cat" name="quantity" type="number" required value="<?php echo $quantity; ?>">
-        Pris: <input class="input__cat" name="price" type="number" required value="<?php echo $price; ?>">
+?><label for="name">Namn:</label>
+<input class="input__cat" name="name" type="text" required value="<?php echo $name; ?>">
+<div id="nameFeedback" style="color:#eb4b88"></div>
+
+<label for="description"> Beskrivning:</label>
+<textarea class="input__cat" name="description" type="text" cols="30" rows="5" required><?php echo $description; ?></textarea>
+<div id="descriptionFeedback" style="color:#eb4b88"></div>
+
+<label for="quantity"> Antal:</label>
+<input class="input__cat" name="quantity" type="number" required value="<?php echo $quantity; ?>">
+<div id="quantityFeedback" style="color:#eb4b88"></div>
+
+<label for="price"> Pris:</label>
+<input class="input__cat" name="price" type="number" required value="<?php echo $price; ?>">
+<div id="numberFeedback" style="color:#eb4b88"></div>
+
         <div style="display: flex;justify-content: center;justify-content: space-evenly;">
           <a class="btn__delete " href="index.php" style="margin: 0;text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
           <input class="product__btn" type="submit" value="Uppdatera produkt">
@@ -289,3 +299,32 @@ require_once '../db.php';
         <input class="input__cat" type="hidden" name="product_id" value="<?php echo $product_id; ?>">
     </form>
 </div>
+
+<script src="../validateinput.js"></script>
+<script src="../js/validate-updateproduct.js"></script>
+
+<script>
+function validateAll() {
+    let isAllValidated = true;
+    let nameValidated = validateTextInput('update-form', 'name', 'nameFeedback');
+    if (nameValidated == false) {
+        isAllValidated = false;
+    }
+
+    let descriptionValidated = validateTextDescriptionInput('update-form', 'description', 'descriptionFeedback');
+    if (descriptionValidated == false) {
+        isAllValidated = false;
+    }
+
+    let quantityValidated = validateQuantityInput('update-form', 'quantity', 'quantityFeedback');
+    if (quantityValidated == false) {
+        isAllValidated = false;
+    }
+
+
+    if (isAllValidated == false) {
+        return false;
+    }
+    return true;
+}
+</script>

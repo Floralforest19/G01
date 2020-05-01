@@ -1466,6 +1466,11 @@ h3 {
   grid-column: 2;
 }
 
+.rocket:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
 .footer-bottom-container {
   display: -ms-grid;
   display: grid;

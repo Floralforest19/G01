@@ -80,7 +80,7 @@
     max-width: 40px;
     padding: 5px;
   }
-  
+
   p {
     color: black;
     align-self: flex-end;
@@ -90,6 +90,9 @@
   height: 100px;
   width: 100px;
   grid-column: 2;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .footer-bottom-container {

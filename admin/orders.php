@@ -37,7 +37,7 @@
 <?php
 
   if( isset($_GET['id']) ){
-    $id = htmlentities($_GET['id']);
+    $id        = htmlentities($_GET['id']);
     $orderSort = htmlentities($_GET['order_sort']);
     // hämta från beställningar istället
     $sql = "SELECT * FROM orders 
@@ -54,13 +54,13 @@
   $tableOrders = "";
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // kolla igenom alla ordrar och spara order-id samt kundi-id
-      $order_id = htmlspecialchars($row['order_id']);
-      $customer_id = htmlspecialchars($row['customer_id']);
-      $status = htmlspecialchars($row['status']);
-      $amount = htmlspecialchars($row['amount']);
+      $order_id     = htmlspecialchars($row['order_id']);
+      $customer_id  = htmlspecialchars($row['customer_id']);
+      $status       = htmlspecialchars($row['status']);
+      $amount       = htmlspecialchars($row['amount']);
       $shipping_fee = htmlspecialchars($row['shipping_fee']);
       $total_amount = floatval($amount) + floatval($shipping_fee);
-      $time = htmlspecialchars($row['time']);
+      $time         = htmlspecialchars($row['time']);
 
       $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
       $stmtCustomer = $db->prepare($sqlCustomer);

@@ -3,10 +3,10 @@
 
 // skapa produkt
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
-  $name = htmlspecialchars($_POST['name']);
+  $name         = htmlspecialchars($_POST['name']);
   $description  = htmlspecialchars($_POST['description']);
-  $quantity  = ($_POST['quantity']);
-  $price  = ($_POST['price']);
+  $quantity     = htmlspecialchars($_POST['quantity']);
+  $price        = htmlspecialchars($_POST['price']);
   $category_id  = htmlspecialchars($_POST['test']);
 
 

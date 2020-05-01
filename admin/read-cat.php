@@ -20,7 +20,7 @@ require_once '../db.php';
       if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
         $catname = htmlspecialchars(ucfirst(strtolower($_POST['catname'])));
         // kolla om kategorin finns i databasen
-        $sql = "SELECT `name` FROM `category` WHERE `name` LIKE '$catname'";
+        $sql  = "SELECT `name` FROM `category` WHERE `name` LIKE '$catname'";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         // $result sätts till true ifall kategorin existerar
@@ -47,7 +47,7 @@ require_once '../db.php';
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       echo "<div class='box__cat--form'><table class='table__cat'><tr>";
       $name = htmlspecialchars($row['name']);
-      $id = htmlspecialchars($row['category_id']);
+      $id   = htmlspecialchars($row['category_id']);
       echo "<h3>$name</h3>
       <a href='edit-cat.php?id=$id'><button class='btn__edit'>Redigera</button></a>";
       // man ska bara kunna radera en tom kategori

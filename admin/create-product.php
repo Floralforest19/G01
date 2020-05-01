@@ -1,8 +1,8 @@
 <?php require_once 'header-admin.php'; ?>
 <h2>Skapa produkt</h2>
 
-<div>
-<form action="upload-pro.php" method="post" enctype="multipart/form-data" name="createProdForm">
+<div class="wrap">
+<form action="upload-pro.php" method="post" enctype="multipart/form-data" name="createProdForm" class="wrap">
     <?php
       if (isset($_GET['uppladdning']) == true) {
         echo "<h4 style='color: red;'>En produkt får max ha 5 bilder.</h4>";
@@ -19,8 +19,8 @@ require_once '../db.php';
   $stmt->execute();
   $selectCat = "<select name='test' id='category_id' class='text'>";
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
-    $name = ucfirst(htmlspecialchars($row['name']));
-    $id = htmlspecialchars($row['category_id']);
+    $name       = ucfirst(htmlspecialchars($row['name']));
+    $id         = htmlspecialchars($row['category_id']);
     $selectCat .= "<option value='$id'>$name</option>";
   endwhile;
   $selectCat.= "</select>";
@@ -35,7 +35,7 @@ require_once '../db.php';
    <div>  <input name="price" type="number" class="input__cat" required placeholder="Pris"></div> 
    
     <div style="display: flex;justify-content: center;justify-content: space-evenly;">
-      <a class="btn__delete " href="index.php" style="margin: 0;text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
+      <a class="btn__delete del" href="index.php" style="text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
       <input class="product__btn" type="submit" value="Lägg till produkt">
     </div>
 </form>

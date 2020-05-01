@@ -3,10 +3,10 @@
 
 // skapa produkt
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
-  $name = htmlspecialchars($_POST['name']);
+  $name         = htmlspecialchars($_POST['name']);
   $description  = htmlspecialchars($_POST['description']);
-  $quantity  = ($_POST['quantity']);
-  $price  = ($_POST['price']);
+  $quantity     = htmlspecialchars($_POST['quantity']);
+  $price        = htmlspecialchars($_POST['price']);
   $category_id  = htmlspecialchars($_POST['test']);
 
 
@@ -16,7 +16,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
   
   // Skapa variabel som ska lagra alla bilder
   $imageCollection = "";
-  $imageCounter = 0;  // Räknar bilderna som läggs upp. Max 5
+  $imageCounter    = 0;  // Räknar bilderna som läggs upp. Max 5
 
   // Kontrollerar ifall en bild är uppladdad genom att räkna längden på första variabeln i bild-arrayn
   if (strlen(htmlspecialchars(basename ($_FILES["image_file_name"]["name"][0]))) > 1) {
@@ -114,7 +114,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
 
   $stmt->execute();
 
-  $sql4 =" SELECT product_id FROM product ORDER BY product_id DESC LIMIT 1";
+  $sql4  ="SELECT product_id FROM product ORDER BY product_id DESC LIMIT 1";
   $stmt4 = $db->prepare($sql4);
   $stmt4->execute();
 

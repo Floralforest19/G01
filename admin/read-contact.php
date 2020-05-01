@@ -7,7 +7,7 @@ require_once '../db.php';
 
 <section class='background'>
 
-  <h2>Kontakt</h2>
+  <h2>Kundmeddleanden</h2>
 <?php
     // visa kategorierna
     $sql = "SELECT * FROM contactform ORDER BY contactemail";

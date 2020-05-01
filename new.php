@@ -60,7 +60,6 @@
               <input type='hidden' class='product-price' value='$price'/>
               <input type='hidden' class='product-image' value='$image'/>
               <input type='hidden' class='product-sale' value='$quantity'/>
-              <a href='showproduct.php?id=$id'><h2>NY!</h2></a>
               <a href='showproduct.php?id=$id'><h3>$name</h3></a>
               $priceText
               <a href='showproduct.php?id=$id'>Läs mer</a><br></a>

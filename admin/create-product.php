@@ -1,7 +1,7 @@
 <?php require_once 'header-admin.php'; ?>
 <h2>Skapa produkt</h2>
 
-<div class="wrap">
+<div>
 <form action="upload-pro.php" method="post" enctype="multipart/form-data" name="createProdForm">
     <?php
       if (isset($_GET['uppladdning']) == true) {

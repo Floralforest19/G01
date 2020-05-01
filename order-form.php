@@ -88,15 +88,15 @@ require_once 'header.php';
 
 <script>
 function validateAll() {
-    let isAllValidated = true;
+    let isAllValidated     = true;
     let firstnameValidated = validateTextInput('orders-form', 'firstname', 'firstnameFeedback');
     if (firstnameValidated == false) {
-        isAllValidated = false;
+        isAllValidated     = false;
     }
 
     let surnameValidated = validateTextInput('orders-form', 'surname', 'surnameFeedback');
     if (surnameValidated == false) {
-        isAllValidated = false;
+        isAllValidated   = false;
     }
 
     let emailValidated = validateEmail('orders-form', 'email', 'emailFeedback')
@@ -111,29 +111,29 @@ function validateAll() {
 
     let addressValidated = validateTextInput('orders-form', 'address', 'addressFeedback');
     if (addressValidated == false) {
+        isAllValidated   = false;
+    }
+
+    let zipValidated   = validateTextInput('orders-form', 'zip', 'zipFeedback');
+    if (zipValidated   == false) {
         isAllValidated = false;
     }
 
-    let zipValidated = validateTextInput('orders-form', 'zip', 'zipFeedback');
-    if (zipValidated == false) {
-        isAllValidated = false;
-    }
-
-    let cityValidated = validateTextInput('orders-form', 'city', 'cityFeedback');
-    if (cityValidated == false) {
+    let cityValidated  = validateTextInput('orders-form', 'city', 'cityFeedback');
+    if (cityValidated  == false) {
         isAllValidated = false;
     }
 
     let checkBox = document.getElementById("leverans");
     // If the checkbox is checked
-    if (checkBox.checked == true) {
+    if (checkBox.checked      == true) {
         let address2Validated = validateTextInput('orders-form', 'address2', 'address2Feedback');
         if (address2Validated == false) {
-            isAllValidated = false;
+            isAllValidated    = false;
         }
 
-        let zip2Validated = validateTextInput('orders-form', 'zip2', 'zip2Feedback');
-        if (zip2Validated == false) {
+        let zip2Validated  = validateTextInput('orders-form', 'zip2', 'zip2Feedback');
+        if (zip2Validated  == false) {
             isAllValidated = false;
         }
 

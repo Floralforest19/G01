@@ -26,7 +26,7 @@
 </section>
   
 
-<script src="../js/filter-orders.js"></script>
+<script src="../js/filter-orders2.js"></script>
 
 </body>
 </html>

@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     $contactmessage = htmlspecialchars($_POST['message']);
 
     // Förbered en SQL-sats
-    $sql = "INSERT INTO `contactform` (`id`, `contactname`, `contactemail`, `contactphone`, `contactmessage`) 
-            VALUES (NULL, '$contactname', '$contactemail', '$contactphone', '$contactmessage')";
+    $sql = "INSERT INTO `contactform` (`id`, `contactname`, `contactemail`, `contactphone`, `contactmessage`,`date`) 
+            VALUES (NULL, '$contactname', '$contactemail', '$contactphone', '$contactmessage', NULL)";
 
     $stmt = $db->prepare($sql);
 

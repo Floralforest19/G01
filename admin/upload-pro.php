@@ -114,7 +114,15 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
 
   $stmt->execute();
 
-  header("Location:index.php"); // Efter att produkten skapats hamnar man på startsidan för admin
+  $sql4 =" SELECT product_id FROM product ORDER BY product_id DESC LIMIT 1";
+  $stmt4 = $db->prepare($sql4);
+  $stmt4->execute();
+
+  $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
+  $new_product_id = $row4['product_id'];
+
+
+  header("Location:updateproduct.php?product_id=$new_product_id&new=true"); // Efter att produkten skapats hamnar man på startsidan för admin
   exit;
 } 
 

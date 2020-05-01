@@ -117,15 +117,15 @@
       for ($i=0; $i < $_POST['numbOfDiffProds']; $i++) {
         // 0 = product_id, 1 = price, 2 = quantity
         $strBoughtProdInfo = $_POST["$i"];
-        $arrIdPriceQuant = explode(",",$strBoughtProdInfo);
-        $booughtProdId = $arrIdPriceQuant[0];
-        $boughtQuantity = $arrIdPriceQuant[2];
+        $arrIdPriceQuant   = explode(",",$strBoughtProdInfo);
+        $booughtProdId     = $arrIdPriceQuant[0];
+        $boughtQuantity    = $arrIdPriceQuant[2];
 
         // hämta produktens info från db
-        $sql5 ="SELECT * FROM product WHERE product_id = $booughtProdId";
+        $sql5  = "SELECT * FROM product WHERE product_id = $booughtProdId";
         $stmt5 = $db->prepare($sql5);
         $stmt5->execute();
-        $row5 = $stmt5->fetch(PDO::FETCH_ASSOC);
+        $row5  = $stmt5->fetch(PDO::FETCH_ASSOC);
         // spara den gamla mängden varor i lager
         $oldQuantity = $row5['quantity'];
 
@@ -133,7 +133,7 @@
         $newQuantity = $oldQuantity - $boughtQuantity;
 
         // uppdatera databasen med nya antalet varor i lager
-        $sql6="UPDATE product SET quantity = '$newQuantity' WHERE product_id = '$booughtProdId'";
+        $sql6  = "UPDATE product SET quantity = '$newQuantity' WHERE product_id = '$booughtProdId'";
         $stmt6 = $db->prepare($sql6);
         $stmt6->execute();
       }

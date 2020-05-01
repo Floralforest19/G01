@@ -14,19 +14,19 @@
 
     <?php
       // hämta de tre senaste produkterna
-      $sqlNew =" SELECT * FROM product ORDER BY creation_date DESC LIMIT 3";
+      $sqlNew  = "SELECT * FROM product ORDER BY creation_date DESC LIMIT 3";
       $stmtNew = $db->prepare($sqlNew);
       $stmtNew->execute();
 
       // loopar över arrayen som har resultatet från db
       while($rowNew = $stmtNew->fetch(PDO::FETCH_ASSOC)) :
         // spara data från db i varsin variabel
-        $id = htmlspecialchars($rowNew['product_id']); 
-        $name = htmlspecialchars($rowNew['name']);
+        $id       = htmlspecialchars($rowNew['product_id']); 
+        $name     = htmlspecialchars($rowNew['name']);
         $category = strtoupper(htmlspecialchars($rowNew['category_id']));
         $quantity = htmlspecialchars($rowNew['quantity']);
-        $price = htmlspecialchars($rowNew['price']);
-        $image = htmlspecialchars($rowNew['image_file_name']);
+        $price    = htmlspecialchars($rowNew['price']);
+        $image    = htmlspecialchars($rowNew['image_file_name']);
 
         // Om det inte finns en bild läggs det upp en dummy
         if(empty($image)){
@@ -60,6 +60,7 @@
               <input type='hidden' class='product-price' value='$price'/>
               <input type='hidden' class='product-image' value='$image'/>
               <input type='hidden' class='product-sale' value='$quantity'/>
+              <a href='showproduct.php?id=$id'><h2>Nyhet!</h2></a>
               <a href='showproduct.php?id=$id'><h3>$name</h3></a>
               $priceText
               <a href='showproduct.php?id=$id'>Läs mer</a><br></a>

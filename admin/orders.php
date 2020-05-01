@@ -17,6 +17,7 @@
     <th>Order-id</th>
     <th>Kund</th>
     <th>E-mail</th>
+    <th>Leveransadress</th>
     <th>
       Datum/Tid<br>
       <a href='orders.php?id=time&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
@@ -54,26 +55,40 @@
   $tableOrders = "";
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // kolla igenom alla ordrar och spara order-id samt kundi-id
-      $order_id = htmlspecialchars($row['order_id']);
-      $customer_id = htmlspecialchars($row['customer_id']);
-      $status = htmlspecialchars($row['status']);
-      $amount = htmlspecialchars($row['amount']);
+      $order_id     = htmlspecialchars($row['order_id']);
+      $customer_id  = htmlspecialchars($row['customer_id']);
+      $status       = htmlspecialchars($row['status']);
+      $amount       = htmlspecialchars($row['amount']);
       $shipping_fee = htmlspecialchars($row['shipping_fee']);
       $total_amount = floatval($amount) + floatval($shipping_fee);
-      $time = htmlspecialchars($row['time']);
+      $time         = htmlspecialchars($row['time']);
 
-      $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
+      $sqlCustomer  = "SELECT * FROM customers WHERE customer_id = $customer_id";
       $stmtCustomer = $db->prepare($sqlCustomer);
       $stmtCustomer->execute();
-      $rowCustomer = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
+      $rowCustomer  = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
   
       $email = htmlspecialchars($rowCustomer['email']);
       $fname = htmlspecialchars($rowCustomer['firstname']);
       $sname = htmlspecialchars($rowCustomer['surname']);
 
+      $customer_city    = htmlspecialchars($rowCustomer['city']);
+      $customer_zip     = htmlspecialchars($rowCustomer['zip-code']);
+      $customer_address = htmlspecialchars($rowCustomer['streetadress']);
+
+      $other_city    = htmlspecialchars($row['other_city']);
+      $other_zip     = htmlspecialchars($row['other_zip']);
+      $other_address = htmlspecialchars($row['other_address']);
+      // beroende på om det finns nån annan leveransadress
+      if( strlen(htmlspecialchars($row['other_city'])) > 0 ){
+        $shippingAddress = "$other_address<br><span class='shipping_address'>$other_city</span> $other_zip";
+      } else {
+        $shippingAddress = "$customer_address<br><span class='shipping_address'>$customer_city</span> $customer_zip";
+      }
+
       $selectStatus = 
       "<form method='post' action='orders-update.php?order_id=$order_id'>
-        <select name='statusSelect' id='statusSelect'>";
+        <select name='statusSelect' class='statusSelect'>";
       if( $status == 'active'){
         $selectStatus .= "
         <option value='active' selected>Ny</option>
@@ -97,6 +112,7 @@
         <td><a href='order-info.php?order_id=$order_id'><p>$order_id</p></a></td>
         <td><a href='order-info.php?order_id=$order_id'><p>$fname $sname</p></a></td>  
         <td><a href='order-info.php?order_id=$order_id'><p>$email</p></a></td>
+        <td><p>$shippingAddress</p></td>  
         <td><p>$time</p></td>  
         <td><p>".number_format($total_amount,2)." kr</p></td>      
         <td>$selectStatus</td>

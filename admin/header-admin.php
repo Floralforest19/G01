@@ -10,7 +10,7 @@
       rel="stylesheet"
   />
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  
+
   <title>Webshop v3.0 - Admin</title>
 </head>
 <body>

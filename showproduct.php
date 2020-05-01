@@ -2,19 +2,19 @@
     require_once 'header.php';
     require_once 'db.php';
 
-    $id = htmlspecialchars($_GET['id']);
-    $sql = "SELECT * FROM product WHERE product_id=:id";
+    $id   = htmlspecialchars($_GET['id']);
+    $sql  = "SELECT * FROM product WHERE product_id=:id";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':id', $id);
     $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row  = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $id = htmlspecialchars($row['product_id']);
-    $name = htmlspecialchars($row['name']);
+    $id          = htmlspecialchars($row['product_id']);
+    $name        = htmlspecialchars($row['name']);
     $description = htmlspecialchars($row['description']);
-    $quantity = htmlspecialchars($row['quantity']);
-    $price = htmlspecialchars($row['price']);
-    $image = htmlspecialchars($row['image_file_name']);
+    $quantity    = htmlspecialchars($row['quantity']);
+    $price       = htmlspecialchars($row['price']);
+    $image       = htmlspecialchars($row['image_file_name']);
 
     // Om det inte finns en bild läggs det upp en dummy
     if(empty($image)){

@@ -68,7 +68,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
   // Ifall produkten inte har en bild så blir det standardbilden som är toapapper just nu
   if ($förstaBild == "") {
-    $förstaBild = "toalettpapper.jpg";
+    $förstaBild = "noimage.jpg";
   }
 
   
@@ -80,7 +80,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   
   $productsBox .= "<article class='box'>
   <div class='box__pic'>
-    <img src='../images/$förstaBild' alt='toalettpapper'/>
+    <img src='../images/$förstaBild' alt='$name'/>
   </div>
   <div class='box__text'>
     <h3>$name</h3>

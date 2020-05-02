@@ -33,6 +33,7 @@ if( isset($_GET['order_id'])){
   $time         = htmlspecialchars($rowOrder['time']);
   $order_info   = htmlspecialchars($rowOrder['order_info']);
   $name         = htmlspecialchars($rowCustomer['firstname'])." ".htmlspecialchars($rowCustomer['surname']);
+  $email         = htmlspecialchars($rowCustomer['email']);
   $city         = htmlspecialchars($rowCustomer['city']);
   $street       = htmlspecialchars($rowCustomer['streetadress']);
   $zip          = htmlspecialchars($rowCustomer['zip-code']);
@@ -56,6 +57,10 @@ if( isset($_GET['order_id'])){
       <tr>
         <th>Kund</th>
         <td>$name</td>
+      </tr>
+      <tr>
+        <th>E-mail</th>
+        <td>$email</td>
       </tr>
       <tr>
         <th>Faktureringsadress</th>

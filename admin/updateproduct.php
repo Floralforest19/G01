@@ -290,7 +290,7 @@ require_once '../db.php';
 
 <label for="price"> Pris:</label>
 <input class="input__cat" name="price" type="number" required value="<?php echo $price; ?>">
-<div id="numberFeedback" style="color:#eb4b88"></div>
+<div id="priceFeedback" style="color:#eb4b88"></div>
 
         <div style="display: flex;justify-content: center;justify-content: space-evenly;">
           <a class="btn__delete del" href="index.php" style="text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
@@ -300,7 +300,8 @@ require_once '../db.php';
     </form>
 </div>
 
-<script src="../validateinput.js"></script>
+
+<!-- <script src="../validateinput.js"></script> -->
 <script src="../js/validate-updateproduct.js"></script>
 
 <script>
@@ -316,8 +317,13 @@ function validateAll() {
         isAllValidated = false;
     }
 
-    let quantityValidated = validateQuantityInput('update-form', 'quantity', 'quantityFeedback');
+    let quantityValidated = validateNumberInput('update-form', 'quantity', 'quantityFeedback');
     if (quantityValidated == false) {
+        isAllValidated = false;
+    }
+
+    let priceValidated = validateNumberInput('update-form', 'price', 'priceFeedback');
+    if (priceValidated == false) {
         isAllValidated = false;
     }
 

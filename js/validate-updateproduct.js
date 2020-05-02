@@ -3,9 +3,7 @@ console.log("hej");
 function validateTextDescriptionInput(formName, inputName, feedbackId) {
   document.getElementById(feedbackId).innerHTML = "";
   let input = document.forms[formName][inputName].value;
-  let onlyLetters = /^[a-zA-Z\- ÅåÄäÖöØøÆæÉéÈèÜüÊêÛûÎî0123456789]*$/.test(
-    input
-  );
+
   let findSpaces = /^(\s\s)/.test(input);
 
   // check if right input lenght
@@ -20,13 +18,6 @@ function validateTextDescriptionInput(formName, inputName, feedbackId) {
     return false;
   }
 
-  // check for latin letters
-  else if (onlyLetters == false) {
-    document.getElementById(feedbackId).innerHTML =
-      "Endast tecken från latinska alfabeten tillåtet";
-    return false;
-  }
-
   // check for mutliple spaces in begining of string
   else if (findSpaces == true) {
     document.getElementById(feedbackId).innerHTML =
@@ -36,10 +27,10 @@ function validateTextDescriptionInput(formName, inputName, feedbackId) {
   return true;
 }
 
-function validateQuantityInput(formName, inputName, feedbackId) {
+function validateNumberInput(formName, inputName, feedbackId) {
   document.getElementById(feedbackId).innerHTML = "";
   let input = document.forms[formName][inputName].value;
-  let onlyNumbers = /^[0123456789]*$/.test(input);
+  let onlyNumbers = /^[0123456789,.]*$/.test(input);
 
   console.log(onlyNumbers);
   if (input < 0 || onlyNumbers == false) {
@@ -48,7 +39,4 @@ function validateQuantityInput(formName, inputName, feedbackId) {
     return false;
   }
   return true;
-
-
 }
-

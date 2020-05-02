@@ -7,18 +7,39 @@ tableOutput.classList.add('table')
 // lägg till nyskapade elementet i diven i DOM
 tableDiv.appendChild(tableOutput)
 
+
+let statusBtns = document.querySelectorAll('.btn__edit')
+let whichOrders = 'statusAll'
+
+function getStatus(statusBtns){
+  let whichOrders = 'statusAll'
+  statusBtns.forEach(btn => {
+    btn.addEventListener('click',function (e) {
+      if(e.currentTarget.id == 'statusNew'){
+        whichOrders = 'statusNew'
+      } else if(e.currentTarget.id == 'statusActive'){
+        whichOrders = 'statusActive'
+      } else {
+        whichOrders = 'statusAll'
+      }
+      return whichOrders
+    })
+  });
+}
+
+
 // filtrera ordrar
-function filterPhrase() {
+function filterPhrase(statusBtns) {
   // koppla till input för filtrering
   let filterInput = document.getElementById('filterInput')
-  let statusForm = document.getElementById('statusForm')
-  console.log(statusForm)
   filterInput.addEventListener('input', function (e) {
     let test = e.currentTarget.value
     fetch('orders-information.php')  
     .then( resp => resp.json() ) // konverterar till .json
     .then( function(order) {
       let ordersFiltered = order.filter( a => a.shippingCity.toLowerCase().startsWith(test))
+      let whichStatus = getStatus(statusBtns)
+      console.log(whichStatus)
       showOrders(ordersFiltered) 
     })
   })
@@ -73,4 +94,32 @@ function showOrders(order) {
         // lägga till summa
   }
   tableOutput.innerHTML = table
+}
+
+
+
+
+
+
+
+
+
+
+
+function filterStatus(){
+  // let statusBtns = document.querySelectorAll('.btn__edit')
+  // let whichOrders = 'statusAll'
+  // statusBtns.forEach(btn => {
+  //   btn.addEventListener('click',function (e) {
+  //     if(e.currentTarget.id == 'statusNew'){
+  //       whichOrders = 'statusNew'
+  //     } else if(e.currentTarget.id == 'statusActive'){
+  //       whichOrders = 'statusActive'
+  //     } else {
+  //       whichOrders = 'statusAll'
+  //     }
+  //   })
+  // });
+  let whichOrders = 'statusNew'
+      return whichOrders
 }

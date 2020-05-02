@@ -12,9 +12,9 @@
   <h2>Aktiva beställningar</h2>
   <div class="box__cat--form">
 
-    <input class='submit__btn' type='submit' name='formProductBox' value='Rutnät'  style='background-color: #1d99ba'  style='font-color: #ffffff'/>
-    <input class='submit__btn' type='submit' name='formProductList' value='Lista' style='background-color: #1d99ba'  style='color: #ffffff'/>
-    <input class='submit__btn' type='submit' name='formProductBox' value='Rutnät'  style='background-color: #1d99ba'  style='color: #ffffff'/>
+    <button class='btn__edit' id="statusAll">Alla</button>
+    <button class='btn__edit'  id="statusNew">Nya</button>
+    <button class='btn__edit' id="statusActive">Behandlas</button>
 
 
   <!-- <div class="nav__admin">

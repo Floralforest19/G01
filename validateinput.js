@@ -82,11 +82,20 @@ function validateEmail(formName, inputName, feedbackId) {
 
 function validatePhonenumber(formName, inputName, feedbackId) {
   document.getElementById(feedbackId).innerHTML = "";
-  let phone   = document.forms[formName][inputName].value;
+  let phone = document.forms[formName][inputName].value;
   var phoneno = /* /([-\s]?\d){6,10}/;*/ /^([0-9-+]){6,30}$/;
   if (phone.match(phoneno)) {
     return true;
   }
   document.getElementById(feedbackId).innerHTML = "Ogiltigt telefonnummer";
   return false;
+}
+
+function validateTextarea(formName, inputName, feedbackId) {
+  document.getElementById(feedbackId).innerHTML = "";
+  let input = document.forms[formName][inputName].value;
+  if (input.length == 0) {
+    document.getElementById(feedbackId).innerHTML = "Fyll i ditt meddelende";
+  }
+  return true;
 }

@@ -37,12 +37,6 @@ require_once '../db.php';
     $total_amount = $amount + $shippingFee;
     $sum = number_format($total_amount,2);
 
-    if( $status == 'active'){
-      $status = "Ny";
-    } else {
-      $status = "Behandlas";
-    }
-
     if( strlen($otherCity) == 0 ){
       $shippingStreet = $homeStreet;
       $shippingZip = $homeZip;

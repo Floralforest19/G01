@@ -14,7 +14,7 @@
 
   <div class="nav__admin">
     <form>
-      <input type="text" name="filterCity" id="filterInput" placeholder="Filtrera efter stad">
+      <input type="text" name="filterCity" id="filterInput" class="input__filter" placeholder="Filtrera efter stad...">
     </form>
   </div>
 
@@ -23,7 +23,6 @@
 
   </div>
 </section>
-
 
 <script src="../js/filter-orders-done.js"></script>
 

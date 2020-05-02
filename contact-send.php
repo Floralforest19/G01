@@ -6,7 +6,7 @@ require_once 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     // Testa att skriva ut data som finns i POST-arrayen
-    print_r($_POST);
+    // print_r($_POST);
     
     // Lägg till htmlspecialchars för att rensa HTML
     $contactname = htmlspecialchars($_POST['name']);
@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     $contactmessage = htmlspecialchars($_POST['message']);
 
     // Förbered en SQL-sats
-    $sql = "INSERT INTO `contactform` (`id`, `contactname`, `contactemail`, `contactphone`, `contactmessage`,`date`) 
-            VALUES (NULL, '$contactname', '$contactemail', '$contactphone', '$contactmessage', NULL)";
+    $sql = "INSERT INTO `contactform` (`id`, `contactname`, `contactemail`, `contactphone`, `contactmessage`,`contactdate`) 
+            VALUES (NULL, '$contactname', '$contactemail', '$contactphone', '$contactmessage', CURRENT_TIMESTAMP )";
 
     $stmt = $db->prepare($sql);
 

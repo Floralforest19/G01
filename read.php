@@ -46,7 +46,19 @@
 
         <div class='product__wrapper'>
 
-            <?php
+<?php
+  // kolla vilka 3 varor som är senast skapade
+  $sqlNew  = "SELECT product_id FROM product ORDER BY creation_date DESC LIMIT 3";
+  $stmtNew = $db->prepare($sqlNew);
+  $stmtNew->execute();
+  // spara 3 senaste produkternas id:n i en array
+  $newProdIds = array();
+  $i = 0;
+  while($rowNew = $stmtNew->fetch(PDO::FETCH_ASSOC)){
+    $newProdIds[$i] = $rowNew['product_id'];
+    $i++;
+  }
+
   // loopar över arrayen som har resultatet från db
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // spara data från db i varsin variabel
@@ -62,17 +74,15 @@
       if(empty($image)){
         $image = 'toalettpapper.jpg';
       }
-
       // Delar upp bild-strängen till en array
       $imageArray = explode(" * ", $image);
-
       // Kollar om bild-array har mer än ett värde
       $imageCount = count($imageArray);
-
       // Om bild-array har mer än ett värde är det första bilden som blir primär, sorteras i bokstavsordning.
       if ($imageCount > 1) {
         $image = $imageArray[0];
       }
+      
       // skriv ut 
       if($quantity > 0){
         // rea varor
@@ -92,7 +102,12 @@
             <input type='hidden' class='product-name' value='$name'/>         
             <input type='hidden' class='product-price' value='$price'/>
             <input type='hidden' class='product-image' value='$image'/>
-            <input type='hidden' class='product-sale' value='$quantity'/>
+            <input type='hidden' class='product-sale' value='$quantity'/>";
+            // nya varor
+            if($id == $newProdIds[0] || $id == $newProdIds[1] || $id == $newProdIds[2]){
+              echo "<a href='showproduct.php?id=$id'><h2>Nyhet!</h2></a>";
+            } 
+            echo "
             <a href='showproduct.php?id=$id'><h3>$name</h3></a>
             $priceText
             <a href='showproduct.php?id=$id'>Läs mer</a><br></a>

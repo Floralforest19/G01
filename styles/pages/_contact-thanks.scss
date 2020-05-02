@@ -6,19 +6,24 @@
   margin: 100px 0 0 0;
 }
 
-.contact-form-thanks-button {
+/*.contact-form-thanks-button {
   border-radius: 100%;
-  background-color: #ff9378;
+  background-color: #ff9378; 
   font-size: 30px;
   height: 50px;
   width: 50px;
   margin: 0 20px 0 0;
+}*/
+
+.contact-form-thanks-button {
+  background: #ff9378;
+  font-size: 14px;
 }
 .contact-form-thanks-button:hover {
   background-color: #fe7e5f;
 }
 .contact-bg-color {
-  background-color: rgb(255, 255, 255);
+  background-color: #f1f1f1;
 }
 
 .contact-form-thanks-heading {

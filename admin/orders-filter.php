@@ -12,21 +12,9 @@
   <h2>Aktiva beställningar</h2>
   <div class="box__cat--form">
 
-    <button class='btn__edit' id="statusAll">Alla</button>
-    <button class='btn__edit'  id="statusNew">Nya</button>
-    <button class='btn__edit' id="statusActive">Behandlas</button>
-
-
-  <!-- <div class="nav__admin">
-    <form id="statusForm">
-      <input type="radio" id="new" name="status" value="new">
-      <label for="new">Nya </label>
-      <input type="radio" id="active" name="status" value="active">
-      <label for="active">Behandlas </label>
-      <input type="radio" id="both" name="status" value="both">
-      <label for="both">Visa alla</label>
-    </form>
-  </div> -->
+    <button class='btn__sortStatus btn__sortStatus--active' id="statusAll">Alla</button>
+    <button class='btn__sortStatus'  id="statusNew">Nya</button>
+    <button class='btn__sortStatus' id="statusActive">Behandlas</button>
 
   <div class="nav__admin">
     <form>
@@ -34,15 +22,14 @@
     </form>
   </div>
 
-  <div class="nav__admin" id="table_div">
-    <table id="tableOutput"></table>
-  </div>
+  <!-- tabell med ordrar -->
+  <div class="nav__admin" id="table_div"></div>
 
   </div>
 </section>
 
 
-<script src="../js/filter-orders2.js"></script>
+<script src="../js/filter-orders.js"></script>
 
 </body>
 </html>

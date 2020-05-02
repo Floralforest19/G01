@@ -1,30 +1,74 @@
+// koppla till DOM
 let tableDiv = document.getElementById('table_div')
+// skapa tabell
 let tableOutput = document.createElement('table')
+// lägg till klass till tabell
 tableOutput.classList.add('table')
+// lägg till nyskapade elementet i diven i DOM
 tableDiv.appendChild(tableOutput)
+// hämta status knappar
+let statusBtns = document.querySelectorAll('.btn__sortStatus')
 
-// filtrera ordrar
-function filterPhrase() {
-  let filterInput = document.getElementById('filterInput')
-  filterInput.addEventListener('input', function (e) {
-    let test = e.currentTarget.value
-    fetch('orders-information.php')  
-    .then( resp => resp.json() ) // konverterar till .json
-    .then( function(order) {
-      let ordersFiltered = order.filter( a => a.shippingCity.toLowerCase().startsWith(test))
-      showOrders(ordersFiltered) 
-    })
-  })
-}
-// filtrera
-filterPhrase()
-
-// hämta order info
+// hämta order info från informations fil
 fetch('orders-information.php')
   .then(resp => resp.json())
   .then(order => showOrders(order))
 
-// visa ordar i DOM
+getStatus(statusBtns)
+
+function getStatus(statusBtns){
+  statusBtns.forEach(btn => {
+    btn.addEventListener('click',function (e) {
+      // vilka ordrar vill användaen se, byt style beroende på vilken knapp som är aktiv
+      let whichOrders = 'Alla'
+      if(e.currentTarget.id == 'statusNew'){
+        whichOrders = 'Ny'
+        document.getElementById('statusAll').classList.remove('btn__sortStatus--active')
+        document.getElementById('statusNew').classList.add('btn__sortStatus--active')
+        document.getElementById('statusActive').classList.remove('btn__sortStatus--active')
+      } else if(e.currentTarget.id == 'statusActive'){
+        whichOrders = 'Behandlas'
+        document.getElementById('statusAll').classList.remove('btn__sortStatus--active')
+        document.getElementById('statusNew').classList.remove('btn__sortStatus--active')
+        document.getElementById('statusActive').classList.add('btn__sortStatus--active')
+      } else {
+        whichOrders = 'Alla'
+        document.getElementById('statusAll').classList.add('btn__sortStatus--active')
+        document.getElementById('statusNew').classList.remove('btn__sortStatus--active')
+        document.getElementById('statusActive').classList.remove('btn__sortStatus--active')
+      }
+      // hämta order info och filtrera på status
+      fetch('orders-information.php')
+      .then( resp => resp.json() ) 
+      .then( function(order) {
+        let ordersFiltered1 = order
+        if( whichOrders != 'Alla'){
+          ordersFiltered1 = order.filter( a => a.status == whichOrders)
+        }
+        // töm filtrets input varje gång knapp trycks
+        let filterInput = document.getElementById('filterInput')
+        filterInput.value = ''
+        // skriver ut ordarna som uppfyller kraven
+        showOrders(ordersFiltered1)
+        // ifall användaren vill filtera efter eget input körs filterPhrase
+        filterPhrase(ordersFiltered1)
+      })
+    })
+  });
+}
+
+// filtrera ordrar
+function filterPhrase(ordersFiltered1) {
+  // koppla till input för filtrering
+  let filterInput = document.getElementById('filterInput')
+  filterInput.addEventListener('input', function (e) {
+    let userInput = e.currentTarget.value
+      let ordersFiltered2 = ordersFiltered1.filter( order => order.shippingCity.toLowerCase().startsWith(userInput))
+      showOrders(ordersFiltered2)
+  })
+}
+
+// funktion som ritar ut ordrar i DOM
 function showOrders(order) {
   let table = `
       <thead>
@@ -32,9 +76,28 @@ function showOrders(order) {
         <th>Namn</th>
         <th>E-mail</th>
         <th>Leveransadress</th>
-        <th>Tid/Datum</th>
-        <th>Sum</th>
-        <th>Status</th>
+        <th>Tid/Datum 
+          <button class='sort__btn' id="timeSortAsc">
+            <i class="fas fa-angle-up"></i>
+          </button>
+          <button class='sort__btn' id="timeSortDesc">
+            <i class="fas fa-angle-down"></i>
+          </button>
+        <th>Summa
+        <button class='sort__btn' id="sumSortAsc">
+          <i class="fas fa-angle-up"></i>
+        </button>
+        <button class='sort__btn' id="sumSortDesc">
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <th>Status 
+        <button class='sort__btn' id="statusSortAsc">
+          <i class="fas fa-angle-up"></i>
+        </button>
+        <button class='sort__btn' id="statusSortDesc">
+          <i class="fas fa-angle-down"></i>
+        </button>
+        </th>
       </thead>`
   for (let i = 0; i < order.length; i++) {
       selectStatus =
@@ -54,16 +117,64 @@ function showOrders(order) {
       selectStatus += `</select><input type='submit' value='Sätt status'></form>`
       table +=
         `<tr>
-          <td>${order[i].order_id}</td> 
-          <td>${order[i].name}</td> 
-          <td>${order[i].email}</td> 
+          <td><a href='order-info.php?order_id=${order[i].order_id}'>${order[i].order_id}</a></td>
+          <td>${order[i].name}</td>
+          <td>${order[i].email}</td>
           <td>${order[i].shippingStreet} ${order[i].shippingZip}<br>
-              ${order[i].shippingCity}</td> 
-          <td id="orderByTime">${order[i].time}</td> 
-          <td id="orderBySum">SUMMA</td> 
-          <td id="orderByStatus">${selectStatus}</td> 
+              ${order[i].shippingCity}</td>
+          <td>${order[i].time}</td>
+          <td>${order[i].totalSum} kr</td>
+          <td>${selectStatus}</td>
         </tr>`
-        // lägga till summa
   }
   tableOutput.innerHTML = table
+  sortOrders(order)
+}
+
+
+// hämta order och sortera om ordern beroende på vilken knapp som är tryckt
+function sortOrders(order) {
+  let sortBtns = document.querySelectorAll('.sort__btn')
+  sortBtns.forEach(btn => {
+    btn.addEventListener('click',function (e) {
+      let sortMe = e.currentTarget.id
+      switch (sortMe) {
+        case 'timeSortAsc' : order.sort(sortByKeyAndOrderASC('time'))  
+        break;
+        case 'timeSortDesc' : order.sort(sortByKeyAndOrderDESC('time'))
+        break;
+        case 'sumSortAsc' : order.sort(sortByKeyAndOrderASC('totalSum'))
+        break;
+        case 'sumSortDesc' : order.sort(sortByKeyAndOrderDESC('totalSum'))
+        break;
+        case 'statusSortAsc' : order.sort(sortByKeyAndOrderASC('status'))
+        break;
+        case 'statusSortDesc' : order.sort(sortByKeyAndOrderDESC('status'))
+        break;
+      }
+      // skicka tillbaka till början
+      showOrders(order)
+      filterPhrase(order)
+    })
+  });
+}
+
+function sortByKeyAndOrderASC(value){  
+  return function(a,b){  
+     if(a[value] > b[value])  
+        return 1;  
+     else if(a[value] < b[value])  
+        return -1;  
+     return 0;  
+  }  
+}
+
+function sortByKeyAndOrderDESC(value){  
+  return function(a,b){  
+     if(a[value] < b[value])  
+        return 1;  
+     else if(a[value] > b[value])  
+        return -1;  
+     return 0;  
+  }  
 }

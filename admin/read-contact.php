@@ -22,7 +22,7 @@ require_once '../db.php';
 <?php
     // visa meddelanden
     if( isset($_GET['id']) ){
-      $id = htmlentities($_GET['id']);
+      $id        = htmlentities($_GET['id']);
       $orderSort = htmlentities($_GET['order_sort']);
       // hämta från beställningar istället
       $sql = "SELECT * FROM contactform ORDER BY $id $orderSort";
@@ -34,12 +34,12 @@ require_once '../db.php';
     $stmt->execute();
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       echo "<div class='box__cat--form'><table class='table__cat'><tr>";
-      $id = htmlspecialchars($row['id']);
-      $name = htmlspecialchars($row['contactname']);
+      $id      = htmlspecialchars($row['id']);
+      $name    = htmlspecialchars($row['contactname']);
       $message = htmlspecialchars($row['contactmessage']);
-      $phone = htmlspecialchars($row['contactphone']);
-      $email = htmlspecialchars($row['contactemail']);
-      $date = htmlspecialchars($row['contactdate']);
+      $phone   = htmlspecialchars($row['contactphone']);
+      $email   = htmlspecialchars($row['contactemail']);
+      $date    = htmlspecialchars($row['contactdate']);
       echo "<p>$date</p>";
       echo "<h3>$name</h3>";
       echo "<h4>$email</h4>";

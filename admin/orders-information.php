@@ -9,35 +9,34 @@ require_once '../db.php';
   $sql = "SELECT * FROM orders";
   $stmt = $db->prepare($sql);
   $stmt->execute();
-  
+
   // loopar över arrayen som har resultatet från db
   while (  $orderArray = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-    $order_id = htmlspecialchars($orderArray['order_id']); 
+    $order_id    = htmlspecialchars($orderArray['order_id']);
     $customer_id = htmlspecialchars($orderArray['customer_id']);
 
-    $sqlCustomerAddress = " SELECT * FROM customers 
+    $sqlCustomerAddress = " SELECT * FROM customers
                             WHERE customer_id = '$customer_id'";
     $stmtCustomer = $db->prepare($sqlCustomerAddress);
     $stmtCustomer->execute();
     $rowCustomerInfo = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
 
-    $name = htmlspecialchars($rowCustomerInfo['firstname'])." ".htmlspecialchars($rowCustomerInfo['surname']);
+    $name  = htmlspecialchars($rowCustomerInfo['firstname'])." ".htmlspecialchars($rowCustomerInfo['surname']);
     $email = htmlspecialchars($rowCustomerInfo['email']);
 
-    $homeStreet = htmlspecialchars($rowCustomerInfo['streetadress']);
-    $homeZip = htmlspecialchars($rowCustomerInfo['zip-code']);
-    $homeCity = htmlspecialchars($rowCustomerInfo['city']);
-    $otherStreet = htmlspecialchars($orderArray['other_address']);
-    $otherZip = htmlspecialchars($orderArray['other_zip']);
-    $otherCity = htmlspecialchars($orderArray['other_city']);
-
-    $status = htmlspecialchars($orderArray['status']);
-    $time = htmlspecialchars($orderArray['time']);
-    $shippingFee = htmlspecialchars($orderArray['shipping_fee']);
-    $amount = htmlspecialchars($orderArray['amount']);
+    $homeStreet   = htmlspecialchars($rowCustomerInfo['streetadress']);
+    $homeZip      = htmlspecialchars($rowCustomerInfo['zip-code']);
+    $homeCity     = htmlspecialchars($rowCustomerInfo['city']);
+    $otherStreet  = htmlspecialchars($orderArray['other_address']);
+    $otherZip     = htmlspecialchars($orderArray['other_zip']);
+    $otherCity    = htmlspecialchars($orderArray['other_city']);
+    $status       = htmlspecialchars($orderArray['status']);
+    $time         = htmlspecialchars($orderArray['time']);
+    $shippingFee  = htmlspecialchars($orderArray['shipping_fee']);
+    $amount       = htmlspecialchars($orderArray['amount']);
     $total_amount = $amount + $shippingFee;
     $sum = number_format($total_amount,2);
-    
+
     if( $status == 'active'){
       $status = "Ny";
     } else {
@@ -54,7 +53,7 @@ require_once '../db.php';
       $shippingCity = $otherCity;
     }
 
-    $order = array( 
+    $order = array(
                     "order_id" => $order_id,
                     "name" => $name,
                     "email" => $email,

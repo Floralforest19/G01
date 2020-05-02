@@ -1,10 +1,10 @@
 <table id="tableOutput" class="table"></table>
-<?php 
+<?php
 /**************************************** *
  * read info from db & display active/in progress orders
  * edit status with select
 **************************************** */
-  require_once 'header-admin.php'; 
+  require_once 'header-admin.php';
   require_once '../db.php';
 ?>
 
@@ -40,7 +40,7 @@
 
   </div>
 </section>
-  
+
 
 <script src="../js/filter-orders2.js"></script>
 

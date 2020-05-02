@@ -3,7 +3,7 @@
  * read info from db & display active/in progress orders
  * edit status with select
 **************************************** */
-  require_once 'header-admin.php'; 
+  require_once 'header-admin.php';
   require_once '../db.php';
 ?>
 
@@ -41,11 +41,11 @@
     $id = htmlentities($_GET['id']);
     $orderSort = htmlentities($_GET['order_sort']);
     // hämta från beställningar istället
-    $sql = "SELECT * FROM orders 
+    $sql = "SELECT * FROM orders
             WHERE status = 'active' OR status = 'in progress'
             ORDER BY $id $orderSort";
   } else {
-    $sql = "SELECT * FROM orders 
+    $sql = "SELECT * FROM orders
             WHERE status = 'active' OR status = 'in progress'
             ORDER BY order_id";
   }
@@ -55,29 +55,29 @@
   $tableOrders = "";
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) :
       // kolla igenom alla ordrar och spara order-id samt kundi-id
-      $order_id = htmlspecialchars($row['order_id']);
-      $customer_id = htmlspecialchars($row['customer_id']);
-      $status = htmlspecialchars($row['status']);
-      $amount = htmlspecialchars($row['amount']);
+      $order_id     = htmlspecialchars($row['order_id']);
+      $customer_id  = htmlspecialchars($row['customer_id']);
+      $status       = htmlspecialchars($row['status']);
+      $amount       = htmlspecialchars($row['amount']);
       $shipping_fee = htmlspecialchars($row['shipping_fee']);
       $total_amount = floatval($amount) + floatval($shipping_fee);
-      $time = htmlspecialchars($row['time']);
+      $time         = htmlspecialchars($row['time']);
 
-      $sqlCustomer = "SELECT * FROM customers WHERE customer_id = $customer_id";
+      $sqlCustomer  = "SELECT * FROM customers WHERE customer_id = $customer_id";
       $stmtCustomer = $db->prepare($sqlCustomer);
       $stmtCustomer->execute();
-      $rowCustomer = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
-  
+      $rowCustomer  = $stmtCustomer->fetch(PDO::FETCH_ASSOC);
+
       $email = htmlspecialchars($rowCustomer['email']);
       $fname = htmlspecialchars($rowCustomer['firstname']);
       $sname = htmlspecialchars($rowCustomer['surname']);
 
-      $customer_city = htmlspecialchars($rowCustomer['city']);
-      $customer_zip = htmlspecialchars($rowCustomer['zip-code']);
+      $customer_city    = htmlspecialchars($rowCustomer['city']);
+      $customer_zip     = htmlspecialchars($rowCustomer['zip-code']);
       $customer_address = htmlspecialchars($rowCustomer['streetadress']);
 
-      $other_city = htmlspecialchars($row['other_city']);
-      $other_zip = htmlspecialchars($row['other_zip']);
+      $other_city    = htmlspecialchars($row['other_city']);
+      $other_zip     = htmlspecialchars($row['other_zip']);
       $other_address = htmlspecialchars($row['other_address']);
       // beroende på om det finns nån annan leveransadress
       if( strlen(htmlspecialchars($row['other_city'])) > 0 ){
@@ -86,7 +86,7 @@
         $shippingAddress = "$customer_address<br><span class='shipping_address'>$customer_city</span> $customer_zip";
       }
 
-      $selectStatus = 
+      $selectStatus =
       "<form method='post' action='orders-update.php?order_id=$order_id'>
         <select name='statusSelect' class='statusSelect'>";
       if( $status == 'active'){
@@ -110,11 +110,11 @@
       $tableOrders.= "
       <tr>
         <td><a href='order-info.php?order_id=$order_id'><p>$order_id</p></a></td>
-        <td><a href='order-info.php?order_id=$order_id'><p>$fname $sname</p></a></td>  
+        <td><a href='order-info.php?order_id=$order_id'><p>$fname $sname</p></a></td>
         <td><a href='order-info.php?order_id=$order_id'><p>$email</p></a></td>
-        <td><p>$shippingAddress</p></td>  
-        <td><p>$time</p></td>  
-        <td><p>".number_format($total_amount,2)." kr</p></td>      
+        <td><p>$shippingAddress</p></td>
+        <td><p>$time</p></td>
+        <td><p>".number_format($total_amount,2)." kr</p></td>
         <td>$selectStatus</td>
       </tr>
     ";
@@ -123,7 +123,7 @@
     echo $tableOrders;
   ?>
   </div></div></section>
-  
+
 </section>
 
 </body>

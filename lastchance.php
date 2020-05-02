@@ -12,17 +12,17 @@
     <div class='product__wrapper--newitem'>
     <?php
       // hämta de tre senaste produkterna
-      $sqlNew =" SELECT * FROM product WHERE quantity < 10 ORDER BY quantity";
+      $sqlNew  = "SELECT * FROM product WHERE quantity < 10 ORDER BY quantity";
       $stmtNew = $db->prepare($sqlNew);
       $stmtNew->execute();
       // loopar över arrayen som har resultatet från db
       while($rowNew = $stmtNew->fetch(PDO::FETCH_ASSOC)) :
         // spara data från db i varsin variabel
-        $id = htmlspecialchars($rowNew['product_id']); 
-        $name = htmlspecialchars($rowNew['name']);
+        $id       = htmlspecialchars($rowNew['product_id']); 
+        $name     = htmlspecialchars($rowNew['name']);
         $category = strtoupper(htmlspecialchars($rowNew['category_id']));
         $quantity = htmlspecialchars($rowNew['quantity']);
-        $price = htmlspecialchars($rowNew['price']);
+        $price    = htmlspecialchars($rowNew['price']);
         // bildhantering
         $image = htmlspecialchars($rowNew['image_file_name']);
         if(empty($image)){

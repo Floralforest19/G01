@@ -50,18 +50,16 @@ $table .= '<tr>
 $productsBox = "<div class='product__wrapper'>";
 
 // all info om produkter
-$sql = "SELECT * FROM product";
+$sql  = "SELECT * FROM product";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
 while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   // test
   // print_r($row);
-  $name = htmlspecialchars($row['name']);
-  $id = htmlspecialchars($row['product_id']);
-  $catId = htmlspecialchars($row['category_id']);
-
-
+  $name   = htmlspecialchars($row['name']);
+  $id     = htmlspecialchars($row['product_id']);
+  $catId  = htmlspecialchars($row['category_id']);
   $bilder = htmlspecialchars($row['image_file_name']);
 
   // Splittar upp alla bilder i en array
@@ -74,10 +72,10 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   }
 
   
-  $sqlCat = "SELECT name FROM category WHERE category_id = $catId";
+  $sqlCat  = "SELECT name FROM category WHERE category_id = $catId";
   $stmtCat = $db->prepare($sqlCat);
   $stmtCat->execute();
-  $rowCat = $stmtCat->fetch(PDO::FETCH_ASSOC);
+  $rowCat  = $stmtCat->fetch(PDO::FETCH_ASSOC);
   $nameCat = htmlspecialchars($rowCat['name']);
   
   $productsBox .= "<article class='box'>

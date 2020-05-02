@@ -34,13 +34,13 @@ function filterPhrase(statusBtns) {
   let filterInput = document.getElementById('filterInput')
   filterInput.addEventListener('input', function (e) {
     let test = e.currentTarget.value
-    fetch('orders-information.php')  
+    fetch('orders-information.php')
     .then( resp => resp.json() ) // konverterar till .json
     .then( function(order) {
       let ordersFiltered = order.filter( a => a.shippingCity.toLowerCase().startsWith(test))
       let whichStatus = getStatus(statusBtns)
       console.log(whichStatus)
-      showOrders(ordersFiltered) 
+      showOrders(ordersFiltered)
     })
   })
 }
@@ -82,14 +82,14 @@ function showOrders(order) {
       selectStatus += `</select><input type='submit' value='Sätt status'></form>`
       table +=
         `<tr>
-          <td>${order[i].order_id}</td> 
-          <td>${order[i].name}</td> 
-          <td>${order[i].email}</td> 
+          <td>${order[i].order_id}</td>
+          <td>${order[i].name}</td>
+          <td>${order[i].email}</td>
           <td>${order[i].shippingStreet} ${order[i].shippingZip}<br>
-              ${order[i].shippingCity}</td> 
-          <td id="orderByTime">${order[i].time}</td> 
-          <td id="orderBySum">SUMMA</td> 
-          <td id="orderByStatus">${selectStatus}</td> 
+              ${order[i].shippingCity}</td>
+          <td id="orderByTime">${order[i].time}</td>
+          <td id="orderBySum">SUMMA</td>
+          <td id="orderByStatus">${selectStatus}</td>
         </tr>`
         // lägga till summa
   }

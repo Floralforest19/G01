@@ -72,7 +72,7 @@
 
       // Om det inte finns en bild läggs det upp en dummy
       if(empty($image)){
-        $image = 'toalettpapper.jpg';
+        $image = 'noimage.jpg';
       }
       // Delar upp bild-strängen till en array
       $imageArray = explode(" * ", $image);

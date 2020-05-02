@@ -26,7 +26,7 @@
         // bildhantering
         $image = htmlspecialchars($rowNew['image_file_name']);
         if(empty($image)){
-          $image = 'toalettpapper.jpg';
+          $image = 'noimage.jpg';
         }
         $imageArray = explode(" * ", $image);
         $imageCount = count($imageArray);

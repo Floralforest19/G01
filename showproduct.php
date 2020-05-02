@@ -2,6 +2,18 @@
     require_once 'header.php';
     require_once 'db.php';
 
+    // kolla vilka 3 varor som är senast skapade
+    $sqlNew  = "SELECT product_id FROM product ORDER BY creation_date DESC LIMIT 3";
+    $stmtNew = $db->prepare($sqlNew);
+    $stmtNew->execute();
+    // spara 3 senaste produkternas id:n i en array
+    $newProdIds = array();
+    $i = 0;
+    while($rowNew = $stmtNew->fetch(PDO::FETCH_ASSOC)){
+      $newProdIds[$i] = $rowNew['product_id'];
+      $i++;
+    }
+
     $id   = htmlspecialchars($_GET['id']);
     $sql  = "SELECT * FROM product WHERE product_id=:id";
     $stmt = $db->prepare($sql);
@@ -18,7 +30,7 @@
 
     // Om det inte finns en bild läggs det upp en dummy
     if(empty($image)){
-      $image = 'toalettpapper.jpg';
+      $image = 'noimage.jpg';
     }
 
     // Delar upp bild-strängen till en array
@@ -68,7 +80,12 @@
             <input type='hidden' class='product-price' value='$price'/>
             <input type='hidden' class='product-image' value='$image'/>
             <input type='hidden' class='product-sale' value='$quantity'/>
-            <h3>$name</h3>
+            ";
+            // nya varor
+            if($id == $newProdIds[0] || $id == $newProdIds[1] || $id == $newProdIds[2]){
+              $thisPost .=  "<a href='showproduct.php?id=$id'><h2>Nyhet!</h2></a>";
+            } 
+            $thisPost .= "<h3>$name</h3>
             <p>$description</p>
             <p>Pris:</p>
             $priceText

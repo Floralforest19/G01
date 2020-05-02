@@ -9,7 +9,7 @@ require_once 'header.php';
         <p>Ditt meddelande är skickad. Vi kommer kontakta er omgående.</p>
 
         <div class="contact-form-thanks-bottom">
-            <p><a href="index.php">Tillbaka till butik</a></p>
+            <a href="index.php"><button class="contact-form-thanks-button">Tillbaka till butik</button></a>
         </div>
     </div>
 

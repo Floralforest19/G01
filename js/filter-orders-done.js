@@ -6,55 +6,13 @@ let tableOutput = document.createElement('table')
 tableOutput.classList.add('table')
 // lägg till nyskapade elementet i diven i DOM
 tableDiv.appendChild(tableOutput)
-// hämta status knappar
-let statusBtns = document.querySelectorAll('.btn__sortStatus')
 // spara en senaste global order varje gång man utfört någon form av sortering
 
 // hämta order info från informations fil och kör för att visa alla ordrar första gången
-fetch('orders-information.php')
+fetch('orders-done-info.php')
   .then(resp => resp.json())
   .then(order => filterPhrase(order))
-  .then(order => setupButtons(order))
   .then(order => showOrders(order))
-
-
-function setupButtons(order) {
-  let statusBtns = document.querySelectorAll('.btn__sortStatus')
-  statusBtns.forEach(btn => {
-    btn.addEventListener('click',function (event) {
-      // vilka ordrar vill användaen se, byt style beroende på vilken knapp som är aktiv
-      let whichOrders = 'Alla'
-      if(event.currentTarget.id == 'statusNew'){
-        whichOrders = 'Ny'
-        document.getElementById('statusAll').classList.remove('btn__sortStatus--active')
-        document.getElementById('statusNew').classList.add('btn__sortStatus--active')
-        document.getElementById('statusActive').classList.remove('btn__sortStatus--active')
-      } else if(event.currentTarget.id == 'statusActive'){
-        whichOrders = 'Behandlas'
-        document.getElementById('statusAll').classList.remove('btn__sortStatus--active')
-        document.getElementById('statusNew').classList.remove('btn__sortStatus--active')
-        document.getElementById('statusActive').classList.add('btn__sortStatus--active')
-      } else {
-        whichOrders = 'Alla'
-        document.getElementById('statusAll').classList.add('btn__sortStatus--active')
-        document.getElementById('statusNew').classList.remove('btn__sortStatus--active')
-        document.getElementById('statusActive').classList.remove('btn__sortStatus--active')
-      }
-      let ordersFiltered1 = order
-        if( whichOrders != 'Alla'){
-          ordersFiltered1 = order.filter( a => a.status == whichOrders)
-        }
-        // töm filtrets input varje gång knapp trycks
-        let filterInput = document.getElementById('filterInput')
-        filterInput.value = ''
-        // skriver ut ordarna som uppfyller kraven
-        showOrders(ordersFiltered1)
-        // ifall användaren vill filtera efter eget input körs filterPhrase
-        filterPhrase(ordersFiltered1)
-    })
-  })
-  return order
-}
 
 // filtrera ordrar
 function filterPhrase(ordersFiltered1) {
@@ -91,48 +49,25 @@ function showOrders(order) {
         <button class='sort__btn' id="sumSortDesc">
           <i class="fas fa-angle-down"></i>
         </button>
-        <th>Status 
-        <button class='sort__btn' id="statusSortAsc">
-          <i class="fas fa-angle-up"></i>
-        </button>
-        <button class='sort__btn' id="statusSortDesc">
-          <i class="fas fa-angle-down"></i>
-        </button>
-        </th>
+        <th>Status</th>
       </thead>`
   for (let i = 0; i < order.length; i++) {
-      selectStatus =
-        `<form method='post' action='orders-update.php?order_id=${order[i].order_id}'>
-        <select name='statusSelect' id='statusSelect'>`
-      if (order[i].status == 'Ny') {
-        selectStatus += `
-        <option value='active' selected>Ny</option>
-        <option value='in progress'>Behandlas</option>
-        <option value='done'>Slutförd</option>`
-      } else if (order[i].status == 'Behandlas') {
-        selectStatus += `
-          <option value='active'>Ny</option>
-          <option value='in progress' selected>Behandlas</option>
-          <option value='done'>Slutförd</option>`
-      }
-      selectStatus += `</select><input type='submit' value='Sätt status'></form>`
       table +=
         `<tr>
-          <td><a href='order-info.php?order_id=${order[i].order_id}'>${order[i].order_id}</a></td>
+          <td><a href='order-info-done.php?order_id=${order[i].order_id}'>${order[i].order_id}</a></td>
           <td>${order[i].name}</td>
           <td>${order[i].email}</td>
           <td>${order[i].shippingStreet} ${order[i].shippingZip}<br>
               ${order[i].shippingCity}</td>
           <td>${order[i].time}</td>
           <td>${order[i].totalSum} kr</td>
-          <td>${selectStatus}</td>
+          <td>Slutförd</td>
         </tr>`
   }
   tableOutput.innerHTML = table
   sortOrders(order)
   return order
 }
-
 
 // hämta order och sortera om ordern beroende på vilken knapp som är tryckt
 function sortOrders(order) {

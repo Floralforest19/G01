@@ -16,7 +16,7 @@
 }
 
 .btn__edit,
-.btn__delete {
+.btn__delete, .btn__sortStatus {
   margin-top: 1em;
   margin-bottom: 1em;
   width: 128px;
@@ -45,7 +45,7 @@
   margin-top: 30px;
 }
 
-.cat-form-btn {
+.cat-form-btn,.sort__btn {
   margin-top: 1em;
   margin-bottom: 1em;
   width: 128px;
@@ -62,7 +62,7 @@
   transition: all 500ms ease;
 }
 
-.cat-form-btn:hover {
+.cat-form-btn:hover, .sort__btn:hover {
   background-color: $button-hover-color;
   cursor: pointer;
 }
@@ -99,4 +99,42 @@
 
 .rocket {
   max-width: 10px;
+}
+
+
+button.sort__btn {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  height: 25px;
+  width: 30px;
+  background-color: white;
+  color: #1D99BA;
+  font-size: 1.25rem;
+}
+
+.sort__btn:hover {
+  background-color: $orange-button;
+}
+
+.btn__sortStatus {
+  background-color: white;
+  color: #1D99BA;
+}
+
+.btn__sortStatus--active {
+  background-color: #1D99BA;
+  color: white;
+}
+
+.btn__sortStatus:hover {
+  background-color: $orange-button;
+  cursor: pointer;
+}
+
+input.input__filter {
+  padding: 0.25rem 2rem;
+  font-family: $main-font;
+  border-radius: 10px;
+  border: solid 1px rgba(148, 148, 148, 0.5);
+  font-size: 1rem;
 }

@@ -8,11 +8,13 @@ tableOutput.classList.add('table')
 tableDiv.appendChild(tableOutput)
 // hämta status knappar
 let statusBtns = document.querySelectorAll('.btn__sortStatus')
+// spara en senaste global order varje gång man utfört någon form av sortering
 
 // hämta order info från informations fil
 fetch('orders-information.php')
   .then(resp => resp.json())
   .then(order => showOrders(order))
+
 
 getStatus(statusBtns)
 
@@ -129,6 +131,7 @@ function showOrders(order) {
   }
   tableOutput.innerHTML = table
   sortOrders(order)
+  return order
 }
 
 
@@ -154,7 +157,6 @@ function sortOrders(order) {
       }
       // skicka tillbaka till början
       showOrders(order)
-      filterPhrase(order)
     })
   });
 }

@@ -13,13 +13,16 @@
       $newProdIds[$i] = $rowNew['product_id'];
       $i++;
     }
-
     $id   = htmlspecialchars($_GET['id']);
     $sql  = "SELECT * FROM product WHERE product_id=:id";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':id', $id);
     $stmt->execute();
-    $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // $result sätts till true ifall kategorin existerar
+    $result = false; 
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+      $result = true; 
 
     $id          = htmlspecialchars($row['product_id']);
     $name        = htmlspecialchars($row['name']);
@@ -98,6 +101,13 @@
       </section>";
 
 echo $thisPost;
+
+} 
+if( !$result ){
+  echo "<article class='single__product__wrapper'>
+  <h3>Tyvärr, här finns inget interessant!</h3>
+  </article>";
+}
 
 require_once 'footer.php';
 ?>

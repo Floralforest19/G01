@@ -20,7 +20,7 @@ function filterPhrase(ordersFiltered1) {
   let filterInput = document.getElementById('filterInput')
   let ordersFiltered2 = ordersFiltered1
   filterInput.addEventListener('input', function (e) {
-    let userInput = e.currentTarget.value
+    let userInput = e.currentTarget.value.toLowerCase()
     let onlyLetters = /^[a-zA-ZåäöÅÄÖ]*$/.test(userInput)
     if(onlyLetters && userInput.length <= 20){
       ordersFiltered2 = ordersFiltered1.filter( order => order.shippingCity.toLowerCase().startsWith(userInput))
@@ -50,14 +50,14 @@ function showOrders(order) {
         <th>Namn</th>
         <th>E-mail</th>
         <th>Leveransadress</th>
-        <th>Tid/Datum 
+        <th>Tid/Datum <br>
           <button class='sort__btn' id="timeSortAsc">
             <i class="fas fa-angle-up"></i>
           </button>
           <button class='sort__btn' id="timeSortDesc">
             <i class="fas fa-angle-down"></i>
           </button>
-        <th>Summa
+        <th>Summa<br>
         <button class='sort__btn' id="sumSortAsc">
           <i class="fas fa-angle-up"></i>
         </button>

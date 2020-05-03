@@ -63,8 +63,19 @@ function filterPhrase(ordersFiltered1) {
   let ordersFiltered2 = ordersFiltered1
   filterInput.addEventListener('input', function (e) {
     let userInput = e.currentTarget.value
+    let onlyLetters = /^[a-zA-ZåäöÅÄÖ]*$/.test(userInput)
+    if(onlyLetters){
       ordersFiltered2 = ordersFiltered1.filter( order => order.shippingCity.toLowerCase().startsWith(userInput))
       showOrders(ordersFiltered2)
+    } else {
+      // feedback
+      filterInput.value = userInput.substring(0, userInput.length - 1)
+      if(userInput.length > 20){
+        document.querySelector('.sortFeedback').innerHTML = "Finns ingen stad med så många bokstäver"
+      } else {
+        document.querySelector('.sortFeedback').innerHTML = "Bara a-ö tillåtet"
+      }
+    }
   })
   return ordersFiltered2;
 }

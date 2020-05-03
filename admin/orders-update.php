@@ -6,8 +6,9 @@
   require_once '../db.php';
   if(isset($_POST['statusSelect'])){
     $order_id = htmlspecialchars($_GET['order_id']); 
+    print_r($_POST);
 
-    if( $_POST['statusSelect'] == 'active' || $_POST['statusSelect'] == 'new' ){
+    if( $_POST['statusSelect'] == 'active' || $_POST['statusSelect'] == 'in progress' ){
       $selectValue = htmlspecialchars($_POST['statusSelect']);
 
       // ifall order statusen ska ändras från/till ny/behandlas

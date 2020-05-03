@@ -35,23 +35,30 @@
     if(empty($image)){
       $image = 'noimage.jpg';
     }
-
+    
     // Delar upp bild-strängen till en array
     $imageArray = explode(" * ", $image);
-
+    
     // Kollar om bild-array har mer än ett värde
     $imageCount = count($imageArray)-1;
+    
+    // Tar bort " * " från $image-strängen ifall produkten bara har en bild
+    if ($imageCount == 1) {
+      $image = str_replace(" * ", "", $image);
+    }
+    
+    // Variabel som skriver ut thumbnails ifall produkten har mer än 1 bild
     $skrivImage = "";
 
     // Om bild-array har mer än ett värde är det första bilden som blir primär, sorteras i bokstavsordning.
     if ($imageCount > 1) {
       $image = $imageArray[0];
-      
+
       $skrivImage = "";
       for ($i=0; $i < $imageCount; $i++) { 
         $skrivImage .= "<img src='./images/$imageArray[$i]'/>";
       }
-    }
+    } 
     // rea varor
     if($quantity < 10){
       $priceText = "<p class='sale__old'>$price kr</p>

@@ -83,13 +83,13 @@ body {
 
 .box__search--form,
 .box__cat--form {
-  margin: 2vw 5vw;
+  margin: 2vw 1vw;
 }
 
 @media (min-width: 1000px) {
   .box__search--form,
   .box__cat--form {
-    margin: 3vw 10vw;
+    margin: 3vw 1vw;
   }
 }
 
@@ -97,10 +97,12 @@ body {
   padding: 1rem;
   background: #fff;
   border-radius: 1rem;
+  margin-left: 20%;
 }
 
 .box__cat--form--main {
   border: 2px solid rgba(110, 110, 110, 0.5);
+  margin-left: 20%;
 }
 
 .box__pic,
@@ -207,47 +209,13 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.nav__admin {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.nav__admin ul {
-  list-style: none;
-}
-
-.nav__admin ul li {
-  display: inline;
-}
-
-.nav__admin ul li + li {
-  margin-left: 1rem;
-}
-
-.nav__admin ul li a {
-  color: #eb4b88;
-}
-
-.nav__admin ul li a:hover {
-  color: black;
-}
-
 .search__feedback {
   color: #eb4b88;
 }
 
 .wrap {
   margin: 20px;
+  margin-left: 13%;
 }
 
 .table {
@@ -472,6 +440,7 @@ h2 {
   font-size: 30px;
   text-align: center;
   padding-top: 5%;
+  margin-left: 20%;
 }
 
 h3 {
@@ -505,6 +474,7 @@ h3 {
   justify-items: center;
   padding-bottom: 2em;
   grid-gap: 2em;
+  margin-left: 20%;
 }
 
 .products__display {
@@ -514,5 +484,135 @@ h3 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-left: 20%;
+}
+
+.update-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 80vh;
+  margin: 0;
+}
+
+.update-container {
+  background-color: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  width: 400px;
+  max-width: 100%;
+}
+
+.update__btn {
+  background-color: #F4D9B5;
+  border: 2px solid #F4D9B5;
+  border-radius: 4px;
+  color: black;
+  display: block;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+  cursor: pointer;
+}
+
+#header {
+  position: fixed;
+  float: left;
+  width: 19%;
+  height: 100%;
+  padding: 100px 0;
+  background-color: #348f6c;
+  font-size: 24px;
+  text-transform: capitalize;
+  min-width: 100px;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: left;
+}
+
+.container h2 {
+  color: white;
+  text-align: center;
+}
+
+.container h3 {
+  color: black;
+  padding-left: 1em;
+}
+
+.nav__admin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 1rem;
+}
+
+.nav__admin ul {
+  list-style: none;
+}
+
+.nav__admin ul li {
+  display: inline;
+}
+
+.nav__admin ul li + li {
+  margin-left: 1rem;
+}
+
+.nav__admin ul li a {
+  color: white;
+  font-size: 14px;
+}
+
+.nav__admin ul li a:hover {
+  color: black;
+}
+
+.nav__ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+hr {
+  width: 80%;
+  text-align: center;
+  margin-left: 17px;
+  height: 2px;
+  border-width: 0;
+  color: white;
+  background-color: white;
 }
 /*# sourceMappingURL=style.css.map */

@@ -16,8 +16,16 @@
 <body>
 
 <script src="../validateinput.js"></script>
+
+<header id=header>
+<div class="container">
+<h2>Kris & Ros</h2>
+<hr noshade="noshade">
+
+<h3>Adminpanel</h3>
+
 <nav class="nav__admin">
-  <ul>
+  <ul class="nav__ul">
     <li><a href="../index.php">Hem</a></li>
     <li><a href="index.php">Produkter</a></li>
     <li><a href="create-product.php">Skapa produkt</a></li>
@@ -27,3 +35,5 @@
     <li><a href="read-contact.php">Kundmeddelanden</a></li>
   </ul>
 </nav>
+</div>
+  </header>

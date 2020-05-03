@@ -807,41 +807,6 @@ body {
           box-sizing: border-box;
 }
 
-.nav__admin {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.nav__admin ul {
-  list-style: none;
-}
-
-.nav__admin ul li {
-  display: inline;
-}
-
-.nav__admin ul li + li {
-  margin-left: 1rem;
-}
-
-.nav__admin ul li a {
-  color: #eb4b88;
-}
-
-.nav__admin ul li a:hover {
-  color: black;
-}
-
 .search__feedback {
   color: yellow;
   font-size: 15px;

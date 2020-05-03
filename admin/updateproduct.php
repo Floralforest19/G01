@@ -212,7 +212,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 ?>
 
 <div class="update-product-form">
-  <form method="POST" name="update-form" action="update-product-confirm.php" enctype="multipart/form-data" style="padding-left: 10%;padding-right: 10%;" onsubmit="return validateAll()" class='wrap'>
+  <form method="POST" name="update-form" action="" enctype="multipart/form-data" style="padding-left: 10%;padding-right: 10%;" onsubmit="return validateAll()" class='wrap'>
 
   <?php
       // Kontrollerar att bild finns på produkten

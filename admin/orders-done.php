@@ -15,6 +15,7 @@
   <div class="nav__admin">
     <form>
       <input type="text" name="filterCity" id="filterInput" class="input__filter" placeholder="Filtrera efter stad...">
+      <p class="sortFeedback"></p>
     </form>
   </div>
 

@@ -5,7 +5,6 @@
   justify-self: center;
   grid-template-columns: 1fr;
   text-align: center;
-
   @media (min-width: $iphonePlus-size) {
     grid-template-columns: 1fr 1fr;
   }
@@ -48,9 +47,9 @@
 
 .box__search--form,
 .box__cat--form {
-  margin: 2vw 5vw;
+  margin: 2vw 1vw;
   @media (min-width: $desktop-size) {
-    margin: 3vw 10vw;
+    margin: 3vw 1vw;
   }
 }
 
@@ -58,10 +57,12 @@
   padding: 1rem;
   background: $color-white;
   border-radius: 1rem;
+  margin-left: 20%;
 }
 
 .box__cat--form--main {
   border: 2px solid $shadow;
+  margin-left: 20%;
 }
 
 .box__pic,
@@ -149,33 +150,11 @@
   margin-bottom: 0.5rem;
 }
 
-.nav__admin {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 1rem;
-  text-align: center;
-  ul {
-    list-style: none;
-    li {
-      & + li {
-        margin-left: 1rem;
-      }
-      display: inline;
-      a {
-        color: $second-head-color;
-        &:hover {
-          color: black;
-        }
-      }
-    }
-  }
-}
-
 .search__feedback {
   color: $second-head-color;
 }
 
 .wrap {
   margin: 20px;
+  margin-left: 13%;
 }

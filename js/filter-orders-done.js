@@ -21,8 +21,23 @@ function filterPhrase(ordersFiltered1) {
   let ordersFiltered2 = ordersFiltered1
   filterInput.addEventListener('input', function (e) {
     let userInput = e.currentTarget.value
+    let onlyLetters = /^[a-zA-ZåäöÅÄÖ]*$/.test(userInput)
+    if(onlyLetters && userInput.length <= 20){
       ordersFiltered2 = ordersFiltered1.filter( order => order.shippingCity.toLowerCase().startsWith(userInput))
       showOrders(ordersFiltered2)
+    } else {
+      // feedback
+      filterInput.value = userInput.substring(0, userInput.length - 1)
+      if(userInput.length > 20){
+        document.querySelector('.sortFeedback').innerHTML = "Finns ingen stad med så många bokstäver"
+      } else {
+        document.querySelector('.sortFeedback').innerHTML = "Bara a-ö tillåtet"
+      }
+      // tabort feedback
+      setTimeout(function (){
+        document.querySelector('.sortFeedback').innerHTML = ""
+      }, 1500) //1200 mms
+    }
   })
   return ordersFiltered2;
 }
@@ -35,7 +50,7 @@ function showOrders(order) {
         <th>Namn</th>
         <th>E-mail</th>
         <th>Leveransadress</th>
-        <th>Tid/Datum 
+        <th>Tid/Datum
           <button class='sort__btn' id="timeSortAsc">
             <i class="fas fa-angle-up"></i>
           </button>
@@ -76,13 +91,13 @@ function sortOrders(order) {
     btn.addEventListener('click',function (e) {
       let sortMe = e.currentTarget.id
       switch (sortMe) {
-        case 'timeSortAsc' : order.sort(sortByKeyAndOrderASC('time'))  
+        case 'timeSortAsc' : order.sort(sortByKeyAndOrderASC('time'))
         break;
         case 'timeSortDesc' : order.sort(sortByKeyAndOrderDESC('time'))
         break;
-        case 'sumSortAsc' : order.sort(sortByKeyAndOrderASC('totalSum'))
+        case 'sumSortAsc' : order.sort(sortSumASC('totalSum'))
         break;
-        case 'sumSortDesc' : order.sort(sortByKeyAndOrderDESC('totalSum'))
+        case 'sumSortDesc' : order.sort(sortSumDESC('totalSum'))
         break;
         case 'statusSortAsc' : order.sort(sortByKeyAndOrderASC('status'))
         break;
@@ -95,22 +110,48 @@ function sortOrders(order) {
   });
 }
 
-function sortByKeyAndOrderASC(value){  
-  return function(a,b){  
-     if(a[value] > b[value])  
-        return 1;  
-     else if(a[value] < b[value])  
-        return -1;  
-     return 0;  
-  }  
+function sortByKeyAndOrderASC(value){
+  return function(a,b){
+     if(a[value] > b[value])
+        return 1;
+     else if(a[value] < b[value])
+        return -1;
+     return 0;
+  }
 }
 
-function sortByKeyAndOrderDESC(value){  
-  return function(a,b){  
-     if(a[value] < b[value])  
-        return 1;  
-     else if(a[value] > b[value])  
-        return -1;  
-     return 0;  
-  }  
+function sortByKeyAndOrderDESC(value){
+  return function(a,b){
+    a[value] = a[value].replace(",","")
+    b[value] = b[value].replace(",","")
+     if(a[value] < b[value])
+        return 1;
+     else if(a[value] > b[value])
+        return -1;
+     return 0;
+  }
+}
+
+function sortSumASC(value){
+  return function(a,b){
+      a[value] = a[value].replace(",","")
+      b[value] = b[value].replace(",","")
+     if(parseFloat(a[value]) > parseFloat(b[value]))
+      return 1;
+     else if(parseFloat(a[value]) < parseFloat(b[value]))
+        return -1;
+     return 0;
+  }
+}
+
+function sortSumDESC(value){
+  return function(a,b){
+    a[value] = a[value].replace(",","")
+    b[value] = b[value].replace(",","")
+     if(parseFloat(a[value]) < parseFloat(b[value]))
+      return 1;
+     else if(parseFloat(a[value]) > parseFloat(b[value]))
+        return -1;
+     return 0;
+  }
 }

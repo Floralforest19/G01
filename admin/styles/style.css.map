@@ -8,7 +8,9 @@
         "layout/_table.scss",
         "components/_buttons.scss",
         "components/_fonts.scss",
-        "pages/_read-disp.scss"
+        "pages/_read-disp.scss",
+        "pages/_update-product-confirm.scss",
+        "pages/_header.scss"
     ],
     "names": [],
     "file": "style.css"

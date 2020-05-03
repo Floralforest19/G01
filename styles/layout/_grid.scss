@@ -142,29 +142,6 @@
   box-sizing: border-box;
 }
 
-.nav__admin {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 1rem;
-  text-align: center;
-  ul {
-    list-style: none;
-    li {
-      & + li {
-        margin-left: 1rem;
-      }
-      display: inline;
-      a {
-        color: $second-head-color;
-        &:hover {
-          color: black;
-        }
-      }
-    }
-  }
-}
-
 .search__feedback {
   color: yellow;
   font-size: 15px;

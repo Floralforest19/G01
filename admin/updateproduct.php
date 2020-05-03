@@ -293,7 +293,19 @@ require_once '../db.php';
 <div id="priceFeedback" style="color:#eb4b88"></div>
 
         <div style="display: flex;justify-content: center;justify-content: space-evenly;">
-          <a class="btn__delete del" href="index.php" style="text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
+
+        <?php
+          if (isset($_GET['new']) == true) { // Om nyskapad produkt ändra Avbryt-knapp till Klar-knapp
+          ?>
+            <a class="btn__delete del" href="index.php" style="text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;background: #51e661;">Klar</a>
+          <?php
+          } else {
+          ?>
+            <a class="btn__delete del" href="index.php" style="text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
+          <?php
+          }
+          ?>
+
           <input class="product__btn" type="submit" value="Uppdatera produkt">
         </div>
         <input class="input__cat" type="hidden" name="product_id" value="<?php echo $product_id; ?>">

@@ -48,9 +48,10 @@ if( isset($_GET['order_id'])){
     $statusText = 'Behandlas';
   }
 
-  $tableOrders = "  
+  $tableOrders = "
   <h2>Order $order_id</h2>
   <div class='box__cat--form'>
+  <a href='orders.php'><button class='btn__sortStatus'><i class='fas fa-angle-left'></i> Tillbaka</button></a>
   <div class='nav__admin'>";
   $tableOrders .=
   "  

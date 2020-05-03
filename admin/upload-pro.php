@@ -18,6 +18,8 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
   $imageCollection = "";
   $imageCounter    = 0;  // Räknar bilderna som läggs upp. Max 5
 
+  $imageUploadError = 0;  // Säger till ifall det blev fel på någon uppladdning och visar bild-krav på nästa sida
+
   // Kontrollerar ifall en bild är uppladdad genom att räkna längden på första variabeln i bild-arrayn
   if (strlen(htmlspecialchars(basename ($_FILES["image_file_name"]["name"][0]))) > 1) {
     // Loopar över alla filer/bilder
@@ -36,66 +38,69 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
       
       $check = getimagesize($_FILES["image_file_name"]["tmp_name"][$i]);
       if($check !== false) {
-        echo "<img src='$target_file' class='img-fluid' alt='$name'><br>";
+        // echo "<img src='$target_file' class='img-fluid' alt='$name'><br>";      // **
         $uploadOk = 1;
       } else {
-        echo "Det här är ingen bild.<br>";
+        // echo "Det här är ingen bild.<br>";      // **
         $uploadOk = 0;
         $addImageCollection = 0;
-        
+        $imageUploadError = 1;
       }
       
       
       // Check if file already exists
       if (file_exists($target_file)) {
-        echo "Den här bilden finns redan.<br>";
+        // echo "Den här bilden finns redan.<br>";      // **
         $uploadOk = 0;
       }
       // Check file size
       if ($_FILES["image_file_name"]["size"][$i] > 2000000) {  // Begränsad till 2MB
-        echo "Tyvärr, filen är för stor.<br>";
+        // echo "Tyvärr, filen är för stor.<br>";      // **
         $uploadOk = 0;
-      $addImageCollection = 0;
+        $addImageCollection = 0;
+        $imageUploadError = 1;
       }
       
       // Allow certain file formats
       if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
       && $imageFileType != "gif" ) {
         
-        echo "Tyvärr, bara JPG, JPEG, PNG & GIF är tillåtna filformat.<br>";
+        // echo "Tyvärr, bara JPG, JPEG, PNG & GIF är tillåtna filformat.<br>";      // **
         $uploadOk = 0;
         $addImageCollection = 0;
+        $imageUploadError = 1;
       }
       
       // Check if $uploadOk is set to 0 by an error
-      if ($uploadOk == 0) {
+      if ($uploadOk == 0 && $imageCounter < 5) {
         
-        echo "Filen gick inte att ladda upp.";
-        // if everything is ok, try to upload file
-      } else {
+
+        // echo "Filen gick inte att ladda upp.";      // **
+        
+      } else {    // if everything is ok, try to upload file
       
         if (move_uploaded_file($_FILES["image_file_name"]["tmp_name"][$i], $target_file)) {
           echo " Bilden ". basename( $_FILES["image_file_name"]["name"][$i]). " har laddats upp.<br>";
         } else {
           echo "Tyvärr, det blev något fel vid uppladdning av fil.<br>";
-        }
+          $imageUploadError = 1;
+      }
         echo "</div></tr>";
       }
 
       // Om $addImageCollection är "1" så kommer bildens sökväg att läggat till under produktens image_file_name kolumn
-      if ($addImageCollection == 1) {
+      if ($addImageCollection == 1 && $imageCounter < 5) {
         //Sparar alla bilder och separerar bildernas sökväg, med två mellanslag, i en string
         $imageCollection .= htmlspecialchars(basename ($_FILES["image_file_name"]["name"][$i])) . " * ";
       }
       $imageCounter++;
       if ($imageCounter > 5) {
-        header("Location:create-product.php?uppladdning=fel");
-        exit;
+        $imageUploadError = 1;
       }
     }   // Slut på bildernas for-loop.
   }   // Slut på if-sats som kollar ifall bild variabeln är tom.
 
-  
+
   
   
   
@@ -121,9 +126,13 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
   $row4 = $stmt4->fetch(PDO::FETCH_ASSOC);
   $new_product_id = $row4['product_id'];
 
-
-  header("Location:updateproduct.php?product_id=$new_product_id&new=true"); // Efter att produkten skapats hamnar man på startsidan för admin
-  exit;
+  if ($imageUploadError > 0) {
+    header("Location:updateproduct.php?product_id=$new_product_id&uppladdning=error&new=true");
+    exit;
+  }else {
+    header("Location:updateproduct.php?product_id=$new_product_id&new=true"); // Efter att produkten skapats hamnar man på startsidan för admin
+    exit;
+  }
 } 
 
 ?>

@@ -80,9 +80,9 @@ function sortOrders(order) {
         break;
         case 'timeSortDesc' : order.sort(sortByKeyAndOrderDESC('time'))
         break;
-        case 'sumSortAsc' : order.sort(sortByKeyAndOrderASC('totalSum'))
+        case 'sumSortAsc' : order.sort(sortSumASC('totalSum'))
         break;
-        case 'sumSortDesc' : order.sort(sortByKeyAndOrderDESC('totalSum'))
+        case 'sumSortDesc' : order.sort(sortSumDESC('totalSum'))
         break;
         case 'statusSortAsc' : order.sort(sortByKeyAndOrderASC('status'))
         break;
@@ -110,6 +110,26 @@ function sortByKeyAndOrderDESC(value){
      if(a[value] < b[value])  
         return 1;  
      else if(a[value] > b[value])  
+        return -1;  
+     return 0;  
+  }  
+}
+
+function sortSumASC(value){  
+  return function(a,b){  
+     if(parseFloat(a[value]) > parseFloat(b[value]))  
+        return 1;  
+     else if(parseFloat(a[value]) < parseFloat(b[value]))  
+        return -1;  
+     return 0;  
+  }  
+}
+
+function sortSumDESC(value){  
+  return function(a,b){  
+     if(parseFloat(a[value]) < parseFloat(b[value]))  
+        return 1;  
+     else if(parseFloat(a[value]) > parseFloat(b[value]))  
         return -1;  
      return 0;  
   }  

@@ -107,6 +107,8 @@ function sortByKeyAndOrderASC(value){
 
 function sortByKeyAndOrderDESC(value){  
   return function(a,b){  
+    a[value] = a[value].replace(",","")
+    b[value] = b[value].replace(",","")
      if(a[value] < b[value])  
         return 1;  
      else if(a[value] > b[value])  
@@ -117,8 +119,10 @@ function sortByKeyAndOrderDESC(value){
 
 function sortSumASC(value){  
   return function(a,b){  
+      a[value] = a[value].replace(",","")
+      b[value] = b[value].replace(",","")
      if(parseFloat(a[value]) > parseFloat(b[value]))  
-        return 1;  
+      return 1;  
      else if(parseFloat(a[value]) < parseFloat(b[value]))  
         return -1;  
      return 0;  
@@ -127,8 +131,9 @@ function sortSumASC(value){
 
 function sortSumDESC(value){  
   return function(a,b){  
+      console.log(a[value]+" "+b[value])  
      if(parseFloat(a[value]) < parseFloat(b[value]))  
-        return 1;  
+      return 1;  
      else if(parseFloat(a[value]) > parseFloat(b[value]))  
         return -1;  
      return 0;  

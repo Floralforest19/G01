@@ -1,5 +1,4 @@
-
-  <?php require_once '../db.php';
+<?php require_once '../db.php';
 
 // skapa produkt
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
@@ -8,8 +7,6 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
   $quantity     = htmlspecialchars($_POST['quantity']);
   $price        = htmlspecialchars($_POST['price']);
   $category_id  = htmlspecialchars($_POST['test']);
-
-
 
   // räkna antalet filer/bilder som ska laddas upp
   $totalfiles = count($_FILES['image_file_name']['name']);
@@ -80,12 +77,12 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
       } else {    // if everything is ok, try to upload file
       
         if (move_uploaded_file($_FILES["image_file_name"]["tmp_name"][$i], $target_file)) {
-          echo " Bilden ". basename( $_FILES["image_file_name"]["name"][$i]). " har laddats upp.<br>";
+          //echo " Bilden ". basename( $_FILES["image_file_name"]["name"][$i]). " har laddats upp.<br>";
         } else {
-          echo "Tyvärr, det blev något fel vid uppladdning av fil.<br>";
+          //echo "Tyvärr, det blev något fel vid uppladdning av fil.<br>";
           $imageUploadError = 1;
       }
-        echo "</div></tr>";
+        //echo "</div></tr>";
       }
 
       // Om $addImageCollection är "1" så kommer bildens sökväg att läggat till under produktens image_file_name kolumn

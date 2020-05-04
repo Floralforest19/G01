@@ -27,7 +27,7 @@ require_once '../db.php';
       // hämta från beställningar istället
       $sql = "SELECT * FROM contactform ORDER BY $id $orderSort";
     } else {
-      $sql = "SELECT * FROM contactform ORDER BY contactemail";;
+      $sql = "SELECT * FROM contactform ORDER BY contactdate DESC";;
     }
     
     $stmt = $db->prepare($sql);

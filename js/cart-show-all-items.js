@@ -36,11 +36,14 @@ function getProdsToCart(products) {
     let name = products[i].productName;
     let id = products[i].productId;
     let price = products[i].productPrice;
+    let newId0 = products[i].newId0;
+    let newId1 = products[i].newId1;
+    let newId2 = products[i].newId2;
     let quantity = parseInt(products[i].quantity);
     let productSaleQuantity = parseInt(products[i].productSaleQuantity);
     let priceText = ''
-
-    if(productSaleQuantity <10){
+    
+    if(productSaleQuantity <10 && id != newId0 && id != newId1 && id != newId2){
       priceText += '<p class="sale__old">'+price+" kr</p>"
       price *= 0.9
       price = price.toFixed(2)
@@ -202,7 +205,6 @@ function setUpMinusQuantityClickEvent() {
 
   for (let i = 0; i < minusQuantityButtons.length; i++) {
     let minusQuantityButton = minusQuantityButtons[i];
-    console.log("minus" + minusQuantityButton);
     //binda klick event på knappen
     minusQuantityButton.addEventListener("click", function () {
       //ta fram parentelement till knappen

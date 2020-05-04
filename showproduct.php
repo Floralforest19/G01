@@ -13,6 +13,10 @@
       $newProdIds[$i] = $rowNew['product_id'];
       $i++;
     }
+    $new0 = $newProdIds[0];
+    $new1 = $newProdIds[1];
+    $new2 = $newProdIds[2];
+
     $id   = htmlspecialchars($_GET['id']);
     $sql  = "SELECT * FROM product WHERE product_id=:id";
     $stmt = $db->prepare($sql);
@@ -60,7 +64,7 @@
       }
     } 
     // rea varor
-    if($quantity < 10){
+    if($quantity < 10 && $id != $new0 && $id != $new1 && $id != $new2){
       $priceText = "<p class='sale__old'>$price kr</p>
       <p class='sale__new'>".number_format($price*0.9,2)." kr</p>";
     } else {
@@ -89,13 +93,16 @@
             <input type='hidden' class='product-name' value='$name'/>         
             <input type='hidden' class='product-price' value='$price'/>
             <input type='hidden' class='product-image' value='$image'/>
+            <input type='hidden' class='product-new0' value='$new0'/>
+            <input type='hidden' class='product-new1' value='$new1'/>
+            <input type='hidden' class='product-new2' value='$new2'/>
             <input type='hidden' class='product-sale' value='$quantity'/>
             ";
             // nya varor
-            if($id == $newProdIds[0] || $id == $newProdIds[1] || $id == $newProdIds[2]){
+            if($id == $new0 || $id == $new1 || $id == $new2){
               $thisPost .= "<a href='showproduct.php?id=$id'><img src='./images/new.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
             } 
-            if($quantity < 10){ 
+            if($quantity < 10 && $id != $new0 && $id != $new1 && $id != $new2){ 
               $thisPost .= "<a href='showproduct.php?id=$id'><img src='./images/sale.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
             }
             $thisPost .= "<h3>$name</h3>
@@ -128,7 +135,7 @@ require_once 'footer.php';
 <script type="text/javascript" src="js/product-gallery.js"></script>
 
 <script type="text/javascript">
-//Vänta tills allt har laddats, då kör funktionen (som jquery document.ready())
+//Vänta tills allt har laddats, då kör funktionen 
 window.onload = function() {
     setAddProductToCartClickEvent();
 }

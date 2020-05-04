@@ -158,6 +158,7 @@ require_once '../db.php';
 <script>
 function validateAll() {
     let isAllValidated = true;
+
     let nameValidated = validateTextInput('update-form', 'name', 'nameFeedback');
     if (nameValidated == false) {
         isAllValidated = false;
@@ -173,7 +174,7 @@ function validateAll() {
         isAllValidated = false;
     }
 
-    let priceValidated = validateNumberInput('update-form', 'price', 'priceFeedback');
+    let priceValidated = validatePriceInput('update-form', 'price', 'priceFeedback');
     if (priceValidated == false) {
         isAllValidated = false;
     }

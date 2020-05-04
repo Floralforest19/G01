@@ -252,8 +252,9 @@ body {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #1D99BA;
+  background-color: #1d99ba;
   color: white;
+  min-width: 90px;
 }
 
 .table__pic {

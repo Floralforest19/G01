@@ -34,8 +34,8 @@ if(isset($_GET['product_id'])){
       // echo 'Produkten finns inte';                               // **
       exit;
     }
+}
 
-  }
 //2. Update product
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
@@ -64,6 +64,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
   // Skapa variabel som säger till ifall en bild inte har format som är OK
   $imageFormat = 0;
+
+  $headerLocationErrorImage = "";
 
   // Loopar bilderna som produkten redan har
   for ($i=0; $i < $totalfiles; $i++) { 
@@ -119,7 +121,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // echo "Tyvärr, filen är för stor.<br>";  // **
         $uploadOk = 0;
         $addImageCollection = 0;
-        $tooBig = 1;
+        $tooBig++;
       }
       
       // Allow certain file formats
@@ -129,7 +131,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // echo "Tyvärr, bara JPG, JPEG, PNG & GIF är tillåtna filformat.<br>";  // **
         $uploadOk = 0;
         $addImageCollection = 0;
-        $imageFormat = 1;
+        $imageFormat++;
       }
       
       // Check if $uploadOk is set to 0 by an error
@@ -149,17 +151,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       }
 
       // Om $addImageCollection är "1" så kommer bildens sökväg att läggat till under produktens image_file_name kolumn
-      if ($addImageCollection == 1) {
+      if ($addImageCollection == 1 && $image_total < 5) {
         //Sparar alla bilder och separerar bildernas sökväg, med två mellanslag, i en string
         $imageCollection .= htmlspecialchars(basename ($_FILES["image_file_name"]["name"][$i])) . " * ";
       }
 
       // Error message skapande ifall bilduppladdning blev fel
       $image_total++;
-      if ($image_total > 5 || $tooBig > 0 || $imageFormat > 0) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
-          header("Location:new-update-site.php?product_id=$product_id&uppladdning=error");
-        // exit;
-      }      
+      if ($image_total == 6 || $tooBig == 1 || $imageFormat == 1) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
+            $headerLocationErrorImage = "&uppladdning=error";
+      }
     }   // Slut på bildernas for-loop.
   }   // Slut på if-sats som kollar ifall bild variabeln är tom.    *** Behövs det här? *** start på rad 105 - Jag tror det.
 
@@ -189,9 +190,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $stmt->execute();
 
-    header("Location:new-update-site.php?product_id=$product_id");
+    header("Location:new-update-site.php?product_id=$product_id$headerLocationErrorImage");
     // exit;
-    print_r($_POST);
 //   }else if (isset($_GET['product_id']) == false) {                           //  *Ä**************************Kanske inte ha?
 //     echo 'Produkten finns inte';
 //     exit;

@@ -106,7 +106,7 @@ function validateEmail(formName, inputName, feedbackId) {
   document.getElementById(feedbackId).innerHTML = "";
   let email = document.forms[formName][inputName].value;
   if (email) {
-    alert(email.length);
+    //alert(email.length);
     if (email.length > 64) {
       document.getElementById(feedbackId).innerHTML = "Ogiltig emailadress";
       return false;

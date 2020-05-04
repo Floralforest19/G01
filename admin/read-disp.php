@@ -85,7 +85,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   <div class='box__text'>
     <h3>$name</h3>
     <p>$nameCat</p>
-      <a href='updateproduct.php?product_id=$id'> <button class='btn__edit'>Redigera </button></a>
+      <a href='new-update-site.php?product_id=$id'> <button class='btn__edit'>Redigera </button></a>
       <a onclick=\"return confirm('Är du säker att du vill radera $name?')\" href='delete-prod.php?id=$id'><button class='btn__delete'>Ta bort </button></a>
 
     </div>
@@ -97,7 +97,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
               <td>   <img class='table__pic' src='../images/$förstaBild' alt='$name'/></td>
               <td> $nameCat </td>
               <td> $name </td>
-              <td> <a href='updateproduct.php?product_id=$id'
+              <td> <a href='new-update-site.php?product_id=$id'
                   class='btn btn-outline-info'>
                   <button class='btn__edit'> Redigera</button>
                 </a></td>

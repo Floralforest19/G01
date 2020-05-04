@@ -124,10 +124,10 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
   $new_product_id = $row4['product_id'];
 
   if ($imageUploadError > 0) {
-    header("Location:updateproduct.php?product_id=$new_product_id&uppladdning=error&new=true");
+    header("Location:new-update-site.php?product_id=$new_product_id&uppladdning=error&new=true");
     exit;
   }else {
-    header("Location:updateproduct.php?product_id=$new_product_id&new=true"); // Efter att produkten skapats hamnar man på startsidan för admin
+    header("Location:new-update-site.php?product_id=$new_product_id&new=true"); // Efter att produkten skapats hamnar man på startsidan för admin
     exit;
   }
 } 

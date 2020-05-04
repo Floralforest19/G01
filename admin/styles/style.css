@@ -543,7 +543,7 @@ h3 {
   height: 100%;
   padding: 100px 0;
   background-color: #348f6c;
-  font-size: 24px;
+  font-size: 14px;
   text-transform: capitalize;
   min-width: 100px;
 }
@@ -567,10 +567,13 @@ h3 {
 
 .container h3 {
   color: black;
-  padding-left: 1em;
+  text-align: center;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  margin-left: 20%;
 }
 
-.nav__admin {
+.nav-admin {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -584,28 +587,29 @@ h3 {
   margin-top: 1rem;
 }
 
-.nav__admin ul {
+.nav-admin ul {
   list-style: none;
 }
 
-.nav__admin ul li {
+.nav-admin ul li {
   display: inline;
 }
 
-.nav__admin ul li + li {
+.nav-admin ul li + li {
   margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 
-.nav__admin ul li a {
+.nav-admin ul li a {
   color: white;
   font-size: 14px;
 }
 
-.nav__admin ul li a:hover {
+.nav-admin ul li a:hover {
   color: black;
 }
 
-.nav__ul {
+.nav-ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -3,6 +3,9 @@ console.log("hej");
 function validateTextDescriptionInput(formName, inputName, feedbackId) {
   document.getElementById(feedbackId).innerHTML = "";
   let input = document.forms[formName][inputName].value;
+  let onlyLetters = /^[a-zA-Z\- ÅåÄäÖöØøÆæÉéÈèÜüÊêÛûÎî0123456789.?]*$/.test(
+    input
+  );
 
   let findSpaces = /^(\s\s)/.test(input);
 
@@ -16,6 +19,10 @@ function validateTextDescriptionInput(formName, inputName, feedbackId) {
         "Skriv in minst två tecken";
     }
     return false;
+  } else if (onlyLetters == false) {
+    document.getElementById(feedbackId).innerHTML =
+      "Endast tecken från latinska alfabeten tillåtet";
+    return false;
   }
 
   // check for mutliple spaces in begining of string
@@ -24,6 +31,7 @@ function validateTextDescriptionInput(formName, inputName, feedbackId) {
       "För många mellanslag i rad";
     return false;
   }
+
   return true;
 }
 
@@ -33,10 +41,38 @@ function validateNumberInput(formName, inputName, feedbackId) {
   let onlyNumbers = /^[0123456789,.]*$/.test(input);
 
   console.log(onlyNumbers);
-  if (input < 0 || onlyNumbers == false) {
+  if (input < 1 || onlyNumbers == false) {
     document.getElementById(feedbackId).innerHTML =
       "Bara positiva heltal, tack";
     return false;
+  } else if (input.length > 3) {
+    if (input.length > 3) {
+      document.getElementById(feedbackId).innerHTML =
+        "Måste vara kortare än 3 siffrigt antal";
+    }
+    return false;
   }
+
+  return true;
+}
+
+function validatePriceInput(formName, inputName, feedbackId) {
+  document.getElementById(feedbackId).innerHTML = "";
+  let input = document.forms[formName][inputName].value;
+  let onlyNumbers = /^[0123456789,.]*$/.test(input);
+
+  console.log(onlyNumbers);
+  if (input < 1 || onlyNumbers == false) {
+    document.getElementById(feedbackId).innerHTML =
+      "Bara positiva heltal, tack";
+    return false;
+  } else if (input.length > 6) {
+    if (input.length > 6) {
+      document.getElementById(feedbackId).innerHTML =
+        "Måste vara kortare än 6 siffrigt belopp";
+    }
+    return false;
+  }
+
   return true;
 }

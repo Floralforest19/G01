@@ -22,7 +22,8 @@ if(isset($_POST['input']) ){
   
   // filter from user input
   $filter = htmlspecialchars($_POST['input']);
-  echo "<div class='box__search--form'><h3>Visar resultat för: $filter</h3></div>";
+  echo "<div class='box__search--form'><h3>Visar resultat för: $filter</h3></div>
+  <div class='product__wrapper'>";
   // prepare and execute sql request
   $sql  = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' ORDER BY `name` ASC";  
   $stmt = $db->prepare($sql);
@@ -63,11 +64,11 @@ if(isset($_POST['input']) ){
         $priceText = "<a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>";
       }
     // product exist and in db and is in storage, show result
-    echo "<article class='box__search'>
-            <div class='box__pic--search'>
+    echo "<article class='box'>
+            <div class='box__pic'>
               <a href='showproduct.php?id=$id'><img src='./images/$image' alt='$name'/></a>
             </div>
-            <div class='box__text--search'>
+            <div class='box__text'>
             ";
             // nya varor
             if($id == $newProdIds[0] || $id == $newProdIds[1] || $id == $newProdIds[2]){
@@ -92,3 +93,4 @@ if(isset($_POST['input']) ){
   // if no search yet, prompt user to search
   echo '<div class="box__search--form"><h3>Ange en sökterm</h3></div>';
 }
+echo "</div>";

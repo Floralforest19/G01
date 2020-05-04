@@ -45,7 +45,8 @@
 .box__search,
 .box__cat {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-flow: wrap row;
   background-color: $product-background-color;
   box-shadow: 0 2px 4px 0 $shadow;
   color: $basic-text-color;
@@ -56,8 +57,8 @@
 .box__search {
   margin: 2vw 5vw;
   @media (min-width: $desktop-size) {
-    flex-direction: row;
-    margin: 3vw 10vw;
+    flex-direction: column;
+    margin: 3vw 70vw 3vw 3vw ;
   }
 }
 
@@ -70,7 +71,7 @@
 .box__cat--form {
   margin: 2vw 5vw;
   @media (min-width: $desktop-size) {
-    margin: 3vw 10vw;
+    margin: 3vw 10vw 3vw 3vw;
   }
 }
 
@@ -90,19 +91,19 @@
 
 .box__pic,
 .box__pic--search {
-  max-width: 158px;
+  max-width: 100px;
   margin: 1em;
   align-self: center;
   min-width: 50%;
   img {
     object-fit: contain;
-    height: 100%;
-    width: 100%;
+    height: 80%;
+    width: 80%;
   }
 }
 
 .box__pic--search {
-  max-width: 200px;
+  max-width: 60px;
 }
 
 .box__text {

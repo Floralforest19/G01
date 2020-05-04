@@ -43,7 +43,7 @@
             $priceText = "<a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>";
           }
           echo "
-          <article class='box'>
+          <article class='box' style='position:relative;'>
             <div class='box__pic'>
             <a href='showproduct.php?id=$id'><img src='./images/$image' alt='$name'/></a>
             </div>
@@ -52,7 +52,11 @@
               <input type='hidden' class='product-name' value='$name'/>         
               <input type='hidden' class='product-price' value='$price'/>
               <input type='hidden' class='product-image' value='$image'/>
-              <input type='hidden' class='product-sale' value='$quantity'/>
+              <input type='hidden' class='product-sale' value='$quantity'/>";
+              if($quantity < 10){ 
+              echo "<a href='showproduct.php?id=$id'><img src='./images/sale.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
+            }
+            echo "
               <a href='showproduct.php?id=$id'><h3>$name</h3></a>
               $priceText
               <a href='showproduct.php?id=$id'>Läs mer</a><br></a>

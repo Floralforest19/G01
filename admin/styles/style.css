@@ -218,6 +218,17 @@ body {
   margin-left: 13%;
 }
 
+.newWrapper {
+  position: relative;
+}
+
+.new {
+  max-width: 55px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .table {
   border-collapse: collapse;
   width: 50%;

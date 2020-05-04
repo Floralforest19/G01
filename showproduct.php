@@ -60,7 +60,7 @@
       }
     } 
     // rea varor
-    if($quantity < 10){
+    if($quantity < 10 && $id != $newProdIds[0] && $id != $newProdIds[1] && $id != $newProdIds[2]){
       $priceText = "<p class='sale__old'>$price kr</p>
       <p class='sale__new'>".number_format($price*0.9,2)." kr</p>";
     } else {
@@ -95,7 +95,7 @@
             if($id == $newProdIds[0] || $id == $newProdIds[1] || $id == $newProdIds[2]){
               $thisPost .= "<a href='showproduct.php?id=$id'><img src='./images/new.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
             } 
-            if($quantity < 10){ 
+            if($quantity < 10 && $id != $newProdIds[0] && $id != $newProdIds[1] && $id != $newProdIds[2]){ 
               $thisPost .= "<a href='showproduct.php?id=$id'><img src='./images/sale.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
             }
             $thisPost .= "<h3>$name</h3>

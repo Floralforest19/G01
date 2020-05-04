@@ -19,6 +19,22 @@ require_once 'header.php';
 
     // avsluta while loop
     endwhile;
+
+
+  // kolla vilka 3 varor som är senast skapade
+  $sqlNew  = "SELECT product_id FROM product ORDER BY creation_date DESC LIMIT 3";
+  $stmtNew = $db->prepare($sqlNew);
+  $stmtNew->execute();
+  // spara 3 senaste produkternas id:n i en array
+  $newProdIds = array();
+  $i = 0;
+  // skicka med de nya varorna i hidden inputs
+  while($rowNew = $stmtNew->fetch(PDO::FETCH_ASSOC)){
+    echo '<input type="hidden" id="sale-'.$i.'" value="'.$newProdIds[$i].'"/>';
+    $newProdIds[$i] = $rowNew['product_id'];
+    $i++;
+  }
+
 ?>
 
 
@@ -39,7 +55,7 @@ require_once 'footer.php';
 ?>
 
 <script type="text/javascript">
-//Vänta tills allt har laddats, då kör funktionen (som jquery document.ready())
+//Vänta tills allt har laddats, då kör funktionen
 /*window.onload = function() {
     setUpPlusQuantityClickEvent();
 }*/

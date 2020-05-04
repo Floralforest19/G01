@@ -107,6 +107,7 @@
             if($id == $newProdIds[0] || $id == $newProdIds[1] || $id == $newProdIds[2]){
               echo "<a href='showproduct.php?id=$id'><img src='./images/new.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
             }
+            // reavaror
             if($quantity < 10){ 
               echo "<a href='showproduct.php?id=$id'><img src='./images/sale.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
             }

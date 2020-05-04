@@ -71,9 +71,9 @@
       <section class='background'>
       <h2>$name</h2>
       
-      <article class='single__product__wrapper'>
+      <article class='single__product__wrapper' style='position:relative;'>
       <div class='container'>
-        
+      
       <div class='single__product__pic main-img'>
           <img src='./images/$image' alt='$name' id='current' />
         </div>
@@ -93,8 +93,11 @@
             ";
             // nya varor
             if($id == $newProdIds[0] || $id == $newProdIds[1] || $id == $newProdIds[2]){
-              $thisPost .=  "<a href='showproduct.php?id=$id'><h2>Nyhet!</h2></a>";
+              $thisPost .= "<a href='showproduct.php?id=$id'><img src='./images/new.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
             } 
+            if($quantity < 10){ 
+              $thisPost .= "<a href='showproduct.php?id=$id'><img src='./images/sale.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
+            }
             $thisPost .= "<h3>$name</h3>
             <p>$description</p>
             <p>Pris:</p>

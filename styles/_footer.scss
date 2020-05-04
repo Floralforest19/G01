@@ -90,6 +90,7 @@
   height: 100px;
   width: 100px;
   grid-column: 2;
+  transition: all 500ms ease;
   &:hover {
     transform: scale(1.1);
   }

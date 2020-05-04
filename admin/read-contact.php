@@ -7,16 +7,16 @@ require_once '../db.php';
 
 <section class='background'>
 
-  <h2>Kundmeddleanden</h2>
+  <h2>Kundmeddelanden</h2>
   <div class='box__cat--form'>
     <p>
       Sortera på e-mail
-      <a href='read-contact.php?id=contactemail&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
-      <a href='read-contact.php?id=contactemail&order_sort=DESC' id='sumSort'><i class="fas fa-angle-down"></i></a>
+      <a href='read-contact.php?id=contactemail&order_sort=ASC'><i class="fas fa-angle-up"></i></a>
+      <a href='read-contact.php?id=contactemail&order_sort=DESC'><i class="fas fa-angle-down"></i></a>
       <br>
       Sortera på datum
-      <a href='read-contact.php?id=contactname&order_sort=ASC' id='sumSort'><i class="fas fa-angle-up"></i></a>
-      <a href='read-contact.php?id=contactname&order_sort=DESC' id='sumSort'><i class="fas fa-angle-down"></i></a>
+      <a href='read-contact.php?id=contactdate&order_sort=ASC'><i class="fas fa-angle-up"></i></a>
+      <a href='read-contact.php?id=contactdate&order_sort=DESC'><i class="fas fa-angle-down"></i></a>
     </p>
   </div>
 <?php

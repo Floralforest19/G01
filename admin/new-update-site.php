@@ -173,7 +173,7 @@ function validateAll() {
         isAllValidated = false;
     }
 
-    let priceValidated = validateNumberInput('update-form', 'price', 'priceFeedback');
+    let priceValidated = validatePriceInput('update-form', 'price', 'priceFeedback');
     if (priceValidated == false) {
         isAllValidated = false;
     }

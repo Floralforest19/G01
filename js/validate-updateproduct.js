@@ -1,5 +1,3 @@
-console.log("hej");
-
 function validateTextDescriptionInput(formName, inputName, feedbackId) {
   document.getElementById(feedbackId).innerHTML = "";
   let input = document.forms[formName][inputName].value;
@@ -40,15 +38,14 @@ function validateNumberInput(formName, inputName, feedbackId) {
   let input = document.forms[formName][inputName].value;
   let onlyNumbers = /^[0123456789,.]*$/.test(input);
 
-  console.log(onlyNumbers);
-  if (input < 1 || onlyNumbers == false) {
+  if (input < 0 || onlyNumbers == false) {
     document.getElementById(feedbackId).innerHTML =
       "Bara positiva heltal, tack";
     return false;
-  } else if (input.length > 3) {
-    if (input.length > 3) {
+  } else if (input.length > 6) {
+    if (input.length > 6) {
       document.getElementById(feedbackId).innerHTML =
-        "Måste vara kortare än 3 siffrigt antal";
+        "Måste vara kortare än 6 siffrigt antal";
     }
     return false;
   }
@@ -61,13 +58,12 @@ function validatePriceInput(formName, inputName, feedbackId) {
   let input = document.forms[formName][inputName].value;
   let onlyNumbers = /^[0123456789,.]*$/.test(input);
 
-  console.log(onlyNumbers);
   if (input < 1 || onlyNumbers == false) {
     document.getElementById(feedbackId).innerHTML =
       "Bara positiva heltal, tack";
     return false;
-  } else if (input.length > 6) {
-    if (input.length > 6) {
+  } else if (input.length > 9) {
+    if (input.length > 9) {
       document.getElementById(feedbackId).innerHTML =
         "Måste vara kortare än 6 siffrigt belopp";
     }

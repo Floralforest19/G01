@@ -5,7 +5,6 @@
  2. Update product data.
 **************************************** */
 
-require_once 'header-admin.php';
 require_once '../db.php';
 
 //1. Get product data.

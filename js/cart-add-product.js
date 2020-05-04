@@ -24,13 +24,26 @@ function setAddProductToCartClickEvent() {
     let hiddenProductSale = addToCartButtonParent.querySelector(
       ".product-sale"
     );
+    let hiddenProductNew0 = addToCartButtonParent.querySelector(
+      ".product-new0"
+    );
+    let hiddenProductNew1 = addToCartButtonParent.querySelector(
+      ".product-new1"
+    );
+    let hiddenProductNew2 = addToCartButtonParent.querySelector(
+      ".product-new2"
+    );
 
     let productId = hiddenProductIdInput.value;
     let productPrice = hiddenProductPrice.value;
     let productName = hiddenProductName.value;
     let productImageName = hiddenProductImage.value;
     let productSaleQuantity = hiddenProductSale.value;
+    let newId0 = hiddenProductNew0.value;
+    let newId1 = hiddenProductNew1.value;
+    let newId2 = hiddenProductNew2.value;
 
+    // console.log(productNew0)
     //binda ett click event på alla lägg till knappar och skicka med produkt-id, namn, pris, antal och bild.
     addToCartButton.addEventListener("click", function () {
       //hämta ut current value från antalfältet vid klick
@@ -91,6 +104,9 @@ function setAddProductToCartClickEvent() {
           productPrice: productPrice,
           quantity: quantity,
           productSaleQuantity: productSaleQuantity,
+          newId0: newId0,
+          newId1: newId1,
+          newId2: newId2,
         };
 
         //lägg till produkten i shoppingcarten

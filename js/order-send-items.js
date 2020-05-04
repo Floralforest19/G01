@@ -1,5 +1,4 @@
 let orderItems = document.getElementById("orderItems");
-
 function getProductInfo() {
   let cartFromStorage = localStorage.getItem('shoppingCart')
   let cartObj = JSON.parse(cartFromStorage)
@@ -16,12 +15,14 @@ function getProdsToForm(products) {
     numbOfDiffProds++
     let id = products[i].productId
     let price = products[i].productPrice
+    let newId0 = products[i].newId0;
+    let newId1 = products[i].newId1;
+    let newId2 = products[i].newId2;
     let quantity = parseInt(products[i].quantity)
-    //
     let productSaleQuantity = parseInt(products[i].productSaleQuantity);
     let priceText = ''
 
-    if (productSaleQuantity < 10) {
+    if (productSaleQuantity < 10 && id != newId0 && id != newId1 && id != newId2) {
       price *= 0.9
       price = price.toFixed(2)
     } else {

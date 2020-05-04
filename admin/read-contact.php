@@ -7,7 +7,7 @@ require_once '../db.php';
 
 <section class='background'>
 
-  <h2>Kundmeddleanden</h2>
+  <h2>Kundmeddelanden</h2>
   <div class='box__cat--form'>
     <p>
       Sortera på e-mail

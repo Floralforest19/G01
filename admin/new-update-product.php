@@ -18,12 +18,7 @@ if(isset($_GET['product_id'])){
 
     if($stmt->rowCount() > 0){
       $row              = $stmt->fetch(PDO::FETCH_ASSOC);
-      $name             = htmlspecialchars($row['name']);
-      $description      = htmlspecialchars($row['description']);
-      $quantity         = htmlspecialchars($row['quantity']);
       $image_file_name  = htmlspecialchars($row['image_file_name']);
-      $price            = htmlspecialchars($row['price']);
-      $category_id      = htmlspecialchars($row['category_id']);
 
 
       // Splittar upp alla bilder produkten har till en array: $image_array
@@ -163,7 +158,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       $image_total++;
       if ($image_total > 5 || $tooBig > 0 || $imageFormat > 0) {  // Om produktens sparade och nya bilder är fler än 5 skickas man tillbaka till samma sida med varningstext
           header("Location:new-update-site.php?product_id=$product_id&uppladdning=error");
-        exit;
+        // exit;
       }      
     }   // Slut på bildernas for-loop.
   }   // Slut på if-sats som kollar ifall bild variabeln är tom.    *** Behövs det här? *** start på rad 105 - Jag tror det.
@@ -195,9 +190,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $stmt->execute();
 
     header("Location:new-update-site.php?product_id=$product_id");
-    exit;
-  }else if (isset($_GET['product_id']) == false) {
-    echo 'Produkten finns inte';
-    exit;
+    // exit;
+    print_r($_POST);
+//   }else if (isset($_GET['product_id']) == false) {                           //  *Ä**************************Kanske inte ha?
+//     echo 'Produkten finns inte';
+//     exit;
   } // Slut på updatering av produkt
 ?>

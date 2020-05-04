@@ -33,7 +33,9 @@ if(isset($_GET['product_id'])){
       $totalfiles = count($image_array) - 1;
 
       // Kontrollerar hur många bilder som redan finns för att begränsa hur många bilder som kan laddas upp
+    
 
+      $product_id = $_GET['product_id'];
 
     }else{
       echo 'Produkten finns inte';                               // **
@@ -49,7 +51,7 @@ if(isset($_GET['product_id'])){
 ?>
 
 <div class="update-product-form">
-  <form method="POST" name="update-form" action="new-update-product.php" enctype="multipart/form-data" style="padding-left: 10%;padding-right: 10%;" onsubmit="return validateAll()" class='wrap'>
+  <form method="POST" name="update-form" action="new-update-product.php?product_id=<?php echo $product_id; ?>" enctype="multipart/form-data" style="padding-left: 10%;padding-right: 10%;" onsubmit="return validateAll()" class='wrap'>
 
   <?php
       // Kontrollerar att bild finns på produkten

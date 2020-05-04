@@ -36,7 +36,7 @@ if(isset($_GET['product_id'])){
 
 
     }else{
-      echo 'Produkten finns inte';
+      // echo 'Produkten finns inte';                               // **
       exit;
     }
 
@@ -104,10 +104,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       
       $check = getimagesize($_FILES["image_file_name"]["tmp_name"][$i]);
       if($check !== false) {
-        echo "<img src='$target_file' class='img-fluid' alt='$name'><br>";
+        // echo "<img src='$target_file' class='img-fluid' alt='$name'><br>";  // **
         $uploadOk = 1;
       } else {
-        echo "Det här är ingen bild.<br>";
+        // echo "Det här är ingen bild.<br>";  // **
         $uploadOk = 0;
         $addImageCollection = 0;
         
@@ -122,7 +122,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
       // Check file size
       if ($_FILES["image_file_name"]["size"][$i] > 2000000) {  // Begränsad till 2MB
-        echo "Tyvärr, filen är för stor.<br>";
+        // echo "Tyvärr, filen är för stor.<br>";  // **
         $uploadOk = 0;
         $addImageCollection = 0;
         $tooBig = 1;
@@ -132,7 +132,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
       && $imageFileType != "gif" ) {
         
-        echo "Tyvärr, bara JPG, JPEG, PNG & GIF är tillåtna filformat.<br>";
+        // echo "Tyvärr, bara JPG, JPEG, PNG & GIF är tillåtna filformat.<br>";  // **
         $uploadOk = 0;
         $addImageCollection = 0;
         $imageFormat = 1;
@@ -141,12 +141,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       // Check if $uploadOk is set to 0 by an error
       if ($uploadOk == 0 || $image_total >= 5) {
         
-        echo "Filen gick inte att ladda upp.";
+        // echo "Filen gick inte att ladda upp.";  // **
         // if everything is ok, try to upload file
       } else {
       
         if (!move_uploaded_file($_FILES["image_file_name"]["tmp_name"][$i], $target_file)) {
-          echo "Tyvärr, det blev något fel vid uppladdning av fil.<br>";
+          // echo "Tyvärr, det blev något fel vid uppladdning av fil.<br>";  // **
         } 
         // else {
         //   echo " Bilden ". basename( $_FILES["image_file_name"]["name"][$i]). " har laddats upp.<br>";

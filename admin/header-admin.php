@@ -21,11 +21,10 @@
 <div class="container">
 <h2>Kris & Ros</h2>
 <hr noshade="noshade">
-
 <h3>Adminpanel</h3>
 
-<nav class="nav__admin">
-  <ul class="nav__ul">
+<nav class="nav-admin">
+  <ul class="nav-ul">
     <li><a href="../index.php">Hem</a></li>
     <li><a href="index.php">Produkter</a></li>
     <li><a href="create-product.php">Skapa produkt</a></li>

@@ -5,7 +5,7 @@
   height: 100%;
   padding: 100px 0;
   background-color: #348f6c;
-  font-size: 24px;
+  font-size: 14px;
   text-transform: capitalize;
   min-width: 100px;
 }
@@ -18,17 +18,20 @@
   position: relative;
   text-align: left;
 
-  h2 {
+  & h2 {
     color: white;
     text-align: center;
   }
-  h3 {
+  & h3 {
     color: black;
-    padding-left: 1em;
+    text-align: center;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 20%;
   }
 }
 
-.nav__admin {
+.nav-admin {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -38,6 +41,7 @@
     li {
       & + li {
         margin-left: 1rem;
+        margin-bottom: 1rem;
       }
       display: inline;
       a {
@@ -51,7 +55,7 @@
   }
 }
 
-.nav__ul {
+.nav-ul {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

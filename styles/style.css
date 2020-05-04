@@ -1433,6 +1433,8 @@ h3 {
   width: 100px;
   -ms-grid-column: 2;
   grid-column: 2;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
 }
 
 .rocket:hover {

@@ -23,6 +23,9 @@
         $newProdIds[$i] = $rowNew['product_id'];
         $i++;
       }
+      $new0 = $newProdIds[0];
+      $new1 = $newProdIds[1];
+      $new2 = $newProdIds[2];
         
       // hämta de produkter som är färre än 10 i lager
       $sqlLast  = "SELECT * FROM product WHERE quantity < 10 ORDER BY quantity";
@@ -76,6 +79,9 @@
                 <input type='hidden' class='product-id' value='$id'/>
                 <input type='hidden' class='product-name' value='$name'/>         
                 <input type='hidden' class='product-price' value='$price'/>
+                <input type='hidden' class='product-new0' value='$new0'/>
+                <input type='hidden' class='product-new1' value='$new1'/>
+                <input type='hidden' class='product-new2' value='$new2'/>
                 <input type='hidden' class='product-image' value='$image'/>
                 <input type='hidden' class='product-sale' value='$quantity'/>";
                 if($quantity < 10){ 

@@ -13,6 +13,21 @@
     <div class='product__wrapper--newitem'>
 
     <?php
+      // kolla vilka 3 varor som är senast skapade
+      $sqlNew1  = "SELECT product_id FROM product ORDER BY creation_date DESC LIMIT 3";
+      $stmtNew1 = $db->prepare($sqlNew1);
+      $stmtNew1->execute();
+      // spara 3 senaste produkternas id:n i en array
+      $newProdIds = array();
+      $i = 0;
+      while($rowNew1 = $stmtNew1->fetch(PDO::FETCH_ASSOC)){
+        $newProdIds[$i] = $rowNew1['product_id'];
+        $i++;
+      }
+      $new0 = $newProdIds[0];
+      $new1 = $newProdIds[1];
+      $new2 = $newProdIds[2];
+
       // hämta de tre senaste produkterna
       $sqlNew  = "SELECT * FROM product ORDER BY creation_date DESC LIMIT 3";
       $stmtNew = $db->prepare($sqlNew);
@@ -52,6 +67,9 @@
               <input type='hidden' class='product-id' value='$id'/>
               <input type='hidden' class='product-name' value='$name'/>         
               <input type='hidden' class='product-price' value='$price'/>
+              <input type='hidden' class='product-new0' value='$new0'/>
+              <input type='hidden' class='product-new1' value='$new1'/>
+              <input type='hidden' class='product-new2' value='$new2'/>
               <input type='hidden' class='product-image' value='$image'/>
               <input type='hidden' class='product-sale' value='$quantity'/>
               <a href='showproduct.php?id=$id'><h3>$name</h3></a>

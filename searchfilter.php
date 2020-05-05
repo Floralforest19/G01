@@ -22,7 +22,8 @@ if(isset($_POST['input']) ){
   
   // filter from user input
   $filter = htmlspecialchars($_POST['input']);
-  echo "<div class='box__search--form'><h3>Visar resultat för: $filter</h3></div>";
+  echo "<div class='box__search--form'><h3>Visar resultat för: $filter</h3></div>
+  <div class='product__wrapper'>";
   // prepare and execute sql request
   $sql  = "SELECT *  FROM `product` WHERE `name` LIKE '%$filter%' ORDER BY `name` ASC";  
   $stmt = $db->prepare($sql);
@@ -56,23 +57,27 @@ if(isset($_POST['input']) ){
         $image = $imageArray[0];
       }
     if($quantity > 0){
-      if($quantity < 10){
+      if($quantity < 10 && $id != $newProdIds[0] && $id != $newProdIds[1] && $id != $newProdIds[2]){
         $priceText = "<a href='showproduct.php?id=$id'><p class='sale__old'>$price kr</p></a>
         <a href='showproduct.php?id=$id'><p class='sale__new'>".number_format($price*0.9,2)." kr</p></a>";
       } else {
         $priceText = "<a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>";
       }
     // product exist and in db and is in storage, show result
-    echo "<article class='box__search'>
-            <div class='box__pic--search'>
+    echo "<article class='box' style='position:relative;'>
+            <div class='box__pic'>
               <a href='showproduct.php?id=$id'><img src='./images/$image' alt='$name'/></a>
             </div>
-            <div class='box__text--search'>
+            <div class='box__text'>
             ";
             // nya varor
             if($id == $newProdIds[0] || $id == $newProdIds[1] || $id == $newProdIds[2]){
-              echo "<a href='showproduct.php?id=$id'><h2>Nyhet!</h2></a>";
+              echo "<a href='showproduct.php?id=$id'><img src='./images/new.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
             } 
+            // reavaror
+            if($quantity < 10 && $id != $newProdIds[0] && $id != $newProdIds[1] && $id != $newProdIds[2]){ 
+              echo "<a href='showproduct.php?id=$id'><img src='./images/sale.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>";
+            }
               echo "<a href='showproduct.php?id=$id'><h3>$name</h3></a>
               $priceText
               <a href='showproduct.php?id=$id'>Läs mer</a>
@@ -92,3 +97,4 @@ if(isset($_POST['input']) ){
   // if no search yet, prompt user to search
   echo '<div class="box__search--form"><h3>Ange en sökterm</h3></div>';
 }
+echo "</div>";

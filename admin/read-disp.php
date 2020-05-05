@@ -3,6 +3,7 @@
   * read info from db & display products 
 **************************************** */
   // koppla till databas
+  require_once 'header-admin.php';
   require_once '../db.php';
 ?>
 <div class='top-section'>

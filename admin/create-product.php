@@ -2,7 +2,7 @@
 <h2>Skapa produkt</h2>
 
 <div class="wrap">
-<form action="upload-pro.php" method="post" enctype="multipart/form-data" name="createProdForm" class="wrap">
+<form action="upload-pro.php" method="post" enctype="multipart/form-data" name="createProdForm" onsubmit="return validateAll()" class="wrap">
     <?php
       if (isset($_GET['uppladdning']) == true) {
         echo "<h4 style='color: red;'>En produkt får max ha 5 bilder.</h4>";
@@ -30,9 +30,13 @@ require_once '../db.php';
 </div> 
       <!-- Dessa inputs är required -->
    <div> <input name="name" type="text" class="input__cat" required placeholder="Produktnamn"></div> 
+   <div id="nameFeedback" style="color:#eb4b88"></div>
    <div> <textarea name="description" type="text" cols="30" rows="5" class="input__cat" required placeholder="Beskrivning"> </textarea></div> 
+   <div id="descriptionFeedback" style="color:#eb4b88"></div>
    <div>  <input name="quantity" type="number" class="input__cat" required placeholder="Antal"></div> 
+   <div id="quantityFeedback" style="color:#eb4b88"></div>
    <div>  <input name="price" type="number" class="input__cat" required placeholder="Pris"></div> 
+   <div id="priceFeedback" style="color:#eb4b88"></div>
    
     <div style="display: flex;justify-content: center;justify-content: space-evenly;">
       <a class="btn__delete del" href="index.php" style="text-decoration: none;text-align: center;font-weight: 600;padding-top: 3px;">Avbryt</a>
@@ -40,3 +44,37 @@ require_once '../db.php';
     </div>
 </form>
 </div>
+
+<!-- <script src="../validateinput.js"></script> -->
+<script src="../js/validate-updateproduct.js"></script>
+
+<script>
+function validateAll() {
+    let isAllValidated = true;
+    let nameValidated = validateTextInput('createProdForm', 'name', 'nameFeedback');
+    if (nameValidated == false) {
+        isAllValidated = false;
+    }
+
+    let descriptionValidated = validateTextDescriptionInput('createProdForm', 'description', 'descriptionFeedback');
+    if (descriptionValidated == false) {
+        isAllValidated = false;
+    }
+
+    let quantityValidated = validateNumberInput('createProdForm', 'quantity', 'quantityFeedback');
+    if (quantityValidated == false) {
+        isAllValidated = false;
+    }
+
+    let priceValidated = validatePriceInput('createProdForm', 'price', 'priceFeedback');
+    if (priceValidated == false) {
+        isAllValidated = false;
+    }
+
+
+    if (isAllValidated == false) {
+        return false;
+    }
+    return true;
+}
+</script>

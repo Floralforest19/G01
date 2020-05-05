@@ -62,6 +62,7 @@ function filterPhrase(ordersFiltered1) {
   let filterInput = document.getElementById('filterInput')
   let ordersFiltered2 = ordersFiltered1
   filterInput.addEventListener('input', function (e) {
+    
     let userInput = e.currentTarget.value.toLowerCase()
     let onlyLetters = /^[a-zA-ZåäöÅÄÖ]*$/.test(userInput)
     if(onlyLetters){
@@ -75,6 +76,11 @@ function filterPhrase(ordersFiltered1) {
       } else {
         document.querySelector('.sortFeedback').innerHTML = "Bara a-ö tillåtet"
       }
+
+      // tabort feedback 
+      setTimeout(function (){ 
+        document.querySelector('.sortFeedback').innerHTML = ""
+      }, 1500) //1200 mms
     }
   })
   return ordersFiltered2;

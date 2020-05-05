@@ -42,15 +42,9 @@
         }
         // skriv ut 
         if($quantity > 0){
-          // rea varor
-          if($quantity < 10){
-            $priceText = "<a href='showproduct.php?id=$id'><p class='sale__old'>$price kr</p></a>
-            <a href='showproduct.php?id=$id'><p class='sale__new'>".number_format($price*0.9,2)." kr</p></a>";
-          } else {
-            $priceText = "<a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>";
-          }
           echo "
-          <article class='box'>
+          <article class='box' style='position:relative;'>
+          <a href='showproduct.php?id=$id'><img src='./images/new.png' style='max-width:80px; position: absolute;top: 0;left: 0; rotate:-21deg;'></a>
             <div class='box__pic'>
             <a href='showproduct.php?id=$id'><img src='./images/$image' alt='$name'/></a>
             </div>
@@ -60,9 +54,8 @@
               <input type='hidden' class='product-price' value='$price'/>
               <input type='hidden' class='product-image' value='$image'/>
               <input type='hidden' class='product-sale' value='$quantity'/>
-              <a href='showproduct.php?id=$id'><h2>Nyhet!</h2></a>
               <a href='showproduct.php?id=$id'><h3>$name</h3></a>
-              $priceText
+              <a href='showproduct.php?id=$id'><p class=''>$price kr</p></a>
               <a href='showproduct.php?id=$id'>Läs mer</a><br></a>
               <p><input type='number' class='product-quantity' min='1' max='$quantity' value='1'/></p>
               <button class='add-to-cart'>Lägg i varukorg</button>

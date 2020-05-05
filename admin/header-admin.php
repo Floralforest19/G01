@@ -25,13 +25,13 @@
 
 <nav class="nav-admin">
   <ul class="nav-ul">
-    <li><a href="../index.php">Hem</a></li>
-    <li><a href="index.php">Produkter</a></li>
-    <li><a href="create-product.php">Skapa produkt</a></li>
-    <li><a href="read-cat.php">Kategorier</a></li>
-    <li><a href="orders.php">Aktiva beställningar</a></li>
+    <li class="nav-li"><a href="../index.php">Till webbutiken</a></li>
+    <li><a href="index.php">Aktiva beställningar</a></li>
     <li><a href="orders-done.php">Avslutade beställningar</a></li>
     <li><a href="read-contact.php">Kundmeddelanden</a></li>
+    <li><a href="read-disp.php">Produkter</a></li>
+    <li><a href="create-product.php">Skapa produkt</a></li>
+    <li><a href="read-cat.php">Kategorier</a></li>
   </ul>
 </nav>
 </div>

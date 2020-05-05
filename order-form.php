@@ -109,7 +109,7 @@ function validateAll() {
         isAllValidated = false;
     }
 
-    let addressValidated = validateTextInput('orders-form', 'address', 'addressFeedback');
+    let addressValidated = validateAddress('orders-form', 'address', 'addressFeedback');
     if (addressValidated == false) {
         isAllValidated = false;
     }

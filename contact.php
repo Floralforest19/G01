@@ -15,8 +15,8 @@ require_once 'header.php';
                 <input type="text" name="email" id="email" placeholder="Ange din email" />
                 <div id="contactEmailFeedback" style="color:#eb4b88"></div>
 
-                <label for="mobile">Mobil</label>
-                <input type="text" name="mobile" id="mobile" placeholder="Ange din mobil" />
+                <label for="mobile">Telefon</label>
+                <input type="text" name="mobile" id="mobile" placeholder="Ange telefonnummer" />
                 <div id="contactMobileFeedback" style="color:#eb4b88"></div>
             </div>
 
@@ -38,7 +38,7 @@ require_once 'header.php';
 <script>
 function validateAll() {
     let isAllValidated = true;
-    let contactNameValidated = validateTextInput('contact-form', 'name', 'contactNameFeedback');
+    let contactNameValidated = validateNameInput('contact-form', 'name', 'contactNameFeedback');
     if (contactNameValidated == false) {
         isAllValidated = false;
     }

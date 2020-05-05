@@ -218,6 +218,17 @@ body {
   margin-left: 13%;
 }
 
+.newWrapper {
+  position: relative;
+}
+
+.new {
+  max-width: 55px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .table {
   border-collapse: collapse;
   width: 50%;
@@ -241,8 +252,9 @@ body {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #1D99BA;
+  background-color: #1d99ba;
   color: white;
+  min-width: 90px;
 }
 
 .table__pic {
@@ -618,5 +630,9 @@ hr {
   border-width: 0;
   color: white;
   background-color: white;
+}
+
+.nav-li {
+  margin-bottom: 2em;
 }
 /*# sourceMappingURL=style.css.map */

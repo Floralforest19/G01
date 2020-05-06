@@ -8,7 +8,9 @@
 
 <div class='products__display'>
   <section class='background'>
-    <h2>Nya produkter</h2>
+    <div class='menu__categories'>
+      <h2>Nya produkter</h2>
+    </div>
     <!-- <h3>Ta gärna en titt på våra senaste varor</h3> -->
     <div class='product__wrapper--newitem'>
 

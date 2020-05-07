@@ -144,7 +144,7 @@ body * {
   .header-logo-main:not(*:root),
   span.justForChrome {
     width: 52%;
-    padding-left: 10.5em;
+    padding-left: 5.5em;
   }
 }
 
@@ -154,6 +154,7 @@ body * {
     width: 80%;
     padding-left: 0em;
     margin-top: 0em;
+    padding-left: 10.5em;
   }
 }
 
@@ -377,7 +378,7 @@ body * {
     position: -webkit-sticky;
     position: sticky;
     top: 14.4vh;
-    background-color: #4EBBD9;
+    background-color: #4ebbd9;
     z-index: 13;
   }
 }
@@ -397,7 +398,7 @@ body * {
     position: -webkit-sticky;
     position: sticky;
     top: 16.9vh;
-    background-color: #4EBBD9;
+    background-color: #4ebbd9;
     z-index: 13;
   }
 }

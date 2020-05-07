@@ -22,13 +22,11 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
     // Loopar över alla filer/bilder
     for($i=0;$i<$totalfiles;$i++){
 
-
       $target_dir = "../images/";
 
-      $addImageCollection = 1;  // Variabel som används för att se ifall bildens sökväg ska läggas till i produktens tabell.
+      $addImageCollection = 1;  // Variabel som används för att se ifall bildens sökväg ska läggas till i produktens tabell.      
       
-      
-      $target_file = $target_dir . basename($_FILES["image_file_name"]["name"][$i]);
+      $target_file = $target_dir .time()."-". basename($_FILES["image_file_name"]["name"][$i]);
       $uploadOk = 1;
       $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -45,11 +43,11 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
       }
       
       
-      // Check if file already exists
-      if (file_exists($target_file)) {
-        // echo "Den här bilden finns redan.<br>";      // **
-        $uploadOk = 0;
-      }
+      // // Check if file already exists
+      // if (file_exists($target_file)) {
+      //   // echo "Den här bilden finns redan.<br>";      // **
+      //   $uploadOk = 0;
+      // }
       // Check file size
       if ($_FILES["image_file_name"]["size"][$i] > 2000000) {  // Begränsad till 2MB
         // echo "Tyvärr, filen är för stor.<br>";      // **
@@ -88,7 +86,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
       // Om $addImageCollection är "1" så kommer bildens sökväg att läggat till under produktens image_file_name kolumn
       if ($addImageCollection == 1 && $imageCounter < 5) {
         //Sparar alla bilder och separerar bildernas sökväg, med två mellanslag, i en string
-        $imageCollection .= htmlspecialchars(basename ($_FILES["image_file_name"]["name"][$i])) . " * ";
+        $imageCollection .= htmlspecialchars(time()."-".basename ($_FILES["image_file_name"]["name"][$i])) . " * ";
       }
       $imageCounter++;
       if ($imageCounter > 5) {

@@ -35,7 +35,7 @@ require_once '../db.php';
    <div id="descriptionFeedback" style="color:#eb4b88"></div>
    <div>  <input name="quantity" type="number" class="input__cat" required placeholder="Antal"></div> 
    <div id="quantityFeedback" style="color:#eb4b88"></div>
-   <div>  <input name="price" type="number" step="0.01" min="0" max="10000" class="input__cat" required placeholder="Pris"></div> 
+   <div>  <input name="price" type="text"  class="input__cat" required placeholder="Pris"></div> 
    <div id="priceFeedback" style="color:#eb4b88"></div>
    
     <div style="display: flex;justify-content: center;justify-content: space-evenly;">
@@ -51,7 +51,7 @@ require_once '../db.php';
 <script>
 function validateAll() {
     let isAllValidated = true;
-    let nameValidated = validateTextInput('createProdForm', 'name', 'nameFeedback');
+    let nameValidated = catNameInput('createProdForm', 'name', 'nameFeedback');
     if (nameValidated == false) {
         isAllValidated = false;
     }

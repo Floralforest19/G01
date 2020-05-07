@@ -2,10 +2,10 @@
 
 // skapa produkt
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
-  $name         = htmlspecialchars($_POST['name']);
+  $name         = htmlspecialchars_decode($_POST['name']);
   $description  = htmlspecialchars($_POST['description']);
   $quantity     = htmlspecialchars($_POST['quantity']);
-  $price        = htmlspecialchars($_POST['price']);
+  $price        = floatval(htmlspecialchars($_POST['price']));
   $category_id  = htmlspecialchars($_POST['test']);
 
   // räkna antalet filer/bilder som ska laddas upp

@@ -13,7 +13,7 @@
   top: 0; /* Håller sig på toppen */
   z-index: 10;
   grid-auto-flow: column;
-  margin-bottom: 5px;
+  // margin-bottom: 5px;
   // padding: 5px;
   * {
     transition: all 0.1s linear;
@@ -89,12 +89,13 @@
   .header-logo-main:not(*:root),
   span.justForChrome {
     width: 52%;
-    padding-left: 10.5em;
+    padding-left: 5.5em;
 
     @media (min-width: 800px) {
       width: 80%;
       padding-left: 0em;
       margin-top: 0em;
+      padding-left: 10.5em;
     }
 
     @media (min-width: 1000px) {
@@ -246,16 +247,28 @@
 
 .category_menu {
   display: none;
+  a {
+    color: white;
+    font-weight: 600;
+  }
   @media (min-width: 800px) {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    position: sticky;
+    top: 14.4vh;
+    background-color: #4ebbd9;
+    z-index: 13;
   }
 
   @media (min-width: 1000px) {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    position: sticky;
+    top: 16.9vh;
+    background-color: #4ebbd9;
+    z-index: 13;
   }
 }
 

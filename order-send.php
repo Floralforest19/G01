@@ -10,15 +10,30 @@
     // json meed info från loacl storage
     $order_info = ($_POST['order_info']);
 
-  // spara email i en variabel för att jämföra och kolla om det är en ny kund
+  // spara email, namn och adress i variabler för att jämföra och kolla om det är en ny kund
   $checkEmail = htmlspecialchars($_POST['email']);
+  $checkFirstname = htmlspecialchars($_POST['firstname']);
+  $checkSurname = htmlspecialchars($_POST['surname']);
+  $checkPhone = htmlspecialchars($_POST['phone']);
+  $checkAddress = htmlspecialchars($_POST['address']);
+  $checkZip = htmlspecialchars($_POST['zip']);
+  $checkCity = htmlspecialchars($_POST['city']);
   
   // hämtar total summan på ordern som behövs för att spara ordern
   $order_sum = htmlspecialchars($_POST['order_sum']);
   $shipping_fee = 0;
 
-    // check if email exist in db
-    $sql2 = "SELECT * FROM `customers` WHERE email = '$checkEmail'";
+    // check if exact customer exist in db
+    $sql2 = "SELECT * FROM `customers` 
+            WHERE 
+            ('email' = '$checkEmail' AND
+            firstname = '$checkFirstname' AND
+            surname = '$checkSurname' AND
+            phone = '$checkPhone' AND
+            streetadress = '$checkAddress' AND
+            'zip-code' = '$checkZip' AND
+            city = '$checkCity')
+            ";
     $stmt2 = $db->prepare($sql2);
     $stmt2->execute();
 
@@ -53,7 +68,6 @@
         $stmt->execute();
       }
   }
-
     if(!$result){ // custmomer doesn't exist, save new customer info
       $firstname  = htmlspecialchars($_POST['firstname']);
       $surname    = htmlspecialchars($_POST['surname']);
@@ -62,7 +76,7 @@
       $address    = htmlspecialchars($_POST['address']);
       $zip        = htmlspecialchars($_POST['zip']);
       $city       = htmlspecialchars($_POST['city']);
-      
+
       $sql = "INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`)
       VALUES (NULL, '$firstname', '$surname', '$address', '$city', '$zip', '$phone', '$email')";
       $stmt = $db->prepare($sql);

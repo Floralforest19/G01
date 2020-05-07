@@ -8,12 +8,14 @@
 
 <div class='products__display'>
   <section class='background'>
-    <h2>Sista chansen - 10% rabatt</h2>
+    <div class='menu__categories'>
+      <h2>Sista chansen - 10% rabatt</h2>
+    </div>
     <div class='product__wrapper--newitem'>
     <?php
 
       // kolla vilka 3 varor som är senast skapade, de ska inte vara rea varor
-      $sqlNew  = "SELECT product_id FROM product ORDER BY creation_date DESC LIMIT 3";
+      $sqlNew  = "SELECT * FROM product WHERE quantity NOT LIKE '0' ORDER BY creation_date DESC LIMIT 3";
       $stmtNew = $db->prepare($sqlNew);
       $stmtNew->execute();
       // spara 3 senaste produkternas id:n i en array

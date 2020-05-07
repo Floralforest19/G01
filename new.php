@@ -8,13 +8,15 @@
 
 <div class='products__display'>
   <section class='background'>
-    <h2>Nya produkter</h2>
+    <div class='menu__categories'>
+      <h2>Nya produkter</h2>
+    </div>
     <!-- <h3>Ta gärna en titt på våra senaste varor</h3> -->
     <div class='product__wrapper--newitem'>
 
     <?php
       // kolla vilka 3 varor som är senast skapade
-      $sqlNew1  = "SELECT product_id FROM product ORDER BY creation_date DESC LIMIT 3";
+      $sqlNew1  = "SELECT * FROM product WHERE quantity NOT LIKE '0' ORDER BY creation_date DESC LIMIT 3";
       $stmtNew1 = $db->prepare($sqlNew1);
       $stmtNew1->execute();
       // spara 3 senaste produkternas id:n i en array
@@ -29,7 +31,7 @@
       $new2 = $newProdIds[2];
 
       // hämta de tre senaste produkterna
-      $sqlNew  = "SELECT * FROM product ORDER BY creation_date DESC LIMIT 3";
+      $sqlNew  = "SELECT * FROM product WHERE quantity NOT LIKE '0' ORDER BY creation_date DESC LIMIT 3";
       $stmtNew = $db->prepare($sqlNew);
       $stmtNew->execute();
 

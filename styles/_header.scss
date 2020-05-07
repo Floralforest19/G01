@@ -89,12 +89,13 @@
   .header-logo-main:not(*:root),
   span.justForChrome {
     width: 52%;
-    padding-left: 10.5em;
+    padding-left: 5.5em;
 
     @media (min-width: 800px) {
       width: 80%;
       padding-left: 0em;
       margin-top: 0em;
+      padding-left: 10.5em;
     }
 
     @media (min-width: 1000px) {
@@ -256,17 +257,17 @@
     justify-content: space-evenly;
     position: sticky;
     top: 14.4vh;
-    background-color: #4EBBD9;
+    background-color: #4ebbd9;
     z-index: 13;
   }
 
   @media (min-width: 1000px) {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;    
+    justify-content: space-evenly;
     position: sticky;
     top: 16.9vh;
-    background-color: #4EBBD9;
+    background-color: #4ebbd9;
     z-index: 13;
   }
 }

@@ -8,7 +8,9 @@
 
 <div class='products__display'>
   <section class='background'>
-    <h2>Sista chansen - 10% rabatt</h2>
+    <div class='menu__categories'>
+      <h2>Sista chansen - 10% rabatt</h2>
+    </div>
     <div class='product__wrapper--newitem'>
     <?php
 

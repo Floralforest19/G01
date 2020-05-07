@@ -9,11 +9,9 @@ function validateForm(formName, inputName, feedbackId) {
   // check if right input lenght
   if (input.length < 2 || input.length > 30) {
     if (input.length > 30) {
-      document.getElementById(feedbackId).innerHTML =
-        "Måste vara kortare än 30 tecken";
+      document.getElementById(feedbackId).innerHTML = "max 30 tecken";
     } else {
-      document.getElementById(feedbackId).innerHTML =
-        "Skriv in minst två tecken";
+      document.getElementById(feedbackId).innerHTML = "minst två tecken";
     }
     return false;
   }

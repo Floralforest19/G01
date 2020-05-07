@@ -16,7 +16,7 @@
 
     <?php
       // kolla vilka 3 varor som är senast skapade
-      $sqlNew  = "SELECT * FROM product WHERE quantity NOT LIKE '0' ORDER BY creation_date DESC LIMIT 3";
+      $sqlNew1  = "SELECT * FROM product WHERE quantity NOT LIKE '0' ORDER BY creation_date DESC LIMIT 3";
       $stmtNew1 = $db->prepare($sqlNew1);
       $stmtNew1->execute();
       // spara 3 senaste produkternas id:n i en array

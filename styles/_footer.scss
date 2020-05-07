@@ -1,5 +1,4 @@
 .footer {
-  max-height: 100vh;
   height: fit-content;
   display: grid;
   background-color: red;
@@ -100,6 +99,7 @@
   display: grid;
   align-items: end;
   grid-template-columns: 1fr 1fr 1fr;
+  background-color: #1d99ba;
 
   @media (min-width: $desktop-size) {
     grid-template-columns: 1fr 1fr 1fr;

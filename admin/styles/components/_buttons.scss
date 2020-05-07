@@ -16,7 +16,7 @@
 }
 
 .btn__edit,
-.btn__delete, .btn__sortStatus {
+.btn__delete, .btn__sortStatus, .btn__catBack {
   margin-top: 1em;
   margin-bottom: 1em;
   width: 128px;
@@ -116,19 +116,23 @@ button.sort__btn {
   background-color: $orange-button;
 }
 
-.btn__sortStatus {
+.btn__sortStatus, .btn__catBack  {
   background-color: white;
   color: #1D99BA;
 }
 
-.btn__sortStatus--active {
+.btn__sortStatus--active  {
   background-color: #1D99BA;
   color: white;
 }
 
-.btn__sortStatus:hover {
+.btn__sortStatus:hover, .btn__catBack:hover  {
   background-color: $orange-button;
   cursor: pointer;
+}
+
+.btn__catBack {
+  width: 200px;
 }
 
 input.input__filter {

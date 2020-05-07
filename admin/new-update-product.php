@@ -39,7 +39,7 @@ if(isset($_GET['product_id'])){
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
   $product_id    = htmlspecialchars($_POST['product_id']);
-  $name          = htmlspecialchars($_POST['name']);
+  $name          = htmlspecialchars_decode($_POST['name']);
   $description   = htmlspecialchars($_POST['description']);
   $quantity      = htmlspecialchars($_POST['quantity']);
   $price         = htmlspecialchars($_POST['price']);

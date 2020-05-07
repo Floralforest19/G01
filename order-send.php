@@ -9,16 +9,31 @@
   if(isset($_POST['email'])){
     // json meed info från loacl storage
     $order_info = ($_POST['order_info']);
-
-  // spara email i en variabel för att jämföra och kolla om det är en ny kund
+  // spara email, namn och adress i variabler för att jämföra och kolla om det är en ny kund
+  $checkFirstname = htmlspecialchars($_POST['firstname']);
+  $checkSurname = htmlspecialchars($_POST['surname']);
+  $checkPhone = htmlspecialchars($_POST['phone']);
+  $checkAddress = htmlspecialchars($_POST['address']);
+  $checkCity = htmlspecialchars($_POST['city']);
+  $checkZip = htmlspecialchars($_POST['zip']);
   $checkEmail = htmlspecialchars($_POST['email']);
   
   // hämtar total summan på ordern som behövs för att spara ordern
   $order_sum = htmlspecialchars($_POST['order_sum']);
   $shipping_fee = 0;
 
-    // check if email exist in db
-    $sql2 = "SELECT * FROM `customers` WHERE email = '$checkEmail'";
+    // check if exact customer exist in db
+    $sql2 = " SELECT * FROM `customers` 
+              WHERE 
+              `firstname` LIKE '$checkFirstname' AND 
+              `surname` LIKE '$checkSurname' AND 
+              `streetadress` LIKE '$checkAddress' AND 
+              `city` LIKE '$checkCity' AND 
+              `zip-code` LIKE '$checkZip' AND 
+              `phone` LIKE '$checkPhone' AND 
+              `email` LIKE '$checkEmail'
+            ";
+            echo $sql2;
     $stmt2 = $db->prepare($sql2);
     $stmt2->execute();
 
@@ -53,7 +68,6 @@
         $stmt->execute();
       }
   }
-
     if(!$result){ // custmomer doesn't exist, save new customer info
       $firstname  = htmlspecialchars($_POST['firstname']);
       $surname    = htmlspecialchars($_POST['surname']);
@@ -62,7 +76,7 @@
       $address    = htmlspecialchars($_POST['address']);
       $zip        = htmlspecialchars($_POST['zip']);
       $city       = htmlspecialchars($_POST['city']);
-      
+
       $sql = "INSERT INTO `customers` (`customer_id`, `firstname`, `surname`, `streetadress`, `city`, `zip-code`, `phone`, `email`)
       VALUES (NULL, '$firstname', '$surname', '$address', '$city', '$zip', '$phone', '$email')";
       $stmt = $db->prepare($sql);

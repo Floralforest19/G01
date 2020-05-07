@@ -12,10 +12,9 @@
 <div class='products__display'>
 
     <section class='background'>
-        <h2>Produkter</h2>
         <div class='menu__categories'>
             <?php
-        $catHeading = "<h3>Alla produkter</h3>";
+        $catHeading = "<h2>Alla produkter</h2>";
         if(isset($_GET['id'])){
           $id    = htmlentities($_GET['id']);
           $sql2  = "SELECT * FROM category WHERE category_id = '$id'";
@@ -23,7 +22,7 @@
           $stmt2->execute();
           while( $row2 = $stmt2->fetch(PDO::FETCH_ASSOC) ){
             $name2 = $row2['name'];
-            $catHeading = "<h3>$name2</h3>";
+            $catHeading = "<h2>$name2</h2>";
           }
           if($id != 'all'){
             $sql = "SELECT * FROM product

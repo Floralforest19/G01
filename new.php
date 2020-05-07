@@ -8,13 +8,15 @@
 
 <div class='products__display'>
   <section class='background'>
-    <h2>Nya produkter</h2>
+    <div class='menu__categories'>
+      <h2>Nya produkter</h2>
+    </div>
     <!-- <h3>Ta gärna en titt på våra senaste varor</h3> -->
     <div class='product__wrapper--newitem'>
 
     <?php
       // kolla vilka 3 varor som är senast skapade
-      $sqlNew  = "SELECT * FROM product WHERE quantity NOT LIKE '0' ORDER BY creation_date DESC LIMIT 3";
+      $sqlNew1  = "SELECT * FROM product WHERE quantity NOT LIKE '0' ORDER BY creation_date DESC LIMIT 3";
       $stmtNew1 = $db->prepare($sqlNew1);
       $stmtNew1->execute();
       // spara 3 senaste produkternas id:n i en array
@@ -36,7 +38,7 @@
       // loopar över arrayen som har resultatet från db
       while($rowNew = $stmtNew->fetch(PDO::FETCH_ASSOC)) :
         // spara data från db i varsin variabel
-        $id       = htmlspecialchars($rowNew['product_id']); 
+        $id       = htmlspecialchars($rowNew['product_id']);
         $name     = htmlspecialchars($rowNew['name']);
         $category = strtoupper(htmlspecialchars($rowNew['category_id']));
         $quantity = htmlspecialchars($rowNew['quantity']);
@@ -55,7 +57,7 @@
         if ($imageCount > 1) {
           $image = $imageArray[0];
         }
-        // skriv ut 
+        // skriv ut
         if($quantity > 0){
           echo "
           <article class='box' style='position:relative;'>
@@ -65,7 +67,7 @@
             </div>
             <div class='box__text'>
               <input type='hidden' class='product-id' value='$id'/>
-              <input type='hidden' class='product-name' value='$name'/>         
+              <input type='hidden' class='product-name' value='$name'/>
               <input type='hidden' class='product-price' value='$price'/>
               <input type='hidden' class='product-new0' value='$new0'/>
               <input type='hidden' class='product-new1' value='$new1'/>

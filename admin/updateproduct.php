@@ -289,7 +289,7 @@ require_once '../db.php';
 <div id="quantityFeedback" style="color:#eb4b88"></div>
 
 <label for="price"> Pris:</label>
-<input class="input__cat" name="price" type="number" required value="<?php echo $price; ?>">
+<input class="input__cat" name="price" type="number" step="0.01" min="0" max="10000" >
 <div id="priceFeedback" style="color:#eb4b88"></div>
 
         <div style="display: flex;justify-content: center;justify-content: space-evenly;">

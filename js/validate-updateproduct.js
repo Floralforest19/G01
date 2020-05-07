@@ -10,11 +10,9 @@ function validateTextDescriptionInput(formName, inputName, feedbackId) {
   // check if right input lenght
   if (input.length < 2 || input.length > 300) {
     if (input.length > 300) {
-      document.getElementById(feedbackId).innerHTML =
-        "Kortare än 300 tecken";
+      document.getElementById(feedbackId).innerHTML = "Max 300 tecken";
     } else {
-      document.getElementById(feedbackId).innerHTML =
-        "Minst två tecken";
+      document.getElementById(feedbackId).innerHTML = "Minst två tecken";
     }
     return false;
   } else if (onlyLetters == false) {
@@ -25,8 +23,7 @@ function validateTextDescriptionInput(formName, inputName, feedbackId) {
 
   // check for mutliple spaces in begining of string
   else if (findSpaces == true) {
-    document.getElementById(feedbackId).innerHTML =
-      "För många mellanslag";
+    document.getElementById(feedbackId).innerHTML = "För många mellanslag";
     return false;
   }
 
@@ -39,13 +36,11 @@ function validateNumberInput(formName, inputName, feedbackId) {
   let onlyNumbers = /^[0123456789]*$/.test(input);
 
   if (input < 0 || onlyNumbers == false) {
-    document.getElementById(feedbackId).innerHTML =
-      "Bara positiva tal, tack";
+    document.getElementById(feedbackId).innerHTML = "Bara positiva tal, tack";
     return false;
   } else if (input.length > 6) {
     if (input.length > 6) {
-      document.getElementById(feedbackId).innerHTML =
-        "Max 6 siffrigt antal";
+      document.getElementById(feedbackId).innerHTML = "Max 6 siffrigt antal";
     }
     return false;
   }
@@ -59,13 +54,11 @@ function validatePriceInput(formName, inputName, feedbackId) {
   let onlyNumbers = /^[0123456789,.]*$/.test(input);
 
   if (input < 1 || onlyNumbers == false) {
-    document.getElementById(feedbackId).innerHTML =
-      "Bara positiva tal, tack";
+    document.getElementById(feedbackId).innerHTML = "Bara positiva tal, tack";
     return false;
   } else if (input.length > 9) {
     if (input.length > 9) {
-      document.getElementById(feedbackId).innerHTML =
-        "Max 6 siffrigt belopp";
+      document.getElementById(feedbackId).innerHTML = "Max 6 siffrigt belopp";
     }
     return false;
   }
@@ -83,13 +76,11 @@ function validateTextInput(formName, inputName, feedbackId) {
   let findSpaces = /^(\s\s)/.test(input);
 
   // check if right input lenght
-  if (input.length < 2 || input.length > 300) {
-    if (input.length > 300) {
-      document.getElementById(feedbackId).innerHTML =
-        "Max 300 tecken";
+  if (input.length < 2 || input.length > 50) {
+    if (input.length > 50) {
+      document.getElementById(feedbackId).innerHTML = "Max 50 tecken";
     } else {
-      document.getElementById(feedbackId).innerHTML =
-        "Minst två tecken";
+      document.getElementById(feedbackId).innerHTML = "Minst två tecken";
     }
     return false;
   } else if (onlyLetters == false) {
@@ -100,8 +91,7 @@ function validateTextInput(formName, inputName, feedbackId) {
 
   // check for mutliple spaces in begining of string
   else if (findSpaces == true) {
-    document.getElementById(feedbackId).innerHTML =
-      "För många mellanslag";
+    document.getElementById(feedbackId).innerHTML = "För många mellanslag";
     return false;
   }
 
@@ -117,13 +107,11 @@ function catNameInput(formName, inputName, feedbackId) {
   let findSpaces = /^(\s\s)/.test(input);
 
   // check if right input lenght
-  if (input.length < 2 || input.length > 300) {
-    if (input.length > 300) {
-      document.getElementById(feedbackId).innerHTML =
-        "Max 300 tecken";
+  if (input.length < 2 || input.length > 50) {
+    if (input.length > 50) {
+      document.getElementById(feedbackId).innerHTML = "Max 50 tecken";
     } else {
-      document.getElementById(feedbackId).innerHTML =
-        "Minst två tecken";
+      document.getElementById(feedbackId).innerHTML = "Minst två tecken";
     }
     return false;
   } else if (onlyLetters == false) {
@@ -134,8 +122,7 @@ function catNameInput(formName, inputName, feedbackId) {
 
   // check for mutliple spaces in begining of string
   else if (findSpaces == true) {
-    document.getElementById(feedbackId).innerHTML =
-      "För många mellanslag";
+    document.getElementById(feedbackId).innerHTML = "För många mellanslag";
     return false;
   }
 

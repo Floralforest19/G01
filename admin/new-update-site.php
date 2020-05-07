@@ -152,7 +152,6 @@ require_once '../db.php';
 </div>
 
 
-<!-- <script src="../validateinput.js"></script> -->
 <script src="../js/validate-updateproduct.js"></script>
 
 <script>

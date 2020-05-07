@@ -823,8 +823,12 @@ body {
 }
 
 .search__feedback {
-  color: yellow;
+  color: black;
   font-size: 15px;
+  font-weight: 700;
+  background-color: #f1f1f1;
+  text-align: center;
+  border-radius: 18px;
 }
 
 .display__order-items {
@@ -1312,7 +1316,6 @@ h3 {
 }
 
 .footer {
-  max-height: 100vh;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -1465,6 +1468,7 @@ h3 {
           align-items: end;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
+  background-color: #1d99ba;
 }
 
 @media (min-width: 1000px) {
@@ -1489,7 +1493,6 @@ h3 {
 }
 
 .footer {
-  max-height: 100vh;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;

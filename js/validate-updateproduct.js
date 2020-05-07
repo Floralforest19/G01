@@ -36,7 +36,7 @@ function validateTextDescriptionInput(formName, inputName, feedbackId) {
 function validateNumberInput(formName, inputName, feedbackId) {
   document.getElementById(feedbackId).innerHTML = "";
   let input = document.forms[formName][inputName].value;
-  let onlyNumbers = /^[0123456789,.]*$/.test(input);
+  let onlyNumbers = /^[0123456789]*$/.test(input);
 
   if (input < 0 || onlyNumbers == false) {
     document.getElementById(feedbackId).innerHTML =

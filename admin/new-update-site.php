@@ -128,7 +128,7 @@ require_once '../db.php';
 <div id="quantityFeedback" style="color:#eb4b88"></div>
 
 <label for="price"> Pris:</label>
-<input class="input__cat" name="price" type="number" required value="<?php echo $price; ?>">
+<input class="input__cat" name="price" type="text" required value="<?php echo $price; ?>">
 <div id="priceFeedback" style="color:#eb4b88"></div>
 
         <div style="display: flex;justify-content: center;justify-content: space-evenly;">
@@ -158,7 +158,7 @@ require_once '../db.php';
 <script>
 function validateAll() {
     let isAllValidated = true;
-    let nameValidated = validateTextInput('update-form', 'name', 'nameFeedback');
+    let nameValidated = catNameInput('update-form', 'name', 'nameFeedback');
     if (nameValidated == false) {
         isAllValidated = false;
     }

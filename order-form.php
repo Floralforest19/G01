@@ -126,17 +126,17 @@ function validateAll() {
     let checkBox = document.getElementById("leverans");
     // If the checkbox is checked
     if (checkBox.checked == true) {
-        let address2Validated = validateTextInput('orders-form', 'address2', 'address2Feedback');
+        let address2Validated = validateAddress('orders-form', 'address2', 'address2Feedback');
         if (address2Validated == false) {
             isAllValidated = false;
         }
 
-        let zip2Validated = validateTextInput('orders-form', 'zip2', 'zip2Feedback');
+        let zip2Validated = validateNumberOrSpaces('orders-form', 'zip2', 'zip2Feedback');
         if (zip2Validated == false) {
             isAllValidated = false;
         }
 
-        let city2Validated = validateTextInput('orders-form', 'city2', 'city2Feedback');
+        let city2Validated = validateNameInput('orders-form', 'city2', 'city2Feedback');
         if (city2Validated == false) {
             isAllValidated = false;
         }

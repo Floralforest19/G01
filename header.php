@@ -8,14 +8,14 @@
     <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Webshop v3.0</title>
+    <title>Webshop v4.0</title>
 </head>
 <body>
 <header id="header" class="header">
 
 
     <div id="header-top" class="header-top">
-        <a href="index.php"><img id="header-logo-main" class="header-logo-main" src="images/logga skis - test.png" alt="temp logo"></a>
+        <a href="index.php"><img id="header-logo-main" class="header-logo-main" src="images/logga.png" alt="temp logo"></a>
     </div>
 
     <div id="header-nav" class="header-nav">

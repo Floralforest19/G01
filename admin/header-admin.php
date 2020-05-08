@@ -12,7 +12,7 @@
   <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <title>Webshop v3.0 - Admin</title>
+  <title>Webshop v4.0 - Admin</title>
 </head>
 <body>
 

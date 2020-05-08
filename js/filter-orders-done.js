@@ -52,17 +52,17 @@ function showOrders(order) {
         <th>Leveransadress</th>
         <th>Tid/Datum <br>
           <button class='sort__btn' id="timeSortAsc">
-            <i class="fas fa-angle-up"></i>
+            <i class="fa fa-angle-up"></i>
           </button>
           <button class='sort__btn' id="timeSortDesc">
-            <i class="fas fa-angle-down"></i>
+            <i class="fa fa-angle-down"></i>
           </button>
         <th>Summa<br>
         <button class='sort__btn' id="sumSortAsc">
-          <i class="fas fa-angle-up"></i>
+          <i class="fa fa-angle-up"></i>
         </button>
         <button class='sort__btn' id="sumSortDesc">
-          <i class="fas fa-angle-down"></i>
+          <i class="fa fa-angle-down"></i>
         </button>
         <th>Status</th>
       </thead>`

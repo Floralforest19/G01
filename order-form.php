@@ -40,8 +40,8 @@ require_once 'header.php';
                 <label for="city">Postort</label>
 
 
-                <input type="text" name="city" id="city" placeholder="Ange din postadress" required
-                   autocomplete="off" onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
+                <input type="text" name="city" id="city" placeholder="Ange din postadress" required autocomplete="off"
+                    onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
                 <div id="cityFeedback" style="color:#eb4b88"></div>
 
                 <label for="leverans">Annan leveransaddress?</label>
@@ -59,9 +59,8 @@ require_once 'header.php';
                     <div id="zip2Feedback" style="color:#eb4b88"></div>
 
                     <label for="city2">Postort</label>
-                    <input type="text" name="city2" id="city2" placeholder="Ange postort"
-
-                       autocomplete="off" onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
+                    <input type="text" name="city2" id="city2" placeholder="Ange postort" autocomplete="off"
+                        onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
                     <div id="city2Feedback" style="color:#eb4b88"></div>
 
 
@@ -89,12 +88,12 @@ require_once 'header.php';
 <script>
 function validateAll() {
     let isAllValidated = true;
-    let firstnameValidated = validateTextInput('orders-form', 'firstname', 'firstnameFeedback');
+    let firstnameValidated = validateNameInput('orders-form', 'firstname', 'firstnameFeedback');
     if (firstnameValidated == false) {
         isAllValidated = false;
     }
 
-    let surnameValidated = validateTextInput('orders-form', 'surname', 'surnameFeedback');
+    let surnameValidated = validateNameInput('orders-form', 'surname', 'surnameFeedback');
     if (surnameValidated == false) {
         isAllValidated = false;
     }
@@ -114,12 +113,12 @@ function validateAll() {
         isAllValidated = false;
     }
 
-    let zipValidated = validateTextInput('orders-form', 'zip', 'zipFeedback');
+    let zipValidated = validateNumberOrSpaces('orders-form', 'zip', 'zipFeedback');
     if (zipValidated == false) {
         isAllValidated = false;
     }
 
-    let cityValidated = validateTextInput('orders-form', 'city', 'cityFeedback');
+    let cityValidated = validateNameInput('orders-form', 'city', 'cityFeedback');
     if (cityValidated == false) {
         isAllValidated = false;
     }
@@ -127,17 +126,17 @@ function validateAll() {
     let checkBox = document.getElementById("leverans");
     // If the checkbox is checked
     if (checkBox.checked == true) {
-        let address2Validated = validateTextInput('orders-form', 'address2', 'address2Feedback');
+        let address2Validated = validateAddress('orders-form', 'address2', 'address2Feedback');
         if (address2Validated == false) {
             isAllValidated = false;
         }
 
-        let zip2Validated = validateTextInput('orders-form', 'zip2', 'zip2Feedback');
+        let zip2Validated = validateNumberOrSpaces('orders-form', 'zip2', 'zip2Feedback');
         if (zip2Validated == false) {
             isAllValidated = false;
         }
 
-        let city2Validated = validateTextInput('orders-form', 'city2', 'city2Feedback');
+        let city2Validated = validateNameInput('orders-form', 'city2', 'city2Feedback');
         if (city2Validated == false) {
             isAllValidated = false;
         }

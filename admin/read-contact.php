@@ -11,12 +11,20 @@ require_once '../db.php';
   <div class='box__cat--form'>
     <p>
       Sortera på e-mail
-      <a href='read-contact.php?id=contactemail&order_sort=ASC'><i class="fas fa-angle-up"></i></a>
-      <a href='read-contact.php?id=contactemail&order_sort=DESC'><i class="fas fa-angle-down"></i></a>
+      <button class='sort__btn'>
+      <a href='read-contact.php?id=contactemail&order_sort=ASC'><i class="fa fa-angle-up"></i></a>
+      </button>
+      <button class='sort__btn'>
+      <a href='read-contact.php?id=contactemail&order_sort=DESC'><i class="fa fa-angle-down"></i></a>
+      </button>
       <br>
       Sortera på datum
-      <a href='read-contact.php?id=contactdate&order_sort=ASC'><i class="fas fa-angle-up"></i></a>
-      <a href='read-contact.php?id=contactdate&order_sort=DESC'><i class="fas fa-angle-down"></i></a>
+      <button class='sort__btn'>
+      <a href='read-contact.php?id=contactdate&order_sort=ASC'><i class="fa fa-angle-up"></i></a>
+      </button>
+      <button class='sort__btn'>
+      <a href='read-contact.php?id=contactdate&order_sort=DESC'><i class="fa fa-angle-down"></i></a>
+      </button>
     </p>
   </div>
 <?php

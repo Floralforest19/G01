@@ -33,7 +33,6 @@
               `phone` LIKE '$checkPhone' AND 
               `email` LIKE '$checkEmail'
             ";
-            echo $sql2;
     $stmt2 = $db->prepare($sql2);
     $stmt2->execute();
 

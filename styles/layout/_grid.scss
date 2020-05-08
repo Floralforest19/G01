@@ -143,6 +143,10 @@
 }
 
 .search__feedback {
-  color: yellow;
+  color: black;
   font-size: 15px;
+  font-weight: 700;
+  background-color: $bakground-color;
+  text-align: center;
+  border-radius: 18px;
 }

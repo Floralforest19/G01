@@ -40,8 +40,8 @@ require_once 'header.php';
                 <label for="city">Postort</label>
 
 
-                <input type="text" name="city" id="city" placeholder="Ange din postadress" required
-                   autocomplete="off" onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
+                <input type="text" name="city" id="city" placeholder="Ange din postadress" required autocomplete="off"
+                    onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
                 <div id="cityFeedback" style="color:#eb4b88"></div>
 
                 <label for="leverans">Annan leveransaddress?</label>
@@ -59,9 +59,8 @@ require_once 'header.php';
                     <div id="zip2Feedback" style="color:#eb4b88"></div>
 
                     <label for="city2">Postort</label>
-                    <input type="text" name="city2" id="city2" placeholder="Ange postort"
-
-                       autocomplete="off" onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
+                    <input type="text" name="city2" id="city2" placeholder="Ange postort" autocomplete="off"
+                        onkeyup="getProducts(this.value)" onclick="getProducts(this.value)" />
                     <div id="city2Feedback" style="color:#eb4b88"></div>
 
 
@@ -89,12 +88,12 @@ require_once 'header.php';
 <script>
 function validateAll() {
     let isAllValidated = true;
-    let firstnameValidated = validateTextInput('orders-form', 'firstname', 'firstnameFeedback');
+    let firstnameValidated = validateNameInput('orders-form', 'firstname', 'firstnameFeedback');
     if (firstnameValidated == false) {
         isAllValidated = false;
     }
 
-    let surnameValidated = validateTextInput('orders-form', 'surname', 'surnameFeedback');
+    let surnameValidated = validateNameInput('orders-form', 'surname', 'surnameFeedback');
     if (surnameValidated == false) {
         isAllValidated = false;
     }
@@ -114,12 +113,12 @@ function validateAll() {
         isAllValidated = false;
     }
 
-    let zipValidated = validateTextInput('orders-form', 'zip', 'zipFeedback');
+    let zipValidated = validateNumberOrSpaces('orders-form', 'zip', 'zipFeedback');
     if (zipValidated == false) {
         isAllValidated = false;
     }
 
-    let cityValidated = validateTextInput('orders-form', 'city', 'cityFeedback');
+    let cityValidated = validateNameInput('orders-form', 'city', 'cityFeedback');
     if (cityValidated == false) {
         isAllValidated = false;
     }

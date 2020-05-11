@@ -28,8 +28,8 @@ require_once '../db.php';
           while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             $result = true; 
             echo "<p class='search__feedback'>$catname är redan en kategori, ange annat värde.</p>
-            <a href='edit-cat.php?id=$id'><button class='btn__catBack btn__sortStatus--active  '><i class='fas fa-angle-left'></i> Ändra</button></a><br>
-            <a href='read-cat.php'><button class='btn__catBack '><i class='fas fa-angle-left'></i> Till kategorier</button></a>
+            <a href='edit-cat.php?id=$id'><button class='btn__catBack btn__sortStatus--active  '><i class='fa fa-angle-left'></i> Ändra</button></a><br>
+            <a href='read-cat.php'><button class='btn__catBack '><i class='fa fa-angle-left'></i> Till kategorier</button></a>
             ";
           }
            // skapa ny kategori ifall nytt värde
@@ -38,7 +38,7 @@ require_once '../db.php';
             $stmt = $db->prepare($sql);
             $stmt->execute();
             echo "<p class='search__feedback'>Kategorin ändrades till:</p> <h3>$catname</h3>
-            <a href='read-cat.php'><button class='btn__catBack btn__sortStatus--active '><i class='fas fa-angle-left'></i> Till kategorier</button></a>
+            <a href='read-cat.php'><button class='btn__catBack btn__sortStatus--active '><i class='fa fa-angle-left'></i> Till kategorier</button></a>
 
             ";
 

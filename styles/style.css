@@ -155,8 +155,8 @@ body * {
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   .header-logo-main:not(*:root),
   span.justForChrome {
-    width: 52%;
-    padding-left: 5.5em;
+    width: 80%;
+    padding-left: 1.5em;
   }
 }
 

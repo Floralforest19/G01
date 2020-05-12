@@ -9,9 +9,9 @@ function validateForm(formName, inputName, feedbackId) {
   // check if right input lenght
   if (input.length < 2 || input.length > 30) {
     if (input.length > 30) {
-      document.getElementById(feedbackId).innerHTML = "max 30 tecken";
+      document.getElementById(feedbackId).innerHTML = "Max 30 tecken";
     } else {
-      document.getElementById(feedbackId).innerHTML = "minst två tecken";
+      document.getElementById(feedbackId).innerHTML = "Minst två tecken";
     }
     return false;
   }
@@ -77,24 +77,24 @@ function validateNameInput(formName, inputName, feedbackId) {
   if (input.length < 2 || input.length > 30) {
     if (input.length > 30) {
       document.getElementById(feedbackId).innerHTML =
-        "Måste vara kortare än 30 tecken";
+        "Max 30 tecken";
     } else {
       document.getElementById(feedbackId).innerHTML =
-        "Skriv in minst två tecken";
+        "Minst två tecken";
     }
     return false;
   }
 
   // check for latin letters
   else if (onlyLetters == false) {
-    document.getElementById(feedbackId).innerHTML = "Endast bokstäver tillåtna";
+    document.getElementById(feedbackId).innerHTML = "Endast bokstäver";
     return false;
   }
 
   // check for mutliple spaces in begining of string
   else if (findSpaces == true) {
     document.getElementById(feedbackId).innerHTML =
-      "För många mellanslag i rad";
+      "För många mellanslag";
     return false;
   }
   return true;
@@ -179,7 +179,7 @@ function validateAddress(formName, inputName, feedbackId) {
 function validateNumberOrSpaces(formName, inputName, feedbackId) {
   document.getElementById(feedbackId).innerHTML = "";
   let input = document.forms[formName][inputName].value;
-  let onlyLetters = /[0-9 ]+/.test(input);
+  let onlyNumbers = /^[0-9 ]*$/.test(input);
   let findSpaces = /(\s\s)/.test(input);
 
   // check if right input lenght
@@ -194,7 +194,7 @@ function validateNumberOrSpaces(formName, inputName, feedbackId) {
     return false;
   }
   // check for latin letters
-  else if (onlyLetters == false) {
+  else if (onlyNumbers == false) {
     document.getElementById(feedbackId).innerHTML =
       "Endast siffror och mellanslag tillåtet";
     return false;

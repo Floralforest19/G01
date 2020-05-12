@@ -13,6 +13,6 @@ if(isset($_GET['id'])){
   $stmt->execute();
 }
 
-  header('Location:index.php');
+  header('Location:read-disp.php');
 
 ?>
